@@ -324,7 +324,7 @@
                 </th>
                 <th style="text-align: center; width: 30%">Forecast (OTTR_%)
                 </th>
-                <th style="text-align: center; width: 8%;">Details
+                <th style="text-align: center; width: 8%;">Detail
                 </th>
             </tr>
             <tr>
