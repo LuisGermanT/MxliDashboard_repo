@@ -17,6 +17,7 @@ namespace MxliDashboard
             llenarDatos_I(0);
             llenarDatos_S(0);
             llenarDatos_Q(0);
+            llenarDatos_P(0);
         }
 
         protected void ASPxComboBoxF_SelectedIndexChanged(object sender, EventArgs e)
@@ -25,6 +26,7 @@ namespace MxliDashboard
             llenarDatos_I(indice);
             llenarDatos_S(indice);
             llenarDatos_Q(indice);
+            llenarDatos_P(indice);
         }
 
         public void llenarDatos_I(int indice)
@@ -127,9 +129,21 @@ namespace MxliDashboard
 
         public void llenarDatos_P(int indice)
         {
-            double actual = 95.50;
+            double actual = 0;
             double aop = 93.90;
             string imagen = "good";
+
+            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+            SqlConnection conn1 = new SqlConnection(myCnStr1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'productivity' and stype = 'current' order by id", conn1);
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                actual = Convert.ToDouble(dr1["factual"].ToString());
+                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+            }
 
             if (actual < aop) { imagen = "bad"; }
             imgProductivity.ImageUrl = "~/img/" + imagen + ".png";
