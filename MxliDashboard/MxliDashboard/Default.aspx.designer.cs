@@ -10,7 +10,7 @@
 namespace MxliDashboard {
     
     
-    public partial class _Default {
+    public partial class Default {
         
         /// <summary>
         /// ASPxRoundPanel1 control.

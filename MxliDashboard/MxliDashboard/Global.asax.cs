@@ -16,6 +16,7 @@ namespace MxliDashboard
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DevExpress.XtraReports.Web.ASPxWebDocumentViewer.StaticInitialize();
         }
     }
 }
