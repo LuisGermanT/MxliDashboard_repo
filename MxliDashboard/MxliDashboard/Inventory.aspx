@@ -57,25 +57,25 @@
         <p></p>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 150px;">
+                    <th style="text-align:center; width: 12%;">
                         Report
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actual
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         AOP
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center" width="50%">
+                    <th style="text-align:center; width: 48%;">
                         Trend
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actions
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Details
                     </th>
                 </tr>
@@ -133,25 +133,25 @@
     <div class="row">   <%--WIP ENTITLEMENT--%>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 150px;">
+                    <th style="text-align:center; width: 12%;">
                         Report
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actual
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Ideal
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center" width="50%">
+                    <th style="text-align:center; width: 48%;">
                         Trend
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actions
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Details
                     </th>
                 </tr>
@@ -209,25 +209,25 @@
     <div class="row">   <%--VMI--%>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 150px;">
+                    <th style="text-align:center; width: 12%;">
                         Report
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actual
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         AOP
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center" width="50%">
+                    <th style="text-align:center; width: 48%;">
                         Trend
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Actions
                     </th>
-                    <th style="text-align:center; width: 100px;">
+                    <th style="text-align:center; width: 8%;">
                         Details
                     </th>
                 </tr>
