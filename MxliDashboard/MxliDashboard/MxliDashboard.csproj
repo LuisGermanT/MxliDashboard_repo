@@ -226,6 +226,7 @@
     <Content Include="n2_Inventory.aspx" />
     <Content Include="n2_Productivity.aspx" />
     <Content Include="n2_Quality.aspx" />
+    <Content Include="n3_Inventory\inventory.aspx" />
     <Content Include="Reports\ReportViewer1.aspx" />
     <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
@@ -324,6 +325,13 @@
     <Compile Include="n2_Quality.aspx.designer.cs">
       <DependentUpon>n2_Quality.aspx</DependentUpon>
     </Compile>
+    <Compile Include="n3_Inventory\inventory.aspx.cs">
+      <DependentUpon>inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Inventory\inventory.aspx.designer.cs">
+      <DependentUpon>inventory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportViewer1.aspx.cs">
       <DependentUpon>ReportViewer1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,6 +397,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="n3_Delivery\" />
+    <Folder Include="n3_Productivity\" />
+    <Folder Include="n3_Quality\" />
+    <Folder Include="n3_Safety\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
