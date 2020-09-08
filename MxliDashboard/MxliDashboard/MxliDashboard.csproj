@@ -217,16 +217,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Inventory.aspx" />
-    <Content Include="ReportViewer1.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="n2_Delivery.aspx" />
+    <Content Include="n2_Inventory.aspx" />
+    <Content Include="n2_Productivity.aspx" />
+    <Content Include="n2_Quality.aspx" />
+    <Content Include="Reports\ReportViewer1.aspx" />
+    <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -257,6 +258,7 @@
     <Content Include="img\productivity.jpg" />
     <Content Include="img\quality.jpg" />
     <Content Include="img\safety.jpg" />
+    <Content Include="n2_Safety.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -286,7 +288,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="TEST_WEBFORM.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -294,41 +295,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="n2_Delivery.aspx.cs">
+      <DependentUpon>n2_Delivery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="n2_Delivery.aspx.designer.cs">
+      <DependentUpon>n2_Delivery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.aspx.cs">
-      <DependentUpon>Inventory.aspx</DependentUpon>
+    <Compile Include="n2_Inventory.aspx.cs">
+      <DependentUpon>n2_Inventory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inventory.aspx.designer.cs">
-      <DependentUpon>Inventory.aspx</DependentUpon>
+    <Compile Include="n2_Inventory.aspx.designer.cs">
+      <DependentUpon>n2_Inventory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReportViewer1.aspx.cs">
+    <Compile Include="n2_Productivity.aspx.cs">
+      <DependentUpon>n2_Productivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n2_Productivity.aspx.designer.cs">
+      <DependentUpon>n2_Productivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n2_Quality.aspx.cs">
+      <DependentUpon>n2_Quality.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n2_Quality.aspx.designer.cs">
+      <DependentUpon>n2_Quality.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportViewer1.aspx.cs">
       <DependentUpon>ReportViewer1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReportViewer1.aspx.designer.cs">
+    <Compile Include="Reports\ReportViewer1.aspx.designer.cs">
       <DependentUpon>ReportViewer1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="n1_Default.aspx.cs">
+      <DependentUpon>n1_Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="n1_Default.aspx.designer.cs">
+      <DependentUpon>n1_Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -344,11 +352,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report1.cs">
+    <Compile Include="Reports\Report1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report1.Designer.cs">
+    <Compile Include="Reports\Report1.Designer.cs">
       <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="n2_Safety.aspx.cs">
+      <DependentUpon>n2_Safety.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n2_Safety.aspx.designer.cs">
+      <DependentUpon>n2_Safety.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -363,13 +378,6 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
-    <Compile Include="TEST_WEBFORM.aspx.cs">
-      <DependentUpon>TEST_WEBFORM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TEST_WEBFORM.aspx.designer.cs">
-      <DependentUpon>TEST_WEBFORM.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -399,7 +407,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report1.resx">
+    <EmbeddedResource Include="Reports\Report1.resx">
       <DependentUpon>Report1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
