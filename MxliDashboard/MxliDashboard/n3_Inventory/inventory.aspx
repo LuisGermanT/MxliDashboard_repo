@@ -141,9 +141,8 @@ ClientInstanceName="chart" AutoLayout="True">
                 <Items>
                     <dx:GridViewToolbarItem Command="ExportToPdf" />
                     <dx:GridViewToolbarItem Command="ExportToXlsx" />
-                    <dx:GridViewToolbarItem Command="ExportToXls" />
-                    <dx:GridViewToolbarItem Command="ExportToDocx" />
                     <dx:GridViewToolbarItem Command="ExportToCsv" />
+                    <dx:GridViewToolbarItem Command="ExportToDocx" />                 
                 </Items>
             </dx:GridViewToolbar>
         </Toolbars>

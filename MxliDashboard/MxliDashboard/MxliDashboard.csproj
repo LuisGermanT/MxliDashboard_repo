@@ -227,6 +227,8 @@
     <Content Include="n2_Productivity.aspx" />
     <Content Include="n2_Quality.aspx" />
     <Content Include="n3_Inventory\inventory.aspx" />
+    <Content Include="n3_Quality\defects.aspx" />
+    <Content Include="n3_Quality\escapesppm.aspx" />
     <Content Include="n3_Quality\escapes.aspx" />
     <Content Include="Reports\ReportViewer1.aspx" />
     <Content Include="n1_Default.aspx" />
@@ -332,6 +334,20 @@
     </Compile>
     <Compile Include="n3_Inventory\inventory.aspx.designer.cs">
       <DependentUpon>inventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Quality\defects.aspx.cs">
+      <DependentUpon>defects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Quality\defects.aspx.designer.cs">
+      <DependentUpon>defects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Quality\escapesppm.aspx.cs">
+      <DependentUpon>escapesppm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Quality\escapesppm.aspx.designer.cs">
+      <DependentUpon>escapesppm.aspx</DependentUpon>
     </Compile>
     <Compile Include="n3_Quality\escapes.aspx.cs">
       <DependentUpon>escapes.aspx</DependentUpon>

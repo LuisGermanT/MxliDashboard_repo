@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="escapes.aspx.cs" Inherits="MxliDashboard.n3_Quality.escapes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="defects.aspx.cs" Inherits="MxliDashboard.n3_Quality.defects" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -91,7 +91,7 @@ ClientInstanceName="chart">
     <p />
     <hr />
     <p />
-    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_escapes" Theme="Default" Width="1024px">
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_defects" Theme="Default" Width="1024px">
         <SettingsPager Mode="ShowPager" PageSize="20">
         </SettingsPager>
         <Settings ShowGroupPanel="True" />
@@ -116,25 +116,21 @@ ClientInstanceName="chart">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="partNumber" VisibleIndex="2" Caption="NAME">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="partName" VisibleIndex="3" Caption="NAME">
+            <dx:GridViewDataTextColumn FieldName="program" VisibleIndex="3" Caption="PROGRAM">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="cause" VisibleIndex="4" Caption="CAUSE">
+            <dx:GridViewDataTextColumn FieldName="notificationdate" VisibleIndex="4" Caption="N.DATE">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="qndescription" VisibleIndex="5" Caption="DESCRIPTION">
+            <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="5" Caption="MRP">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="qncreatedBy" VisibleIndex="6" Caption="CREATED BY">
+            <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="6" Caption="RESPONSABILITY">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="7" Caption="MRP">
+            <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="7" Caption="CELL">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="8" Caption="RESPONSABILITY">
+            <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="8" Caption="VSM">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="9" Caption="CELL">
+            <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="9" Caption="WEEK">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="10" Caption="VSM">
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="11" Caption="WEEK">
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="dYear" VisibleIndex="12" Caption="YEAR">
+            <dx:GridViewDataTextColumn FieldName="dYear" VisibleIndex="10" Caption="YEAR">
             </dx:GridViewDataTextColumn>
         </Columns>
         <GroupSummary>
@@ -147,15 +143,15 @@ ClientInstanceName="chart">
             <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
         </GroupSummary>
         <GroupSummary>
-            <dx:ASPxSummaryItem FieldName="cause" ShowInColumn="CAUSE" SummaryType="Count" />
+            <dx:ASPxSummaryItem FieldName="program" ShowInColumn="PROGRAM" SummaryType="Count" />
         </GroupSummary>
         <Styles>
             <Header BackColor="IndianRed" ForeColor="White">
             </Header>
         </Styles>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [week], [dYear] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm order by id">
+    <asp:SqlDataSource ID="ds_defects" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [id], [qn], [partNumber], [program], [notificationdate], [mrp], [Responsability], [cell], [vsm], [week], [dYear] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
@@ -164,9 +160,9 @@ ClientInstanceName="chart">
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [mrp] FROM [sap_escapes] order by mrp"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [mrp] FROM [sap_defects] order by mrp"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [vsm] FROM [sap_escapes] order by vsm"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [vsm] FROM [sap_defects] order by vsm"></asp:SqlDataSource>
     <p />
     <hr />
     <p />

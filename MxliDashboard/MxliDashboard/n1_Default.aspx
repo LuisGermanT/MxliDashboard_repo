@@ -115,7 +115,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/ReportViewer1">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Inventory">View &raquo;</a>
                 </td>
             </tr>
         </table>
@@ -208,7 +208,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/Safety">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Safety">View &raquo;</a>
                 </td>
             </tr>
         </table>
@@ -301,7 +301,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/Safety">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Safety">View &raquo;</a>
                 </td>
             </tr>
         </table>
@@ -394,7 +394,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/Delivery">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Delivery">View &raquo;</a>
                 </td>
             </tr>
         </table>
@@ -487,7 +487,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/Productivity">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Productivity">View &raquo;</a>
                 </td>
             </tr>
         </table>

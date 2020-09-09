@@ -124,7 +124,7 @@
                         <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=ESCAPES_PPM">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_quality/escapesppm.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_quality/escapesppm.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -232,7 +232,7 @@
                         <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=ESCAPES">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_quality/escapes.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_quality/escapes.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -335,7 +335,7 @@
                         <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=DEFECTS">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_quality/defects.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_quality/defects.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          

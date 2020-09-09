@@ -122,7 +122,7 @@
                         <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_inventory/inventory.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_inventory/inventory.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -198,7 +198,7 @@
                         <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_inventory/entitlement.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_inventory/entitlement.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -274,7 +274,7 @@
                         <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_inventory/vmi.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_inventory/vmi.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
