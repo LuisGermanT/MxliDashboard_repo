@@ -183,16 +183,21 @@ namespace MxliDashboard
 
             chartIp.Series["Series1"].Points.Clear();
             chartIp.Series["Series2"].Points.Clear();
+            chartIp.Series["Series3"].Points.Clear();
             string myCnStr3 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn3 = new SqlConnection(myCnStr3);
             SqlCommand cmd3 = new SqlCommand("select * from [sta_nivel1p] where smetric = 'inventory' and stype = '" + tipo + "' order by id", conn3);
             SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
+            double xTemp = .90;
             foreach (DataRow dr3 in dt3.Rows)
             {
+                double xGoal = Convert.ToDouble(dr3["fgoal"].ToString());
                 chartIp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
                 chartIp.Series["Series2"].Points.AddXY(dr3["sdesc"].ToString(), dr3["fgoal"].ToString());
+                chartIp.Series["Series3"].Points.AddXY(dr3["sdesc"].ToString(), (xGoal* xTemp).ToString());
+                xTemp = xTemp - .05;
             }
         }
 
@@ -225,6 +230,7 @@ namespace MxliDashboard
 
             chartSp.Series["Series1"].Points.Clear();
             chartSp.Series["Series2"].Points.Clear();
+            chartSp.Series["Series3"].Points.Clear();
             string myCnStr3 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn3 = new SqlConnection(myCnStr3);
             SqlCommand cmd3 = new SqlCommand("select * from [sta_nivel1p] where smetric = 'safety' and stype = '" + tipo + "' order by id", conn3);
@@ -235,6 +241,7 @@ namespace MxliDashboard
             {
                 chartSp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
                 chartSp.Series["Series2"].Points.AddXY(dr3["sdesc"].ToString(), dr3["fgoal"].ToString());
+                chartSp.Series["Series3"].Points.AddXY(dr3["sdesc"].ToString(), "0");
             }
         }
 
@@ -267,6 +274,7 @@ namespace MxliDashboard
 
             chartQp.Series["Series1"].Points.Clear();
             chartQp.Series["Series2"].Points.Clear();
+            chartQp.Series["Series3"].Points.Clear();
             string myCnStr3 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn3 = new SqlConnection(myCnStr3);
             SqlCommand cmd3 = new SqlCommand("select * from [sta_nivel1p] where smetric = 'quality' and stype = '" + tipo + "' order by id", conn3);
@@ -277,6 +285,7 @@ namespace MxliDashboard
             {
                 chartQp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
                 chartQp.Series["Series2"].Points.AddXY(dr3["sdesc"].ToString(), dr3["fgoal"].ToString());
+                chartQp.Series["Series3"].Points.AddXY(dr3["sdesc"].ToString(), "0");
             }
         }
 

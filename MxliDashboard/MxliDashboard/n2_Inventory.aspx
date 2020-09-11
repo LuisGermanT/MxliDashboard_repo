@@ -103,11 +103,13 @@
                     <asp:Image ID="imgI01" runat="server" ImageUrl="~/img/bad.png" />
                 </td>
                 <td style="text-align: center">
-                    <asp:Chart ID="chartTI01" runat="server" Height="120px">
+                    <asp:Chart ID="chartTI01" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
                             </asp:Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
+                            </asp:Series>
+                            <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -133,6 +135,14 @@
                 </td>
                 <td style="text-align: center">
                     <a class="btn btn-default" href="n3_inventory/inventory.aspx">View &raquo;</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -173,11 +183,13 @@
                     <asp:Image ID="imgI02" runat="server" ImageUrl="~/img/bad.png" />
                 </td>
                 <td style="text-align: center">
-                    <asp:Chart ID="chartTI02" runat="server" Height="120px">
+                    <asp:Chart ID="chartTI02" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
                             </asp:Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
+                            </asp:Series>
+                            <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -203,6 +215,14 @@
                 </td>
                 <td style="text-align: center">
                     <a class="btn btn-default" href="n3_inventory/entitlement.aspx">View &raquo;</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelE" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesE" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -243,11 +263,13 @@
                     <asp:Image ID="imgI03" runat="server" ImageUrl="~/img/bad.png" />
                 </td>
                 <td style="text-align: center">
-                    <asp:Chart ID="chartTI03" runat="server" Height="120px">
+                    <asp:Chart ID="chartTI03" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
                             </asp:Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
+                            </asp:Series>
+                            <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -273,6 +295,14 @@
                 </td>
                 <td style="text-align: center">
                     <a class="btn btn-default" href="n3_inventory/vmi.aspx">View &raquo;</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelV" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesV" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
