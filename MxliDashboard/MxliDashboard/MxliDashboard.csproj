@@ -223,6 +223,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="n2_Delivery.aspx" />
+    <Content Include="Settings.aspx" />
     <Content Include="n2_Inventory.aspx" />
     <Content Include="n2_Productivity.aspx" />
     <Content Include="n2_Quality.aspx" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="n2_Delivery.aspx.designer.cs">
       <DependentUpon>n2_Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="n2_Inventory.aspx.cs">
       <DependentUpon>n2_Inventory.aspx</DependentUpon>

@@ -31,6 +31,24 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.PanelContent PanelContent1;
         
         /// <summary>
+        /// ASPxLabelCaptionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionV;
+        
+        /// <summary>
+        /// ASPxComboBoxV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
+        
+        /// <summary>
         /// ASPxLabelCaption2 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,15 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
         
         /// <summary>
+        /// I01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl I01;
+        
+        /// <summary>
         /// I01Report control.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,15 @@ namespace MxliDashboard {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTI01;
         
         /// <summary>
+        /// I02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl I02;
+        
+        /// <summary>
         /// I02Report control.
         /// </summary>
         /// <remarks>
@@ -173,6 +209,15 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTI02;
+        
+        /// <summary>
+        /// I03 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl I03;
         
         /// <summary>
         /// I03Report control.

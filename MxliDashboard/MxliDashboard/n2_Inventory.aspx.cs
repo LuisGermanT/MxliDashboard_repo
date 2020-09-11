@@ -15,6 +15,7 @@ namespace MxliDashboard
         public int bandChange = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
             llenarDatos_I01(0);
             loadChartI01(0, "All");
             llenarDatos_I02(0);
@@ -267,6 +268,24 @@ namespace MxliDashboard
                 chartTI03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
             }
         }
+
+        protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indice = ASPxComboBoxV.SelectedIndex;
+            if (indice == 1)
+            {
+                I01.Visible = true;
+                I02.Visible = false;
+                I03.Visible = false;
+            }
+            else
+            {
+                I01.Visible = true;
+                I02.Visible = true;
+                I03.Visible = true;
+            }
+        }
+
 
     }
 }

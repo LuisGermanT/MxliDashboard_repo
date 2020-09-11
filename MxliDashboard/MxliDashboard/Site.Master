@@ -6,8 +6,8 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
-
+    <%--<title><%: Page.Title %> - My ASP.NET Application</title>--%>
+    <title>Honeywell 1033</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -61,7 +61,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">AOP goals</a></li>
-                                <li><a href="#">Managers goals</a></li>
+                                <li><a runat="server" href="~/Settings">Managers goals</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Views & Filters</a></li>
                             </ul>

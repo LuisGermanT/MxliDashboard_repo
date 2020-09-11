@@ -118,6 +118,11 @@
                     <a class="btn btn-danger" href="/n2_Inventory">View &raquo;</a>
                 </td>
             </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+            </tr>
         </table>
     </div>
     <p></p>
@@ -211,6 +216,11 @@
                     <a class="btn btn-danger" href="/n2_Safety">View &raquo;</a>
                 </td>
             </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelS" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+            </tr>
         </table>
     </div>
     <p></p>
@@ -239,10 +249,10 @@
                     <asp:Image ID="ImageLogoQ" runat="server" ImageUrl="~/img/quality.jpg" />
                 </td>
                 <td style="text-align: center">
-                    <dx:ASPxLabel ID="qualityActual" runat="server" Text="ASPxLabel" Font-Size="Larger"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="qualityActual" runat="server" Text="" Font-Size="Larger"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center">
-                    <dx:ASPxLabel ID="qualityAOP" runat="server" Text="ASPxLabel" Font-Size="Larger"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="qualityAOP" runat="server" Text="" Font-Size="Larger"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center">
                     <asp:Image ID="imgQuality" runat="server" ImageUrl="~/img/bad.png" />
@@ -301,7 +311,12 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/n2_Safety">View &raquo;</a>
+                    <a class="btn btn-danger" href="/n2_Quality">View &raquo;</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelQ" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
                 </td>
             </tr>
         </table>
@@ -397,6 +412,11 @@
                     <a class="btn btn-danger" href="/n2_Delivery">View &raquo;</a>
                 </td>
             </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelD" runat="server" Text="" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+            </tr>
         </table>
     </div>
     <p></p>
@@ -488,6 +508,11 @@
                 </td>
                 <td style="text-align: center">
                     <a class="btn btn-danger" href="/n2_Productivity">View &raquo;</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <dx:ASPxLabel ID="ASPxLabelP" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
                 </td>
             </tr>
         </table>
