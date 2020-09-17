@@ -91,7 +91,7 @@
                         <dx:aspxlabel ID="P01Report" runat="server" Text="NET PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
                     </td>
                     <td style="text-align:center">
-                        <dx:aspxlabel ID="P01Actual" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:aspxlabel>
+                        <dx:aspxlabel ID="P01Actual" runat="server" Text="ASPxLabel" Font-Size="Medium" ></dx:aspxlabel>
                     </td>
                     <td style="text-align:center">
                         <dx:aspxlabel ID="P01AOP" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:aspxlabel>
@@ -153,7 +153,7 @@
                         <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_quality/escapes.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_productivity/productivity.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -475,6 +475,10 @@
             <p></p>
 
         </ContentTemplate>
+        <%--<Triggers>
+            <asp:PostBackTrigger ControlID="ASPxComboBoxVsmInContent" />
+            <asp:PostBackTrigger ControlID ="ASPxComboBoxCellInContent" />
+        </Triggers>--%>
     </asp:UpdatePanel>
     
 
