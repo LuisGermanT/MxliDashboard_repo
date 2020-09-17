@@ -61,29 +61,7 @@
             <EditFormLayoutProperties>
                 <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit">
                 </SettingsAdaptivity>
-                <Items>
-                <dx:GridViewTabbedLayoutGroup>
-                    <Items>
-                        <dx:GridViewLayoutGroup ColumnCount="2" Caption="Employee Information">
-                            <Items>
-                <dx:GridViewLayoutGroup GroupBoxDecoration="None" ColumnSpan="2" Name="groupContactInfo" ClientVisible="false" Paddings-PaddingTop="0">
-                                    <Items>
-                                        <dx:GridViewColumnLayoutItem ColumnName="Address" />
-                                        <dx:GridViewColumnLayoutItem ColumnName="Notes" Width="100%" />
-                                    </Items>
-                                </dx:GridViewLayoutGroup>
-                                <dx:GridViewColumnLayoutItem ShowCaption="False" ColumnSpan="2">
-                                    <Template>
-                                        <dx:ASPxHyperLink runat="server" ID="hlShowHideInfo" Text="Show Details..." Cursor="pointer" Width="100">
-                                            <ClientSideEvents Click="onShowHideInfoClick" />
-                                        </dx:ASPxHyperLink>
-                                    </Template>
-                                </dx:GridViewColumnLayoutItem>
-                                </Items>
-                            </dx:GridViewLayoutGroup>
-                        </Items>
-                    </dx:GridViewTabbedLayoutGroup>
-                    </Items>
+                
             </EditFormLayoutProperties>
             <Columns>
                 <dx:GridViewCommandColumn ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">

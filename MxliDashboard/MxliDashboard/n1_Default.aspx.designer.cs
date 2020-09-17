@@ -112,6 +112,15 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelI;
         
         /// <summary>
+        /// ImageSeriesI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSeriesI;
+        
+        /// <summary>
         /// ImageLogoS control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelS;
+        
+        /// <summary>
+        /// ImageSeriesS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSeriesS;
         
         /// <summary>
         /// ImageLogoQ control.
@@ -238,6 +256,15 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelQ;
         
         /// <summary>
+        /// ImageSeriesQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSeriesQ;
+        
+        /// <summary>
         /// ImageLogoD control.
         /// </summary>
         /// <remarks>
@@ -301,6 +328,15 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelD;
         
         /// <summary>
+        /// ImageSeriesD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSeriesD;
+        
+        /// <summary>
         /// ImageLogoP control.
         /// </summary>
         /// <remarks>
@@ -362,5 +398,14 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelP;
+        
+        /// <summary>
+        /// ImageSeriesP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSeriesP;
     }
 }

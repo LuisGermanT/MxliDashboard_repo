@@ -181,6 +181,7 @@ namespace MxliDashboard
         {
             chartTI01.Series["Series1"].Points.Clear();
             chartTI01.Series["Series2"].Points.Clear();
+            chartTI01.Series["Series3"].Points.Clear();
             string xTipo = "weekly";
             //tipo=0
             String xFilter = "SITE";
@@ -203,12 +204,15 @@ namespace MxliDashboard
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
+            double xTemp = 60.1;
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTI01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTI01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual/1000000),2));
+                chartTI01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal/1000000), 2));
+                chartTI01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), xTemp);
+                xTemp = xTemp - .15;
             }
         }
 
@@ -216,6 +220,7 @@ namespace MxliDashboard
         {
             chartTI02.Series["Series1"].Points.Clear();
             chartTI02.Series["Series2"].Points.Clear();
+            chartTI02.Series["Series3"].Points.Clear();
             string xTipo = "weekly";
             //tipo=0
             String xFilter = "SITE";
@@ -241,8 +246,9 @@ namespace MxliDashboard
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTI02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTI02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                chartTI02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                chartTI02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
             }
         }
 
@@ -250,6 +256,7 @@ namespace MxliDashboard
         {
             chartTI03.Series["Series1"].Points.Clear();
             chartTI03.Series["Series2"].Points.Clear();
+            chartTI03.Series["Series3"].Points.Clear();
             String xFilter = "SITE";
             string xTipo = "weekly";
             string xClass = "All";
@@ -264,8 +271,9 @@ namespace MxliDashboard
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTI03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTI03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                chartTI03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                chartTI03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
             }
         }
 

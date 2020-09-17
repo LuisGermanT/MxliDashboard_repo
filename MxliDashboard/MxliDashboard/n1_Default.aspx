@@ -93,7 +93,9 @@
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="Black" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                                 </asp:Series>
                             </series>
                         <chartareas>
@@ -119,8 +121,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -191,7 +196,9 @@
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="Black" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                                 </asp:Series>
                             </series>
                         <chartareas>
@@ -217,8 +224,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <dx:ASPxLabel ID="ASPxLabelS" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesS" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -289,7 +299,9 @@
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="Black" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                                 </asp:Series>
                             </series>
                         <chartareas>
@@ -315,8 +327,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <dx:ASPxLabel ID="ASPxLabelQ" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesQ" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -387,7 +402,9 @@
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="Black" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                                 </asp:Series>
                             </series>
                         <chartareas>
@@ -413,8 +430,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <dx:ASPxLabel ID="ASPxLabelD" runat="server" Text="" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesD" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
@@ -485,7 +505,9 @@
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="Black" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" BorderDashStyle="Dot">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="0, 192, 0" MarkerStyle="Circle" Name="Series3">
                                 </asp:Series>
                             </series>
                         <chartareas>
@@ -511,8 +533,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <dx:ASPxLabel ID="ASPxLabelP" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                </td>
+                <td style="text-align: center" >
+                    <asp:Image ID="ImageSeriesP" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                 </td>
             </tr>
         </table>
