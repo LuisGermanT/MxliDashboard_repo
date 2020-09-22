@@ -4,9 +4,45 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views & Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+            <HeaderStyle ForeColor="White" />
+            <HeaderContent BackColor="#666666">
+            </HeaderContent>
+            <PanelCollection>
+                <dx:PanelContent ID="PanelContent1" runat="server">
+                    <table style="table-layout: fixed">
+                        <tr>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select Tier view:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="All" Value="0" />
+                                        <dx:ListEditItem Text="T1" Value="1" />
+                                        <dx:ListEditItem Text="T2" Value="2" />
+                                        <dx:ListEditItem Text="T3" Value="3" />
+                                        <dx:ListEditItem Text="TFunction" Value="4" />
+                                        <dx:ListEditItem Text="WarRoom" Value="5" />
+                                    </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>                           
+                        </tr>
+                    </table>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxRoundPanel>
+    <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--No incidentes--%>
+    <div class="row" runat="server" id="S01">   <%--No incidentes--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 10%;">
@@ -100,10 +136,10 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
+                        <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_safety/incidentes.aspx">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>
@@ -119,7 +155,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--MST Actions--%>
+    <div class="row" runat="server" id="S02">   <%--MST Actions--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 10%;">
@@ -213,10 +249,10 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
+                        <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_safety/mstactions.aspx">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>
@@ -232,7 +268,7 @@
     <p></p>
     <hr />   
     <p></p>
-    <div class="row">   <%--Training--%>
+    <div class="row" runat="server" id="S03">   <%--Training--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 10%;">
@@ -326,10 +362,10 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
+                        <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-default" href="#">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>

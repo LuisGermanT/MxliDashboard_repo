@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MxliDashboard.n3_Quality {
+namespace MxliDashboard.n3_Safety {
     
     
-    public partial class defects {
+    public partial class incidentes {
         
         /// <summary>
         /// ASPxRoundPanel1 control.
@@ -40,13 +40,13 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
         
         /// <summary>
-        /// ASPxComboBoxVsmInContent control.
+        /// ASPxComboBoxAreaInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxVsmInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
         
         /// <summary>
         /// ASPxLabelCaption2 control.
@@ -58,13 +58,13 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
         
         /// <summary>
-        /// ASPxComboBoxMrpInContent control.
+        /// ASPxComboBoxCeldaInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMrpInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCeldaInContent;
         
         /// <summary>
         /// ASPxLabelCaption3 control.
@@ -76,13 +76,13 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
         
         /// <summary>
-        /// ASPxComboBoxCellInContent control.
+        /// ASPxComboBoxClasInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxClasInContent;
         
         /// <summary>
         /// ASPxRoundPanel2 control.
@@ -148,40 +148,40 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
         
         /// <summary>
-        /// ds_defects control.
+        /// ds_incidentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ds_defects;
+        protected global::System.Web.UI.WebControls.SqlDataSource ds_incidentes;
         
         /// <summary>
-        /// SqlDataSourceMrp control.
+        /// SqlDataSourceArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
         
         /// <summary>
-        /// SqlDataSourceVsm control.
+        /// SqlDataSourceCelda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCelda;
         
         /// <summary>
-        /// SqlDataSourceCell control.
+        /// SqlDataSourceClas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceClas;
         
         /// <summary>
         /// ASPxRoundPanel4 control.

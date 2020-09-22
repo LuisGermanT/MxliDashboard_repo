@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="defects.aspx.cs" Inherits="MxliDashboard.n3_Quality.defects" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="incidentes.aspx.cs" Inherits="MxliDashboard.n3_Safety.incidentes" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
-    <h3>Defects.</h3>
+    <h3>Incidentes.</h3>
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
@@ -20,45 +20,45 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Selecciona Area">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
-                                TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm">
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
+                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                            e.errorText = &quot;You should Select One Area&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Selecciona Celda">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
-                                TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundMrp">
+                            <dx:ASPxComboBox ID="ASPxComboBoxCeldaInContent" runat="server" ValueField="celda"
+                                TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCelda"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCelda">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One MRP&quot;;
+                                            e.errorText = &quot;You should Select One Celda&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cell">
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Selecciona Clasificacion">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
-                                TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                            <dx:ASPxComboBox ID="ASPxComboBoxClasInContent" runat="server" ValueField="clasificacion"
+                                TextField="clasificacion" ValueType="System.String" DataSourceID="SqlDataSourceClas"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundClas">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            e.errorText = &quot;You should Select One Clas&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
@@ -112,7 +112,7 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'defectos' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'incidentes' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
     </asp:SqlDataSource>
     <p />
     <hr />
@@ -123,7 +123,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent3" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_defects" Theme="Default" Width="1024px">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_incidentes" Theme="Default" Width="1024px">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
                     <Settings ShowGroupPanel="True" />
@@ -144,39 +144,33 @@
                     <Columns>
                         <dx:GridViewDataTextColumn FieldName="id" VisibleIndex="0" Caption="ID">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="1" Caption="QN">
+                        <dx:GridViewDataTextColumn FieldName="fecha" VisibleIndex="1" Caption="FECHA">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="partNumber" VisibleIndex="2" Caption="NAME">
+                        <dx:GridViewDataTextColumn FieldName="empleado" VisibleIndex="2" Caption="EMPLEADO">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="program" VisibleIndex="3" Caption="PROGRAM">
+                        <dx:GridViewDataTextColumn FieldName="area" VisibleIndex="3" Caption="AREA">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="notificationdate" VisibleIndex="4" Caption="N.DATE">
+                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="4" Caption="CELDA">
                         </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="5" Caption="RESPONSABILITY">
+                        <dx:GridViewDataTextColumn FieldName="causa" VisibleIndex="5" Caption="CAUSA">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="6" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="descripcion" VisibleIndex="6" Caption="DESCRIPCION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="7" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="clasificacion" VisibleIndex="7" Caption="CLASIFICACION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="8" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="assignedto" VisibleIndex="8" Caption="ASIGNADO">
                         </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="9" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="mstnumero" VisibleIndex="9" Caption="MST#">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="area" ShowInColumn="AREA" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="cell" ShowInColumn="CELL" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="celda" ShowInColumn="CELDA" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="mrp" ShowInColumn="MRP" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="program" ShowInColumn="PROGRAM" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="clasificacion" ShowInColumn="CLASIFICACION" SummaryType="Count" />
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -186,23 +180,23 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_defects" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [program], [notificationdate], [mrp], [Responsability], [cell], [vsm], [week], [dYear] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and cell like @pCell order by id">
+    <asp:SqlDataSource ID="ds_incidentes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [id], [fecha], [empleado], [area], [celda], [causa], [descripcion], [clasificacion], [assignedto], [mstnumero] FROM [sap_incidentes] where area like @pArea and celda like @pCelda and clasificacion like @pClas order by id">
         <SelectParameters>
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
-                Name="pMrp" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
-                Name="pVsm" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
-                Name="pCell" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAreaInContent"
+                Name="pArea" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCeldaInContent"
+                Name="pCelda" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxClasInContent"
+                Name="pClas" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [mrp] FROM [sap_defects] order by mrp"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [vsm] FROM [sap_defects] order by vsm"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [cell] FROM [sap_defects] order by cell"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [area] FROM [sap_incidentes] order by area"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceCelda" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [celda] FROM [sap_incidentes] order by celda"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceClas" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [clasificacion] FROM [sap_incidentes] order by clasificacion"></asp:SqlDataSource>
     <p />
     <hr />
     <p />

@@ -13,6 +13,51 @@ namespace MxliDashboard {
     public partial class Safety {
         
         /// <summary>
+        /// ASPxRoundPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel1;
+        
+        /// <summary>
+        /// PanelContent1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent1;
+        
+        /// <summary>
+        /// ASPxLabelCaptionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionV;
+        
+        /// <summary>
+        /// ASPxComboBoxV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
+        
+        /// <summary>
+        /// S01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl S01;
+        
+        /// <summary>
         /// S01Report control.
         /// </summary>
         /// <remarks>
@@ -85,6 +130,15 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Image ImageSeriesI;
         
         /// <summary>
+        /// S02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl S02;
+        
+        /// <summary>
         /// S02Report control.
         /// </summary>
         /// <remarks>
@@ -155,6 +209,15 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesM;
+        
+        /// <summary>
+        /// S03 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl S03;
         
         /// <summary>
         /// S03Report control.

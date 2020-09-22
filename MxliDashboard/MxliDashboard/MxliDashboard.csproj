@@ -226,6 +226,8 @@
     <Content Include="img\chartSeries.png" />
     <Content Include="n2_Delivery.aspx" />
     <Content Include="n3_Productivity\productivity.aspx" />
+    <Content Include="n3_Safety\mstactions.aspx" />
+    <Content Include="n3_Safety\incidentes.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="n2_Inventory.aspx" />
     <Content Include="n2_Productivity.aspx" />
@@ -317,6 +319,20 @@
     </Compile>
     <Compile Include="n3_Productivity\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Safety\mstactions.aspx.cs">
+      <DependentUpon>mstactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Safety\mstactions.aspx.designer.cs">
+      <DependentUpon>mstactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Safety\incidentes.aspx.cs">
+      <DependentUpon>incidentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Safety\incidentes.aspx.designer.cs">
+      <DependentUpon>incidentes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
@@ -441,7 +457,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="n3_Delivery\" />
-    <Folder Include="n3_Safety\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

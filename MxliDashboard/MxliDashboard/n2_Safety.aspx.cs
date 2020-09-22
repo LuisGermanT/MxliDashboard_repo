@@ -14,6 +14,7 @@ namespace MxliDashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
             llenarDatos_S01(0);
             llenarDatos_S02(0);
             llenarDatos_S03(0);
@@ -253,6 +254,23 @@ namespace MxliDashboard
             chartPS03.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
             chartPS03.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
             chartPS03.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
+        }
+
+        protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indice = ASPxComboBoxV.SelectedIndex;
+            if (indice == 1)
+            {
+                S02.Visible = true;
+                S01.Visible = false;
+                S03.Visible = false;
+            }
+            else
+            {
+                S01.Visible = true;
+                S02.Visible = true;
+                S03.Visible = true;
+            }
         }
 
 
