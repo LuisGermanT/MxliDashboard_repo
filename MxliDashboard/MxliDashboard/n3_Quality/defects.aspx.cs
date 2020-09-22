@@ -29,6 +29,13 @@ namespace MxliDashboard.n3_Quality
             ASPxComboBoxVsmInContent.SelectedIndex = 0;
         }
 
+        protected void cmbox_DataBoundCell(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxCellInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxCellInContent.SelectedIndex = 0;
+        }
+
 
     }
 }

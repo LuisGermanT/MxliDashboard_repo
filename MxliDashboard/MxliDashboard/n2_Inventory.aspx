@@ -16,7 +16,8 @@
                             <th>
                                 <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select Tier view:">
                                 </dx:ASPxLabel>
-                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" AutoPostBack="True">
+                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
                                     <Items>
                                         <dx:ListEditItem Selected="True" Text="All" Value="0" />
                                         <dx:ListEditItem Text="T1" Value="1" />
@@ -25,14 +26,21 @@
                                         <dx:ListEditItem Text="TFunction" Value="4" />
                                         <dx:ListEditItem Text="WarRoom" Value="5" />
                                     </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
                                 </dx:ASPxComboBox>
                             </th>
                             <th>
-                                <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select VSM filter:">
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF1" runat="server" Text="Select VSM filter:">
                                 </dx:ASPxLabel>
-                                <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="sclass"
+                                <dx:ASPxComboBox ID="ASPxComboBoxF1" runat="server" ValueField="sclass"
                                     TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF1" OnSelectedIndexChanged="ASPxComboBoxF1_SelectedIndexChanged">
                                     <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -43,11 +51,26 @@
                                 </dx:ASPxComboBox>
                             </th>
                             <th>
-                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Cell filter:">
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF2" runat="server" Text="Select Cell filter:">
                                 </dx:ASPxLabel>
-                                <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="sclass"
+                                <dx:ASPxComboBox ID="ASPxComboBoxF2" runat="server" ValueField="sclass"
                                     TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged">
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF2" OnSelectedIndexChanged="ASPxComboBoxF2_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One MRP&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF3" runat="server" Text="Select MRP filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF3" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF3" OnSelectedIndexChanged="ASPxComboBoxF3_SelectedIndexChanged">
                                     <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -66,6 +89,8 @@
             SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where sfilter = 'vsm' order by sClass" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
             SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where sfilter = 'cell' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where sfilter = 'mrp' order by sClass"></asp:SqlDataSource>
     </div>
     <p></p>
     <hr />
@@ -105,7 +130,7 @@
                 <td style="text-align: center">
                     <asp:Chart ID="chartTI01" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale">
                             </asp:Series>
                             <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                             </asp:Series>
@@ -185,7 +210,7 @@
                 <td style="text-align: center">
                     <asp:Chart ID="chartTI02" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale">
                             </asp:Series>
                             <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                             </asp:Series>
@@ -265,7 +290,7 @@
                 <td style="text-align: center">
                     <asp:Chart ID="chartTI03" runat="server" Height="120px" Width="500px">
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True">
+                            <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale">
                             </asp:Series>
                             <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                             </asp:Series>

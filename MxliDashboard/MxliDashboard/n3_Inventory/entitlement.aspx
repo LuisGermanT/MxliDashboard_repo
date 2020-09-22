@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="escapes.aspx.cs" Inherits="MxliDashboard.n3_Quality.escapes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="entitlement.aspx.cs" Inherits="MxliDashboard.n3_Inventory.entitlement" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -6,12 +6,13 @@
 <%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
     <p></p>
-    <h3>Escapes.</h3>
+    <h3>WIP Entitlement.</h3>
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
         </HeaderContent>
@@ -49,14 +50,29 @@
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Status">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="status"
+                                TextField="status" ValueType="System.String" DataSourceID="SqlDataSourceSta"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundSta">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Status&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
                     </tr>
                 </table>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <p />
+    <p></p>
     <hr />
-    <p />
+    <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" Width="100%" HeaderText="Data chart" ForeColor="Black" AllowCollapsingByHeaderClick="True">
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
@@ -79,14 +95,18 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual">
+                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual" CrosshairLabelPattern="{V:c2}">
                             <ViewSerializable>
                                 <dx:SideBySideBarSeriesView>
                                     <Border Color="49, 133, 155" />
                                 </dx:SideBySideBarSeriesView>
                             </ViewSerializable>
+                            <LabelSerializable>
+                                <dx:SideBySideBarSeriesLabel TextPattern="{V:c2}">
+                                </dx:SideBySideBarSeriesLabel>
+                            </LabelSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal">
+                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="IndianRed">
                                 </dx:LineSeriesView>
@@ -97,7 +117,7 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'escapes' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'entitlement' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
     </asp:SqlDataSource>
     <p></p>
     <hr />
@@ -108,10 +128,10 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent3" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_escapes" Theme="Default" Width="1024px">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_inventory" Theme="Office2010Silver" Width="100%" EnableTheming="True" OnCustomUnboundColumnData="grid_CustomUnboundColumnData">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
-                    <Settings ShowGroupPanel="True" />
+                    <Settings ShowFooter="True" ShowGroupPanel="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <SettingsSearchPanel Visible="True" />
                     <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="WYSIWYG" />
@@ -127,67 +147,50 @@
                         </dx:GridViewToolbar>
                     </Toolbars>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="id" VisibleIndex="0" Caption="ID">
+                        <dx:GridViewDataTextColumn FieldName="outline" VisibleIndex="0" Caption="Material">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="1" Caption="QN">
+                        <dx:GridViewDataTextColumn FieldName="actual_wip_v" VisibleIndex="1" Caption="WIP">
+                            <PropertiesTextEdit DisplayFormatString="C2">
+                            </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="partNumber" VisibleIndex="2" Caption="MATERIAL">
+                        <dx:GridViewDataTextColumn FieldName="ideal_wip_v" VisibleIndex="2" Caption="IDEAL">
+                            <PropertiesTextEdit DisplayFormatString="C2">
+                            </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="partName" VisibleIndex="3" Caption="MAT.DESC">
+                        <dx:GridViewDataTextColumn FieldName="Vsm" VisibleIndex="3" Caption="VSM">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="cause" VisibleIndex="4" Caption="CAUSE">
+                        <dx:GridViewDataTextColumn FieldName="Mrp" VisibleIndex="4" Caption="MRP">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qndescription" VisibleIndex="5" Caption="DESCRIPTION">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qncreatedBy" VisibleIndex="6" Caption="CREATED BY">
-                        </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="7" Caption="RESPONSABILITY">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="8" Caption="VSM">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="9" Caption="CELL">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="10" Caption="MRP">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="11" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="status" VisibleIndex="5" Caption="STATUS">
                         </dx:GridViewDataTextColumn>
                     </Columns>
+                    <TotalSummary>
+                        <dx:ASPxSummaryItem DisplayFormat="C2" FieldName="actual_wip_v" ShowInColumn="actual_wip_v" ShowInGroupFooterColumn="actual_wip_v" SummaryType="Sum" />
+                    </TotalSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="actual_wip_v" SummaryType="Sum" />
                     </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="mrp" ShowInColumn="MRP" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="cell" ShowInColumn="CELL" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="cause" ShowInColumn="CAUSE" SummaryType="Count" />
-                    </GroupSummary>
-                    <Styles>
-                        <Header BackColor="IndianRed" ForeColor="White">
-                        </Header>
-                    </Styles>
                 </dx:ASPxGridView>
             </dx:PanelContent>
-        </PanelCollection>
+        </PanelCollection>       
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [week], [dYear] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm order by id">
-        <SelectParameters>
+    <asp:SqlDataSource ID="ds_inventory" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [outline], [actual_wip_v], [ideal_wip_v], [Vsm], [Mrp], [status] FROM [sap_entitlement] where mrp like @pMrp and vsm like @pVsm and status like @pSta">
+    <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxStaInContent"
+                Name="pSta" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [mrp] FROM [sap_escapes] order by mrp"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [mrp] FROM [sap_entitlement] order by mrp"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [vsm] FROM [sap_escapes] order by vsm"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [vsm] FROM [sap_entitlement] order by vsm"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceSta" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [status] FROM [sap_entitlement] order by status"></asp:SqlDataSource>
     <p />
     <hr />
     <p />

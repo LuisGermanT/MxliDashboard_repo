@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard.n3_Inventory
 {
-    public partial class inventory : System.Web.UI.Page
+    public partial class entitlement : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,19 +29,13 @@ namespace MxliDashboard.n3_Inventory
             ASPxComboBoxVsmInContent.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundCell(object sender, EventArgs e)
+        protected void cmbox_DataBoundSta(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxCellInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxCellInContent.SelectedIndex = 0;
+            ASPxComboBoxStaInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxStaInContent.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundPfep(object sender, EventArgs e)
-        {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxPfepInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxPfepInContent.SelectedIndex = 0;
-        }
 
         protected void grid_CustomUnboundColumnData(object sender, ASPxGridViewColumnDataEventArgs e)
         {

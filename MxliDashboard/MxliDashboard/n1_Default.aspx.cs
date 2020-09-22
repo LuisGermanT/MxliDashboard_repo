@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard
 {
-    public partial class Default : Page
+    public partial class n1_Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +38,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'inventory' and stype = 'current' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'inventory' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -65,7 +65,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'safety' and stype = 'current' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'safety' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -93,7 +93,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'quality' and stype = 'current' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel1] where smetric = 'quality' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -171,7 +171,8 @@ namespace MxliDashboard
 
             string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel1] where smetric = 'inventory' and stype = '" + tipo + "' order by id", conn2);
+            string query1 = "select top 6 * from [sta_nivel1] where smetric = 'inventory' and stype = '" + tipo + "' order by id desc";
+            SqlCommand cmd2 = new SqlCommand("select * from ("+query1+") q1 order by id", conn2);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
@@ -218,7 +219,8 @@ namespace MxliDashboard
 
             string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel1] where smetric = 'safety' and stype = '" + tipo + "' order by id", conn2);
+            string query1 = "select top 6 * from [sta_nivel1] where smetric = 'safety' and stype = '" + tipo + "' order by id desc";
+            SqlCommand cmd2 = new SqlCommand("select * from (" + query1 + ") q1 order by id", conn2);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
@@ -262,7 +264,8 @@ namespace MxliDashboard
 
             string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel1] where smetric = 'quality' and stype = '" + tipo + "' order by id", conn2);
+            string query1 = "select top 6 * from [sta_nivel1] where smetric = 'quality' and stype = '" + tipo + "' order by id desc";
+            SqlCommand cmd2 = new SqlCommand("select * from (" + query1 + ") q1 order by id", conn2);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);

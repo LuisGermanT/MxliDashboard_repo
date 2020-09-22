@@ -10,6 +10,8 @@
     <p></p>
     <h3>Inventory cost.</h3>
     <p></p>
+        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
+    <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
@@ -51,7 +53,7 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Cell">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" ValueField="scell"
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="scell"
                                 TextField="scell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
                                 <ClientSideEvents Validation="function(s, e) {
@@ -66,7 +68,7 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select PFEP">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBox2" runat="server" ValueField="spfep"
+                            <dx:ASPxComboBox ID="ASPxComboBoxPfepInContent" runat="server" ValueField="spfep"
                                 TextField="spfep" ValueType="System.String" DataSourceID="SqlDataSourcePfep"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundPfep">
                                 <ClientSideEvents Validation="function(s, e) {
@@ -108,7 +110,7 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sDay" ValueDataMembersSerializable="fTotal" CrosshairLabelPattern="{V:c2}">
+                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual" CrosshairLabelPattern="{V:c2}">
                             <ViewSerializable>
                                 <dx:SideBySideBarSeriesView>
                                     <Border Color="49, 133, 155" />
@@ -119,7 +121,7 @@
                                 </dx:SideBySideBarSeriesLabel>
                             </LabelSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sDay" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
+                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="IndianRed">
                                 </dx:LineSeriesView>
@@ -130,13 +132,7 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sDay, fTotal, fGoal FROM cht_inventario WHERE sFilter = 'All'">
-    <SelectParameters>
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
-                Name="pMrp" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
-                Name="pVsm" PropertyName="Value" Type="String" />
-        </SelectParameters>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'inventario' and sFilter = 'SITE' and sclass = 'All' and stype = 'daily'">
     </asp:SqlDataSource>
     <p></p>
     <hr />
@@ -184,8 +180,7 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="sMakeBuy" VisibleIndex="7" Caption="MakeBuy">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sPfep" VisibleIndex="8" Caption="PFEP" UnboundType="Decimal">
-                            <PropertiesTextEdit DisplayFormatString="c" />
+                        <dx:GridViewDataTextColumn FieldName="sPfep" VisibleIndex="8" Caption="PFEP">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <TotalSummary>
@@ -199,13 +194,16 @@
         </PanelCollection>       
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_inventory" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [sMaterial], [totQty], [Price], [Total], [sVsm], [sCell], [sMrp], [sMakeBuy], [sPfep] FROM [tbl_inventario] where [xDay] = 5 and smrp like @pMrp and svsm like @pVsm">
+        SelectCommand="SELECT [sMaterial], [totQty], [Price], [Total], [sVsm], [sCell], [sMrp], [sMakeBuy], [sPfep] FROM [tbl_inventario] where [xDay] = 1 and smrp like @pMrp and svsm like @pVsm and scell like @pCell and spfep like @pPfep">
     <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
-        
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
+                Name="pCell" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxPfepInContent"
+                Name="pPfep" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"

@@ -49,40 +49,58 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
         
         /// <summary>
-        /// ASPxLabelCaption2 control.
+        /// ASPxLabelCaptionF1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF1;
         
         /// <summary>
-        /// ASPxComboBoxVsmInContent control.
+        /// ASPxComboBoxF1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxVsmInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF1;
         
         /// <summary>
-        /// ASPxLabel1 control.
+        /// ASPxLabelCaptionF2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel1;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF2;
         
         /// <summary>
-        /// ASPxComboBoxCellInContent control.
+        /// ASPxComboBoxF2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF2;
+        
+        /// <summary>
+        /// ASPxLabelCaptionF3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF3;
+        
+        /// <summary>
+        /// ASPxComboBoxF3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF3;
         
         /// <summary>
         /// SqlDataSourceVsm control.
@@ -101,6 +119,15 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        
+        /// <summary>
+        /// SqlDataSourceMrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp;
         
         /// <summary>
         /// I01 control.

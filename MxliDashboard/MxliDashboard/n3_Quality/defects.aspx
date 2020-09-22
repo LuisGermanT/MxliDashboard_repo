@@ -6,10 +6,12 @@
 <%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <p />
-    <hr />
-    <p />
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black">
+    <p></p>
+    <h3>Defects.</h3>
+    <p></p>
+        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
+    <p></p>
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
         </HeaderContent>
@@ -18,7 +20,7 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select VSM">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
                                 TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -33,7 +35,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select MRP">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
                                 TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -47,6 +49,21 @@
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cell">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
+                                TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -55,38 +72,47 @@
     <p />
     <hr />
     <p />
-    <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID = "SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
-ClientInstanceName="chart">
-        <DiagramSerializable>
-            <dx:XYDiagram>
-                <axisx visibleinpanesserializable="-1" MinorCount="1">
-                    <QualitativeScaleOptions AutoGrid="False" />
-                    <Label Angle="270" Alignment="Center">
-                        <ResolveOverlappingOptions AllowHide="False" />
-                    </Label>
-                </axisx>
-                <axisy visibleinpanesserializable="-1">
-                </axisy>
-            </dx:XYDiagram>
-        </DiagramSerializable>
-<Legend Name="Default Legend"></Legend>
-        <SeriesSerializable>
-            <dx:Series Name="Qty" LabelsVisibility="True" ArgumentDataMember="description" ValueDataMembersSerializable="escapesQty">
-                <ViewSerializable>
-                    <dx:SideBySideBarSeriesView>
-                        <Border Color="49, 133, 155" />
-                    </dx:SideBySideBarSeriesView>
-                </ViewSerializable>
-            </dx:Series>
-            <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="description" ValueDataMembersSerializable="escapesQtyP">
-                <ViewSerializable>
-                    <dx:LineSeriesView Color="IndianRed">
-                    </dx:LineSeriesView>
-                </ViewSerializable>
-            </dx:Series>
-        </SeriesSerializable>
-    </dx:WebChartControl>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" Width="100%" HeaderText="Data chart" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+        <HeaderStyle ForeColor="White" />
+        <HeaderContent BackColor="#666666">
+        </HeaderContent>
+        <PanelCollection>
+            <dx:PanelContent ID="PanelContent2" runat="server">
+                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                    ClientInstanceName="chart" AutoLayout="True">
+                    <DiagramSerializable>
+                        <dx:XYDiagram>
+                            <AxisX VisibleInPanesSerializable="-1" MinorCount="1">
+                                <QualitativeScaleOptions AutoGrid="False" />
+                                <Label Angle="270" Alignment="Center">
+                                    <ResolveOverlappingOptions AllowHide="False" />
+                                </Label>
+                            </AxisX>
+                            <AxisY VisibleInPanesSerializable="-1">
+                            </AxisY>
+                        </dx:XYDiagram>
+                    </DiagramSerializable>
+                    <Legend Name="Default Legend"></Legend>
+                    <SeriesSerializable>
+                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual">
+                            <ViewSerializable>
+                                <dx:SideBySideBarSeriesView>
+                                    <Border Color="49, 133, 155" />
+                                </dx:SideBySideBarSeriesView>
+                            </ViewSerializable>
+                        </dx:Series>
+                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal">
+                            <ViewSerializable>
+                                <dx:LineSeriesView Color="IndianRed">
+                                </dx:LineSeriesView>
+                            </ViewSerializable>
+                        </dx:Series>
+                    </SeriesSerializable>
+                </dx:WebChartControl>
+            </dx:PanelContent>
+        </PanelCollection>
+    </dx:ASPxRoundPanel>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'defectos' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
     </asp:SqlDataSource>
     <p />
     <hr />

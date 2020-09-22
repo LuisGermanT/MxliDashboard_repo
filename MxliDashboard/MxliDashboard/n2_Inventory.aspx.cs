@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,6 +17,9 @@ namespace MxliDashboard
         protected void Page_Load(object sender, EventArgs e)
         {
             this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
+            this.ASPxComboBoxF1.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF1_SelectedIndexChanged);
+            this.ASPxComboBoxF2.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF2_SelectedIndexChanged);
+            this.ASPxComboBoxF3.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF3_SelectedIndexChanged);
             llenarDatos_I01(0);
             loadChartI01(0, "All");
             llenarDatos_I02(0);
@@ -24,27 +28,45 @@ namespace MxliDashboard
             loadChartI03(0);
         }
 
-        protected void cmbox_DataBoundVsm(object sender, EventArgs e)
+        protected void cmbox_DataBoundV(object sender, EventArgs e)
         {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxVsmInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxVsmInContent.SelectedIndex = 0;
+            ASPxComboBoxV.Items.Insert(0, new ListEditItem("All"));
+            ASPxComboBoxV.Items.Insert(1, new ListEditItem("T1"));
+            ASPxComboBoxV.Items.Insert(2, new ListEditItem("T2"));
+            ASPxComboBoxV.Items.Insert(3, new ListEditItem("T3"));
+            ASPxComboBoxV.Items.Insert(4, new ListEditItem("Function"));
+            ASPxComboBoxV.Items.Insert(5, new ListEditItem("WarRoom"));
+            ASPxComboBoxV.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundCell(object sender, EventArgs e)
+        protected void cmbox_DataBoundF1(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxCellInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxCellInContent.SelectedIndex = 0;
+            ASPxComboBoxF1.Items.Insert(0, defaultItem);
+            ASPxComboBoxF1.SelectedIndex = 0;
         }
 
-        protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void cmbox_DataBoundF2(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF2.Items.Insert(0, defaultItem);
+            ASPxComboBoxF2.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF3(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF3.Items.Insert(0, defaultItem);
+            ASPxComboBoxF3.SelectedIndex = 0;
+        }
+
+        protected void ASPxComboBoxF1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxVsmInContent.SelectedIndex;
-                string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
+                int xTodos = ASPxComboBoxF1.SelectedIndex;
+                string vsm = ASPxComboBoxF1.SelectedItem.ToString();
                 if (xTodos == 0)
                 {
                     llenarDatos_I01(0);
@@ -61,22 +83,28 @@ namespace MxliDashboard
                 }
             }
 
-            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+            if (ASPxComboBoxF2.SelectedIndex > 0)
             {
                 bandChange = 1;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
+                ASPxComboBoxF2.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
                 bandChange = 0;
             }
         }
 
-        protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxF2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxCellInContent.SelectedIndex;
-                string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
+                int xTodos = ASPxComboBoxF2.SelectedIndex;
+                string cell = ASPxComboBoxF2.SelectedItem.ToString();
                 if (xTodos == 0)
                 {
                     llenarDatos_I01(0);
@@ -93,10 +121,54 @@ namespace MxliDashboard
                 }
             }
 
-            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            if (ASPxComboBoxF1.SelectedIndex > 0)
             {
                 bandChange = 1;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (bandChange == 1) { }
+            else
+            {
+                int xTodos = ASPxComboBoxF3.SelectedIndex;
+                string mrp = ASPxComboBoxF3.SelectedItem.ToString();
+                if (xTodos == 0)
+                {
+                    llenarDatos_I01(0);
+                    loadChartI01(0, "");
+                    llenarDatos_I02(0);
+                    loadChartI02(0, "");
+                }
+                else
+                {
+                    llenarDatos_I01(0);
+                    loadChartI01(0, "");
+                    llenarDatos_I02(0);
+                    loadChartI02(2, mrp);
+                }
+            }
+
+            if (ASPxComboBoxF1.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF2.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF2.SelectedIndex = 0;
                 bandChange = 0;
             }
         }
@@ -106,10 +178,11 @@ namespace MxliDashboard
             double actual = 0;
             double aop = 0;
             string imagen = "goodB";
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'inventario' and sfilter = 'SITE' and sdesc = '31' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'inventario' and sfilter = 'SITE' and sdesc = '"+(semana-1)+"' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -117,6 +190,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                ASPxLabelI.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual > aop) { imagen = "badB"; }
@@ -132,10 +206,11 @@ namespace MxliDashboard
             double actual = 0;
             double aop = 0;
             string imagen = "goodB";
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'entitlement' and sfilter = 'SITE' and sdesc = '31' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'entitlement' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -143,6 +218,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                ASPxLabelE.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual > aop) { imagen = "badB"; }
@@ -157,10 +233,11 @@ namespace MxliDashboard
             double actual = 0;
             double aop = 0;
             string imagen = "goodB";
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'vmi' and sfilter = 'SITE' and sdesc = '31' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'vmi' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -168,6 +245,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                ASPxLabelV.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual > aop) { imagen = "badB"; }
@@ -233,7 +311,7 @@ namespace MxliDashboard
             if (tipo == 2)
             {
                 xClass = clase;
-                xFilter = "CELL";
+                xFilter = "MRP";
             }
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
