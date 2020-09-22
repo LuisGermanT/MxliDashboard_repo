@@ -114,6 +114,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 20.1\Components\Bin\Framework\DevExpress.Web.ASPxThemes.v20.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Web.Bootstrap.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Resources.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 20.1\Components\Bin\Framework\DevExpress.Web.Resources.v20.1.dll</HintPath>
@@ -224,6 +225,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\chartSeries.png" />
     <Content Include="n2_Delivery.aspx" />
+    <Content Include="n3_Productivity\productivity.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="n2_Inventory.aspx" />
     <Content Include="n2_Productivity.aspx" />
@@ -308,6 +310,13 @@
     </Compile>
     <Compile Include="n2_Delivery.aspx.designer.cs">
       <DependentUpon>n2_Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Productivity\productivity.aspx.cs">
+      <DependentUpon>productivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Productivity\productivity.aspx.designer.cs">
+      <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
@@ -420,6 +429,7 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="SQLHelper\DBHelper.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -431,7 +441,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="n3_Delivery\" />
-    <Folder Include="n3_Productivity\" />
     <Folder Include="n3_Safety\" />
   </ItemGroup>
   <ItemGroup>
