@@ -225,6 +225,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\chartSeries.png" />
     <Content Include="n2_Delivery.aspx" />
+    <Content Include="n3_Inventory\entitlement.aspx" />
+    <Content Include="n3_Inventory\vmi.aspx" />
     <Content Include="n3_Productivity\productivity.aspx" />
     <Content Include="n3_Safety\mstactions.aspx" />
     <Content Include="n3_Safety\incidentes.aspx" />
@@ -312,6 +314,20 @@
     </Compile>
     <Compile Include="n2_Delivery.aspx.designer.cs">
       <DependentUpon>n2_Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Inventory\entitlement.aspx.cs">
+      <DependentUpon>entitlement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Inventory\entitlement.aspx.designer.cs">
+      <DependentUpon>entitlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Inventory\vmi.aspx.cs">
+      <DependentUpon>vmi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Inventory\vmi.aspx.designer.cs">
+      <DependentUpon>vmi.aspx</DependentUpon>
     </Compile>
     <Compile Include="n3_Productivity\productivity.aspx.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
