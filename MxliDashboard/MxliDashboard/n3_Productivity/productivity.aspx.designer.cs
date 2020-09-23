@@ -78,6 +78,24 @@ namespace MxliDashboard.n3_Productivity
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
 
         /// <summary>
+        /// ASPxLabelCaption3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
+
+        /// <summary>
+        /// ASPxComboBoxMWInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMWInContent;
+
+        /// <summary>
         /// chartTP01 control.
         /// </summary>
         /// <remarks>
@@ -96,13 +114,13 @@ namespace MxliDashboard.n3_Productivity
         protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
 
         /// <summary>
-        /// ds_escapes control.
+        /// ds_prod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ds_escapes;
+        protected global::System.Web.UI.WebControls.SqlDataSource ds_prod;
 
         /// <summary>
         /// SqlDataSourceCell control.
@@ -121,5 +139,14 @@ namespace MxliDashboard.n3_Productivity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
+
+        /// <summary>
+        /// SqlDataSourceFilters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFilters;
     }
 }

@@ -53,6 +53,21 @@
                                         </ValidationSettings>
                                     </dx:ASPxComboBox>
                                 </th>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="View By Month/Week">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxMWInContent" runat="server" ValueField="TF_ID"
+                                        TextField="TF_Name" ValueType="System.String" DataSourceID="SqlDataSourceFilters"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundFilters" OnSelectedIndexChanged="ASPxComboBoxFiltersInContent_SelectedIndexChanged">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One Option&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
                             </tr>
                         </table>
                     </dx:PanelContent>
@@ -95,7 +110,7 @@
     <p />
     <hr />
     <p />
-    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_escapes" Theme="Default" Width="1024px">
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_prod" Theme="Default" Width="1024px">
         <SettingsPager Mode="ShowPager" PageSize="20">
         </SettingsPager>
         <Settings ShowGroupPanel="True" />
@@ -142,7 +157,7 @@
             </Header>
         </Styles>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+    <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT [NP_CentroCostos], [NP_Area], [NP_Celda], [NP_TotalHrs], [NP_Qty], [NP_EarnedHrs], [NP_Productivity], [NP_Week], [NP_Month], [NP_Year] FROM [tblNetProductivity]
                           WHERE [NP_Celda] LIKE @pCell AND [NP_Area] LIKE @pVsm 
                             ORDER BY
@@ -172,6 +187,8 @@
         SelectCommand="SELECT distinct [NP_Celda] FROM [tblNetProductivity] order by NP_Celda"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [NP_Area] FROM [tblNetProductivity] order by NP_Area"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
