@@ -9,6 +9,7 @@ namespace MxliDashboard.SQLHelper
 {
     public class DBHelper
     {
+
         //Productivity n3
         public DataTable ProdN3(string qry)
         {
@@ -21,6 +22,7 @@ namespace MxliDashboard.SQLHelper
             return dt1;
         }
 
+        //DBProductivity
         public DataTable GetBaseLine(string qry)
         {
             string myCnStr1 = Properties.Settings.Default.DB_Productivity;

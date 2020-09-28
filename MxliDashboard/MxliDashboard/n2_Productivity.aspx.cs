@@ -105,20 +105,20 @@ namespace MxliDashboard
             }
         }
 
-        //Net Productivity
+        //Labor Productivity
         public void llenarDatos_P01(int indice, string _sClass)
         {
             double actual = 0;
             double aop = 0;
             string imagen = "good";
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            string qry = "";
+
+            qry = "select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc";
+            DataTable dtPareto = dBHelper.ProdN3(qry);
+
+            foreach (DataRow dr1 in dtPareto.Rows)
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
@@ -131,28 +131,26 @@ namespace MxliDashboard
             P01AOP.Text = aop + "%";
 
             //loadChartP01(indice, _sClass);
-            
         }
 
-        //Labor Data
+        //Net Productivity Data
         public void llenarDatos_P02(int indice, string _sClass)
         {
             double actual = 0;
             double aop = 0;
             string imagen = "good";
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            string qry = "";
+            qry = "select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc";
+
+            DataTable dtPareto = dBHelper.ProdN3(qry);
+
+            foreach (DataRow dr1 in dtPareto.Rows)
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
             }
-
 
             if (actual < aop) { imagen = "bad"; }
             imgP02.ImageUrl = "~/img/" + imagen + ".png";
@@ -195,7 +193,7 @@ namespace MxliDashboard
             //loadChartP04(indice,"");
         }
 
-        //Net Productivity Charts
+        //Labor Charts
         private void loadChartP01(int indice, string clase)
         {
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
@@ -219,13 +217,12 @@ namespace MxliDashboard
                 xFilter = "CELL";
             }
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'net productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            string qry = "";
+            qry = "select * from [sta_nivel2] where smetric = 'net productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
+
+            DataTable dtPareto = dBHelper.ProdN3(qry);
+            foreach (DataRow dr1 in dtPareto.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
@@ -236,7 +233,7 @@ namespace MxliDashboard
             }
         }
 
-        //Labor Charts
+        //Net Productivity  Charts
         private void loadChartP02(int indice, string clase)
         {
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);

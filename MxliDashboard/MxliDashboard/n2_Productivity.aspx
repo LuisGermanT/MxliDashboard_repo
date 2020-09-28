@@ -52,13 +52,13 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where sfilter = 'vsm' order by sClass" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
+                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'NET PRODUCTIVITY' AND [sFilter] = 'VSM' ORDER BY [sClass]" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where sfilter = 'cell' order by sClass"></asp:SqlDataSource>
+                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'NET PRODUCTIVITY' AND [sFilter] = 'Cell' ORDER BY [sClass]"></asp:SqlDataSource>
             
             <p></p>
 
-            <div class="row">   <%--PRODUCTIVITY--%>
+            <div class="row">   <%--LABOR PRODUCTIVITY--%>
                 <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 10%;">
@@ -88,7 +88,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:center">
-                        <dx:aspxlabel ID="P01Report" runat="server" Text="NET PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
+                        <dx:aspxlabel ID="P01Report" runat="server" Text="LABOR PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
                     </td>
                     <td style="text-align:center">
                         <dx:aspxlabel ID="P01Actual" runat="server" Text="ASPxLabel" Font-Size="Medium" ></dx:aspxlabel>
@@ -162,7 +162,7 @@
             <hr />
             <p></p>
             
-            <div class="row">   <%--LABOR--%>
+            <div class="row">   <%--NET Productivity--%>
                 <table style="width:100%">
                         <tr>
                             <th style="text-align:center; width: 10%;">
@@ -192,7 +192,7 @@
                         </tr>
                         <tr>
                             <td style="text-align:center">
-                                <dx:aspxlabel ID="P02Report" runat="server" Text="LABOR PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
+                                <dx:aspxlabel ID="P02Report" runat="server" Text="NET PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
                             </td>
                             <td style="text-align:center">
                                 <dx:aspxlabel ID="P02Actual" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:aspxlabel>

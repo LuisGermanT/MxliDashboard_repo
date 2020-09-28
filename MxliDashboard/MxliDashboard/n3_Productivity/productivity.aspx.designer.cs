@@ -96,6 +96,24 @@ namespace MxliDashboard.n3_Productivity
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMWInContent;
 
         /// <summary>
+        /// ASPxRoundPanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel2;
+
+        /// <summary>
+        /// PanelContent2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent2;
+
+        /// <summary>
         /// chartTP01 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +121,24 @@ namespace MxliDashboard.n3_Productivity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTP01;
+
+        /// <summary>
+        /// ASPxRoundPanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel3;
+
+        /// <summary>
+        /// PanelContent3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent3;
 
         /// <summary>
         /// ASPxGridView1 control.
