@@ -21,7 +21,7 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select VSM">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
                                 TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -36,7 +36,22 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select MRP">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
+                                TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
                                 TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -51,11 +66,11 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Status">
+                            <dx:ASPxLabel ID="ASPxLabelCaption5" runat="server" Text="Select Status:">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="status"
-                                TextField="status" ValueType="System.String" DataSourceID="SqlDataSourceSta"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundSta">
+                            <dx:ASPxComboBox ID="ASPxComboBoxAorbInContent" runat="server" ValueField="aorb"
+                                TextField="aorb" ValueType="System.String" DataSourceID="SqlDataSourceAorB"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundAorB">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -79,7 +94,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
-                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                <dx:WebChartControl ID="WebChartControl1" runat="server" CrosshairEnabled="True" Height="200px" Width="1024px"
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
@@ -106,7 +121,7 @@
                                 </dx:SideBySideBarSeriesLabel>
                             </LabelSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
+                        <dx:Series LabelsVisibility="False" Name="Ideal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="IndianRed">
                                 </dx:LineSeriesView>
@@ -117,8 +132,6 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'entitlement' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
-    </asp:SqlDataSource>
     <p></p>
     <hr />
     <p></p>
@@ -128,7 +141,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent3" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_inventory" Theme="Office2010Silver" Width="100%" EnableTheming="True" OnCustomUnboundColumnData="grid_CustomUnboundColumnData">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_entitlement" Theme="Office2010Silver" Width="100%" EnableTheming="True">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
                     <Settings ShowFooter="True" ShowGroupPanel="True" />
@@ -149,48 +162,68 @@
                     <Columns>
                         <dx:GridViewDataTextColumn FieldName="outline" VisibleIndex="0" Caption="Material">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="actual_wip_v" VisibleIndex="1" Caption="WIP">
+                        <dx:GridViewDataTextColumn FieldName="qty" VisibleIndex="1" Caption="WIP_QTY">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="total" VisibleIndex="2" Caption="WIP_VALUE">
                             <PropertiesTextEdit DisplayFormatString="C2">
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ideal_wip_v" VisibleIndex="2" Caption="IDEAL">
+                        <dx:GridViewDataTextColumn FieldName="iqty" VisibleIndex="3" Caption="IDEAL_QTY">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="itotal" VisibleIndex="4" Caption="IDEAL_VALUE">
                             <PropertiesTextEdit DisplayFormatString="C2">
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Vsm" VisibleIndex="3" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="add" VisibleIndex="5" Caption="ADD">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Mrp" VisibleIndex="4" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="saplt" VisibleIndex="6" Caption="LT">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="status" VisibleIndex="5" Caption="STATUS">
+                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="7" Caption="VSM">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="8" Caption="CELL">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="9" Caption="MRP">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="aorb" VisibleIndex="10" Caption="STATUS">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <TotalSummary>
-                        <dx:ASPxSummaryItem DisplayFormat="C2" FieldName="actual_wip_v" ShowInColumn="actual_wip_v" ShowInGroupFooterColumn="actual_wip_v" SummaryType="Sum" />
+                        <dx:ASPxSummaryItem DisplayFormat="C2" FieldName="total" ShowInColumn="total" ShowInGroupFooterColumn="total" SummaryType="Sum" />
+                    </TotalSummary>
+                    <TotalSummary>
+                        <dx:ASPxSummaryItem DisplayFormat="C2" FieldName="itotal" ShowInColumn="itotal" ShowInGroupFooterColumn="itotal" SummaryType="Sum" />
                     </TotalSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="actual_wip_v" SummaryType="Sum" />
+                        <dx:ASPxSummaryItem FieldName="total" SummaryType="Sum" Tag="Actual:" />
+                    </GroupSummary>
+                    <GroupSummary>
+                        <dx:ASPxSummaryItem FieldName="itotal" SummaryType="Sum" Tag="Ideal:" />
                     </GroupSummary>
                 </dx:ASPxGridView>
             </dx:PanelContent>
         </PanelCollection>       
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_inventory" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [outline], [actual_wip_v], [ideal_wip_v], [Vsm], [Mrp], [status] FROM [sap_entitlement] where mrp like @pMrp and vsm like @pVsm and status like @pSta">
+    <asp:SqlDataSource ID="ds_entitlement" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [outline], [qty], [total], [iqty], [itotal], [vsm], [cell], [mrp], [aorb], [add], [saplt] FROM [sap_entitlement] where mrp like @pMrp and cell like @pcell and vsm like @pVsm and aorb like @pAorb">
     <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxStaInContent"
-                Name="pSta" PropertyName="Value" Type="String" />
+        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
+                Name="pCell" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAorBInContent"
+                Name="pAorb" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [mrp] FROM [sap_entitlement] order by mrp"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [cell] FROM [sap_entitlement] order by cell"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [vsm] FROM [sap_entitlement] order by vsm"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceSta" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [status] FROM [sap_entitlement] order by status"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceAorb" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [aorb] FROM [sap_entitlement] order by aorb"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -237,7 +270,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'entitlement'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>

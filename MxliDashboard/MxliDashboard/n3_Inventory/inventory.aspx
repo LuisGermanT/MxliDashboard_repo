@@ -25,7 +25,8 @@
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="svsm"
                                 TextField="svsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm">
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" 
+                                OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -94,7 +95,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
-                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="" CrosshairEnabled="True" Height="200px" Width="1024px"
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
@@ -110,7 +111,7 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual" CrosshairLabelPattern="{V:c2}">
+                        <dx:Series Name="Total" LabelsVisibility="True" CrosshairLabelPattern="{V:c2}">
                             <ViewSerializable>
                                 <dx:SideBySideBarSeriesView>
                                     <Border Color="49, 133, 155" />
@@ -121,19 +122,27 @@
                                 </dx:SideBySideBarSeriesLabel>
                             </LabelSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal" CrosshairLabelPattern="{V:C2}">
+                        <dx:Series LabelsVisibility="False" Name="Goal" CrosshairLabelPattern="{V:C2}">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="IndianRed">
                                 </dx:LineSeriesView>
                             </ViewSerializable>
+                        </dx:Series>
+                        <dx:Series Name="Adj" LabelsVisibility="True" CrosshairLabelPattern="{V:c2}">
+                            <ViewSerializable>
+                                <dx:StackedBarSeriesView Color="247, 150, 70">
+                                </dx:StackedBarSeriesView>
+                            </ViewSerializable>
+                            <LabelSerializable>
+                                <dx:StackedBarSeriesLabel TextPattern="{V:c2}">
+                                </dx:StackedBarSeriesLabel>
+                            </LabelSerializable>
                         </dx:Series>
                     </SeriesSerializable>
                 </dx:WebChartControl>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'inventario' and sFilter = 'SITE' and sclass = 'All' and stype = 'daily'">
-    </asp:SqlDataSource>
     <p></p>
     <hr />
     <p></p>
@@ -260,7 +269,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where [report] = 'inventario' "></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
