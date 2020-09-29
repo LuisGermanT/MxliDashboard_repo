@@ -177,7 +177,7 @@
             </dx:ASPxRoundPanel>
     
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT [NP_CentroCostos], [NP_Area], [NP_Celda], [NP_TotalHrs], [NP_Qty], [NP_EarnedHrs], [NP_Productivity], [NP_Week], [NP_Month], [NP_Year] FROM [tblNetProductivity]
+                SelectCommand="SELECT [NP_CentroCostos], [NP_Area], [NP_Celda], [NP_TotalHrs], [NP_Qty], [NP_EarnedHrs], [NP_Productivity], [NP_Week], [NP_Month], [NP_Year] FROM [tblLaborProductivity]
                                   WHERE [NP_Celda] LIKE @pCell AND [NP_Area] LIKE @pVsm 
                                     ORDER BY
                                             CASE 
@@ -203,9 +203,9 @@
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [NP_Celda] FROM [tblNetProductivity] order by NP_Celda"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [NP_Celda] FROM [tblLaborProductivity] order by NP_Celda"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [NP_Area] FROM [tblNetProductivity] order by NP_Area"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [NP_Area] FROM [tblLaborProductivity] order by NP_Area"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
             <p/>

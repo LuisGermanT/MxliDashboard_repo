@@ -133,16 +133,16 @@ namespace MxliDashboard.n3_Productivity
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                sTblName = "[vw_net_productivity_by_site_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana;
-                cTblName = "[vw_net_productivity_by_cell_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
-                aTblName = "[vw_net_productivity_by_area_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
+                sTblName = "[vw_labor_productivity_by_site_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana;
+                cTblName = "[vw_labor_productivity_by_cell_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
+                aTblName = "[vw_labor_productivity_by_area_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 colName = "NP_Week";
             }
             else
             {
-                sTblName = "[vw_net_productivity_by_site_mntly]";
-                cTblName = "[vw_net_productivity_by_cell_mntly] WHERE ";
-                aTblName = "[vw_net_productivity_by_area_mntly] WHERE ";
+                sTblName = "[vw_labor_productivity_by_site_mntly]";
+                cTblName = "[vw_labor_productivity_by_cell_mntly] WHERE ";
+                aTblName = "[vw_labor_productivity_by_area_mntly] WHERE ";
                 colName = "NP_Month";
             }
 
@@ -206,7 +206,7 @@ namespace MxliDashboard.n3_Productivity
 
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dtPareto = dBHelper.ProdN3(qry);
+            DataTable dtPareto = dBHelper.QryManager(qry);
             DataTable dtBaseline = dBHelper.GetBaseLine(qryBaseline);
 
             double xGoal = 0;

@@ -52,9 +52,9 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'NET PRODUCTIVITY' AND [sFilter] = 'VSM' ORDER BY [sClass]" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
+                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'LABOR PRODUCTIVITY' AND [sFilter] = 'VSM' ORDER BY [sClass]" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'NET PRODUCTIVITY' AND [sFilter] = 'Cell' ORDER BY [sClass]"></asp:SqlDataSource>
+                SelectCommand="SELECT DISTINCT [sClass] FROM [sta_nivel2] WHERE [sMetric] = 'LABOR PRODUCTIVITY' AND [sFilter] = 'Cell' ORDER BY [sClass]"></asp:SqlDataSource>
             
             <p></p>
 

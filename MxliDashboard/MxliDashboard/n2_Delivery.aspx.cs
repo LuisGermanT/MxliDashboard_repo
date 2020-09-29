@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -12,12 +13,16 @@ namespace MxliDashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            llenarDatos_D01(0);
-            llenarDatos_D02(0);
-            llenarDatos_D03(0);
-            llenarDatos_D04(0);
-            llenarDatos_D05(0);
-            llenarDatos_D06(0);
+            if (!Page.IsPostBack)
+            {
+                llenarDatos_D01(0);
+                llenarDatos_D02(0);
+                llenarDatos_D03(0);
+                llenarDatos_D04(0);
+                llenarDatos_D05(0);
+                llenarDatos_D06(0);
+                loadChartD01(0);
+            }
         }
 
         public void llenarDatos_D01(int indice)
@@ -32,8 +37,9 @@ namespace MxliDashboard
             D01Actual.Text = actual + "";
             D01AOP.Text = aop + "";
 
-            loadChartD01(indice);
+           //loadChartD01(indice);
         }
+
         public void llenarDatos_D02(int indice)
         {
             double actual = 0;
@@ -48,6 +54,7 @@ namespace MxliDashboard
 
             loadChartD02(indice);
         }
+        
         public void llenarDatos_D03(int indice)
         {
             double actual = 0;
@@ -62,6 +69,7 @@ namespace MxliDashboard
 
             loadChartD03(indice);
         }
+        
         public void llenarDatos_D04(int indice)
         {
             double actual = 0;
@@ -76,6 +84,7 @@ namespace MxliDashboard
 
             loadChartD04(indice);
         }
+        
         public void llenarDatos_D05(int indice)
         {
             double actual = 0;
@@ -90,6 +99,7 @@ namespace MxliDashboard
 
             loadChartD05(indice);
         }
+        
         public void llenarDatos_D06(int indice)
         {
             double actual = 0;
@@ -107,68 +117,28 @@ namespace MxliDashboard
 
         private void loadChartD01(int indice)
         {
+            chartTD01.Series["Series1"].Points.Clear();
+            chartTD01.Series["Series2"].Points.Clear();
+            chartTD01.Series["Series3"].Points.Clear();
+
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             semana = semana - 1;   //semana actual aun no cierra
 
-            chartTD01.Series["Series1"].Points.Clear();
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD01.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            string qry = "SELECT * FROM vw_ottr_by_wk WHERE [TO_Wk] BETWEEN " + (semana-12) + " AND " + semana + " ORDER BY [TO_Yr] ASC, [TO_Wk] ASC, [TO_Month] ASC" ;
+            DataTable dtPareto = dBHelper.QryManager(qry);
+            
+            foreach (DataRow dr1 in dtPareto.Rows)
+            {
+                int xHit = int.Parse(dr1["Hit"].ToString());
+                int xMiss = int.Parse(dr1["Miss"].ToString());
+                int totOrdrs = int.Parse(dr1["TotalOrdrs"].ToString());
+                double xGoal = (xHit / totOrdrs) * 100;
 
-            chartTD01.Series["Series2"].Points.Clear();
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD01.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD01.Series["Series1"].Points.Clear();
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD01.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD01.Series["Series2"].Points.Clear();
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD01.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
+                chartTD01.Series["Series1"].Points.AddXY(dr1["TO_Wk"].ToString(), xHit);
+                chartTD01.Series["Series2"].Points.AddXY(dr1["TO_Wk"].ToString(), xMiss);
+                chartTD01.Series["Series3"].Points.AddXY(dr1["TO_Wk"].ToString(), xGoal);
+            }
         }
 
         private void loadChartD02(int indice)
@@ -500,7 +470,6 @@ namespace MxliDashboard
             chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
             chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
         }
-
 
     }
 }

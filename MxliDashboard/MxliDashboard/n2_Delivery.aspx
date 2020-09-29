@@ -52,7 +52,9 @@
                             <Series>
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                <asp:Series ChartArea="ChartArea1" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                </asp:Series>
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -101,7 +103,7 @@
                         <a class="btn btn-default" href="#">Edit &raquo;</a>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="_quality/escapes.aspx">View &raquo;</a>
+                        <a class="btn btn-default" href="n3_Delivery/OTTR.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
