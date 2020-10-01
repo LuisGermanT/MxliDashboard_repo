@@ -17,13 +17,18 @@ namespace MxliDashboard
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.ASPxComboBoxVF.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVF_SelectedIndexChanged);
             this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
+            this.ASPxComboBoxF1.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF1_SelectedIndexChanged);
+            this.ASPxComboBoxF2.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF2_SelectedIndexChanged);
+            this.ASPxComboBoxF3.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF3_SelectedIndexChanged);
+
             llenarDatos_Q01(0);
+            loadChartQ01(0, "All", "SITE");
             llenarDatos_Q02(0);
+            loadChartQ02(0, "All", "SITE");
             llenarDatos_Q03(0);
-            loadChartQ01(0, "All");
-            loadChartQ02(0, "All");
-            loadChartQ03(0);
+            loadChartQ03(0, "All", "SITE");
         }
 
         protected void cmbox_DataBoundF1(object sender, EventArgs e)
@@ -47,26 +52,59 @@ namespace MxliDashboard
             ASPxComboBoxF3.SelectedIndex = 0;
         }
 
+        protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ASPxComboBoxF1.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF2.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF2.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            llenarDatos_Q01(0);
+            loadChartQ01(ASPxComboBoxV.SelectedIndex, "All", "SITE");
+            llenarDatos_Q02(0);
+            loadChartQ02(ASPxComboBoxV.SelectedIndex, "All", "SITE");
+            llenarDatos_Q03(0);
+            loadChartQ03(ASPxComboBoxV.SelectedIndex, "All", "SITE");
+        }
+
         protected void ASPxComboBoxF1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxF1.SelectedIndex;
-                string vsm = ASPxComboBoxF1.SelectedItem.ToString();
-                if (xTodos == 0)
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF1.SelectedItem.ToString();
+                if (ASPxComboBoxF1.SelectedIndex == 0)
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(0, "");
+                    loadChartQ01(tipoV, "All", "SITE");
                     llenarDatos_Q02(0);
-                    loadChartQ02(0, "");
+                    loadChartQ02(tipoV, "All", "SITE");
+                    llenarDatos_Q03(0);
+                    loadChartQ03(tipoV, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(1, vsm);
+                    loadChartQ01(tipoV, tipoVSM, xFilter);
                     llenarDatos_Q02(0);
-                    loadChartQ02(1, vsm);
+                    loadChartQ02(tipoV, tipoVSM, xFilter);
+                    llenarDatos_Q03(0);
+                    loadChartQ03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -86,25 +124,29 @@ namespace MxliDashboard
 
         protected void ASPxComboBoxF2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxF2.SelectedIndex;
-                string cell = ASPxComboBoxF2.SelectedItem.ToString();
-                if (xTodos == 0)
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "CELL";
+                string tipoVSM = ASPxComboBoxF2.SelectedItem.ToString();
+                if (ASPxComboBoxF2.SelectedIndex == 0)
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(0, "");
+                    loadChartQ01(0, "All", "SITE");
                     llenarDatos_Q02(0);
-                    loadChartQ02(0, "");
+                    loadChartQ02(0, "All", "SITE");
+                    llenarDatos_Q03(0);
+                    loadChartQ03(0, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(0, "");
+                    loadChartQ01(tipoV, tipoVSM, xFilter);
                     llenarDatos_Q02(0);
-                    loadChartQ02(0,"");
+                    loadChartQ02(tipoV, tipoVSM, xFilter);
+                    llenarDatos_Q03(0);
+                    loadChartQ03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -124,25 +166,29 @@ namespace MxliDashboard
 
         protected void ASPxComboBoxF3_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxF3.SelectedIndex;
-                string mrp = ASPxComboBoxF3.SelectedItem.ToString();
-                if (xTodos == 0)
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "MRP";
+                string tipoVSM = ASPxComboBoxF3.SelectedItem.ToString();
+                if (ASPxComboBoxF3.SelectedIndex == 0)
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(0, "");
+                    loadChartQ01(0, "All", "SITE");
                     llenarDatos_Q02(0);
-                    loadChartQ02(0, "");
+                    loadChartQ02(0, "All", "SITE");
+                    llenarDatos_Q03(0);
+                    loadChartQ03(0, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_Q01(0);
-                    loadChartQ01(0, "");
+                    loadChartQ01(tipoV, tipoVSM, xFilter);
                     llenarDatos_Q02(0);
-                    loadChartQ02(2, mrp);
+                    loadChartQ02(tipoV, tipoVSM, xFilter);
+                    llenarDatos_Q03(0);
+                    loadChartQ03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -242,30 +288,35 @@ namespace MxliDashboard
             Q03AOP.Text = (aop).ToString();
         }
 
-        private void loadChartQ01(int tipo, string clase)
+        private void loadChartQ01(int tipo, string clase, string filtro)
         {
             chartTQ01.Series["Series1"].Points.Clear();
             chartTQ01.Series["Series2"].Points.Clear();
             chartTQ01.Series["Series3"].Points.Clear();
-            string xTipo = "weekly";
-            //tipo=0
-            String xFilter = "SITE";
-            string xClass = "All";
+            chartPQ01.Series["Series1"].Points.Clear();
+            chartPQ01.Series["Series2"].Points.Clear();
 
-            if (tipo == 1)
+            string xTipo = "weekly";
+            if (tipo < 2)
             {
-                xClass = clase;
-                xFilter = "VSM";
+                xTipo = "WEEKLY";
             }
             if (tipo == 2)
             {
-                xClass = clase;
-                xFilter = "MRP";
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
             }
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'ppms' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -280,7 +331,7 @@ namespace MxliDashboard
 
             string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'ppms' and stype = 'causes' order by id", conn2);
+            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'ppms' and stype = 'top' order by id", conn2);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
@@ -293,29 +344,35 @@ namespace MxliDashboard
             }
         }
 
-        private void loadChartQ02(int tipo, string clase)
+        private void loadChartQ02(int tipo, string clase, string filtro)
         {
             chartTQ02.Series["Series1"].Points.Clear();
             chartTQ02.Series["Series2"].Points.Clear();
             chartTQ02.Series["Series3"].Points.Clear();
+            chartPQ02.Series["Series1"].Points.Clear();
+            chartPQ02.Series["Series2"].Points.Clear();
+
             string xTipo = "weekly";
-            //tipo=0
-            String xFilter = "SITE";
-            string xClass = "All";
-            if (tipo == 1)
+            if (tipo < 2)
             {
-                xClass = clase;
-                xFilter = "VSM";
+                xTipo = "WEEKLY";
             }
             if (tipo == 2)
             {
-                xClass = clase;
-                xFilter = "MRP";
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
             }
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'escapes' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -343,18 +400,35 @@ namespace MxliDashboard
             }
         }
 
-        private void loadChartQ03(int indice)
+        private void loadChartQ03(int tipo, string clase, string filtro)
         {
             chartTQ03.Series["Series1"].Points.Clear();
             chartTQ03.Series["Series2"].Points.Clear();
             chartTQ03.Series["Series3"].Points.Clear();
-            String xFilter = "SITE";
+            chartPQ03.Series["Series1"].Points.Clear();
+            chartPQ03.Series["Series2"].Points.Clear();
+
             string xTipo = "weekly";
-            string xClass = "All";
+            if (tipo < 2)
+            {
+                xTipo = "WEEKLY";
+            }
+            if (tipo == 2)
+            {
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
+            }
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'defectos' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'defectos' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -369,7 +443,7 @@ namespace MxliDashboard
 
             string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'defectos' and stype = 'material' order by id", conn2);
+            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'defectos' and stype = 'causes' order by id", conn2);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
@@ -382,13 +456,13 @@ namespace MxliDashboard
             }
         }
 
-        protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxVF_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int indice = ASPxComboBoxV.SelectedIndex;
+            int indice = ASPxComboBoxVF.SelectedIndex;
             if (indice == 1)
             {
-                Q02.Visible = true;
-                Q01.Visible = false;
+                Q01.Visible = true;
+                Q02.Visible = false;
                 Q03.Visible = false;
             }
             else
