@@ -119,7 +119,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <dx:ASPxLabel ID="ASPxLabelS" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelS" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesS" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -220,7 +220,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <dx:ASPxLabel ID="ASPxLabelQ" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelQ" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesQ" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -422,7 +422,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -489,7 +489,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <asp:Chart ID="chart6Pp" runat="server" Height="120px">
+                    <asp:Chart ID="chartPp" runat="server" Height="120px">
                         <series>
                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="Silver" IsValueShownAsLabel="True" Palette="Grayscale">
                                     <SmartLabelStyle AllowOutsidePlotArea="Yes" />
@@ -523,7 +523,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <dx:ASPxLabel ID="ASPxLabelP" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelP" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesP" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />

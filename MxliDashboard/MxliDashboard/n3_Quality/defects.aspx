@@ -11,7 +11,7 @@
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
         </HeaderContent>
@@ -20,7 +20,7 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
                                 TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -35,7 +35,22 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select CELL:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="celda"
+                                TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
                                 TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -50,15 +65,15 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cell">
+                            <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="Select Cause:">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
-                                TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                            <dx:ASPxComboBox ID="ASPxComboBoxCauseInContent" runat="server" ValueField="causecode"
+                                TextField="causecode" ValueType="System.String" DataSourceID="SqlDataSourceCause"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCause">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            e.errorText = &quot;You should Select One Cuase&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
@@ -78,7 +93,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
-                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                <dx:WebChartControl ID="WebChartControl1" runat="server" CrosshairEnabled="True" Height="200px" Width="1024px"
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
@@ -112,8 +127,6 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'defectos' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
-    </asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -142,32 +155,34 @@
                         </dx:GridViewToolbar>
                     </Toolbars>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="id" VisibleIndex="0" Caption="ID">
+                        <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="0" Caption="QN">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="1" Caption="QN">
+                        <dx:GridViewDataTextColumn FieldName="qndate" VisibleIndex="1" Caption="NOTIF.DATE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="partNumber" VisibleIndex="2" Caption="NAME">
+                        <dx:GridViewDataTextColumn FieldName="material" VisibleIndex="2" Caption="MATERIAL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="program" VisibleIndex="3" Caption="PROGRAM">
+                        <dx:GridViewDataTextColumn FieldName="order" VisibleIndex="3" Caption="ORDER">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="notificationdate" VisibleIndex="4" Caption="N.DATE">
+                        <dx:GridViewDataTextColumn FieldName="workcenter" VisibleIndex="4" Caption="WORKCENTER">
                         </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="5" Caption="RESPONSABILITY">
+                        <dx:GridViewDataTextColumn FieldName="causecode" VisibleIndex="5" Caption="CAUSE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="6" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="itemtext" VisibleIndex="6" Caption="DESCRIPTION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="7" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="7" Caption="VSM">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="8" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="8" Caption="CELL">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="9" Caption="MRP">
                         </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="9" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="10" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="cell" ShowInColumn="CELL" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="celda" ShowInColumn="CELL" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="mrp" ShowInColumn="MRP" SummaryType="Count" />
@@ -176,7 +191,7 @@
                         <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="program" ShowInColumn="PROGRAM" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="causecode" ShowInColumn="CAUSE" SummaryType="Count" />
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -187,7 +202,7 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_defects" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [program], [notificationdate], [mrp], [Responsability], [cell], [vsm], [week], [dYear] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and cell like @pCell order by id">
+        SelectCommand="SELECT [qn], [qndate], [material], [order], [workcenter], [causecode], [itemtext], [vsm], [celda], [mrp], [week] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and celda like @pCell and causecode like @pCause order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
@@ -195,6 +210,8 @@
                 Name="pVsm" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCauseInContent"
+                Name="pCause" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
@@ -202,7 +219,9 @@
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [vsm] FROM [sap_defects] order by vsm"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [cell] FROM [sap_defects] order by cell"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [celda] FROM [sap_defects] order by celda"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceCause" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [causecode] FROM [sap_defects] order by causecode"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -249,7 +268,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where [report] = 'defectos'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>

@@ -36,7 +36,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP:">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select CELL:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
                                 TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"

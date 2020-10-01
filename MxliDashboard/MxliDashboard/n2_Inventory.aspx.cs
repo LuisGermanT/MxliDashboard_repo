@@ -143,7 +143,6 @@ namespace MxliDashboard
 
         protected void ASPxComboBoxF2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (bandChange == 1) { }
             else
             {
