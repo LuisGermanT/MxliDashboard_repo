@@ -133,6 +133,18 @@ namespace MxliDashboard
             double aop = 81.2;
             string imagen = "good";
 
+            string qry = "select * from [sta_nivel1] where smetric = 'productivity' and stype = 'current' order by id";
+            //Connection object, retrieves sql data
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
+
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                actual = Convert.ToDouble(dr1["factual"].ToString());
+                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+            }
+
+
             if (actual < aop) { imagen = "bad"; }
             imgDelivery.ImageUrl = "~/img/" + imagen + ".png";
 
