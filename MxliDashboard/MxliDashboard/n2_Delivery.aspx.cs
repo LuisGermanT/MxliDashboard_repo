@@ -30,12 +30,29 @@ namespace MxliDashboard
             double actual = 0;
             double aop = 0;
             string imagen = "good";
+            string xClass = "All";
+
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            //string qry = "SELECT TOP 1 * FROM vw_ottr_by_wk ORDER BY [TO_Yr] desc, [TO_Wk] desc, [TO_Month] desc";
+            string qry = "select TOP 1 * from [sta_nivel2] where smetric = 'OTTR' and sClass = '" + xClass + "' order by id desc";
+            DataTable dtPareto = dBHelper.QryManager(qry);
+
+            if (dtPareto.Rows.Count > 0)
+            {
+                //double xHit = double.Parse(dtPareto.Rows[0]["HIT"].ToString());
+                //double xTotHrs = double.Parse(dtPareto.Rows[0]["TotalOrdrs"].ToString());
+                //actual = (xHit / xTotHrs)*100;
+                //actual = Math.Round(actual, 2);
+
+                actual = Convert.ToDouble(dtPareto.Rows[0]["factual"].ToString());
+                aop = Convert.ToDouble(dtPareto.Rows[0]["fgoal"].ToString());
+            }
 
             if (actual < aop) { imagen = "bad"; }
             imgD01.ImageUrl = "~/img/" + imagen + ".png";
 
-            D01Actual.Text = actual + "";
-            D01AOP.Text = aop + "";
+            D01Actual.Text = actual + "%";
+            D01AOP.Text = aop + "%";
 
            //loadChartD01(indice);
         }
@@ -123,21 +140,44 @@ namespace MxliDashboard
 
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             semana = semana - 1;   //semana actual aun no cierra
+            
+            string clase = "";
+            string xTipo = "weekly";
+            //tipo=0
+            String xFilter = "SITE";
+            string xClass = "All";
+
+            if (indice == 1)
+            {
+                xClass = clase;
+                xFilter = "VSM";
+            }
+            if (indice == 2)
+            {
+                xClass = clase;
+                xFilter = "CELL";
+            }
 
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "SELECT * FROM vw_ottr_by_wk WHERE [TO_Wk] BETWEEN " + (semana-12) + " AND " + semana + " ORDER BY [TO_Yr] ASC, [TO_Wk] ASC, [TO_Month] ASC" ;
+            //"SELECT * FROM vw_ottr_by_wk WHERE [TO_Wk] BETWEEN " + (semana-6) + " AND " + semana + " ORDER BY [TO_Yr] ASC, [TO_Wk] ASC, [TO_Month] ASC" ;
+            string qry = "select * from [sta_nivel2] where smetric = 'OTTR' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 6) + " and " + semana + " order by id";
             DataTable dtPareto = dBHelper.QryManager(qry);
             
             foreach (DataRow dr1 in dtPareto.Rows)
             {
-                int xHit = int.Parse(dr1["Hit"].ToString());
-                int xMiss = int.Parse(dr1["Miss"].ToString());
-                int totOrdrs = int.Parse(dr1["TotalOrdrs"].ToString());
-                double xGoal = (xHit / totOrdrs) * 100;
+                //int xHit = int.Parse(dr1["Hit"].ToString());
+                //int totOrdrs = int.Parse(dr1["TotalOrdrs"].ToString());
+                //double xGoal = (double.Parse(xHit.ToString()) / double.Parse(totOrdrs.ToString()) );
+                //chartTD01.Series["Series1"].Points.AddXY(dr1["TO_Wk"].ToString(), xHit);
+                //chartTD01.Series["Series2"].Points.AddXY(dr1["TO_Wk"].ToString(), totOrdrs);
+                //chartTD01.Series["Series3"].Points.AddXY(dr1["TO_Wk"].ToString(), xGoal);
 
-                chartTD01.Series["Series1"].Points.AddXY(dr1["TO_Wk"].ToString(), xHit);
-                chartTD01.Series["Series2"].Points.AddXY(dr1["TO_Wk"].ToString(), xMiss);
-                chartTD01.Series["Series3"].Points.AddXY(dr1["TO_Wk"].ToString(), xGoal);
+                double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+
+                chartTD01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                //chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), xGoal/100);
             }
         }
 

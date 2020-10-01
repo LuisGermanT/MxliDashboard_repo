@@ -64,6 +64,10 @@ namespace MxliDashboard.n3_Productivity
                 string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
                 loadChartP01(1, vsm, wk);
             }
+            else
+            {
+                loadChartP01(0, "", "Week");
+            }
         }
 
         protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +89,11 @@ namespace MxliDashboard.n3_Productivity
             {
                 string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
                 loadChartP01(2, cell, wk);
-            }          
+            }
+            else
+            {
+                loadChartP01(0, "", "Week");
+            }
         }
 
         protected void ASPxComboBoxFiltersInContent_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,9 +119,13 @@ namespace MxliDashboard.n3_Productivity
                 wk = ASPxComboBoxMWInContent.SelectedItem.ToString();
                 loadChartP01(idx, filter, wk);
             }
+            else
+            {
+                loadChartP01(idx, filter, "Week");
+            }
         }
 
-        //Net Productivity Charts
+        //Labor Productivity Charts
         private void loadChartP01(int indice, string clase, string sFilter)
         {
             //Week range, from current week - 13 to current week

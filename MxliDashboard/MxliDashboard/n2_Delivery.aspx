@@ -50,17 +50,18 @@
                     <td style="text-align:center">
                         <asp:Chart ID="chartTD01" runat="server" Height="120px">
                             <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                <asp:Series ChartArea="ChartArea1" Name="Series2" Color="SteelBlue" Enabled="False">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series3" Color="IndianRed" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="IndianRed" MarkerBorderWidth="2" MarkerColor="White" YAxisType="Secondary">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
                                 <asp:ChartArea Name="ChartArea1">
                                     <AxisY Enabled="False" LineWidth="0">
                                         <MajorGrid Enabled="False" />
+                                        <LabelStyle Format="{0:#,#}" />
                                     </AxisY>
                                     <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
                                         <MajorGrid Enabled="False" />
@@ -69,6 +70,7 @@
                                     <AxisX2 LineWidth="0">
                                     </AxisX2>
                                     <AxisY2 LineWidth="0">
+                                        <LabelStyle Format="{0:0.00%}" />
                                     </AxisY2>
                                 </asp:ChartArea>
                             </ChartAreas>
