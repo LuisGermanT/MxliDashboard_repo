@@ -18,6 +18,7 @@ namespace MxliDashboard
             llenarDatos_S(0);
             llenarDatos_Q(0);
             llenarDatos_P(0);
+            llenarDatos_D(0);
         }
 
         protected void ASPxComboBoxF_SelectedIndexChanged(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace MxliDashboard
             llenarDatos_S(indice);
             llenarDatos_Q(indice);
             llenarDatos_P(indice);
+            llenarDatos_D(indice);
         }
 
         public void llenarDatos_I(int indice)
@@ -129,15 +131,26 @@ namespace MxliDashboard
 
         public void llenarDatos_D(int indice)
         {
-            double actual = 87.1;
-            double aop = 81.2;
+            double actual = 0;
+            double aop = 0;
             string imagen = "good";
 
-            if (actual < aop) { imagen = "bad"; }
-            imgDelivery.ImageUrl = "~/img/" + imagen + ".png";
+            string qry = "select * from [sta_nivel1] where smetric = 'delivery' order by id";
+            //Connection object, retrieves sql data
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
 
-            deliveryActual.Text = actual + " %";
-            deliveryAOP.Text = aop + " %";
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                actual = Convert.ToDouble(dr1["factual"].ToString());
+                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+            }
+
+            if (actual < aop) { imagen = "bad"; }
+            imgQuality.ImageUrl = "~/img/" + imagen + ".png";
+
+            qualityActual.Text = actual + "";
+            qualityAOP.Text = aop + "";
 
             loadChartD(indice);
         }
@@ -206,6 +219,7 @@ namespace MxliDashboard
             {
                 chartI.Series["Series1"].Points.AddXY(dr2["sdesc"].ToString(), dr2["factual"].ToString());
                 chartI.Series["Series2"].Points.AddXY(dr2["sdesc"].ToString(), dr2["fgoal"].ToString());
+                ASPxLabelI.Text = "Last update: " + dr2["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             chartIp.Series["Series1"].Points.Clear();
@@ -253,17 +267,11 @@ namespace MxliDashboard
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper.QryManager(qry);
 
-            //string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn2 = new SqlConnection(myCnStr2);
-            //string query1 = "select top 6 * from [sta_nivel1] where smetric = 'safety' and stype = '" + tipo + "' order by id desc";
-            //SqlCommand cmd2 = new SqlCommand("select * from (" + query1 + ") q1 order by id", conn2);
-            //SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            //DataTable dt2 = new DataTable();
-            //da2.Fill(dt2);
             foreach (DataRow dr2 in dt2.Rows)
             {
                 chartS.Series["Series1"].Points.AddXY(dr2["sdesc"].ToString(), dr2["factual"].ToString());
                 chartS.Series["Series2"].Points.AddXY(dr2["sdesc"].ToString(), dr2["fgoal"].ToString());
+                ASPxLabelS.Text = "Last update: " + dr2["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             chartSp.Series["Series1"].Points.Clear();
@@ -273,12 +281,6 @@ namespace MxliDashboard
             qry = "select * from [sta_nivel1p] where smetric = 'safety' and stype = '" + tipo + "' order by id";
             DataTable dt3 = dBHelper.QryManager(qry);
 
-            //string myCnStr3 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn3 = new SqlConnection(myCnStr3);
-            //SqlCommand cmd3 = new SqlCommand("select * from [sta_nivel1p] where smetric = 'safety' and stype = '" + tipo + "' order by id", conn3);
-            //SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-            //DataTable dt3 = new DataTable();
-            //da3.Fill(dt3);
             foreach (DataRow dr3 in dt3.Rows)
             {
                 chartSp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
@@ -308,18 +310,11 @@ namespace MxliDashboard
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper.QryManager(qry);
 
-            //string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn2 = new SqlConnection(myCnStr2);
-            //string query1 = "select top 6 * from [sta_nivel1] where smetric = 'quality' and stype = '" + tipo + "' order by id desc";
-            //SqlCommand cmd2 = new SqlCommand("select * from (" + query1 + ") q1 order by id", conn2);
-            //SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            //DataTable dt2 = new DataTable();
-            //da2.Fill(dt2);
-
             foreach (DataRow dr2 in dt2.Rows)
             {
                 chartQ.Series["Series1"].Points.AddXY(dr2["sdesc"].ToString(), dr2["factual"].ToString());
                 chartQ.Series["Series2"].Points.AddXY(dr2["sdesc"].ToString(), dr2["fgoal"].ToString());
+                ASPxLabelQ.Text = "Last update: " + dr2["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             chartQp.Series["Series1"].Points.Clear();
@@ -328,13 +323,6 @@ namespace MxliDashboard
 
             qry = "select * from [sta_nivel1p] where smetric = 'quality' and stype = '" + tipo + "' order by id";
             DataTable dt3 = dBHelper.QryManager(qry);
-
-            //string myCnStr3 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn3 = new SqlConnection(myCnStr3);
-            //SqlCommand cmd3 = new SqlCommand("select * from [sta_nivel1p] where smetric = 'quality' and stype = '" + tipo + "' order by id", conn3);
-            //SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-            //DataTable dt3 = new DataTable();
-            //da3.Fill(dt3);
 
             foreach (DataRow dr3 in dt3.Rows)
             {
@@ -360,22 +348,31 @@ namespace MxliDashboard
                 tipo = "yearly";
             }
 
-            string qry = "select * from [sta_nivel1] where smetric = 'delivery' and stype = '" + tipo + "' order by id";
+            string query1 = "select top 6 * from [sta_nivel1] where smetric = 'delivery' and stype = '" + tipo + "' order by id desc";
+            string qry = "select * from (" + query1 + ") q1 order by id";
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper.QryManager(qry);
-
-            //string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn2 = new SqlConnection(myCnStr2);
-            //SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel1] where smetric = 'delivery' and stype = '" + tipo + "' order by id", conn2);
-            //SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            //DataTable dt2 = new DataTable();
-            //da2.Fill(dt2);
 
             foreach (DataRow dr2 in dt2.Rows)
             {
                 chartD.Series["Series1"].Points.AddXY(dr2["sdesc"].ToString(), dr2["factual"].ToString());
                 chartD.Series["Series2"].Points.AddXY(dr2["sdesc"].ToString(), dr2["fgoal"].ToString());
+                ASPxLabelD.Text = "Last update: " + dr2["sLstWkDay"].ToString().Substring(0, 10);
+            }
+
+            chartDp.Series["Series1"].Points.Clear();
+            chartDp.Series["Series2"].Points.Clear();
+            chartDp.Series["Series3"].Points.Clear();
+
+            qry = "select * from [sta_nivel1p] where smetric = 'delivery' and stype = '" + tipo + "' order by id";
+            DataTable dt3 = dBHelper.QryManager(qry);
+
+            foreach (DataRow dr3 in dt3.Rows)
+            {
+                chartDp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
+                chartDp.Series["Series2"].Points.AddXY(dr3["sdesc"].ToString(), dr3["fgoal"].ToString());
+                chartDp.Series["Series3"].Points.AddXY(dr3["sdesc"].ToString(), "0");
             }
         }
 
@@ -395,7 +392,6 @@ namespace MxliDashboard
             }
 
             string qry = "select * from [sta_nivel1] where smetric = 'productivity' and stype = '" + tipo + "' order by id";
-
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper.QryManager(qry);
@@ -404,6 +400,21 @@ namespace MxliDashboard
             {
                 chartP.Series["Series1"].Points.AddXY(dr2["sdesc"].ToString(), dr2["factual"].ToString());
                 chartP.Series["Series2"].Points.AddXY(dr2["sdesc"].ToString(), dr2["fgoal"].ToString());
+                ASPxLabelP.Text = "Last update: " + dr2["sLstWkDay"].ToString().Substring(0, 10);
+            }
+
+            chartPp.Series["Series1"].Points.Clear();
+            chartPp.Series["Series2"].Points.Clear();
+            chartPp.Series["Series3"].Points.Clear();
+
+            qry = "select * from [sta_nivel1p] where smetric = 'productivity' and stype = '" + tipo + "' order by id";
+            DataTable dt3 = dBHelper.QryManager(qry);
+
+            foreach (DataRow dr3 in dt3.Rows)
+            {
+                chartPp.Series["Series1"].Points.AddXY(dr3["sdesc"].ToString(), dr3["factual"].ToString());
+                chartPp.Series["Series2"].Points.AddXY(dr3["sdesc"].ToString(), dr3["fgoal"].ToString());
+                chartPp.Series["Series3"].Points.AddXY(dr3["sdesc"].ToString(), "0");
             }
         }
 
