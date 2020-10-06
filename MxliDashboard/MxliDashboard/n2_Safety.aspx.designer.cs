@@ -67,6 +67,15 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
         
         /// <summary>
+        /// S01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl S01;
+        
+        /// <summary>
         /// ASPxRoundPanel2 control.
         /// </summary>
         /// <remarks>
@@ -119,60 +128,6 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF2;
-        
-        /// <summary>
-        /// ASPxLabelCaptionF3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF3;
-        
-        /// <summary>
-        /// ASPxComboBoxF3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF3;
-        
-        /// <summary>
-        /// SqlDataSourceVsm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
-        
-        /// <summary>
-        /// SqlDataSourceCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
-        
-        /// <summary>
-        /// SqlDataSourceMrp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp;
-        
-        /// <summary>
-        /// S01 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl S01;
         
         /// <summary>
         /// S01Report control.
@@ -247,6 +202,24 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Image ImageSeriesI;
         
         /// <summary>
+        /// SqlDataSourceVsm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
+        
+        /// <summary>
+        /// SqlDataSourceCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        
+        /// <summary>
         /// S02 control.
         /// </summary>
         /// <remarks>
@@ -254,6 +227,60 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl S02;
+        
+        /// <summary>
+        /// ASPxRoundPanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel3;
+        
+        /// <summary>
+        /// PanelContent3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent3;
+        
+        /// <summary>
+        /// ASPxLabelCaptionF3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF3;
+        
+        /// <summary>
+        /// ASPxComboBoxF3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF3;
+        
+        /// <summary>
+        /// ASPxLabelCaptionF4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF4;
+        
+        /// <summary>
+        /// ASPxComboBoxF4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF4;
         
         /// <summary>
         /// S02Report control.
@@ -326,6 +353,24 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesM;
+        
+        /// <summary>
+        /// SqlDataSourceRes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceRes;
+        
+        /// <summary>
+        /// SqlDataSourceSta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceSta;
         
         /// <summary>
         /// S03 control.

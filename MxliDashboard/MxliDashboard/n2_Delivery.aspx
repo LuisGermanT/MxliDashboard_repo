@@ -4,9 +4,137 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
+    <div class="row">
+        <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+            <HeaderStyle ForeColor="White" />
+            <HeaderContent BackColor="#666666">
+            </HeaderContent>
+            <PanelCollection>
+                <dx:PanelContent ID="PanelContent2" runat="server">
+                    <table style="table-layout: fixed">
+                        <tr>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Tier view:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="All" Value="0" />
+                                        <dx:ListEditItem Text="T1" Value="1" />
+                                        <dx:ListEditItem Text="T2" Value="2" />
+                                        <dx:ListEditItem Text="T3" Value="3" />
+                                        <dx:ListEditItem Text="TFunction" Value="4" />
+                                        <dx:ListEditItem Text="WarRoom" Value="5" />
+                                    </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>   
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select metric filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="Default" Value="0" />
+                                        <dx:ListEditItem Text="Weekly" Value="1" />
+                                        <dx:ListEditItem Text="Monthly" Value="2" />
+                                        <dx:ListEditItem Text="Quarterly" Value="3" />
+                                        <dx:ListEditItem Text="Yearly" Value="4" />
+                                    </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                        </tr>
+                    </table>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxRoundPanel>
+    </div>
+    <p></p>
+    <p></p>
+    <div class="row">
+        <dx:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+            <HeaderStyle ForeColor="White" />
+            <HeaderContent BackColor="#666666">
+            </HeaderContent>
+            <PanelCollection>
+                <dx:PanelContent ID="PanelContent1" runat="server">
+                    <table style="table-layout: fixed">
+                        <tr>                           
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF1" runat="server" Text="Select VSM filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF1" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF1" OnSelectedIndexChanged="ASPxComboBoxF1_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF2" runat="server" Text="Select Cell filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF2" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF2" OnSelectedIndexChanged="ASPxComboBoxF2_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF3" runat="server" Text="Select MRP filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF3" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF3" OnSelectedIndexChanged="ASPxComboBoxF3_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One MRP&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                    </table>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxRoundPanel>
+        <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'inventario' and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'inventario' and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'inventario' and sfilter = 'mrp' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourcePfep" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'inventario' and sfilter = 'pfep' order by sClass"></asp:SqlDataSource>
+    </div>
+    <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--OTTR--%>
+    <div class="row" runat="server" id="D01">   <%--OTTR--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -26,9 +154,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -102,10 +227,7 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="#">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="n3_Delivery/OTTR.aspx">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery/OTTR.aspx">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -113,7 +235,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--PAST DUE--%>
+    <div class="row" runat="server" id="D02">   <%--PAST DUE--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -133,9 +255,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -205,10 +324,7 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -216,7 +332,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--WIP TRACKER--%>
+    <div class="row" runat="server" id="D03">   <%--WIP TRACKER--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -236,9 +352,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -308,10 +421,7 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -319,7 +429,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--MANUFACTURING CYCLE TIME--%>
+    <div class="row" runat="server" id="D04">   <%--MANUFACTURING CYCLE TIME--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -339,9 +449,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -411,10 +518,7 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -422,7 +526,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--OEE--%>
+    <div class="row" runat="server" id="D05">   <%--OEE--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -442,9 +546,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -513,11 +614,9 @@
                             </ChartAreas>
                         </asp:Chart>
                     </td>
+
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery">View &raquo;</a>
                     </td>
                 </tr>
             </table>          
@@ -525,7 +624,7 @@
     <p></p>
     <hr />
     <p></p>
-    <div class="row">   <%--OTP--%>
+    <div class="row" runat="server" id="D06">   <%--OTP--%>
             <table style="width:100%">
                 <tr>
                     <th style="text-align:center; width: 150px;">
@@ -545,9 +644,6 @@
                     </th>
                     <th style="text-align:center" width="30%">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 100px;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 100px;">
                         Details
@@ -617,10 +713,7 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_Delivery">View &raquo;</a>
                     </td>
                 </tr>
             </table>          

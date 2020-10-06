@@ -154,19 +154,17 @@
         <%--Inventory--%>
         <table style="width: 100%">
             <tr>
-                <th style="text-align: center; width: 12%;">Report
+                <th style="text-align: center; width: 10%;">Report
                 </th>
-                <th style="text-align: center; width: 8%;">Actual
+                <th style="text-align: center; width: 10%;">Actual
                 </th>
-                <th style="text-align: center; width: 8%;">AOP
+                <th style="text-align: center; width: 10%;">AOP
                 </th>
-                <th style="text-align: center; width: 8%;">Status
+                <th style="text-align: center; width: 10%;">Status
                 </th>
-                <th style="text-align: center; width: 48%;">Trend
+                <th style="text-align: center; width: 50%;">Trend
                 </th>
-                <th style="text-align: center; width: 8%;">Actions
-                </th>
-                <th style="text-align: center; width: 8%;">Details
+                <th style="text-align: center; width: 10%;">Details
                 </th>
             </tr>
             <tr>
@@ -209,17 +207,13 @@
                         </ChartAreas>
                     </asp:Chart>
                 </td>
-
                 <td style="text-align: center">
-                    <a class="btn btn-default" href="#">Edit &raquo;</a>
-                </td>
-                <td style="text-align: center">
-                    <a class="btn btn-default" href="n3_inventory/inventory.aspx">View &raquo;</a>
+                    <a class="btn btn-danger" href="n3_inventory/inventory.aspx">View &raquo;</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelI" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -234,19 +228,17 @@
         <%--WIP ENTITLEMENT--%>
         <table style="width: 100%">
             <tr>
-                <th style="text-align: center; width: 12%;">Report
+                <th style="text-align: center; width: 10%;">Report
                 </th>
-                <th style="text-align: center; width: 8%;">Actual
+                <th style="text-align: center; width: 10%;">Actual
                 </th>
-                <th style="text-align: center; width: 8%;">Ideal
+                <th style="text-align: center; width: 10%;">AOP
                 </th>
-                <th style="text-align: center; width: 8%;">Status
+                <th style="text-align: center; width: 10%;">Status
                 </th>
-                <th style="text-align: center; width: 48%;">Trend
+                <th style="text-align: center; width: 50%;">Trend
                 </th>
-                <th style="text-align: center; width: 8%;">Actions
-                </th>
-                <th style="text-align: center; width: 8%;">Details
+                <th style="text-align: center; width: 10%;">Details
                 </th>
             </tr>
             <tr>
@@ -289,17 +281,13 @@
                         </ChartAreas>
                     </asp:Chart>
                 </td>
-
                 <td style="text-align: center">
-                    <a class="btn btn-default" href="#">Edit &raquo;</a>
-                </td>
-                <td style="text-align: center">
-                    <a class="btn btn-default" href="n3_inventory/entitlement.aspx">View &raquo;</a>
+                    <a class="btn btn-danger" href="n3_inventory/entitlement.aspx">View &raquo;</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelE" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelE" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesE" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -314,19 +302,17 @@
         <%--VMI--%>
         <table style="width: 100%">
             <tr>
-                <th style="text-align: center; width: 12%;">Report
+                <th style="text-align: center; width: 10%;">Report
                 </th>
-                <th style="text-align: center; width: 8%;">Actual
+                <th style="text-align: center; width: 10%;">Actual
                 </th>
-                <th style="text-align: center; width: 8%;">AOP
+                <th style="text-align: center; width: 10%;">AOP
                 </th>
-                <th style="text-align: center; width: 8%;">Status
+                <th style="text-align: center; width: 10%;">Status
                 </th>
-                <th style="text-align: center; width: 48%;">Trend
+                <th style="text-align: center; width: 50%;">Trend
                 </th>
-                <th style="text-align: center; width: 8%;">Actions
-                </th>
-                <th style="text-align: center; width: 8%;">Details
+                <th style="text-align: center; width: 10%;">Details
                 </th>
             </tr>
             <tr>
@@ -369,17 +355,13 @@
                         </ChartAreas>
                     </asp:Chart>
                 </td>
-
                 <td style="text-align: center">
-                    <a class="btn btn-default" href="#">Edit &raquo;</a>
-                </td>
-                <td style="text-align: center">
-                    <a class="btn btn-default" href="n3_inventory/vmi.aspx">View &raquo;</a>
+                    <a class="btn btn-danger" href="n3_inventory/vmi.aspx">View &raquo;</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelV" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelV" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="ImageSeriesV" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
