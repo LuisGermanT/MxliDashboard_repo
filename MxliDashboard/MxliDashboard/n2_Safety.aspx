@@ -4,19 +4,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views & Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+    <div class="row">
+        <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="True">
             <HeaderStyle ForeColor="White" />
             <HeaderContent BackColor="#666666">
             </HeaderContent>
             <PanelCollection>
-                <dx:PanelContent ID="PanelContent1" runat="server">
+                <dx:PanelContent ID="PanelContent2" runat="server">
                     <table style="table-layout: fixed">
                         <tr>
                             <th>
-                                <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select Tier view:">
+                                <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Tier view:">
                                 </dx:ASPxLabel>
-                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
-                                    OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
+                                <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged">
                                     <Items>
                                         <dx:ListEditItem Selected="True" Text="All" Value="0" />
                                         <dx:ListEditItem Text="T1" Value="1" />
@@ -33,12 +34,102 @@
                                     <ValidationSettings ValidateOnLeave="False">
                                     </ValidationSettings>
                                 </dx:ASPxComboBox>
-                            </th>                           
+                            </th>   
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select metric filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="Default" Value="0" />
+                                        <dx:ListEditItem Text="Weekly" Value="1" />
+                                        <dx:ListEditItem Text="Monthly" Value="2" />
+                                        <dx:ListEditItem Text="Quarterly" Value="3" />
+                                        <dx:ListEditItem Text="Yearly" Value="4" />
+                                    </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
                         </tr>
                     </table>
                 </dx:PanelContent>
             </PanelCollection>
         </dx:ASPxRoundPanel>
+    </div>
+    <p></p>
+    <p></p>
+    <div class="row">
+        <dx:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+            <HeaderStyle ForeColor="White" />
+            <HeaderContent BackColor="#666666">
+            </HeaderContent>
+            <PanelCollection>
+                <dx:PanelContent ID="PanelContent1" runat="server">
+                    <table style="table-layout: fixed">
+                        <tr>                           
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF1" runat="server" Text="Select VSM filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF1" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF1" OnSelectedIndexChanged="ASPxComboBoxF1_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF2" runat="server" Text="Select Cell filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF2" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF2" OnSelectedIndexChanged="ASPxComboBoxF2_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelCaptionF3" runat="server" Text="Select MRP filter:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxF3" runat="server" ValueField="sclass"
+                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
+                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF3" OnSelectedIndexChanged="ASPxComboBoxF3_SelectedIndexChanged">
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One MRP&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>
+                        </tr>
+                    </table>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxRoundPanel>
+        <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('incidentes') and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('incidentes') and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('incidentes') and sfilter = 'mrp' order by sClass"></asp:SqlDataSource>
+    </div>
     <p></p>
     <hr />
     <p></p>
@@ -144,7 +235,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <dx:ASPxLabel ID="ASPxLabelS01" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                        <dx:ASPxLabel ID="ASPxLabelS01" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                     </td>
                     <td style="text-align: center">
                         <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -257,7 +348,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <dx:ASPxLabel ID="ASPxLabelS02" runat="server" Text="Last update: September 18, 2020" Font-Size="Small"></dx:ASPxLabel>
+                        <dx:ASPxLabel ID="ASPxLabelS02" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                     </td>
                     <td style="text-align: center">
                         <asp:Image ID="ImageSeriesM" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -370,7 +461,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <dx:ASPxLabel ID="ASPxLabelS03" runat="server" Text="Last update: " Font-Size="Small"></dx:ASPxLabel>
+                        <dx:ASPxLabel ID="ASPxLabelS03" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                     </td>
                     <td style="text-align: center">
                         <asp:Image ID="ImageSeriesT" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />

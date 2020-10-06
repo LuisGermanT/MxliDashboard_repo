@@ -76,13 +76,13 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
         
         /// <summary>
-        /// ASPxComboBoxClasInContent control.
+        /// ASPxComboBoxCausaInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxClasInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCausaInContent;
         
         /// <summary>
         /// ASPxRoundPanel2 control.
@@ -110,15 +110,6 @@ namespace MxliDashboard.n3_Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl1;
-        
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
         /// ASPxRoundPanel3 control.
@@ -175,13 +166,13 @@ namespace MxliDashboard.n3_Safety {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCelda;
         
         /// <summary>
-        /// SqlDataSourceClas control.
+        /// SqlDataSourceCausa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceClas;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCausa;
         
         /// <summary>
         /// ASPxRoundPanel4 control.

@@ -11,7 +11,7 @@
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
         </HeaderContent>
@@ -20,10 +20,10 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Selecciona Area">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
-                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                TextField="Area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundArea">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -35,7 +35,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Selecciona Celda">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select CELL:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxCeldaInContent" runat="server" ValueField="celda"
                                 TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCelda"
@@ -50,15 +50,15 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Selecciona Clasificacion">
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Causa:">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxClasInContent" runat="server" ValueField="clasificacion"
-                                TextField="clasificacion" ValueType="System.String" DataSourceID="SqlDataSourceClas"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundClas">
+                            <dx:ASPxComboBox ID="ASPxComboBoxCausaInContent" runat="server" ValueField="causa"
+                                TextField="causa" ValueType="System.String" DataSourceID="SqlDataSourceCausa"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCausa">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Clas&quot;;
+                                            e.errorText = &quot;You should Select One Causa&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
@@ -78,7 +78,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
-                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                <dx:WebChartControl ID="WebChartControl1" runat="server" CrosshairEnabled="True" Height="200px" Width="1024px"
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
@@ -112,8 +112,6 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'incidentes' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
-    </asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -170,7 +168,7 @@
                         <dx:ASPxSummaryItem FieldName="celda" ShowInColumn="CELDA" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="clasificacion" ShowInColumn="CLASIFICACION" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="cause" ShowInColumn="CAUSA" SummaryType="Count" />
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -181,22 +179,22 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_incidentes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [fecha], [empleado], [area], [celda], [causa], [descripcion], [clasificacion], [assignedto], [mstnumero] FROM [sap_incidentes] where area like @pArea and celda like @pCelda and clasificacion like @pClas order by id">
+        SelectCommand="SELECT [id], [fecha], [empleado], [area], [celda], [causa], [descripcion], [clasificacion], [assignedto], [mstnumero] FROM [sap_incidentes] where area like @pArea and celda like @pCelda and causa like @pCausa order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAreaInContent"
                 Name="pArea" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCeldaInContent"
                 Name="pCelda" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxClasInContent"
-                Name="pClas" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCausaInContent"
+                Name="pCausa" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [area] FROM [sap_incidentes] order by area"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCelda" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [celda] FROM [sap_incidentes] order by celda"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceClas" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [clasificacion] FROM [sap_incidentes] order by clasificacion"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceCausa" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [causa] FROM [sap_incidentes] order by causa"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -243,7 +241,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'incidentes'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>

@@ -236,7 +236,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <dx:ASPxLabel ID="ASPxLabelQ01" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                        <dx:ASPxLabel ID="ASPxLabelQ01" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                     </td>
                     <td style="text-align: center">
                         <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -350,7 +350,7 @@
                 </tr>
                 <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelQ02" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelQ02" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -463,7 +463,7 @@
                 </tr>
                 <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelQ03" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelQ03" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="Image2" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
