@@ -433,7 +433,6 @@ namespace MxliDashboard
             chartPP04.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
             chartPP04.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
         }
-
-
+        
     }
 }
