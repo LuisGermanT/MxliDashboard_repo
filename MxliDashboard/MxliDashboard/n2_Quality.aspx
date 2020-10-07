@@ -136,7 +136,7 @@
     <div class="row" runat="server" id="Q01">   <%--PPMs--%>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 10%;">
+                    <th style="text-align:center; width: 8%;">
                         Report
                     </th>
                     <th style="text-align:center; width: 8%;">
@@ -148,15 +148,12 @@
                     <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Trend
                         (PPMs Qty)</th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Pareto
                         (PPMs Qty)</th>
-                    <th style="text-align:center; width: 8%;">
-                        Actions
-                    </th>
                     <th style="text-align:center; width: 8%;">
                         Details
                     </th>
@@ -228,15 +225,12 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=ESCAPES_PPM">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="n3_quality/escapesppm.aspx">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_quality/escapesppm.aspx">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <dx:ASPxLabel ID="ASPxLabelQ01" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                        <dx:ASPxLabel ID="ASPxLabelQ01" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                     </td>
                     <td style="text-align: center">
                         <asp:Image ID="ImageSeriesI" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -250,7 +244,7 @@
     <div class="row" runat="server" id="Q02">   <%--ESCAPES--%>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 10%;">
+                    <th style="text-align:center; width: 8%;">
                         Report
                     </th>
                     <th style="text-align:center; width: 8%;">
@@ -262,14 +256,11 @@
                     <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Trend
                     </th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Actions
                     </th>
                     <th style="text-align:center; width: 8%;">
                         Details
@@ -342,15 +333,12 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=ESCAPES">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="n3_quality/escapes.aspx">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_quality/escapes.aspx">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelQ02" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelQ02" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
@@ -364,7 +352,7 @@
     <div class="row" runat="server" id="Q03">   <%--DEFECTS--%>
             <table style="width:100%">
                 <tr>
-                    <th style="text-align:center; width: 10%;">
+                    <th style="text-align:center; width: 8%;">
                         Report
                     </th>
                     <th style="text-align:center; width: 8%;">
@@ -376,15 +364,12 @@
                     <th style="text-align:center; width: 8%;">
                         Status
                     </th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Trend
                     </th>
-                    <th style="text-align:center; width: 25%;">
+                    <th style="text-align:center; width: 30%;">
                         Pareto
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Actions
-                    </th>
+                    </th>                   
                     <th style="text-align:center; width: 8%;">
                         Details
                     </th>
@@ -455,15 +440,12 @@
                         </asp:Chart>
                     </td>
                     <td style="text-align:center">
-                        <a class="btn btn-default" href="Actions.aspx?pA=QUALITY&pV=SITE&pM=N/A&pR=DEFECTS">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="n3_quality/defects.aspx">View &raquo;</a>
+                        <a class="btn btn-danger" href="n3_quality/defects.aspx">View &raquo;</a>
                     </td>
                 </tr>
                 <tr>
                 <td colspan="4">
-                    <dx:ASPxLabel ID="ASPxLabelQ03" runat="server" Text="Last update: September 4, 2020" Font-Size="Small"></dx:ASPxLabel>
+                    <dx:ASPxLabel ID="ASPxLabelQ03" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
                 </td>
                 <td style="text-align: center" >
                     <asp:Image ID="Image2" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />

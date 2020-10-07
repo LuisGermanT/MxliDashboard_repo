@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -16,139 +17,193 @@ namespace MxliDashboard
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            this.ASPxComboBoxVF.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVF_SelectedIndexChanged);
+            this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
+            this.ASPxComboBoxF1.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF1_SelectedIndexChanged);
+            this.ASPxComboBoxF2.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF2_SelectedIndexChanged);
+            this.ASPxComboBoxF3.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF3_SelectedIndexChanged);
+
+            llenarDatos_D01(0);
+            loadChartD01(0, "All", "SITE");
+        }
+
+        protected void cmbox_DataBoundF1(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF1.Items.Insert(0, defaultItem);
+            ASPxComboBoxF1.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF2(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF2.Items.Insert(0, defaultItem);
+            ASPxComboBoxF2.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF3(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF3.Items.Insert(0, defaultItem);
+            ASPxComboBoxF3.SelectedIndex = 0;
+        }
+
+        protected void ASPxComboBoxVF_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indice = ASPxComboBoxVF.SelectedIndex;
+            if (indice == 1)
             {
-                llenarDatos_D01(0, "All");
-                llenarDatos_D02(0, "All");
-                llenarDatos_D03(0, "All");
-                llenarDatos_D04(0, "All");
-                llenarDatos_D05(0, "All");
-                llenarDatos_D06(0, "All");
-                loadChartD01(0, "All");
+                D01.Visible = true;
+                D02.Visible = false;
+                D03.Visible = false;
+                D04.Visible = true;
+                D05.Visible = false;
+                D06.Visible = false;
+            }
+            else
+            {
+                D01.Visible = true;
+                D02.Visible = true;
+                D03.Visible = true;
+                D04.Visible = true;
+                D05.Visible = true;
+                D06.Visible = true;
             }
         }
 
-        protected void cmbox_DataBoundVsm(object sender, EventArgs e)
+        protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxVsmInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxVsmInContent.SelectedIndex = 0;
+            if (ASPxComboBoxF1.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF2.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF2.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            llenarDatos_D01(0);
+            loadChartD01(ASPxComboBoxV.SelectedIndex, "All", "SITE");
         }
 
-        protected void cmbox_DataBoundCell(object sender, EventArgs e)
-        {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxCellInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxCellInContent.SelectedIndex = 0;
-        }
-        protected void cmbox_DataBoundMrp(object sender, EventArgs e)
-        {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxMrpInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxMrpInContent.SelectedIndex = 0;
-        }
-
-        protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxF1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxVsmInContent.SelectedIndex;
-                string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
-                if (xTodos == 0)
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF1.SelectedItem.ToString();
+                if (ASPxComboBoxF1.SelectedIndex == 0)
                 {
-                    llenarDatos_D01(0, "All");
-                    loadChartD01(0, "All");
-                    llenarDatos_D02(0, "All");
-                    loadChartD02(0, "All");
+                    llenarDatos_D01(0);
+                    loadChartD01(tipoV, "All", "SITE");
                 }
                 else
                 {
-                    llenarDatos_D01(1, vsm);
-                    loadChartD01(1, vsm);
-                    llenarDatos_D02(1, vsm);
-                    loadChartD02(1, vsm);
+                    llenarDatos_D01(0);
+                    loadChartD01(tipoV, tipoVSM, xFilter);
                 }
             }
 
-            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+            if (ASPxComboBoxF2.SelectedIndex > 0)
             {
                 bandChange = 1;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
+                ASPxComboBoxF2.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
                 bandChange = 0;
             }
         }
 
-        protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxF2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "CELL";
+                string tipoVSM = ASPxComboBoxF2.SelectedItem.ToString();
+                if (ASPxComboBoxF2.SelectedIndex == 0)
+                {
+                    llenarDatos_D01(0);
+                    loadChartD01(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_D01(0);
+                    loadChartD01(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF1.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF3.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (bandChange == 1) { }
             else
             {
-                int xTodos = ASPxComboBoxCellInContent.SelectedIndex;
-                string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
-                if (xTodos == 0)
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "MRP";
+                string tipoVSM = ASPxComboBoxF3.SelectedItem.ToString();
+                if (ASPxComboBoxF3.SelectedIndex == 0)
                 {
-                    llenarDatos_D01(0, "All");
-                    loadChartD01(0, "All");
-                    llenarDatos_D02(0, "All");
-                    loadChartD02(0, "All");
+                    llenarDatos_D01(0);
+                    loadChartD01(0, "All", "SITE");
                 }
                 else
                 {
-                    llenarDatos_D01(2, cell);
-                    loadChartD01(2, cell);
-                    llenarDatos_D02(2, cell);
-                    loadChartD02(2, cell);
+                    llenarDatos_D01(0);
+                    loadChartD01(tipoV, tipoVSM, xFilter);
                 }
             }
 
-            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            if (ASPxComboBoxF1.SelectedIndex > 0)
             {
                 bandChange = 1;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxF1.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF2.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF2.SelectedIndex = 0;
                 bandChange = 0;
             }
         }
 
-        protected void ASPxComboBoxMrpInContent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string wk = "Week";
-
-            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
-            {
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
-            }
-
-            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
-            {
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
-            }
-
-            int idx = ASPxComboBoxMrpInContent.SelectedIndex;
-            if (idx > 0)
-            {
-                string mrp = ASPxComboBoxMrpInContent.SelectedItem.ToString();
-                llenarDatos_D01(3, mrp);
-                loadChartD01(3, mrp);
-                llenarDatos_D02(3, mrp);
-                loadChartD02(3, mrp);
-            }
-            else
-            {
-                llenarDatos_D01(0, "");
-                loadChartD01(0, "");
-                llenarDatos_D02(0, "");
-                loadChartD02(0, "");
-            }
-        }
-
-        public void llenarDatos_D01(int indice, string _sClass)
+        public void llenarDatos_D01(int indice)
         {
             double actual = 0;
             double aop = 0;
             string imagen = "good";
-            string xClass = _sClass;
+            string xClass = "All";
 
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             //string qry = "SELECT TOP 1 * FROM vw_ottr_by_wk ORDER BY [TO_Yr] desc, [TO_Wk] desc, [TO_Month] desc";
@@ -157,11 +212,6 @@ namespace MxliDashboard
 
             if (dtPareto.Rows.Count > 0)
             {
-                //double xHit = double.Parse(dtPareto.Rows[0]["HIT"].ToString());
-                //double xTotHrs = double.Parse(dtPareto.Rows[0]["TotalOrdrs"].ToString());
-                //actual = (xHit / xTotHrs)*100;
-                //actual = Math.Round(actual, 2);
-
                 actual = Convert.ToDouble(dtPareto.Rows[0]["factual"].ToString());
                 aop = Convert.ToDouble(dtPareto.Rows[0]["fgoal"].ToString());
             }
@@ -171,468 +221,64 @@ namespace MxliDashboard
 
             D01Actual.Text = actual + "%";
             D01AOP.Text = aop + "%";
-
-           //loadChartD01(indice);
         }
 
-        public void llenarDatos_D02(int indice, string _sClass)
-        {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
 
-            if (actual > aop) { imagen = "badB"; }
-            imgD02.ImageUrl = "~/img/" + imagen + ".png";
-
-            D02Actual.Text = actual + "";
-            D02AOP.Text = aop + "";
-
-            //loadChartD02(indice);
-        }
-        
-        public void llenarDatos_D03(int indice, string _sClass)
-        {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            if (actual < aop) { imagen = "bad"; }
-            imgD03.ImageUrl = "~/img/" + imagen + ".png";
-
-            D03Actual.Text = actual + "";
-            D03AOP.Text = aop + "";
-
-            //loadChartD03(indice);
-        }
-        
-        public void llenarDatos_D04(int indice, string _sClass)
-        {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-
-            if (actual > aop) { imagen = "badB"; }
-            imgD04.ImageUrl = "~/img/" + imagen + ".png";
-
-            D04Actual.Text = actual + "";
-            D04AOP.Text = aop + "";
-
-            //loadChartD04(indice);
-        }
-        
-        public void llenarDatos_D05(int indice, string _sClass)
-        {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            if (actual < aop) { imagen = "bad"; }
-            imgD05.ImageUrl = "~/img/" + imagen + ".png";
-
-            D05Actual.Text = actual + "";
-            D05AOP.Text = aop + "";
-
-            //loadChartD05(indice);
-        }
-        
-        public void llenarDatos_D06(int indice, string _sClass)
-        {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            if (actual < aop) { imagen = "bad"; }
-            imgD06.ImageUrl = "~/img/" + imagen + ".png";
-
-            D06Actual.Text = actual + "";
-            D06AOP.Text = aop + "";
-
-            //loadChartD06(indice);
-        }
-
-        private void loadChartD01(int indice, string _sClass)
+        private void loadChartD01(int tipo, string clase, string filtro)
         {
             chartTD01.Series["Series1"].Points.Clear();
             chartTD01.Series["Series2"].Points.Clear();
             chartTD01.Series["Series3"].Points.Clear();
+            chartPD01.Series["Series1"].Points.Clear();
+            chartPD01.Series["Series2"].Points.Clear();
 
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-            
-            string clase = _sClass;
             string xTipo = "weekly";
-            //tipo=0
-            String xFilter = "SITE";
-            string xClass = "All";
-
-            if (indice == 1)
+            if (tipo < 2)
             {
-                xClass = clase;
-                xFilter = "VSM";
+                xTipo = "WEEKLY";
             }
-            if (indice == 2)
+            if (tipo == 2)
             {
-                xClass = clase;
-                xFilter = "CELL";
+                xTipo = "MONTHLY";
             }
-            if (indice == 3)
+            if (tipo == 3)
             {
-                xClass = clase;
-                xFilter = "MRP";
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
             }
 
+            string query1 = "select top 13 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string qry1 = "select * from (" + query1 + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            //"SELECT * FROM vw_ottr_by_wk WHERE [TO_Wk] BETWEEN " + (semana-6) + " AND " + semana + " ORDER BY [TO_Yr] ASC, [TO_Wk] ASC, [TO_Month] ASC" ;
-            string qry = "select * from [sta_nivel2] where smetric = 'OTTR' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 6) + " and " + semana + " order by id";
-            DataTable dtPareto = dBHelper.QryManager(qry);
-            
-            foreach (DataRow dr1 in dtPareto.Rows)
+            DataTable dt1 = dBHelper.QryManager(qry1);
+            foreach (DataRow dr1 in dt1.Rows)
             {
-                //int xHit = int.Parse(dr1["Hit"].ToString());
-                //int totOrdrs = int.Parse(dr1["TotalOrdrs"].ToString());
-                //double xGoal = (double.Parse(xHit.ToString()) / double.Parse(totOrdrs.ToString()) );
-                //chartTD01.Series["Series1"].Points.AddXY(dr1["TO_Wk"].ToString(), xHit);
-                //chartTD01.Series["Series2"].Points.AddXY(dr1["TO_Wk"].ToString(), totOrdrs);
-                //chartTD01.Series["Series3"].Points.AddXY(dr1["TO_Wk"].ToString(), xGoal);
-
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-
                 chartTD01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                //chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), xGoal/100);
+                chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+            }
+
+            string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'ottr' and stype = 'causes' order by id";
+            string qry2 = "select * from (" + query2 + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+            DataTable dt2 = dBHelper2.QryManager(qry2);
+            foreach (DataRow dr2 in dt2.Rows)
+            {
+                double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                chartPD01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                chartPD01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                chartPD01.Series["Series1"].ToolTip = "#VALX";
             }
         }
 
-        private void loadChartD02(int indice, string _sClass)
-        {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
+        
 
-            chartTD02.Series["Series1"].Points.Clear();
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD02.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartTD02.Series["Series2"].Points.Clear();
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD02.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD02.Series["Series1"].Points.Clear();
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD02.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD02.Series["Series2"].Points.Clear();
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD02.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-        }
-
-        private void loadChartD03(int indice, string _sClass)
-        {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            chartTD03.Series["Series1"].Points.Clear();
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD03.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartTD03.Series["Series2"].Points.Clear();
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD03.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD03.Series["Series1"].Points.Clear();
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD03.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD03.Series["Series2"].Points.Clear();
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD03.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-        }
-
-        private void loadChartD04(int indice, string _sClass)
-        {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            chartTD04.Series["Series1"].Points.Clear();
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD04.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartTD04.Series["Series2"].Points.Clear();
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD04.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD04.Series["Series1"].Points.Clear();
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD04.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD04.Series["Series2"].Points.Clear();
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD04.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-        }
-
-        private void loadChartD05(int indice, string _sClass)
-        {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            chartTD05.Series["Series1"].Points.Clear();
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD05.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartTD05.Series["Series2"].Points.Clear();
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD05.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD05.Series["Series1"].Points.Clear();
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD05.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD05.Series["Series2"].Points.Clear();
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD05.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-        }
-
-        private void loadChartD06(int indice, string _sClass)
-        {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            chartTD06.Series["Series1"].Points.Clear();
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD06.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartTD06.Series["Series2"].Points.Clear();
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartTD06.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD06.Series["Series1"].Points.Clear();
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD06.Series["Series1"].Points.AddXY("W" + (semana - 0), 0);
-
-            chartPD06.Series["Series2"].Points.Clear();
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 12), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 11), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 10), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 9), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 8), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 7), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 6), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 5), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 4), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 3), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 2), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 1), 0);
-            chartPD06.Series["Series2"].Points.AddXY("W" + (semana - 0), 0);
-        }
 
     }
 }

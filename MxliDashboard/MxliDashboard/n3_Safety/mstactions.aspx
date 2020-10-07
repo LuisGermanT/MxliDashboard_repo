@@ -11,7 +11,7 @@
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
-    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
         <HeaderContent BackColor="#666666">
         </HeaderContent>
@@ -20,7 +20,22 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Status">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Responsible:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxResInContent" runat="server" ValueField="responsible"
+                                TextField="responsible" ValueType="System.String" DataSourceID="SqlDataSourceRes"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundRes">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Responsible&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Status:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="status"
                                 TextField="status" ValueType="System.String" DataSourceID="SqlDataSourceSta"
@@ -29,21 +44,6 @@
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
                                             e.errorText = &quot;You should Select One Status&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Completed">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCompInContent" runat="server" ValueField="compstatus"
-                                TextField="compstatus" ValueType="System.String" DataSourceID="SqlDataSourceComp"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundComp">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One CompStatus&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
@@ -63,7 +63,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
-                <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="SqlDataSource1" CrosshairEnabled="True" Height="200px" Width="1024px"
+                <dx:WebChartControl ID="WebChartControl1" runat="server" CrosshairEnabled="True" Height="200px" Width="1024px"
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
@@ -97,8 +97,6 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ" SelectCommand="SELECT sdesc, fActual, fGoal FROM sta_nivel2 WHERE smetric = 'mst' and sFilter = 'SITE' and sclass = 'All' and stype = 'weekly'">
-    </asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -108,7 +106,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent3" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_incidentes" Theme="Default" Width="1024px">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_mstactions" Theme="Default" Width="1024px">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
                     <Settings ShowGroupPanel="True" />
@@ -145,7 +143,7 @@
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="compstatus" ShowInColumn="COMPLETED" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="responsible" ShowInColumn="RESPONSIBLE" SummaryType="Count" />
                     </GroupSummary>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="status" ShowInColumn="STATUS" SummaryType="Count" />
@@ -161,17 +159,17 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_incidentes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [record], [action], [duedate], [responsible], [compstatus], [completedby], [status], [week] FROM [sap_mstactions] where compstatus like @pComp and status like @pSta order by id">
+    <asp:SqlDataSource ID="ds_mstactions" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [record], [action], [duedate], [responsible], [compstatus], [completedby], [status], [week] FROM [sap_mstactions] where responsible like @pRes and status like @pSta order by id">
         <SelectParameters>
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCompInContent"
-                Name="pComp" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxResInContent"
+                Name="pRes" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxStaInContent"
                 Name="pSta" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceComp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [compstatus] FROM [sap_mstactions] order by compstatus"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceRes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [responsible] FROM [sap_mstactions] order by responsible"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceSta" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [status] FROM [sap_mstactions] order by status"></asp:SqlDataSource>
     <p />
@@ -220,7 +218,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'mst'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>

@@ -1,6 +1,8 @@
 ﻿using DevExpress.Web;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +14,13 @@ namespace MxliDashboard.n3_Safety
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.ASPxComboBoxAreaInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxAreaInContent_SelectedIndexChanged);
+            this.ASPxComboBoxCeldaInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCeldaInContent_SelectedIndexChanged);
+            this.ASPxComboBoxCausaInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCausaInContent_SelectedIndexChanged);
+            if (!Page.IsPostBack)
+            {
+                chartDefault("SITE", "All");
+            }
         }
 
         protected void cmbox_DataBoundArea(object sender, EventArgs e)
@@ -29,11 +37,73 @@ namespace MxliDashboard.n3_Safety
             ASPxComboBoxCeldaInContent.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundClas(object sender, EventArgs e)
+        protected void cmbox_DataBoundCausa(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxClasInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxClasInContent.SelectedIndex = 0;
+            ASPxComboBoxCausaInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxCausaInContent.SelectedIndex = 0;
+        }
+
+        protected void ASPxComboBoxAreaInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ASPxComboBoxCeldaInContent.SelectedIndex = 0;
+            ASPxComboBoxCausaInContent.SelectedIndex = 0;
+            if (ASPxComboBoxAreaInContent.SelectedIndex == 0)
+            {
+                chartDefault("SITE", "All");
+            }
+            else
+            {
+                chartDefault("VSM", ASPxComboBoxAreaInContent.SelectedItem.ToString());
+            }
+        }
+
+        protected void ASPxComboBoxCeldaInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ASPxComboBoxAreaInContent.SelectedIndex = 0;
+            ASPxComboBoxCausaInContent.SelectedIndex = 0;
+            if (ASPxComboBoxCeldaInContent.SelectedIndex == 0)
+            {
+                chartDefault("SITE", "All");
+            }
+            else
+            {
+                chartDefault("CELL", ASPxComboBoxCeldaInContent.SelectedItem.ToString());
+            }
+        }
+
+        protected void ASPxComboBoxCausaInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ASPxComboBoxAreaInContent.SelectedIndex = 0;
+            ASPxComboBoxCeldaInContent.SelectedIndex = 0;
+            if (ASPxComboBoxCausaInContent.SelectedIndex == 0)
+            {
+                chartDefault("SITE", "All");
+            }
+            else
+            {
+                chartDefault("CAUSE", ASPxComboBoxCausaInContent.SelectedItem.ToString());
+            }
+        }
+
+        protected void chartDefault(string xType, string xFilter)
+        {
+            WebChartControl1.Series["Total"].Points.Clear();
+            WebChartControl1.Series["Goal"].Points.Clear();
+
+            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+            SqlConnection conn1 = new SqlConnection(myCnStr1);
+            SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_seguridad WHERE smetric = 'incidentes' and sType = '" + xType + "' and sfilter = '" + xFilter + "' ", conn1);
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                double xTotal = Convert.ToDouble(dr1["fTotal"].ToString());
+                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                WebChartControl1.Series["Total"].Points.AddPoint(dr1["sday"].ToString(), xTotal);
+                WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sday"].ToString(), xGoal);
+            }
         }
 
 
