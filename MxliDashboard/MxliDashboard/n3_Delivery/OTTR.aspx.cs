@@ -129,11 +129,11 @@ namespace MxliDashboard
                 wk = ASPxComboBoxMWInContent.SelectedItem.ToString();
             }
 
-            int idx = ASPxComboBoxCellInContent.SelectedIndex;
+            int idx = ASPxComboBoxMrpInContent.SelectedIndex;
             if (idx > 0)
             {
-                string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
-                loadChartP01(2, cell, wk);
+                string mrp = ASPxComboBoxMrpInContent.SelectedItem.ToString();
+                loadChartP01(3, mrp, wk);
             }
             else
             {
@@ -180,9 +180,22 @@ namespace MxliDashboard
         private void loadChartP01(int indice, string clase, string sFilter)
         {
             //Week range, from current week - 13 to current week
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;
             int yr = DateTime.Now.Year;
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            double diff = (DateTime.Today.DayOfWeek - CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)+1;
+            DateTime dtFrom = DateTime.Today.AddDays(-diff-(12*7));
+            DateTime dtTo = DateTime.Today.AddDays(-diff);
+
+            if (semana == 53 || semana == 1)
+            {
+                semana = 52;
+                yr = yr - 1;
+            }
+            else
+            {
+                semana = semana - 1;
+            }
+            
 
             chartTP01.Series["Series1"].Points.Clear();
             chartTP01.Series["Series2"].Points.Clear();
@@ -202,7 +215,8 @@ namespace MxliDashboard
                 cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
                 aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
                 mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
-                qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] BETWEEN " + (semana - 12) + " AND " + semana;
+                //qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] BETWEEN " + (semana - 12) + " AND " + semana;
+                qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
                 qryOrder = "[TO_Wk]";
                 colName = "TO_Wk";
             }
@@ -212,7 +226,21 @@ namespace MxliDashboard
                 cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND ";
-                qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly'";
+                qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
+                                "[sDesc] = (CASE " +
+                                                     " WHEN[TO_Month] = 1 THEN 'Jan' " +
+                                                     " WHEN[TO_Month] = 2 THEN 'Feb' " +
+                                                     " WHEN[TO_Month] = 3 THEN 'Mar' " +
+                                                     " WHEN[TO_Month] = 4 THEN 'Apr' " +
+                                                     " WHEN[TO_Month] = 5 THEN 'May' " +
+                                                     " WHEN[TO_Month] = 6 THEN 'Jun' " +
+                                                     " WHEN[TO_Month] = 7 THEN 'Jul' " +
+                                                     " WHEN[TO_Month] = 8 THEN 'Aug' " +
+                                                     " WHEN[TO_Month] = 9 THEN 'Sep' " +
+                                                     " WHEN[TO_Month] = 10 THEN 'Oct' " +
+                                                     " WHEN[TO_Month] = 11 THEN 'Nov' " +
+                                                     " WHEN[TO_Month] = 12 THEN 'Dec' " +
+                                                     " END)";
                 qryOrder = "[TO_Month]";
                 colName = "TO_Month";
             }
@@ -222,44 +250,36 @@ namespace MxliDashboard
             {
                 case 1:
                     xClass = clase;
-                    qry = "SELECT * FROM " + aTblName + " [TO_rArea] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_rArea]";
+                    qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + aTblName + " [TO_rArea] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_rArea]";
                     break;
                 case 2:
                     xClass = clase;
-                    qry = "SELECT * FROM " + cTblName + " [TO_Cell] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Cell]";
+                    qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + cTblName + " [TO_Cell] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Cell]";
                     break;
                 case 3:
                     xClass = clase;
-                    qry = "SELECT * FROM " + mTblName + " [TO_MRP] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_MRP]";
+                    qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + mTblName + " [TO_MRP] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_MRP]";
                     break;
                 default:
-                    qry = "SELECT * FROM " + sTblName + " Order by [TO_Yr], " + qryOrder;
+                    qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + sTblName + " Order by [TO_Yr], " + qryOrder;
                     break;
             }
 
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dtPareto = dBHelper.QryManager(qry);
-            DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
-
-            double xGoal = 0;
-
-            foreach (DataRow dr in dtBaseline.Rows)
-            {
-                xGoal = Convert.ToDouble(dr["fGoal"].ToString());
-                xGoal = xGoal / 100;
-                chartTP01.Series["Series4"].Points.AddXY(dr["sType"].ToString(), xGoal);
-            }
-
+            
             foreach (DataRow dr1 in dtPareto.Rows)
             {
                 double xHit = Convert.ToDouble(dr1["HIT"].ToString());
                 double xTotHrs = Convert.ToDouble(dr1["TotalOrdrs"].ToString());
                 double perc = (xHit / xTotHrs);
-                //prod = Math.Round(prod, 2);
+                double xGoal = Convert.ToDouble(dr1["AOP"].ToString())/100;
+                
                 chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), xHit);
                 chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), xTotHrs);
                 chartTP01.Series["Series3"].Points.AddXY(dr1[colName].ToString(), perc);
+                chartTP01.Series["Series4"].Points.AddXY(dr1[colName].ToString(), xGoal);
             }
         }
     }
