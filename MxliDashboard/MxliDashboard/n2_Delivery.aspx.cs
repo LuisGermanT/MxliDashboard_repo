@@ -267,7 +267,8 @@ namespace MxliDashboard
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
                 chartTD01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
                 chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                //chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                chartTD01.Series["Series2"].ToolTip = "#VALY";
             }
 
             string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'ottr' and stype = 'causes' order by id";
@@ -280,7 +281,7 @@ namespace MxliDashboard
                 double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
                 chartPD01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
                 chartPD01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
-                chartPD01.Series["Series1"].ToolTip = "#VALX";
+                chartPD01.Series["Series2"].ToolTip = "#VALX";
             }
         }
 
