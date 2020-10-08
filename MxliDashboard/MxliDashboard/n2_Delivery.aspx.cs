@@ -250,7 +250,7 @@ namespace MxliDashboard
                 xTipo = "YEARLY";
             }
 
-            string query1 = "select top 13 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string query1 = "select top 8 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
             string qry1 = "select * from (" + query1 + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt1 = dBHelper.QryManager(qry1);
@@ -261,6 +261,7 @@ namespace MxliDashboard
                 chartTD01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
                 chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
                 chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                chartTD01.Series["Series2"].ToolTip = "#VALY";
             }
 
             string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'ottr' and stype = 'causes' order by id";
@@ -273,7 +274,7 @@ namespace MxliDashboard
                 double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
                 chartPD01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
                 chartPD01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
-                chartPD01.Series["Series1"].ToolTip = "#VALX";
+                chartPD01.Series["Series2"].ToolTip = "#VALX";
             }
         }
 
