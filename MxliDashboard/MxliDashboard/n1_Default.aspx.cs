@@ -148,10 +148,10 @@ namespace MxliDashboard
             }
 
             if (actual < aop) { imagen = "bad"; }
-            imgQuality.ImageUrl = "~/img/" + imagen + ".png";
+            imgDelivery.ImageUrl = "~/img/" + imagen + ".png";
 
-            qualityActual.Text = actual + "";
-            qualityAOP.Text = aop + "";
+            deliveryActual.Text = actual + "";
+            deliveryAOP.Text = aop + "";
 
             loadChartD(indice);
         }
