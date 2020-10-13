@@ -193,7 +193,7 @@
 				                                WHEN NP_Month = 'Oct' THEN 10
 				                                WHEN NP_Month = 'Nov' THEN 11
 				                                WHEN NP_Month = 'Dec' THEN 12
-			                                END, NP_Week, NP_Year, NP_Area, NP_Celda
+			                                END desc, NP_Week desc, NP_Year, NP_Area, NP_Celda
                 ">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
