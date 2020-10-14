@@ -25,6 +25,12 @@ namespace MxliDashboard
                 this.ASPxComboBoxF1.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF1_SelectedIndexChanged);
                 this.ASPxComboBoxF2.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF2_SelectedIndexChanged);
                 this.ASPxComboBoxF3.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF3_SelectedIndexChanged);
+                this.ASPxComboBoxF4.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF4_SelectedIndexChanged);
+                this.ASPxComboBoxF5.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF5_SelectedIndexChanged);
+                this.ASPxComboBoxF6.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF6_SelectedIndexChanged);
+                this.ASPxComboBoxF7.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF7_SelectedIndexChanged);
+                this.ASPxComboBoxF8.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF8_SelectedIndexChanged);
+                this.ASPxComboBoxF9.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF9_SelectedIndexChanged);
 
                 llenarDatos_D01(0);
                 loadChartD01(0, "All", "SITE");
@@ -53,6 +59,48 @@ namespace MxliDashboard
             ASPxComboBoxF3.SelectedIndex = 0;
         }
 
+        protected void cmbox_DataBoundF4(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF4.Items.Insert(0, defaultItem);
+            ASPxComboBoxF4.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF5(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF5.Items.Insert(0, defaultItem);
+            ASPxComboBoxF5.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF6(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF6.Items.Insert(0, defaultItem);
+            ASPxComboBoxF6.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF7(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF7.Items.Insert(0, defaultItem);
+            ASPxComboBoxF7.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF8(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF8.Items.Insert(0, defaultItem);
+            ASPxComboBoxF8.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF9(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF9.Items.Insert(0, defaultItem);
+            ASPxComboBoxF9.SelectedIndex = 0;
+        }
+
         protected void ASPxComboBoxVF_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indice = ASPxComboBoxVF.SelectedIndex;
@@ -61,18 +109,12 @@ namespace MxliDashboard
                 D01.Visible = true;
                 D02.Visible = false;
                 D03.Visible = false;
-                D04.Visible = true;
-                D05.Visible = false;
-                D06.Visible = false;
             }
             else
             {
                 D01.Visible = true;
                 D02.Visible = true;
                 D03.Visible = true;
-                D04.Visible = true;
-                D05.Visible = true;
-                D06.Visible = true;
             }
             llenarDatos_D01(0);
             loadChartD01(ASPxComboBoxV.SelectedIndex, "All", "SITE");
@@ -96,6 +138,42 @@ namespace MxliDashboard
             {
                 bandChange = 1;
                 ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF4.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF4.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF5.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF5.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF6.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF6.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF7.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF7.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF8.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF8.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
                 bandChange = 0;
             }
             llenarDatos_D01(0);
@@ -205,7 +283,25 @@ namespace MxliDashboard
             }
         }
 
-        public void llenarDatos_D01(int indice)
+        protected void ASPxComboBoxF4_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        protected void ASPxComboBoxF5_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        protected void ASPxComboBoxF6_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        protected void ASPxComboBoxF7_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        protected void ASPxComboBoxF8_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        protected void ASPxComboBoxF9_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+            public void llenarDatos_D01(int indice)
         {
             double actual = 0;
             double aop = 0;

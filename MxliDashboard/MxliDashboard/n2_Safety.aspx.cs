@@ -210,7 +210,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'incidentes' and sfilter = 'SITE' and sdesc = '" + (semana) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'incidentes' and sfilter = 'SITE' and sdesc = '" + (semana-1) + "' order by id", conn1);   //porque no existe semana actual
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -238,7 +238,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'mst' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'mst' and sfilter = 'SITE' and sdesc = '" + (semana) + "' order by id", conn1);   //porque si existe semana actual
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -265,7 +265,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'training' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'training' and sfilter = 'SITE' and sdesc = '" + (semana-1) + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -364,7 +364,16 @@ namespace MxliDashboard
                 xTipo = "YEARLY";
             }
 
-            string query1 = "select top 13 * from [sta_nivel2] where smetric = 'mst' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            string query1 = "";
+            if (xTipo == "WEEKLY")
+            {
+                query1 = "select top 13 * from [sta_nivel2] where smetric = 'mst' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' and sdesc <= '" + (semana) + "'  order by id desc";
+            }
+            else
+            {
+                query1 = "select top 13 * from [sta_nivel2] where smetric = 'mst' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            }
             string qry = "select * from (" + query1 + ") q1 order by id";
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
