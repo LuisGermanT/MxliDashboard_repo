@@ -267,7 +267,7 @@ namespace MxliDashboard
                 double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
                 chartTD01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
                 chartTD01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                //chartTD01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
                 chartTD01.Series["Series2"].ToolTip = "#VALY";
             }
 
