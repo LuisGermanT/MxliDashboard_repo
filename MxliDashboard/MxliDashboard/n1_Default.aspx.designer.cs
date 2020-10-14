@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MxliDashboard {
-    
-    
-    public partial class n1_Default {
-        
+namespace MxliDashboard
+{
+
+
+    public partial class n1_Default
+    {
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
         /// <summary>
         /// ASPxRoundPanel1 control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel1;
-        
+
         /// <summary>
         /// PanelContent1 control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent1;
-        
+
         /// <summary>
         /// ASPxLabelCaptionF control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF;
-        
+
         /// <summary>
         /// ASPxComboBoxF control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF;
-        
+
         /// <summary>
         /// ImageLogoS control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageLogoS;
-        
+
         /// <summary>
         /// safetyActual control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel safetyActual;
-        
+
         /// <summary>
         /// safetyAOP control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel safetyAOP;
-        
+
         /// <summary>
         /// imgSafety control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgSafety;
-        
+
         /// <summary>
         /// chartS control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartS;
-        
+
         /// <summary>
         /// chartSp control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartSp;
-        
+
         /// <summary>
         /// ASPxLabelS control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelS;
-        
+
         /// <summary>
         /// ImageSeriesS control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesS;
-        
+
         /// <summary>
         /// ImageLogoQ control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageLogoQ;
-        
+
         /// <summary>
         /// qualityActual control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel qualityActual;
-        
+
         /// <summary>
         /// qualityAOP control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel qualityAOP;
-        
+
         /// <summary>
         /// imgQuality control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgQuality;
-        
+
         /// <summary>
         /// chartQ control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartQ;
-        
+
         /// <summary>
         /// chartQp control.
         /// </summary>
@@ -173,7 +184,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartQp;
-        
+
         /// <summary>
         /// ASPxLabelQ control.
         /// </summary>
@@ -182,7 +193,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelQ;
-        
+
         /// <summary>
         /// ImageSeriesQ control.
         /// </summary>
@@ -191,7 +202,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesQ;
-        
+
         /// <summary>
         /// ImageLogoD control.
         /// </summary>
@@ -200,7 +211,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageLogoD;
-        
+
         /// <summary>
         /// deliveryActual control.
         /// </summary>
@@ -209,7 +220,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel deliveryActual;
-        
+
         /// <summary>
         /// deliveryAOP control.
         /// </summary>
@@ -218,7 +229,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel deliveryAOP;
-        
+
         /// <summary>
         /// imgDelivery control.
         /// </summary>
@@ -227,7 +238,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgDelivery;
-        
+
         /// <summary>
         /// chartD control.
         /// </summary>
@@ -236,7 +247,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartD;
-        
+
         /// <summary>
         /// chartDp control.
         /// </summary>
@@ -245,7 +256,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartDp;
-        
+
         /// <summary>
         /// ASPxLabelD control.
         /// </summary>
@@ -254,7 +265,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelD;
-        
+
         /// <summary>
         /// ImageSeriesD control.
         /// </summary>
@@ -263,7 +274,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesD;
-        
+
         /// <summary>
         /// ImageLogoI control.
         /// </summary>
@@ -272,7 +283,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageLogoI;
-        
+
         /// <summary>
         /// inventoryActual control.
         /// </summary>
@@ -281,7 +292,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel inventoryActual;
-        
+
         /// <summary>
         /// inventoryAOP control.
         /// </summary>
@@ -290,7 +301,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel inventoryAOP;
-        
+
         /// <summary>
         /// imgInventory control.
         /// </summary>
@@ -299,7 +310,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgInventory;
-        
+
         /// <summary>
         /// chartI control.
         /// </summary>
@@ -308,7 +319,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartI;
-        
+
         /// <summary>
         /// chartIp control.
         /// </summary>
@@ -317,7 +328,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartIp;
-        
+
         /// <summary>
         /// ASPxLabelI control.
         /// </summary>
@@ -326,7 +337,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelI;
-        
+
         /// <summary>
         /// ImageSeriesI control.
         /// </summary>
@@ -335,7 +346,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageSeriesI;
-        
+
         /// <summary>
         /// ImageLogoP control.
         /// </summary>
@@ -344,7 +355,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageLogoP;
-        
+
         /// <summary>
         /// productivityActual control.
         /// </summary>
@@ -353,7 +364,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel productivityActual;
-        
+
         /// <summary>
         /// productivityAOP control.
         /// </summary>
@@ -362,7 +373,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel productivityAOP;
-        
+
         /// <summary>
         /// imgProductivity control.
         /// </summary>
@@ -371,7 +382,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgProductivity;
-        
+
         /// <summary>
         /// chartP control.
         /// </summary>
@@ -380,7 +391,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartP;
-        
+
         /// <summary>
         /// chartPp control.
         /// </summary>
@@ -389,7 +400,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartPp;
-        
+
         /// <summary>
         /// ASPxLabelP control.
         /// </summary>
@@ -398,7 +409,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelP;
-        
+
         /// <summary>
         /// ImageSeriesP control.
         /// </summary>
