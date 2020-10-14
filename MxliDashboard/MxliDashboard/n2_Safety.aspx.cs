@@ -210,7 +210,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'incidentes' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'incidentes' and sfilter = 'SITE' and sdesc = '" + (semana) + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);

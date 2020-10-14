@@ -316,7 +316,7 @@
                     </asp:Chart>
                 </td>
                 <td style="text-align: center">
-                    <a class="btn btn-danger" href="/n2_Delivery">View &raquo;</a>
+                    <a class="btn btn-danger" href="n2_Delivery">View &raquo;</a>
                 </td>
             </tr>
             <tr>
