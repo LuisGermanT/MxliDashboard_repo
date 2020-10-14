@@ -54,6 +54,7 @@
                         <li><a runat="server" href="~/n2_Delivery">Delivery</a></li>
                         <li><a runat="server" href="~/n2_Inventory">Inventory</a></li>                        
                         <li><a runat="server" href="~/n2_Productivity">Productivity</a></li>
+                        <li><a runat="server" href="~/n2_Etad">ETAD</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
