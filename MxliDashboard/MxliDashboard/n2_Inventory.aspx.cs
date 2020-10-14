@@ -22,6 +22,12 @@ namespace MxliDashboard
             this.ASPxComboBoxF2.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF2_SelectedIndexChanged);
             this.ASPxComboBoxF3.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF3_SelectedIndexChanged);
             this.ASPxComboBoxF4.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF4_SelectedIndexChanged);
+            this.ASPxComboBoxF5.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF5_SelectedIndexChanged);
+            this.ASPxComboBoxF6.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF6_SelectedIndexChanged);
+            this.ASPxComboBoxF7.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF7_SelectedIndexChanged);
+            this.ASPxComboBoxF8.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF8_SelectedIndexChanged);
+            this.ASPxComboBoxF9.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF9_SelectedIndexChanged);
+            this.ASPxComboBoxF10.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF10_SelectedIndexChanged);
 
             llenarDatos_I01(0);
             loadChartI01(0, "All", "SITE");
@@ -59,6 +65,54 @@ namespace MxliDashboard
             ASPxComboBoxF4.SelectedIndex = 0;
         }
 
+        protected void cmbox_DataBoundF5(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF5.Items.Insert(0, defaultItem);
+            ASPxComboBoxF5.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF6(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF6.Items.Insert(0, defaultItem);
+            ASPxComboBoxF6.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF7(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF7.Items.Insert(0, defaultItem);
+            ASPxComboBoxF7.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF8(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ListEditItem defaultItem2 = new ListEditItem("BuyParts", "%%");
+            ASPxComboBoxF8.Items.Insert(0, defaultItem);
+            ASPxComboBoxF8.Items.Insert(1, defaultItem2);
+            ASPxComboBoxF8.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF9(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ListEditItem defaultItem2 = new ListEditItem("BuyParts", "%%");
+            ASPxComboBoxF9.Items.Insert(0, defaultItem);
+            ASPxComboBoxF9.Items.Insert(1, defaultItem2);
+            ASPxComboBoxF9.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF10(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ListEditItem defaultItem2 = new ListEditItem("VMI", "%%");
+            ASPxComboBoxF10.Items.Insert(0, defaultItem);
+            ASPxComboBoxF10.Items.Insert(1, defaultItem2);
+            ASPxComboBoxF10.SelectedIndex = 0;
+        }
+
         protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ASPxComboBoxF1.SelectedIndex > 0)
@@ -85,6 +139,42 @@ namespace MxliDashboard
                 ASPxComboBoxF4.SelectedIndex = 0;
                 bandChange = 0;
             }
+            if (ASPxComboBoxF5.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF5.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF6.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF6.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF7.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF7.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF8.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF8.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
             llenarDatos_I01(0);
             loadChartI01(ASPxComboBoxV.SelectedIndex, "All", "SITE");
             llenarDatos_I02(0);
@@ -105,19 +195,11 @@ namespace MxliDashboard
                 {
                     llenarDatos_I01(0);
                     loadChartI01(tipoV, "All","SITE");
-                    llenarDatos_I02(0);
-                    loadChartI02(tipoV, "All", "SITE");
-                    llenarDatos_I03(0);
-                    loadChartI03(tipoV, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_I01(0);
                     loadChartI01(tipoV, tipoVSM,xFilter);
-                    llenarDatos_I02(0);
-                    loadChartI02(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I03(0);
-                    loadChartI03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -153,19 +235,11 @@ namespace MxliDashboard
                 {
                     llenarDatos_I01(0);
                     loadChartI01(0, "All", "SITE");
-                    llenarDatos_I02(0);
-                    loadChartI02(0, "All", "SITE");
-                    llenarDatos_I03(0);
-                    loadChartI03(0, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_I01(0);
                     loadChartI01(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I02(0);
-                    loadChartI02(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I03(0);
-                    loadChartI03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -202,19 +276,11 @@ namespace MxliDashboard
                 {
                     llenarDatos_I01(0);
                     loadChartI01(0, "All", "SITE");
-                    llenarDatos_I02(0);
-                    loadChartI02(0, "All", "SITE");
-                    llenarDatos_I03(0);
-                    loadChartI03(0, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_I01(0);
                     loadChartI01(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I02(0);
-                    loadChartI02(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I03(0);
-                    loadChartI03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -251,19 +317,11 @@ namespace MxliDashboard
                 {
                     llenarDatos_I01(0);
                     loadChartI01(0, "All", "SITE");
-                    llenarDatos_I02(0);
-                    loadChartI02(0, "All", "SITE");
-                    llenarDatos_I03(0);
-                    loadChartI03(0, "All", "SITE");
                 }
                 else
                 {
                     llenarDatos_I01(0);
                     loadChartI01(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I02(0);
-                    loadChartI02(tipoV, tipoVSM, xFilter);
-                    llenarDatos_I03(0);
-                    loadChartI03(tipoV, tipoVSM, xFilter);
                 }
             }
 
@@ -283,6 +341,218 @@ namespace MxliDashboard
             {
                 bandChange = 1;
                 ASPxComboBoxF3.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF5.SelectedItem.ToString();
+                if (ASPxComboBoxF5.SelectedIndex == 0)
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(tipoV, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF6.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF6.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF7.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF7.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "CELL";
+                string tipoVSM = ASPxComboBoxF6.SelectedItem.ToString();
+                if (ASPxComboBoxF6.SelectedIndex == 0)
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF5.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF5.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF7.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF7.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "MRP";
+                string tipoVSM = ASPxComboBoxF7.SelectedItem.ToString();
+                if (ASPxComboBoxF7.SelectedIndex == 0)
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I02(0);
+                    loadChartI02(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF5.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF5.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF6.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF6.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "PFEP";
+                string tipoVSM = ASPxComboBoxF8.SelectedItem.ToString();
+                if (ASPxComboBoxF8.SelectedIndex == 0)
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");   //no hay filtros
+                    //llenarDatos_I03(0);
+                    //loadChartI03(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF9.SelectedItem.ToString();
+                if (ASPxComboBoxF9.SelectedIndex == 0)
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");   //no hay filtros
+                    //llenarDatos_I03(0);
+                    //loadChartI03(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF8.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF8.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "CELL";
+                string tipoVSM = ASPxComboBoxF10.SelectedItem.ToString();
+                if (ASPxComboBoxF10.SelectedIndex == 0)
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_I03(0);
+                    loadChartI03(0, "All", "SITE");   //no hay filtros
+                    //llenarDatos_I03(0);
+                    //loadChartI03(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF8.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF8.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
                 bandChange = 0;
             }
         }
