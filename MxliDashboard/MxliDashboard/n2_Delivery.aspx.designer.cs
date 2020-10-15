@@ -364,15 +364,6 @@ namespace MxliDashboard {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTD02;
         
         /// <summary>
-        /// chartPD02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartPD02;
-        
-        /// <summary>
         /// SqlDataSourceVsm2 control.
         /// </summary>
         /// <remarks>
