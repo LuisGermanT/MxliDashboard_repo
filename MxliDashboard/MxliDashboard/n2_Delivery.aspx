@@ -392,21 +392,6 @@
                                         </dx:ASPxComboBox>
                                     </th>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF8" runat="server" Text="Select Cell filter:">
-                                        </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxF8" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCell3"
-                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF8" OnSelectedIndexChanged="ASPxComboBoxF8_SelectedIndexChanged">
-                                            <ClientSideEvents Validation="function(s, e) {
-                                                    if (s.GetSelectedIndex()==0) {
-                                                    e.isValid = false;
-                                                    e.errorText = &quot;You should Select One Cell&quot;;
-                                                    }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
-                                        </dx:ASPxComboBox>
-                                    </th>
-                                    <th>
                                         <dx:ASPxLabel ID="ASPxLabelF9" runat="server" Text="Select MRP filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF9" runat="server" ValueField="sclass"
@@ -425,25 +410,22 @@
                             <hr />
                             <table style="width:100%">
                         <tr>
-                            <th style="text-align:center; width: 150px;">
+                            <th style="text-align:center; width: 6%;">
                                 Report
                             </th>
-                            <th style="text-align:center; width: 100px;">
+                            <th style="text-align:center; width: 8%;">
                                 Actual
                             </th>
-                            <th style="text-align:center; width: 100px;">
+                            <th style="text-align:center; width: 8%;">
                                 AOP
                             </th>
-                            <th style="text-align:center; width: 100px;">
+                            <th style="text-align:center; width: 6%;">
                                 Status
                             </th>
-                            <th style="text-align:center" width="30%">
+                            <th style="text-align:center; width: 66%;">
                                 Trend
                             </th>
-                            <th style="text-align:center" width="30%">
-                                Pareto
-                            </th>
-                            <th style="text-align:center; width: 100px;">
+                            <th style="text-align:center; width: 6%;">
                                 Details
                             </th>
                         </tr>
@@ -461,7 +443,7 @@
                                 <asp:Image ID="imgD03" runat="server" ImageUrl="~/img/bad.png" />
                             </td>
                             <td style="text-align:center">
-                                <asp:Chart ID="chartTD03" runat="server" Height="120px" Width="500px">
+                                <asp:Chart ID="chartTD03" runat="server" Height="120px" Width="750px">
                                     <Series>
                                         <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                             <SmartLabelStyle CalloutLineAnchorCapStyle="None" CalloutLineColor="Transparent" Enabled="False" MovingDirection="Top, TopRight, BottomLeft, BottomRight" />
@@ -489,31 +471,6 @@
                                 </asp:Chart>
                             </td>
                             <td style="text-align:center">
-                                <asp:Chart ID="chartPD03" runat="server" Height="120px">
-                                     <Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
-                                        </asp:Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
-                                        </asp:Series>
-                                    </Series>
-                                    <ChartAreas>
-                                        <asp:ChartArea Name="ChartArea1">
-                                            <AxisY Enabled="False" LineWidth="0">
-                                                <MajorGrid Enabled="False" />
-                                            </AxisY>
-                                            <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
-                                                <MajorGrid Enabled="False" />
-                                                <LabelStyle Angle="-90" />
-                                            </AxisX>
-                                            <AxisX2 LineWidth="0">
-                                            </AxisX2>
-                                            <AxisY2 LineWidth="0">
-                                            </AxisY2>
-                                        </asp:ChartArea>
-                                    </ChartAreas>
-                                </asp:Chart>
-                            </td>
-                            <td style="text-align:center">
                                 <a class="btn btn-danger" href="n3_Delivery/pastdue.aspx">View &raquo;</a>
                             </td>
                         </tr>
@@ -523,8 +480,6 @@
                 </dx:ASPxRoundPanel>
                 <asp:SqlDataSource ID="SqlDataSourceVsm3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                     SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'pastdue' and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceCell3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'pastdue' and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSourceMrp3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                     SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'pastdue' and sfilter = 'mrp' order by sClass"></asp:SqlDataSource>
             </div>

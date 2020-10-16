@@ -227,6 +227,7 @@
     <Content Include="img\chartSeries.png" />
     <Content Include="n2_Delivery.aspx" />
     <Content Include="n2_Etad.aspx" />
+    <Content Include="n3_Delivery\pastdue.aspx" />
     <Content Include="n3_Delivery\output.aspx" />
     <Content Include="n3_Etad\kaizens.aspx" />
     <Content Include="n3_Inventory\entitlement.aspx" />
@@ -327,6 +328,13 @@
     </Compile>
     <Compile Include="n2_Etad.aspx.designer.cs">
       <DependentUpon>n2_Etad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Delivery\pastdue.aspx.cs">
+      <DependentUpon>pastdue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Delivery\pastdue.aspx.designer.cs">
+      <DependentUpon>pastdue.aspx</DependentUpon>
     </Compile>
     <Compile Include="n3_Delivery\output.aspx.cs">
       <DependentUpon>output.aspx</DependentUpon>

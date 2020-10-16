@@ -29,13 +29,15 @@ namespace MxliDashboard
                 this.ASPxComboBoxF5.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF5_SelectedIndexChanged);
                 this.ASPxComboBoxF6.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF6_SelectedIndexChanged);
                 this.ASPxComboBoxF7.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF7_SelectedIndexChanged);
-                this.ASPxComboBoxF8.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF8_SelectedIndexChanged);
+                //this.ASPxComboBoxF8.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF8_SelectedIndexChanged);
                 this.ASPxComboBoxF9.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF9_SelectedIndexChanged);
 
                 llenarDatos_D01(0);
                 loadChartD01(0, "All", "SITE");
                 llenarDatos_D02(0);
                 loadChartD02(0, "All", "SITE");
+                llenarDatos_D03(0);
+                loadChartD03(0, "All", "SITE");
             }
 
         }
@@ -89,12 +91,12 @@ namespace MxliDashboard
             ASPxComboBoxF7.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundF8(object sender, EventArgs e)
-        {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxF8.Items.Insert(0, defaultItem);
-            ASPxComboBoxF8.SelectedIndex = 0;
-        }
+        //protected void cmbox_DataBoundF8(object sender, EventArgs e)
+        //{
+        //    ListEditItem defaultItem = new ListEditItem("All", "%%");
+        //    ASPxComboBoxF8.Items.Insert(0, defaultItem);
+        //    ASPxComboBoxF8.SelectedIndex = 0;
+        //}
 
         protected void cmbox_DataBoundF9(object sender, EventArgs e)
         {
@@ -164,12 +166,12 @@ namespace MxliDashboard
                 ASPxComboBoxF7.SelectedIndex = 0;
                 bandChange = 0;
             }
-            if (ASPxComboBoxF8.SelectedIndex > 0)
-            {
-                bandChange = 1;
-                ASPxComboBoxF8.SelectedIndex = 0;
-                bandChange = 0;
-            }
+            //if (ASPxComboBoxF8.SelectedIndex > 0)
+            //{
+            //    bandChange = 1;
+            //    ASPxComboBoxF8.SelectedIndex = 0;
+            //    bandChange = 0;
+            //}
             if (ASPxComboBoxF9.SelectedIndex > 0)
             {
                 bandChange = 1;
@@ -180,6 +182,8 @@ namespace MxliDashboard
             loadChartD01(ASPxComboBoxV.SelectedIndex, "All", "SITE");
             llenarDatos_D02(0);
             loadChartD02(ASPxComboBoxV.SelectedIndex, "All", "SITE");
+            llenarDatos_D03(0);
+            loadChartD03(ASPxComboBoxV.SelectedIndex, "All", "SITE");
         }
 
         protected void ASPxComboBoxF1_SelectedIndexChanged(object sender, EventArgs e)
@@ -387,13 +391,63 @@ namespace MxliDashboard
         }
 
         protected void ASPxComboBoxF7_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF7.SelectedItem.ToString();
+                if (ASPxComboBoxF7.SelectedIndex == 0)
+                {
+                    llenarDatos_D03(0);
+                    loadChartD03(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_D03(0);
+                    loadChartD03(tipoV, tipoVSM, xFilter);
+                }
+            }
 
-        protected void ASPxComboBoxF8_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        //protected void ASPxComboBoxF8_SelectedIndexChanged(object sender, EventArgs e)
+        //{ }
 
         protected void ASPxComboBoxF9_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "MRP";
+                string tipoVSM = ASPxComboBoxF9.SelectedItem.ToString();
+                if (ASPxComboBoxF9.SelectedIndex == 0)
+                {
+                    llenarDatos_D03(0);
+                    loadChartD03(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_D03(0);
+                    loadChartD03(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF7.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF7.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
 
         public void llenarDatos_D01(int indice)
         {
@@ -551,6 +605,73 @@ namespace MxliDashboard
             //    chartPD02.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
             //    chartPD02.Series["Series2"].ToolTip = "#VALX";
             //}
+        }
+
+        public void llenarDatos_D03(int indice)
+        {
+            double actual = 0;
+            double aop = 0;
+            string imagen = "goodB";
+            string xClass = "All";
+
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            string qry = "select TOP 1 * from [sta_nivel2] where smetric = 'pastdue' and sClass = '" + xClass + "' order by id desc";
+            DataTable dtPareto = dBHelper.QryManager(qry);
+
+            if (dtPareto.Rows.Count > 0)
+            {
+                actual = Convert.ToDouble(dtPareto.Rows[0]["factual"].ToString());
+                aop = Convert.ToDouble(dtPareto.Rows[0]["fgoal"].ToString());
+                //ASPxLabelP.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+            }
+
+            if (actual > aop) { imagen = "badB"; }
+            imgD03.ImageUrl = "~/img/" + imagen + ".png";
+
+            D03Actual.Text = (actual / 1000).ToString("C2") + "K";
+            D03AOP.Text = (aop / 1000).ToString("C2") + "K";
+        }
+
+
+        private void loadChartD03(int tipo, string clase, string filtro)
+        {
+            chartTD03.Series["Series1"].Points.Clear();
+            chartTD03.Series["Series2"].Points.Clear();
+            chartTD03.Series["Series3"].Points.Clear();
+            //chartPD02.Series["Series1"].Points.Clear();
+            //chartPD02.Series["Series2"].Points.Clear();
+
+            string xTipo = "weekly";
+            if (tipo < 2)
+            {
+                xTipo = "WEEKLY";
+            }
+            if (tipo == 2)
+            {
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
+            }
+
+            string query1 = "select top 13 * from [sta_nivel2] where smetric = 'pastdue' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string qry1 = "select * from (" + query1 + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                chartTD03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                chartTD03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                chartTD03.Series["Series2"].ToolTip = "#VALY";
+            }
+
         }
 
 

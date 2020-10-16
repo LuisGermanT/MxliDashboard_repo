@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="output.aspx.cs" Inherits="MxliDashboard.n3_Safety.output" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pastdue.aspx.cs" Inherits="MxliDashboard.n3_Safety.pastdue" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
-    <h3>OUTPUT.</h3>
+    <h3>PAST DUE.</h3>
     <p></p>
         <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
     <p></p>
@@ -35,22 +35,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select CELL:">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCeldaInContent" runat="server" ValueField="scell"
-                                TextField="scell" ValueType="System.String" DataSourceID="SqlDataSourceCelda"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCelda">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One Celda&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP:">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select MRP:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="smrp"
                                 TextField="smrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -64,6 +49,21 @@
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Receiving plant:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxPlantInContent" runat="server" ValueField="srecplant"
+                                TextField="srecplant" ValueType="System.String" DataSourceID="SqlDataSourcePlant"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundPlant">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Plan&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>                       
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -82,11 +82,13 @@
                     ClientInstanceName="chart" AutoLayout="True">
                     <DiagramSerializable>
                         <dx:XYDiagram>
-                            <AxisX VisibleInPanesSerializable="-1" MinorCount="1">
+                            <AxisX VisibleInPanesSerializable="-1" MinorCount="1" Visibility="True">
                                 <QualitativeScaleOptions AutoGrid="False" />
+                                <Tickmarks MinorVisible="False" />
                                 <Label Angle="270" Alignment="Center">
                                     <ResolveOverlappingOptions AllowHide="False" />
                                 </Label>
+                                <VisualRange Auto="False" MaxValueSerializable="9" MinValueSerializable="0" />
                             </AxisX>
                             <AxisY VisibleInPanesSerializable="-1">
                             </AxisY>
@@ -94,16 +96,26 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fActual">
+                        <dx:Series Name="Total" LabelsVisibility="True" CrosshairLabelPattern="{V:c2}">
                             <ViewSerializable>
                                 <dx:SideBySideBarSeriesView>
                                     <Border Color="49, 133, 155" />
                                 </dx:SideBySideBarSeriesView>
                             </ViewSerializable>
+                            <LabelSerializable>
+                                <dx:SideBySideBarSeriesLabel TextPattern="{V:c2}">
+                                </dx:SideBySideBarSeriesLabel>
+                            </LabelSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="False" Name="Goal" ArgumentDataMember="sdesc" ValueDataMembersSerializable="fGoal">
+                        <dx:Series LabelsVisibility="False" Name="Planned" CrosshairLabelPattern="{V:c2}">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="IndianRed">
+                                </dx:LineSeriesView>
+                            </ViewSerializable>
+                        </dx:Series>
+                        <dx:Series LabelsVisibility="False" Name="Goal" CrosshairLabelPattern="{V:c2}">
+                            <ViewSerializable>
+                                <dx:LineSeriesView Color="DodgerBlue">
                                 </dx:LineSeriesView>
                             </ViewSerializable>
                         </dx:Series>
@@ -144,32 +156,33 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="smaterial" VisibleIndex="1" Caption="MATERIAL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sdesc" VisibleIndex="2" Caption="DESCRIPTION">
+                        <dx:GridViewDataTextColumn FieldName="sdescription" VisibleIndex="2" Caption="DESCRIPTION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="fquantity" VisibleIndex="3" Caption="QTY">
+                        <dx:GridViewDataTextColumn FieldName="sdocument" VisibleIndex="3" Caption="SALES_DOC">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="famount" VisibleIndex="4" Caption="AMOUNT">
+                        <dx:GridViewDataTextColumn FieldName="iquantity" VisibleIndex="4" Caption="QTY">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="fstdcost" VisibleIndex="5" Caption="STD_COST">
                         </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="imvt" VisibleIndex="5" Caption="MVT">
+                        <dx:GridViewDataTextColumn FieldName="iopenqty" VisibleIndex="6" Caption="OPEN_QTY">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="fstdhrs" VisibleIndex="6" Caption="StdHrs">
+                        <dx:GridViewDataTextColumn FieldName="fopenvalue" VisibleIndex="7" Caption="OPEN_COST">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ftstdhrs" VisibleIndex="7" Caption="TotHrs">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sarea" VisibleIndex="8" Caption="AREA">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="scell" VisibleIndex="9" Caption="CELL">
-                        </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="smrp" VisibleIndex="10" Caption="MRP">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="dpdate" VisibleIndex="11" Caption="POSTING_DATE" >
+                        <dx:GridViewDataDateColumn FieldName="dreqdeliv" VisibleIndex="8" Caption="DATE_REQUIRED" >
                         </dx:GridViewDataDateColumn>
+                        <dx:GridViewDataTextColumn FieldName="idayslate" VisibleIndex="9" Caption="DAYS_LATE">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="sarea" VisibleIndex="10" Caption="AREA">
+                        </dx:GridViewDataTextColumn>                                            
+                        <dx:GridViewDataTextColumn FieldName="smrp" VisibleIndex="11" Caption="MRP">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="srecplant" VisibleIndex="12" Caption="REC_PLANT">
+                        </dx:GridViewDataTextColumn>   
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem ShowInColumn="AREA" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="CELL" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="POSTING_DATE" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="AREA" SummaryType="Sum" FieldName="fopenvalue"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="REC_PLANT" SummaryType="Sum" FieldName="fopenvalue"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Sum" FieldName="fopenvalue"></dx:ASPxSummaryItem>
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -180,22 +193,22 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_output" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [smaterial], [sdesc], [fquantity], [famount], [imvt], [fstdhrs], [ftstdhrs], [sarea], [scell], [smrp], [dpdate] FROM [tbl_output] where sarea like @pArea and scell like @pCelda and smrp like @pMrp order by id">
+        SelectCommand="SELECT [id], [smaterial], [sdescription], [sdocument], [iquantity], [fstdcost], [iopenqty], [fopenvalue], [dreqdeliv], [idayslate], [sarea], [smrp], [srecplant] FROM [tbl_pastdue] where sarea like @pArea and srecplant like @pPlant and smrp like @pMrp order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAreaInContent"
                 Name="pArea" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCeldaInContent"
-                Name="pCelda" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxPlantInContent"
+                Name="pPlant" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [sarea] FROM [tbl_output] order by sarea"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceCelda" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [scell] FROM [tbl_output] order by scell"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [sarea] FROM [tbl_pastdue] order by sarea"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourcePlant" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [srecplant] FROM [tbl_pastdue] order by srecplant"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [smrp] FROM [tbl_output] order by smrp"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [smrp] FROM [tbl_pastdue] order by smrp"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -242,7 +255,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'output'"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'pastdue'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
