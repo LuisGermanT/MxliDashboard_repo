@@ -169,6 +169,7 @@
                         <dx:ASPxSummaryItem ShowInColumn="AREA" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
                         <dx:ASPxSummaryItem ShowInColumn="CELL" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
                         <dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="POSTING_DATE" SummaryType="Sum" FieldName="ftstdhrs"></dx:ASPxSummaryItem>
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
