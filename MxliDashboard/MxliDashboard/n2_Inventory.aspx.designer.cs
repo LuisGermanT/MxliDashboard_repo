@@ -490,42 +490,6 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF8;
         
         /// <summary>
-        /// ASPxLabelF9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelF9;
-        
-        /// <summary>
-        /// ASPxComboBoxF9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF9;
-        
-        /// <summary>
-        /// ASPxLabelF10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelF10;
-        
-        /// <summary>
-        /// ASPxComboBoxF10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF10;
-        
-        /// <summary>
         /// I03Report control.
         /// </summary>
         /// <remarks>
@@ -589,30 +553,12 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Image ImageSeriesV;
         
         /// <summary>
-        /// SqlDataSourceVsm3 control.
+        /// SqlDataSourceSup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm3;
-        
-        /// <summary>
-        /// SqlDataSourceCell3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell3;
-        
-        /// <summary>
-        /// SqlDataSourceMrp3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp3;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceSup;
     }
 }
