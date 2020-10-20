@@ -155,9 +155,10 @@
                                         <asp:Image ID="imgQ01" runat="server" ImageUrl="~/img/bad.png" />
                                     </td>
                                     <td style="text-align: center">
-                                        <asp:Chart ID="chartTQ01" runat="server" Height="120px">
+                                        <asp:Chart ID="chartTQ01" runat="server" Height="120px" Width="380px">
                                             <Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True" Palette="Grayscale">
+                                                    <SmartLabelStyle CalloutLineColor="Transparent" />
                                                 </asp:Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                                                 </asp:Series>
@@ -183,7 +184,7 @@
                                         </asp:Chart>
                                     </td>
                                     <td style="text-align: center">
-                                        <asp:Chart ID="chartPQ01" runat="server" Height="120px">
+                                        <asp:Chart ID="chartPQ01" runat="server" Height="120px" Width="380px">
                                             <Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
                                                 </asp:Series>
@@ -322,9 +323,10 @@
                                         <asp:Image ID="imgQ02" runat="server" ImageUrl="~/img/bad.png" />
                                     </td>
                                     <td style="text-align: center">
-                                        <asp:Chart ID="chartTQ02" runat="server" Height="120px">
+                                        <asp:Chart ID="chartTQ02" runat="server" Height="120px" Width="380px">
                                             <Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True" Palette="Grayscale">
+                                                    <SmartLabelStyle CalloutLineColor="Transparent" />
                                                 </asp:Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                                                 </asp:Series>
@@ -350,7 +352,7 @@
                                         </asp:Chart>
                                     </td>
                                     <td style="text-align: center">
-                                        <asp:Chart ID="chartPQ02" runat="server" Height="120px">
+                                        <asp:Chart ID="chartPQ02" runat="server" Height="120px" Width="380px">
                                             <Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
                                                 </asp:Series>
