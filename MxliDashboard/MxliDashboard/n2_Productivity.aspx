@@ -58,110 +58,190 @@
             
             <p></p>
 
-            <div class="row">   <%--LABOR PRODUCTIVITY--%>
-                <table style="width:100%">
-                <tr>
-                    <th style="text-align:center; width: 10%;">
-                        Report
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Actual
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        AOP
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Status
-                    </th>
-                    <th style="text-align:center; width: 25%;">
-                        Trend
-                    </th>
-                    <th style="text-align:center; width: 25%;">
-                        Pareto
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Actions
-                    </th>
-                    <th style="text-align:center; width: 8%;">
-                        Details
-                    </th>
-                </tr>
-                <tr>
-                    <td style="text-align:center">
-                        <dx:aspxlabel ID="P01Report" runat="server" Text="LABOR PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
-                    </td>
-                    <td style="text-align:center">
-                        <dx:aspxlabel ID="P01Actual" runat="server" Text="ASPxLabel" Font-Size="Medium" ></dx:aspxlabel>
-                    </td>
-                    <td style="text-align:center">
-                        <dx:aspxlabel ID="P01AOP" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:aspxlabel>
-                    </td>
-                    <td style="text-align:center">
-                        <asp:Image ID="imgP01" runat="server" ImageUrl="~/img/bad.png" />
-                    </td>
-                    <td style="text-align:center">
-                        <asp:Chart ID="chartTP01" runat="server" Height="120px">
-                            <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
-                                </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
-                                </asp:Series>
-                            </Series>
-                            <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1">
-                                    <AxisY Enabled="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                    </AxisY>
-                                    <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                        <LabelStyle Angle="-90" />
-                                    </AxisX>
-                                    <AxisX2 LineWidth="0">
-                                    </AxisX2>
-                                    <AxisY2 LineWidth="0">
-                                    </AxisY2>
-                                </asp:ChartArea>
-                            </ChartAreas>
-                        </asp:Chart>
-                    </td>
-                    <td style="text-align:center">
-                        <asp:Chart ID="chartPP01" runat="server" Height="120px">
-                            <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
-                                </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
-                                </asp:Series>
-                            </Series>
-                            <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1">
-                                    <AxisY Enabled="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                    </AxisY>
-                                    <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                        <LabelStyle Angle="-90" />
-                                    </AxisX>
-                                    <AxisX2 LineWidth="0">
-                                    </AxisX2>
-                                    <AxisY2 LineWidth="0">
-                                    </AxisY2>
-                                </asp:ChartArea>
-                            </ChartAreas>
-                        </asp:Chart>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="#">Edit &raquo;</a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-default" href="n3_productivity/productivity.aspx">View &raquo;</a>
-                    </td>
-                </tr>
-            </table>          
+            <div class="row">
+                <%--LABOR PRODUCTIVITY--%>
+                <table style="width: 100%">
+                    <tr>
+                        <th style="text-align: center; width: 10%;">Report
+                        </th>
+                        <th style="text-align: center; width: 8%;">Actual
+                        </th>
+                        <th style="text-align: center; width: 8%;">AOP
+                        </th>
+                        <th style="text-align: center; width: 8%;">Status
+                        </th>
+                        <th style="text-align: center; width: 25%;">Trend
+                        </th>
+                        <th style="text-align: center; width: 25%;">Pareto
+                        </th>
+                        <th style="text-align: center; width: 8%;">Details
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="P01Report" runat="server" Text="LABOR PRODUCTIVITY" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="P01Actual" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="P01AOP" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Image ID="imgP01" runat="server" ImageUrl="~/img/bad.png" />
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Chart ID="chartTP01" runat="server" Height="120px">
+                                <Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
+                                    </asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
+                                    </asp:Series>
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1">
+                                        <AxisY Enabled="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                        </AxisY>
+                                        <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                            <LabelStyle Angle="-90" />
+                                        </AxisX>
+                                        <AxisX2 LineWidth="0">
+                                        </AxisX2>
+                                        <AxisY2 LineWidth="0">
+                                        </AxisY2>
+                                    </asp:ChartArea>
+                                </ChartAreas>
+                            </asp:Chart>
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Chart ID="chartPP01" runat="server" Height="120px">
+                                <Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                    </asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                    </asp:Series>
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1">
+                                        <AxisY Enabled="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                        </AxisY>
+                                        <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                            <LabelStyle Angle="-90" />
+                                        </AxisX>
+                                        <AxisX2 LineWidth="0">
+                                        </AxisX2>
+                                        <AxisY2 LineWidth="0">
+                                        </AxisY2>
+                                    </asp:ChartArea>
+                                </ChartAreas>
+                            </asp:Chart>
+                        </td>
+                        <td style="text-align: center">
+                            <a class="btn btn-danger" href="n3_productivity/productivity.aspx">View &raquo;</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <p></p>
             <hr />
             <p></p>
             
+            <div class="row">
+                <%--UTILIZATION--%>
+                <table style="width: 100%">
+                    <tr>
+                        <th style="text-align: center; width: 10%;">Report
+                        </th>
+                        <th style="text-align: center; width: 8%;">Actual
+                        </th>
+                        <th style="text-align: center; width: 8%;">AOP
+                        </th>
+                        <th style="text-align: center; width: 8%;">Status
+                        </th>
+                        <th style="text-align: center; width: 25%;">Trend
+                        </th>
+                        <th style="text-align: center; width: 25%;">Pareto
+                        </th>
+                        <th style="text-align: center; width: 8%;">Details
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="UTILIZATION" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/bad.png" />
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Chart ID="chartTP05" runat="server" Height="120px">
+                                <Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
+                                    </asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
+                                    </asp:Series>
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1">
+                                        <AxisY Enabled="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                        </AxisY>
+                                        <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                            <LabelStyle Angle="-90" />
+                                        </AxisX>
+                                        <AxisX2 LineWidth="0">
+                                        </AxisX2>
+                                        <AxisY2 LineWidth="0">
+                                        </AxisY2>
+                                    </asp:ChartArea>
+                                </ChartAreas>
+                            </asp:Chart>
+                        </td>
+                        <td style="text-align: center">
+                            <asp:Chart ID="chartPP05" runat="server" Height="120px">
+                                <Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                    </asp:Series>
+                                    <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                    </asp:Series>
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1">
+                                        <AxisY Enabled="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                        </AxisY>
+                                        <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
+                                            <MajorGrid Enabled="False" />
+                                            <LabelStyle Angle="-90" />
+                                        </AxisX>
+                                        <AxisX2 LineWidth="0">
+                                        </AxisX2>
+                                        <AxisY2 LineWidth="0">
+                                        </AxisY2>
+                                    </asp:ChartArea>
+                                </ChartAreas>
+                            </asp:Chart>
+                        </td>
+                        <td style="text-align: center">
+                            <a class="btn btn-danger" href="n3_productivity/productivity.aspx">View &raquo;</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <p></p>
+            <hr />
+            <p></p>
+
             <div class="row">   <%--NET Productivity--%>
                 <table style="width:100%">
                         <tr>
@@ -184,9 +264,6 @@
                                 Pareto
                             </th>
                             <th style="text-align:center; width: 8%;">
-                                Actions
-                            </th>
-                            <th style="text-align:center; width: 8%;">
                                 Details
                             </th>
                         </tr>
@@ -206,9 +283,9 @@
                             <td style="text-align:center">
                                 <asp:Chart ID="chartTP02" runat="server" Height="120px">
                                     <Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                         </asp:Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
                                         </asp:Series>
                                     </Series>
                                     <ChartAreas>
@@ -254,10 +331,7 @@
                                 </asp:Chart>
                             </td>
                             <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                            </td>
-                            <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                                <a class="btn btn-danger" href="/Safety">View &raquo;</a>
                             </td>
                         </tr>
                     </table>          
@@ -288,9 +362,6 @@
                                 Pareto
                             </th>
                             <th style="text-align:center; width: 8%;">
-                                Actions
-                            </th>
-                            <th style="text-align:center; width: 8%;">
                                 Details
                             </th>
                         </tr>
@@ -310,9 +381,9 @@
                             <td style="text-align:center">
                                 <asp:Chart ID="chartTP03" runat="server" Height="120px">
                                     <Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                         </asp:Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
                                         </asp:Series>
                                     </Series>
                                     <ChartAreas>
@@ -358,10 +429,7 @@
                                 </asp:Chart>
                             </td>
                             <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                            </td>
-                            <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                                <a class="btn btn-danger" href="/Safety">View &raquo;</a>
                             </td>
                         </tr>
                     </table>          
@@ -391,9 +459,7 @@
                             <th style="text-align:center; width: 25%;">
                                 Pareto
                             </th>
-                            <th style="text-align:center; width: 8%;">
-                                Actions
-                            </th>
+                            
                             <th style="text-align:center; width: 8%;">
                                 Details
                             </th>
@@ -414,9 +480,9 @@
                             <td style="text-align:center">
                                 <asp:Chart ID="chartTP04" runat="server" Height="120px">
                                     <Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                         </asp:Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
+                                        <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
                                         </asp:Series>
                                     </Series>
                                     <ChartAreas>
@@ -462,10 +528,7 @@
                                 </asp:Chart>
                             </td>
                             <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">Edit &raquo;</a>
-                            </td>
-                            <td style="text-align:center">
-                                <a class="btn btn-default" href="/Safety">View &raquo;</a>
+                                <a class="btn btn-danger" href="/Safety">View &raquo;</a>
                             </td>
                         </tr>
                     </table>          

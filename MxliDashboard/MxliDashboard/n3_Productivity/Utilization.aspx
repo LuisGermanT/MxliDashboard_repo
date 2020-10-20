@@ -26,8 +26,8 @@
                                 <th>
                                     <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
                                     </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="NP_Area"
-                                        TextField="NP_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TU_Area"
+                                        TextField="TU_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
                                         AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
@@ -41,8 +41,8 @@
                                 <th>
                                     <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:">
                                     </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="NP_Celda"
-                                        TextField="NP_Celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                    <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="TU_Celda"
+                                        TextField="TU_Celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
                                         AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged">
                                         <ClientSideEvents Validation="function(s, e) {
                                                 if (s.GetSelectedIndex()==0) {
@@ -119,6 +119,90 @@
             <p />
             <hr />
             <p />
+
+            <dx:ASPxRoundPanel ID="ASPxRoundPanel3" runat="server" Width="100%" HeaderText="Source data" ForeColor="Black" AllowCollapsingByHeaderClick="true">
+                <HeaderStyle ForeColor="White" />
+                <HeaderContent BackColor="#666666"/>
+                <PanelCollection>
+                    <dx:PanelContent ID="PanelContent3" runat="server">
+                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_prod" Theme="Default" Width="1024px">
+                            <SettingsPager Mode="ShowPager" PageSize="20">
+                            </SettingsPager>
+                            <Settings ShowGroupPanel="True" />
+                            <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
+                            <SettingsSearchPanel Visible="True" />
+                            <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="WYSIWYG" />
+                            <Toolbars>
+                                <dx:GridViewToolbar>
+                                    <SettingsAdaptivity Enabled="true" EnableCollapseRootItemsToIcons="true" />
+                                    <Items>
+                                        <dx:GridViewToolbarItem Command="ExportToPdf" />
+                                        <dx:GridViewToolbarItem Command="ExportToXlsx" />
+                                        <dx:GridViewToolbarItem Command="ExportToCsv" />
+                                        <dx:GridViewToolbarItem Command="ExportToDocx" />                    
+                                    </Items>
+                                </dx:GridViewToolbar>
+                            </Toolbars>
+                            <Columns>
+                                <dx:GridViewDataTextColumn FieldName="TU_EID" VisibleIndex="0" Caption="EID">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_CentroCostos" VisibleIndex="1" Caption="Cost Center">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Area" VisibleIndex="2" Caption="VSM">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="3" Caption="Cell">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_MRP" VisibleIndex="4" Caption="MRP">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Cost_Element_Description" VisibleIndex="5" Caption="Cost Element">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="6" Caption="Total Hrs">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="7" Caption="Direct Hrs">
+                                </dx:GridViewDataTextColumn>
+                                 <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="8" Caption="% Utilization">
+                                    <PropertiesTextEdit DisplayFormatString="{0:n2}%">
+                                    </PropertiesTextEdit>
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="9" Caption="Wk">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="10" Caption="Month">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Year" VisibleIndex="11" Caption="Yr">
+                                </dx:GridViewDataTextColumn>
+                            </Columns>
+                            <Styles>
+                                <Header BackColor="IndianRed" ForeColor="White">
+                                </Header>
+                            </Styles>
+                        </dx:ASPxGridView>
+                    </dx:PanelContent>
+                </PanelCollection>
+            </dx:ASPxRoundPanel>
+
+            <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_MRP],[TU_Cost_Element_Description], [TU_TotHrs], [TU_DirectHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
+                                FROM [tblUtilization] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
+                                    ORDER BY [TU_Year] desc, [TU_Month] desc, [TU_Week] desc, [TU_Area], [TU_Celda]
+                ">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
+                        Name="pCell" PropertyName="Value" Type="String" />
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
+                        Name="pVsm" PropertyName="Value" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+        <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [TU_Celda] FROM [tblUtilization] order by [TU_Celda]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [TU_Area] FROM [tblUtilization] order by [TU_Area]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
+
+        <p/>
+        <hr/>
+        <p/>
 
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -222,7 +222,7 @@ namespace MxliDashboard
 
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             string qry = "";
-            qry = "select * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
+            qry = "select top 8 * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
 
             DataTable dtPareto = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dtPareto.Rows)

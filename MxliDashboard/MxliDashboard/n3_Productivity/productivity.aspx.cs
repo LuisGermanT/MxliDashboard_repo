@@ -145,14 +145,16 @@ namespace MxliDashboard.n3_Productivity
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                sTblName = "[vw_labor_productivity_by_site_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana;
+                sTblName = " FROM [vw_labor_productivity_by_site_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana;
                 cTblName = "[vw_labor_productivity_by_cell_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 aTblName = "[vw_labor_productivity_by_area_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 colName = "NP_Week";
             }
             else
             {
-                sTblName = "[vw_labor_productivity_by_site_mntly]";
+                sTblName = ", [lstDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_site_mntly].[NP_Month] AND " +
+                           "[NP_Year] = [vw_labor_productivity_by_site_mntly].[NP_Year] Order by [NP_LstWkDay] desc) " +
+                           "FROM [vw_labor_productivity_by_site_mntly]";
                 cTblName = "[vw_labor_productivity_by_cell_mntly] WHERE ";
                 aTblName = "[vw_labor_productivity_by_area_mntly] WHERE ";
                 colName = "NP_Month";
@@ -163,8 +165,8 @@ namespace MxliDashboard.n3_Productivity
             {
                 case 1:
                     xClass = clase;
-                    qry = "SELECT * FROM " + aTblName + " [NP_Area] = '" + xClass +
-                          "' ORDER BY CASE WHEN [NP_Month] = 'Jan' THEN 1 " +
+                    qry = "SELECT Top 13 * FROM " + aTblName + " [NP_Area] = '" + xClass +
+                          "' ORDER BY [NP_Year] DESC, CASE WHEN [NP_Month] = 'Jan' THEN 1 " +
                           "  WHEN [NP_Month] = 'Feb' THEN 2 " +
                           "  WHEN [NP_Month] = 'Mar' THEN 3 " +
                           "  WHEN [NP_Month] = 'Apr' THEN 4 " +
@@ -176,13 +178,13 @@ namespace MxliDashboard.n3_Productivity
                           "  WHEN [NP_Month] = 'Oct' THEN 10 " +
                           "  WHEN [NP_Month] = 'Nov' THEN 11 " +
                           "  WHEN [NP_Month] = 'Dec' THEN 12 " +
-                          "END, NP_Year, NP_Area";
+                          "END, NP_Area";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
                     break;
                 case 2:
                     xClass = clase;
-                    qry = "SELECT * FROM " + cTblName + " [NP_Celda] = '" + xClass +
-                          "' ORDER BY CASE WHEN NP_Month = 'Jan' THEN 1 " +
+                    qry = "SELECT Top 13 * FROM " + cTblName + " [NP_Celda] = '" + xClass +
+                          "' ORDER BY [NP_Year] DESC, CASE WHEN NP_Month = 'Jan' THEN 1 " +
                           "  WHEN NP_Month = 'Feb' THEN 2 " +
                           "  WHEN NP_Month = 'Mar' THEN 3 " +
                           "  WHEN NP_Month = 'Apr' THEN 4 " +
@@ -194,12 +196,12 @@ namespace MxliDashboard.n3_Productivity
                           "  WHEN NP_Month = 'Oct' THEN 10 " +
                           "  WHEN NP_Month = 'Nov' THEN 11 " +
                           "  WHEN NP_Month = 'Dec' THEN 12 " +
-                          "END, NP_Year, NP_Celda";
+                          "END, NP_Celda";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
                     break;
                 default:
-                    qry = "SELECT * FROM " + sTblName + 
-                          "  ORDER BY CASE WHEN NP_Month = 'Jan' THEN 1 " +
+                    qry = "SELECT Top 13 * " + sTblName +
+                          "  ORDER BY [NP_Year] DESC, CASE WHEN NP_Month = 'Jan' THEN 1 " +
                           "  WHEN NP_Month = 'Feb' THEN 2 " +
                           "  WHEN NP_Month = 'Mar' THEN 3 " +
                           "  WHEN NP_Month = 'Apr' THEN 4 " +
@@ -211,7 +213,7 @@ namespace MxliDashboard.n3_Productivity
                           "  WHEN NP_Month = 'Oct' THEN 10 " +
                           "  WHEN NP_Month = 'Nov' THEN 11 " +
                           "  WHEN NP_Month = 'Dec' THEN 12 " +
-                          "END, NP_Year";
+                          "END";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE 'Site'";
                     break;
             }
