@@ -373,45 +373,15 @@
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF8" runat="server" Text="Select VSM filter:">
+                                        <dx:ASPxLabel ID="ASPxLabelF8" runat="server" Text="Select Supplier filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF8" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceVsm3"
+                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceSup"
                                             AutoPostBack="True" OnDataBound="cmbox_DataBoundF8" OnSelectedIndexChanged="ASPxComboBoxF8_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One VSM&quot;;
-                                                    }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
-                                        </dx:ASPxComboBox>
-                                    </th>
-                                    <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF9" runat="server" Text="Select Cell filter:">
-                                        </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxF9" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCell3"
-                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF9" OnSelectedIndexChanged="ASPxComboBoxF9_SelectedIndexChanged">
-                                            <ClientSideEvents Validation="function(s, e) {
-                                                    if (s.GetSelectedIndex()==0) {
-                                                    e.isValid = false;
-                                                    e.errorText = &quot;You should Select One Cell&quot;;
-                                                    }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
-                                        </dx:ASPxComboBox>
-                                    </th>
-                                    <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF10" runat="server" Text="Select MRP filter:">
-                                        </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxF10" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceMrp3"
-                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF10" OnSelectedIndexChanged="ASPxComboBoxF10_SelectedIndexChanged">
-                                            <ClientSideEvents Validation="function(s, e) {
-                                                    if (s.GetSelectedIndex()==0) {
-                                                    e.isValid = false;
-                                                    e.errorText = &quot;You should Select One MRP&quot;;
+                                                    e.errorText = &quot;You should Select One Supplier&quot;;
                                                     }}" />
                                             <ValidationSettings ValidateOnLeave="False">
                                             </ValidationSettings>
@@ -491,12 +461,8 @@
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
-                <asp:SqlDataSource ID="SqlDataSourceVsm3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceCell3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceMrp3" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'mrp' order by sClass"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceSup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'supplier' order by sClass"></asp:SqlDataSource>
             </div>
 
         </ContentTemplate>
