@@ -72,8 +72,8 @@
                         </th>
                         <th style="text-align: center; width: 25%;">Trend
                         </th>
-                        <th style="text-align: center; width: 25%;">Pareto
-                        </th>
+                        <%--<th style="text-align: center; width: 25%;">Pareto
+                        </th>--%>
                         <th style="text-align: center; width: 8%;">Details
                         </th>
                     </tr>
@@ -91,7 +91,7 @@
                             <asp:Image ID="imgP01" runat="server" ImageUrl="~/img/bad.png" />
                         </td>
                         <td style="text-align: center">
-                            <asp:Chart ID="chartTP01" runat="server" Height="120px">
+                            <asp:Chart ID="chartTP01" runat="server" Height="120px" Width="500px">
                                 <Series>
                                     <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                     </asp:Series>
@@ -115,7 +115,7 @@
                                 </ChartAreas>
                             </asp:Chart>
                         </td>
-                        <td style="text-align: center">
+                        <%--<td style="text-align: center">
                             <asp:Chart ID="chartPP01" runat="server" Height="120px">
                                 <Series>
                                     <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
@@ -139,7 +139,7 @@
                                     </asp:ChartArea>
                                 </ChartAreas>
                             </asp:Chart>
-                        </td>
+                        </td>--%>
                         <td style="text-align: center">
                             <a class="btn btn-danger" href="n3_productivity/productivity.aspx">View &raquo;</a>
                         </td>
@@ -164,26 +164,26 @@
                         </th>
                         <th style="text-align: center; width: 25%;">Trend
                         </th>
-                        <th style="text-align: center; width: 25%;">Pareto
-                        </th>
+                        <%--<th style="text-align: center; width: 25%;">Pareto
+                        </th>--%>
                         <th style="text-align: center; width: 8%;">Details
                         </th>
                     </tr>
                     <tr>
                         <td style="text-align: center">
-                            <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="UTILIZATION" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
+                            <dx:ASPxLabel ID="P05Report" runat="server" Text="UTILIZATION" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
                         </td>
                         <td style="text-align: center">
-                            <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                            <dx:ASPxLabel ID="P05Actual" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
                         </td>
                         <td style="text-align: center">
-                            <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
+                            <dx:ASPxLabel ID="P05AOP" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
                         </td>
                         <td style="text-align: center">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/bad.png" />
+                            <asp:Image ID="imgP05" runat="server" ImageUrl="~/img/bad.png" />
                         </td>
                         <td style="text-align: center">
-                            <asp:Chart ID="chartTP05" runat="server" Height="120px">
+                            <asp:Chart ID="chartTP05" runat="server" Height="120px" Width="500px">
                                 <Series>
                                     <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                     </asp:Series>
@@ -207,7 +207,7 @@
                                 </ChartAreas>
                             </asp:Chart>
                         </td>
-                        <td style="text-align: center">
+                        <%--<td style="text-align: center">
                             <asp:Chart ID="chartPP05" runat="server" Height="120px">
                                 <Series>
                                     <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
@@ -231,9 +231,9 @@
                                     </asp:ChartArea>
                                 </ChartAreas>
                             </asp:Chart>
-                        </td>
+                        </td>--%>
                         <td style="text-align: center">
-                            <a class="btn btn-danger" href="n3_productivity/productivity.aspx">View &raquo;</a>
+                            <a class="btn btn-danger" href="n3_productivity/utilization.aspx">View &raquo;</a>
                         </td>
                     </tr>
                 </table>

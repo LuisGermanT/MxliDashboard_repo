@@ -141,49 +141,40 @@ namespace MxliDashboard
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTP01;
 
         /// <summary>
-        /// chartPP01 control.
+        /// P05Report control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartPP01;
+        protected global::DevExpress.Web.ASPxLabel P05Report;
 
         /// <summary>
-        /// ASPxLabel2 control.
+        /// P05Actual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel2;
+        protected global::DevExpress.Web.ASPxLabel P05Actual;
 
         /// <summary>
-        /// ASPxLabel3 control.
+        /// P05AOP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel3;
+        protected global::DevExpress.Web.ASPxLabel P05AOP;
 
         /// <summary>
-        /// ASPxLabel4 control.
+        /// imgP05 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel4;
-
-        /// <summary>
-        /// Image1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image imgP05;
 
         /// <summary>
         /// chartTP05 control.
@@ -193,15 +184,6 @@ namespace MxliDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTP05;
-
-        /// <summary>
-        /// chartPP05 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartPP05;
 
         /// <summary>
         /// P02Report control.

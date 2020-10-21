@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MxliDashboard {
-    
-    
-    public partial class n2_Delivery {
-        
+namespace MxliDashboard
+{
+
+
+    public partial class n2_Delivery
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// ASPxRoundPanel1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel1;
-        
+
         /// <summary>
         /// PanelContent2 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent2;
-        
+
         /// <summary>
         /// ASPxLabel1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabel1;
-        
+
         /// <summary>
         /// ASPxComboBoxVF control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxVF;
-        
+
         /// <summary>
         /// ASPxLabelCaptionV control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionV;
-        
+
         /// <summary>
         /// ASPxComboBoxV control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
-        
+
         /// <summary>
         /// D01 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl D01;
-        
+
         /// <summary>
         /// ASPxRoundPanel2 control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel2;
-        
+
         /// <summary>
         /// PanelContent1 control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent1;
-        
+
         /// <summary>
         /// ASPxLabelCaptionF1 control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF1;
-        
+
         /// <summary>
         /// ASPxComboBoxF1 control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF1;
-        
+
         /// <summary>
         /// ASPxLabelCaptionF2 control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF2;
-        
+
         /// <summary>
         /// ASPxComboBoxF2 control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF2;
-        
+
         /// <summary>
         /// ASPxLabelCaptionF3 control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaptionF3;
-        
+
         /// <summary>
         /// ASPxComboBoxF3 control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF3;
-        
+
         /// <summary>
         /// D01Report control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D01Report;
-        
+
         /// <summary>
         /// D01Actual control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D01Actual;
-        
+
         /// <summary>
         /// D01AOP control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D01AOP;
-        
+
         /// <summary>
         /// imgD01 control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgD01;
-        
+
         /// <summary>
         /// chartTD01 control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTD01;
-        
+
         /// <summary>
         /// chartPD01 control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartPD01;
-        
+
         /// <summary>
         /// SqlDataSourceVsm1 control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm1;
-        
+
         /// <summary>
         /// SqlDataSourceCell1 control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell1;
-        
+
         /// <summary>
         /// SqlDataSourceMrp1 control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp1;
-        
+
         /// <summary>
         /// D02 control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl D02;
-        
+
         /// <summary>
         /// ASPxRoundPanel3 control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel3;
-        
+
         /// <summary>
         /// PanelContent3 control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent3;
-        
+
         /// <summary>
         /// ASPxLabelF4 control.
         /// </summary>
@@ -272,7 +274,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelF4;
-        
+
         /// <summary>
         /// ASPxComboBoxF4 control.
         /// </summary>
@@ -281,7 +283,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF4;
-        
+
         /// <summary>
         /// ASPxLabelF5 control.
         /// </summary>
@@ -290,7 +292,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelF5;
-        
+
         /// <summary>
         /// ASPxComboBoxF5 control.
         /// </summary>
@@ -299,7 +301,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF5;
-        
+
         /// <summary>
         /// ASPxLabelF6 control.
         /// </summary>
@@ -308,7 +310,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelF6;
-        
+
         /// <summary>
         /// ASPxComboBoxF6 control.
         /// </summary>
@@ -317,7 +319,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF6;
-        
+
         /// <summary>
         /// D02Report control.
         /// </summary>
@@ -326,7 +328,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D02Report;
-        
+
         /// <summary>
         /// D02Actual control.
         /// </summary>
@@ -335,7 +337,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D02Actual;
-        
+
         /// <summary>
         /// D02AOP control.
         /// </summary>
@@ -344,7 +346,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D02AOP;
-        
+
         /// <summary>
         /// imgD02 control.
         /// </summary>
@@ -353,7 +355,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgD02;
-        
+
         /// <summary>
         /// chartTD02 control.
         /// </summary>
@@ -362,7 +364,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTD02;
-        
+
         /// <summary>
         /// SqlDataSourceVsm2 control.
         /// </summary>
@@ -371,7 +373,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm2;
-        
+
         /// <summary>
         /// SqlDataSourceCell2 control.
         /// </summary>
@@ -380,7 +382,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell2;
-        
+
         /// <summary>
         /// SqlDataSourceMrp2 control.
         /// </summary>
@@ -389,7 +391,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp2;
-        
+
         /// <summary>
         /// D03 control.
         /// </summary>
@@ -398,7 +400,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl D03;
-        
+
         /// <summary>
         /// ASPxRoundPanel4 control.
         /// </summary>
@@ -407,7 +409,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel4;
-        
+
         /// <summary>
         /// PanelContent4 control.
         /// </summary>
@@ -416,7 +418,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent4;
-        
+
         /// <summary>
         /// ASPxLabelF7 control.
         /// </summary>
@@ -425,7 +427,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelF7;
-        
+
         /// <summary>
         /// ASPxComboBoxF7 control.
         /// </summary>
@@ -434,7 +436,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF7;
-        
+
         /// <summary>
         /// ASPxLabelF9 control.
         /// </summary>
@@ -443,7 +445,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelF9;
-        
+
         /// <summary>
         /// ASPxComboBoxF9 control.
         /// </summary>
@@ -452,7 +454,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF9;
-        
+
         /// <summary>
         /// D03Report control.
         /// </summary>
@@ -461,7 +463,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D03Report;
-        
+
         /// <summary>
         /// D03Actual control.
         /// </summary>
@@ -470,7 +472,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D03Actual;
-        
+
         /// <summary>
         /// D03AOP control.
         /// </summary>
@@ -479,7 +481,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel D03AOP;
-        
+
         /// <summary>
         /// imgD03 control.
         /// </summary>
@@ -488,7 +490,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgD03;
-        
+
         /// <summary>
         /// chartTD03 control.
         /// </summary>
@@ -497,7 +499,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chartTD03;
-        
+
         /// <summary>
         /// SqlDataSourceVsm3 control.
         /// </summary>
@@ -506,7 +508,7 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm3;
-        
+
         /// <summary>
         /// SqlDataSourceMrp3 control.
         /// </summary>

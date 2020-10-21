@@ -213,7 +213,7 @@
             </dx:ASPxRoundPanel>
     
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT * FROM [vw_OTTR_Details] WHERE [Area] <> 'Buy Parts' AND [Area] <> 'R&O' AND [Area] LIKE @pVsm AND [Cell] Like @pCell AND [MRP] LIKE @pMrp
+                SelectCommand="SELECT * FROM [vw_OTTR_Details] WHERE [Area] <> 'R&O' AND [Area] LIKE @pVsm AND [Cell] Like @pCell AND [MRP] LIKE @pMrp
                                  Order By [Yr] desc, [Wk] desc, [Month], [Area], [Cell], [MRP]
                 ">
                 <SelectParameters>
@@ -226,11 +226,11 @@
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [TO_Cell] FROM [tblOTTR] WHERE [TO_rArea] <> 'Buy Parts' AND [TO_rArea] <> 'R&O' order by [TO_Cell]"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [TO_Cell] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_Cell]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [TO_rArea] FROM [tblOTTR] WHERE [TO_rArea] <> 'Buy Parts' AND [TO_rArea] <> 'R&O' order by [TO_rArea]"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [TO_rArea] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_rArea]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [TO_MRP] FROM [tblOTTR] WHERE [TO_rArea] <> 'Buy Parts' AND [TO_rArea] <> 'R&O' order by [TO_MRP]"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [TO_MRP] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_MRP]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
             <p/>

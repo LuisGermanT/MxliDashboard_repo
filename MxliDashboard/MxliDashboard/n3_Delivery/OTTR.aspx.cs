@@ -227,21 +227,19 @@ namespace MxliDashboard
                 aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
-                                "[sDesc] = (CASE " +
-                                                     " WHEN[TO_Month] = 1 THEN 'Jan' " +
-                                                     " WHEN[TO_Month] = 2 THEN 'Feb' " +
-                                                     " WHEN[TO_Month] = 3 THEN 'Mar' " +
-                                                     " WHEN[TO_Month] = 4 THEN 'Apr' " +
-                                                     " WHEN[TO_Month] = 5 THEN 'May' " +
-                                                     " WHEN[TO_Month] = 6 THEN 'Jun' " +
-                                                     " WHEN[TO_Month] = 7 THEN 'Jul' " +
-                                                     " WHEN[TO_Month] = 8 THEN 'Aug' " +
-                                                     " WHEN[TO_Month] = 9 THEN 'Sep' " +
-                                                     " WHEN[TO_Month] = 10 THEN 'Oct' " +
-                                                     " WHEN[TO_Month] = 11 THEN 'Nov' " +
-                                                     " WHEN[TO_Month] = 12 THEN 'Dec' " +
-                                                     " END)";
-                qryOrder = "[TO_Month]";
+                                "[sDesc] = [TO_Month]";
+                qryOrder = "CASE WHEN[TO_Month] = 'Jan' THEN 1 " +
+                           "WHEN [TO_Month] = 'Feb' THEN 2 " +
+                           "WHEN [TO_Month] = 'Mar' THEN 3 " +
+                           "WHEN [TO_Month] = 'Apr' THEN 4 " +
+                           "WHEN [TO_Month] = 'May' THEN 5 " +
+                           "WHEN [TO_Month] = 'Jun' THEN 6 " +
+                           "WHEN [TO_Month] = 'Jul' THEN 7 " +
+                           "WHEN [TO_Month] = 'Aug' THEN 8 " +
+                           "WHEN [TO_Month] = 'Sep' THEN 9 " +
+                           "WHEN [TO_Month] = 'Oct' THEN 10 " +
+                           "WHEN [TO_Month] = 'Nov' THEN 11 " +
+                           "WHEN [TO_Month] = 'Dec' THEN 12 END";
                 colName = "TO_Month";
             }
 

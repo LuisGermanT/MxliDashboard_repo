@@ -189,7 +189,7 @@
                                 </asp:Chart>
                             </td>
                             <td style="text-align:center">
-                                <asp:Chart ID="chartPD01" runat="server" Height="120px">
+                                <asp:Chart ID="chartPD01" runat="server" Height="120px" Width="400px">
                                      <Series>
                                         <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
                                         </asp:Series>
