@@ -515,7 +515,7 @@ namespace MxliDashboard
                 chartTD01.Series["Series2"].ToolTip = "#VALY";
             }
 
-            string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'ottr' and stype = 'causes' order by id";
+            string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'ottr' and stype = 'causes' order by id desc";
             string qry2 = "select * from (" + query2 + ") q1 order by id";
             SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper2.QryManager(qry2);
