@@ -78,6 +78,15 @@ namespace MxliDashboard
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
 
         /// <summary>
+        /// UpdPnl1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdPnl1;
+
+        /// <summary>
         /// D01 control.
         /// </summary>
         /// <remarks>
@@ -240,6 +249,15 @@ namespace MxliDashboard
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp1;
 
         /// <summary>
+        /// UpdPn2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdPn2;
+
+        /// <summary>
         /// D02 control.
         /// </summary>
         /// <remarks>
@@ -391,6 +409,15 @@ namespace MxliDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp2;
+
+        /// <summary>
+        /// UpdPn3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdPn3;
 
         /// <summary>
         /// D03 control.
