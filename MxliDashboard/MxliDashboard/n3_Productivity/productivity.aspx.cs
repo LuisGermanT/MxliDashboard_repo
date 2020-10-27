@@ -66,7 +66,7 @@ namespace MxliDashboard.n3_Productivity
             }
             else
             {
-                loadChartP01(0, "", "Week");
+                loadChartP01(0, "", wk);
             }
         }
 
@@ -92,7 +92,7 @@ namespace MxliDashboard.n3_Productivity
             }
             else
             {
-                loadChartP01(0, "", "Week");
+                loadChartP01(0, "", wk);
             }
         }
 
