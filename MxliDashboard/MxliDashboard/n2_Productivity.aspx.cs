@@ -261,7 +261,7 @@ namespace MxliDashboard
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             string qry = "";
             //qry = "select top 13 * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
-            qry = "SELECT TOP 13 * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter + 
+            qry = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter + 
                     "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
                     " Order by [sLstWkDay]";
 
@@ -504,7 +504,7 @@ namespace MxliDashboard
 
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             string qry = "";
-            qry = "SELECT TOP 13 * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
+            qry = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
                     "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
                     " Order by [sLstWkDay]";
 

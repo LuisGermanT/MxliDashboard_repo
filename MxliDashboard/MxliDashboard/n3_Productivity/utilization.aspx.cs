@@ -166,7 +166,7 @@ namespace MxliDashboard.n3_Productivity
             {
                 case 1:
                     xClass = clase;
-                    qry = "SELECT Top 13 * FROM " + aTblName + " [TU_Area] = '" + xClass +
+                    qry = "SELECT * FROM " + aTblName + " [TU_Area] = '" + xClass +
                           "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Area]";
                           //"' Order by [TU_Year] DESC, CASE " +
                           //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
@@ -186,7 +186,7 @@ namespace MxliDashboard.n3_Productivity
                     break;
                 case 2:
                     xClass = clase;
-                    qry = "SELECT Top 13 * FROM " + cTblName + " [TU_Celda] = '" + xClass +
+                    qry = "SELECT * FROM " + cTblName + " [TU_Celda] = '" + xClass +
                           "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Celda]";
                           //"' Order by [TU_Year] DESC, CASE " +
                           //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
@@ -205,7 +205,7 @@ namespace MxliDashboard.n3_Productivity
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
                     break;
                 default:
-                    qry = "SELECT Top 13 * FROM " + sTblName +
+                    qry = "SELECT * FROM " + sTblName +
                           "  ORDER BY [TU_LstWkDay]";
                           //" Order by [TU_Year] DESC, CASE " +
                           //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
