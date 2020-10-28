@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard.n3_Safety
 {
-    public partial class mstactions : System.Web.UI.Page
+    public partial class tpm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,12 +66,13 @@ namespace MxliDashboard.n3_Safety
         {
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
-            string query = "SELECT TOP 13 * FROM cht_seguridad WHERE smetric = 'mst' and sType = '" + xType + "' and sfilter = '" + xFilter + "' and sday < '" + (semana) + "'  order by id ";
-            string qry = "select * from (" + query + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
+            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+            SqlConnection conn1 = new SqlConnection(myCnStr1);
+            SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_seguridad WHERE smetric = 'mst' and sType = '" + xType + "' and sfilter = '" + xFilter + "' order by id", conn1);
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xTotal = Convert.ToDouble(dr1["fTotal"].ToString());

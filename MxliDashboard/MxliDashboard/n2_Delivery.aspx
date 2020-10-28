@@ -463,7 +463,7 @@
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                                     <SmartLabelStyle CalloutLineAnchorCapStyle="None" CalloutLineColor="Transparent" Enabled="False" MovingDirection="Top, TopRight, BottomLeft, BottomRight" />
                                                 </asp:Series>
-                                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
+                                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                                                 </asp:Series>
                                                 <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series3" Color="0, 192, 0" MarkerStyle="Circle"  MarkerBorderColor="0, 192, 0" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
                                                 </asp:Series>

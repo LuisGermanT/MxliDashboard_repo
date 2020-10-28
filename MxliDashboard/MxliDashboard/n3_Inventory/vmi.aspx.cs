@@ -47,7 +47,7 @@ namespace MxliDashboard.n3_Inventory
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_inventario WHERE smetric = 'vmi' and sType = '" + xType + "' and sfilter = '" + xFilter + "' ", conn1);
+            SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_inventario WHERE smetric = 'vmi' and sType = '" + xType + "' and sfilter = '" + xFilter + "' order by id", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);

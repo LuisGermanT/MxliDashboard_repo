@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44337</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -233,6 +234,8 @@
     <Content Include="n3_Inventory\vmi.aspx" />
     <Content Include="n3_Productivity\productivity.aspx" />
     <Content Include="n3_Productivity\utilization.aspx" />
+    <Content Include="n3_Safety\mep.aspx" />
+    <Content Include="n3_Safety\tpm.aspx" />
     <Content Include="n3_Safety\mstactions.aspx" />
     <Content Include="n3_Safety\incidentes.aspx" />
     <Content Include="Settings.aspx" />
@@ -377,6 +380,20 @@
     </Compile>
     <Compile Include="n3_Productivity\utilization.aspx.designer.cs">
       <DependentUpon>utilization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Safety\mep.aspx.cs">
+      <DependentUpon>mep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Safety\mep.aspx.designer.cs">
+      <DependentUpon>mep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Safety\tpm.aspx.cs">
+      <DependentUpon>tpm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Safety\tpm.aspx.designer.cs">
+      <DependentUpon>tpm.aspx</DependentUpon>
     </Compile>
     <Compile Include="n3_Safety\mstactions.aspx.cs">
       <DependentUpon>mstactions.aspx</DependentUpon>

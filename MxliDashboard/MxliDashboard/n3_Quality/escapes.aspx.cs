@@ -92,7 +92,7 @@ namespace MxliDashboard.n3_Quality
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
 
-            string query = "SELECT top 13 * FROM cht_calidad WHERE smetric = 'escapes' and sType = '" + xType + "' and sfilter = '" + xFilter + "' ";
+            string query = "SELECT top 13 * FROM cht_calidad WHERE smetric = 'escapes' and sType = '" + xType + "' and sfilter = '" + xFilter + "' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt1 = dBHelper.QryManager(qry);
