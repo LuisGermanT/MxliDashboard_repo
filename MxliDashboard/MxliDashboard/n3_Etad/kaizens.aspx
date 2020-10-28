@@ -50,7 +50,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cause:">
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Status:">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxCausaInContent" runat="server" ValueField="estatus_kaizen"
                                 TextField="estatus_kaizen" ValueType="System.String" DataSourceID="SqlDataSourceCausa"

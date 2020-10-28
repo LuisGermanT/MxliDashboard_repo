@@ -362,6 +362,14 @@
                                         <a class="btn btn-danger" href="n3_Delivery/output.aspx">View &raquo;</a>
                                     </td>
                                 </tr>
+                                        <tr>
+                                    <td colspan="4">
+                                        <dx:ASPxLabel ID="ASPxLabelD2" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <asp:Image ID="ImageSeriesD2" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
+                                    </td>
+                                </tr>
                             </table>       
                                 </dx:PanelContent>
                             </PanelCollection>
@@ -487,6 +495,14 @@
                                     </td>
                                     <td style="text-align:center">
                                         <a class="btn btn-danger" href="n3_Delivery/pastdue.aspx">View &raquo;</a>
+                                    </td>
+                                </tr>
+                                        <tr>
+                                    <td colspan="4">
+                                        <dx:ASPxLabel ID="ASPxLabelD3" runat="server" Text="Last update:" Font-Size="Small"></dx:ASPxLabel>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <asp:Image ID="ImageSeriesD3" runat="server" ImageUrl="~/img/chartSeries.png" Height="16px" />
                                     </td>
                                 </tr>
                             </table>       

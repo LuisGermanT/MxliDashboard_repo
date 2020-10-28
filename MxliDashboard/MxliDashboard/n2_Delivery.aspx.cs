@@ -658,6 +658,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dtPareto.Rows[0]["factual"].ToString());
                 aop = Convert.ToDouble(dtPareto.Rows[0]["fgoal"].ToString());
+                ASPxLabelD2.Text = "Last update: " + dtPareto.Rows[0]["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual < aop) { imagen = "bad"; }
@@ -736,7 +737,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dtPareto.Rows[0]["factual"].ToString());
                 aop = Convert.ToDouble(dtPareto.Rows[0]["fgoal"].ToString());
-                //ASPxLabelP.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                ASPxLabelD3.Text = "Last update: " + dtPareto.Rows[0]["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual > aop) { imagen = "badB"; }
