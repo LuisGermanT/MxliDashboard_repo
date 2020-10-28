@@ -182,9 +182,14 @@ namespace MxliDashboard
             //Week range, from current week - 13 to current week
             int yr = DateTime.Now.Year;
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            double diff = (DateTime.Today.DayOfWeek - CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)+1;
-            DateTime dtFrom = DateTime.Today.AddDays(-diff-(12*7));
-            DateTime dtTo = DateTime.Today.AddDays(-diff);
+            //double diff = (DateTime.Today.DayOfWeek - CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)+1;
+            //DateTime dtFrom = DateTime.Today.AddDays(-diff-(12*7));
+            //DateTime dtTo = DateTime.Today.AddDays(-diff);
+            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+            DateTime st = fh.GetSaturday(DateTime.Now);
+            string dtFrom = st.AddDays(-91).ToShortDateString();
+            string dtTo = st.ToShortDateString();
+            string dtFrom2 = st.AddDays(-300).ToShortDateString();
 
             if (semana == 53 || semana == 1)
             {
@@ -211,10 +216,14 @@ namespace MxliDashboard
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                sTblName = "[vw_ottr_by_site_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr;
-                cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
-                aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
-                mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
+                //sTblName = "[vw_ottr_by_site_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr;
+                sTblName = "[vw_ottr_by_site_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
+                //cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
+                cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                //aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
+                aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                //mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
+                mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
                 //qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] BETWEEN " + (semana - 12) + " AND " + semana;
                 qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
                 qryOrder = "[TO_Wk]";
@@ -222,10 +231,14 @@ namespace MxliDashboard
             }
             else
             {
-                sTblName = "[vw_ottr_by_site_mntly] WHERE [TO_Yr] = " + yr;
-                cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND ";
-                aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND ";
-                mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND ";
+                //sTblName = "[vw_ottr_by_site_mntly] WHERE [TO_Yr] = " + yr;
+                sTblName = "[vw_ottr_by_site_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "'";
+                //cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND ";
+                cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
+                //aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND ";
+                aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
+                //mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND ";
+                mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
                 qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
                                 "[sDesc] = [TO_Month]";
                 qryOrder = "CASE WHEN[TO_Month] = 'Jan' THEN 1 " +

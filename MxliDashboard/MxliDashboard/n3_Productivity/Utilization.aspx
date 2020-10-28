@@ -152,23 +152,19 @@
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="3" Caption="Cell">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_MRP" VisibleIndex="4" Caption="MRP">
+                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="4" Caption="Direct Hrs" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Cost_Element_Description" VisibleIndex="5" Caption="Cost Element">
+                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="5" Caption="Total Hrs" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="6" Caption="Total Hrs">
-                                </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="7" Caption="Direct Hrs">
-                                </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="8" Caption="% Utilization">
+                                <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="6" Caption="% Utilization" ReadOnly="True">
                                     <PropertiesTextEdit DisplayFormatString="{0:n2}%">
                                     </PropertiesTextEdit>
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="9" Caption="Wk">
+                                <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="7" Caption="Wk">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="10" Caption="Month">
+                                 <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="8" Caption="Month">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Year" VisibleIndex="11" Caption="Yr">
+                                <dx:GridViewDataTextColumn FieldName="TU_Year" VisibleIndex="9" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
                             <Styles>
@@ -181,8 +177,8 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_MRP],[TU_Cost_Element_Description], [TU_TotHrs], [TU_DirectHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
-                                FROM [tblUtilization] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
+                SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_DirectHrs], [TU_TotHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
+                                FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
                                     ORDER BY [TU_Year] desc, [TU_Month] desc, [TU_Week] desc, [TU_Area], [TU_Celda]
                 ">
                 <SelectParameters>
