@@ -463,24 +463,6 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF7;
         
         /// <summary>
-        /// ASPxLabelF8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelF8;
-        
-        /// <summary>
-        /// ASPxComboBoxF8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF8;
-        
-        /// <summary>
         /// S03Report control.
         /// </summary>
         /// <remarks>
@@ -499,13 +481,13 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxLabel S03Actual;
         
         /// <summary>
-        /// S03Aop control.
+        /// S03AOP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel S03Aop;
+        protected global::DevExpress.Web.ASPxLabel S03AOP;
         
         /// <summary>
         /// ImgS03 control.
@@ -569,15 +551,6 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCel;
-        
-        /// <summary>
-        /// SqlDataSourcePro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourcePro;
         
         /// <summary>
         /// SqlDataSourceTur control.

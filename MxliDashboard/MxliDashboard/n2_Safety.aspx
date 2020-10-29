@@ -403,26 +403,11 @@
                                         </dx:ASPxComboBox>
                                     </th>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF7" runat="server" Text="Select Process filter:">
+                                        <dx:ASPxLabel ID="ASPxLabelF7" runat="server" Text="Select Shift filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF7" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourcePro"
-                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF7" OnSelectedIndexChanged="ASPxComboBoxF7_SelectedIndexChanged">
-                                            <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One Process&quot;;
-                                            }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
-                                        </dx:ASPxComboBox>
-                                    </th>
-                                    <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF8" runat="server" Text="Select Shift filter:">
-                                        </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxF8" runat="server" ValueField="sclass"
                                             TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceTur"
-                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF8" OnSelectedIndexChanged="ASPxComboBoxF8_SelectedIndexChanged">
+                                            AutoPostBack="True" OnDataBound="cmbox_DataBoundF7" OnSelectedIndexChanged="ASPxComboBoxF7_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -460,7 +445,7 @@
                                         <dx:ASPxLabel ID="S03Actual" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
                                     </td>
                                     <td style="text-align: center">
-                                        <dx:ASPxLabel ID="S03Aop" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
+                                        <dx:ASPxLabel ID="S03AOP" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
                                     </td>
                                     <td style="text-align: center">
                                         <asp:Image ID="ImgS03" runat="server" ImageUrl="~/img/bad.png" />
@@ -534,13 +519,11 @@
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
                 <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpm') and sfilter = 'area' order by sClass"></asp:SqlDataSource>
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpms') and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSourceCel" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpm') and sfilter = 'celda' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourcePro" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpm') and sfilter = 'proceso' order by sClass"></asp:SqlDataSource>
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpms') and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSourceTur" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpm') and sfilter = 'turno' order by sClass"></asp:SqlDataSource>
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('tpms') and sfilter = 'turno' order by sClass"></asp:SqlDataSource>
             </div>
             <p></p>
             <hr />

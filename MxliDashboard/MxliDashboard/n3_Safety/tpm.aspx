@@ -20,25 +20,70 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Responsible:">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area:">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxResInContent" runat="server" ValueField="responsible"
-                                TextField="responsible" ValueType="System.String" DataSourceID="SqlDataSourceRes"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundRes">
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
+                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Responsible&quot;;
+                                            e.errorText = &quot;You should Select One Area&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Status:">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="status"
-                                TextField="status" ValueType="System.String" DataSourceID="SqlDataSourceSta"
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="celda"
+                                TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Process:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxProInContent" runat="server" ValueField="proceso"
+                                TextField="proceso" ValueType="System.String" DataSourceID="SqlDataSourcePro"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundPro">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Process&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Shift:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxShiInContent" runat="server" ValueField="turno"
+                                TextField="turno" ValueType="System.String" DataSourceID="SqlDataSourceShi"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundShi">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Shift&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption5" runat="server" Text="Select Status:">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="estatus"
+                                TextField="estatus" ValueType="System.String" DataSourceID="SqlDataSourceSta"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundSta">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -106,7 +151,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent3" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_mstactions" Theme="Default" Width="1024px">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_tpms" Theme="Default" Width="1024px">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
                     <Settings ShowGroupPanel="True" />
@@ -125,31 +170,33 @@
                         </dx:GridViewToolbar>
                     </Toolbars>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="record" VisibleIndex="0" Caption="RECORD">
+                        <dx:GridViewDataTextColumn FieldName="tpm_id" VisibleIndex="0" Caption="TPM#">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="action" VisibleIndex="1" Caption="ACTION">
+                        <dx:GridViewDataTextColumn FieldName="fecha" VisibleIndex="1" Caption="DATE_START">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="duedate" VisibleIndex="2" Caption="DUEDATE">
+                        <dx:GridViewDataTextColumn FieldName="emp_eid" VisibleIndex="2" Caption="EID_START">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="responsible" VisibleIndex="3" Caption="RESPONSIBLE">
+                        <dx:GridViewDataTextColumn FieldName="emp_nombre" VisibleIndex="3" Caption="EMP_START">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="compstatus" VisibleIndex="4" Caption="COMPLETED">
+                        <dx:GridViewDataTextColumn FieldName="fecha_cierre" VisibleIndex="4" Caption="DATE_FINISH">
                         </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="completedby" VisibleIndex="5" Caption="COMPLETED BY">
+                        <dx:GridViewDataTextColumn FieldName="emp_eidc" VisibleIndex="5" Caption="EID_FINISH">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="status" VisibleIndex="6" Caption="STATUS">
+                        <dx:GridViewDataTextColumn FieldName="emp_nombrec" VisibleIndex="6" Caption="EMP_FINISH">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="7" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="turno" VisibleIndex="7" Caption="SHIFT">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="area" VisibleIndex="8" Caption="AREA">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="9" Caption="CELL">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="proceso" VisibleIndex="10" Caption="PROCESS">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="estatus" VisibleIndex="11" Caption="STATUS">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="responsible" ShowInColumn="RESPONSIBLE" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="status" ShowInColumn="STATUS" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="tpm_id" ShowInColumn="TPM#" SummaryType="Count" />
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -159,19 +206,31 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_mstactions" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [record], [action], [duedate], [responsible], [compstatus], [completedby], [status], [week] FROM [sap_mstactions] where responsible like @pRes and status like @pSta order by id">
+    <asp:SqlDataSource ID="ds_tpms" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [tpm_id], [fecha], [emp_eid], [emp_nombre], [fecha_cierre], [emp_eidc], [emp_nombrec], [turno], [area], [celda], [proceso], [estatus] FROM [sap_tpms] where area like @pArea and celda like @pCell and proceso like @pPro and turno like @pShi and estatus like @pSta order by id">
         <SelectParameters>
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxResInContent"
-                Name="pRes" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAreaInContent"
+                Name="pArea" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
+                Name="pCell" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxProInContent"
+                Name="pPro" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxShiInContent"
+                Name="pShi" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxStaInContent"
                 Name="pSta" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceRes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [responsible] FROM [sap_mstactions] order by responsible"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [area] FROM [sap_tpms] order by area"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [celda] FROM [sap_tpms] order by celda"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourcePro" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [proceso] FROM [sap_tpms] order by proceso"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceShi" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [turno] FROM [sap_tpms] order by turno"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceSta" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [status] FROM [sap_mstactions] order by status"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [estatus] FROM [sap_tpms] order by estatus"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -218,7 +277,7 @@
                         </dx:GridViewDataDateColumn>
                     </Columns>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'mst'"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'tpms'"></asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>

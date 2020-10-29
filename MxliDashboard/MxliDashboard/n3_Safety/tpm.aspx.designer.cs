@@ -40,13 +40,13 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
         
         /// <summary>
-        /// ASPxComboBoxResInContent control.
+        /// ASPxComboBoxAreaInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxResInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
         
         /// <summary>
         /// ASPxLabelCaption2 control.
@@ -56,6 +56,60 @@ namespace MxliDashboard.n3_Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
+        
+        /// <summary>
+        /// ASPxComboBoxCellInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
+        
+        /// <summary>
+        /// ASPxComboBoxProInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxProInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption4;
+        
+        /// <summary>
+        /// ASPxComboBoxShiInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxShiInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption5;
         
         /// <summary>
         /// ASPxComboBoxStaInContent control.
@@ -121,22 +175,49 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
         
         /// <summary>
-        /// ds_mstactions control.
+        /// ds_tpms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ds_mstactions;
+        protected global::System.Web.UI.WebControls.SqlDataSource ds_tpms;
         
         /// <summary>
-        /// SqlDataSourceRes control.
+        /// SqlDataSourceArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceRes;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
+        
+        /// <summary>
+        /// SqlDataSourceCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        
+        /// <summary>
+        /// SqlDataSourcePro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourcePro;
+        
+        /// <summary>
+        /// SqlDataSourceShi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceShi;
         
         /// <summary>
         /// SqlDataSourceSta control.
