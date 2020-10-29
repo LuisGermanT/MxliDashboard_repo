@@ -261,11 +261,11 @@ namespace MxliDashboard
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             string qry = "";
             //qry = "select top 13 * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
-            qry = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter + 
+            qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter + 
                     "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
-                    " Order by [sLstWkDay]";
-
-            DataTable dtPareto = dBHelper.QryManager(qry);
+                    " Order by [sLstWkDay] desc";
+            string qry1 = "select * from (" + qry + ") q1 order by id";
+            DataTable dtPareto = dBHelper.QryManager(qry1);
             foreach (DataRow dr1 in dtPareto.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
@@ -504,11 +504,11 @@ namespace MxliDashboard
 
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             string qry = "";
-            qry = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
+            qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
                     "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
-                    " Order by [sLstWkDay]";
-
-            DataTable dtPareto = dBHelper.QryManager(qry);
+                    " Order by [sLstWkDay] desc";
+            string qry1 = "select * from (" + qry + ") q1 order by id";
+            DataTable dtPareto = dBHelper.QryManager(qry1);
             foreach (DataRow dr1 in dtPareto.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());

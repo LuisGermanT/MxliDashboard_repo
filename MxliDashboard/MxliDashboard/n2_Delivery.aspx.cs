@@ -615,8 +615,12 @@ namespace MxliDashboard
                 xTipo = "YEARLY";
             }
 
-            string query1 = "select top 8 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            string qry1 = "select * from (" + query1 + ") q1 order by id";
+            //string query1 = "select top 8 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+            DateTime st = fh.GetSaturday(DateTime.Now);
+            string qry = "select TOP 8 * from [sta_nivel2] where smetric = 'ottr' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "'" +
+                         " AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' Order by [sLstWkDay] desc";
+            string qry1 = "select * from (" + qry + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt1 = dBHelper.QryManager(qry1);
             foreach (DataRow dr1 in dt1.Rows)
