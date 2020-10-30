@@ -36,6 +36,8 @@ namespace MxliDashboard
             loadChartS02(0, "All", "SITE");
             llenarDatos_S03(0);
             loadChartS03(0, "All", "SITE");
+            llenarDatos_S04(0);
+            loadChartS04(0, "All", "SITE");
         }
 
         protected void cmbox_DataBoundF1(object sender, EventArgs e)
@@ -183,6 +185,8 @@ namespace MxliDashboard
             loadChartS02(ASPxComboBoxV.SelectedIndex, "All", "SITE");
             llenarDatos_S03(0);
             loadChartS03(ASPxComboBoxV.SelectedIndex, "All", "SITE");
+            llenarDatos_S04(0);
+            loadChartS04(ASPxComboBoxV.SelectedIndex, "All", "SITE");
         }
 
         protected void ASPxComboBoxF1_SelectedIndexChanged(object sender, EventArgs e)
@@ -397,13 +401,161 @@ namespace MxliDashboard
             }
         }
         protected void ASPxComboBoxF9_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF9.SelectedItem.ToString();
+                if (ASPxComboBoxF9.SelectedIndex == 0)
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF11.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF11.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF12.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF12.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
         protected void ASPxComboBoxF10_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "LINE";
+                string tipoVSM = ASPxComboBoxF10.SelectedItem.ToString();
+                if (ASPxComboBoxF10.SelectedIndex == 0)
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF11.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF11.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF12.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF12.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
         protected void ASPxComboBoxF11_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "FUNCTION";
+                string tipoVSM = ASPxComboBoxF11.SelectedItem.ToString();
+                if (ASPxComboBoxF11.SelectedIndex == 0)
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF12.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF12.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
         protected void ASPxComboBoxF12_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "STATUS";
+                string tipoVSM = ASPxComboBoxF12.SelectedItem.ToString();
+                if (ASPxComboBoxF12.SelectedIndex == 0)
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(0, "All", "SITE");
+                }
+                else
+                {
+                    llenarDatos_S04(0);
+                    loadChartS04(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+            if (ASPxComboBoxF11.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF11.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
 
         public void llenarDatos_S01(int indice)
         {
@@ -482,6 +634,30 @@ namespace MxliDashboard
 
             S03Actual.Text = (actual).ToString();
             S03AOP.Text = (aop).ToString();
+        }
+
+        public void llenarDatos_S04(int indice)
+        {
+            double actual = 0;
+            double aop = 0;
+            string imagen = "good";
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+            string query1 = "select * from [sta_nivel2] where smetric = 'meps' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id";   //porque si existe semana actual
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(query1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                actual = Convert.ToDouble(dr1["factual"].ToString());
+                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                ASPxLabelS04.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+            }
+
+            if (actual < aop) { imagen = "bad"; }
+            ImgS04.ImageUrl = "~/img/" + imagen + ".png";
+
+            S04Actual.Text = (actual).ToString();
+            S04AOP.Text = (aop).ToString();
         }
 
         private void loadChartS01(int tipo, string clase, string filtro)
@@ -676,6 +852,72 @@ namespace MxliDashboard
                 chartPS03.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
                 chartPS03.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
                 chartPS03.Series["Series1"].ToolTip = "#VALX";
+            }
+        }
+
+        private void loadChartS04(int tipo, string clase, string filtro)
+        {
+            chartTS04.Series["Series1"].Points.Clear();
+            chartTS04.Series["Series2"].Points.Clear();
+            chartTS04.Series["Series3"].Points.Clear();
+            chartPS04.Series["Series1"].Points.Clear();
+            chartPS04.Series["Series2"].Points.Clear();
+
+            string xTipo = "weekly";
+            if (tipo < 2)
+            {
+                xTipo = "WEEKLY";
+            }
+            if (tipo == 2)
+            {
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
+            }
+
+            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            string query1 = "";
+            if (xTipo == "WEEKLY")
+            {
+                query1 = "select top 13 * from [sta_nivel2] where smetric = 'meps' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' and sdesc <= '" + (semana - 1) + "'  order by id desc";
+            }
+            else
+            {
+                query1 = "select top 13 * from [sta_nivel2] where smetric = 'meps' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            }
+            string qry = "select * from (" + query1 + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
+
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                chartTS04.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                chartTS04.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                chartTS04.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+            }
+
+            string query2 = "select top 10 * from [sta_nivel2p] where smetric = 'meps' and stype = '" + filtro + "' order by id";
+            if (clase != "All")
+            {
+                query2 = "select * from [sta_nivel2p] where smetric = 'meps' and stype = '" + filtro + "' and scause = '" + clase + "' order by id";
+            }
+            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+            DataTable dt2 = dBHelper2.QryManager(query2);
+            foreach (DataRow dr2 in dt2.Rows)
+            {
+                double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                chartPS04.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                chartPS04.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                chartPS04.Series["Series1"].ToolTip = "#VALX";
             }
         }
 

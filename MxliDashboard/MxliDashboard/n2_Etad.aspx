@@ -104,24 +104,42 @@
                                     </ValidationSettings>
                                 </dx:ASPxComboBox>
                             </th>
+                            <th>
+                                <dx:ASPxLabel ID="ASPxLabelGV" runat="server" Text="Select Graph view:">
+                                </dx:ASPxLabel>
+                                <dx:ASPxComboBox ID="ASPxComboBoxGV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ASPxComboBoxGV_SelectedIndexChanged">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="Default" Value="0" />
+                                        <dx:ListEditItem Text="Trend" Value="1" />
+                                        <dx:ListEditItem Text="Pareto" Value="2" />
+                                        <dx:ListEditItem Text="Forecast" Value="3" />
+                                    </Items>
+                                    <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Graph View&quot;;
+                                            }}" />
+                                    <ValidationSettings ValidateOnLeave="False">
+                                    </ValidationSettings>
+                                </dx:ASPxComboBox>
+                            </th>  
                         </tr>
                     </table>
                     <hr />
                     <table style="width: 100%">
                         <tr>
-                            <th style="text-align: center; width: 8%;">Report
+                            <th style="text-align: center; width: 10%;">Report
                             </th>
-                            <th style="text-align: center; width: 8%;">Actual
+                            <th style="text-align: center; width: 10%;">Actual
                             </th>
-                            <th style="text-align: center; width: 8%;">AOP
+                            <th style="text-align: center; width: 10%;">AOP
                             </th>
-                            <th style="text-align: center; width: 8%;">Status
+                            <th style="text-align: center; width: 10%;">Status
                             </th>
-                            <th style="text-align: center; width: 30%;">Trend
+                            <th style="text-align: center; width: 50%;">Trend
                             </th>
-                            <th style="text-align: center; width: 30%;">Pareto
-                            </th>
-                            <th style="text-align: center; width: 8%;">Details
+                            <th style="text-align: center; width: 10%;">Details
                             </th>
                         </tr>
                         <tr>
@@ -138,38 +156,13 @@
                                 <asp:Image ID="imgE01" runat="server" ImageUrl="~/img/bad.png" />
                             </td>
                             <td style="text-align: center">
-                                <asp:Chart ID="chartTE01" runat="server" Height="120px">
+                                <asp:Chart ID="chartE01" runat="server" Height="120px" Width="500">
                                     <Series>
                                         <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True" Palette="Grayscale">
                                         </asp:Series>
                                         <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle">
                                         </asp:Series>
                                         <asp:Series ChartArea="ChartArea1" ChartType="Line" Color="Green" MarkerStyle="Circle" Name="Series3">
-                                        </asp:Series>
-                                    </Series>
-                                    <ChartAreas>
-                                        <asp:ChartArea Name="ChartArea1">
-                                            <AxisY Enabled="False" LineWidth="0">
-                                                <MajorGrid Enabled="False" />
-                                            </AxisY>
-                                            <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
-                                                <MajorGrid Enabled="False" />
-                                                <LabelStyle Angle="-90" />
-                                            </AxisX>
-                                            <AxisX2 LineWidth="0">
-                                            </AxisX2>
-                                            <AxisY2 LineWidth="0">
-                                            </AxisY2>
-                                        </asp:ChartArea>
-                                    </ChartAreas>
-                                </asp:Chart>
-                            </td>
-                            <td style="text-align: center">
-                                <asp:Chart ID="chartPE01" runat="server" Height="120px">
-                                    <Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SteelBlue" IsValueShownAsLabel="True">
-                                        </asp:Series>
-                                        <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series2" Color="IndianRed" MarkerStyle="Circle">
                                         </asp:Series>
                                     </Series>
                                     <ChartAreas>

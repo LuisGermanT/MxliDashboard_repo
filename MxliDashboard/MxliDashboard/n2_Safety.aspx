@@ -364,7 +364,7 @@
             <hr />
             <p></p>
             <div class="row" runat="server" id="S03">
-                <dx:ASPxRoundPanel ID="ASPxRoundPanel4" runat="server" Width="100%" HeaderText="TPM filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" BackColor="White">
+                <dx:ASPxRoundPanel ID="ASPxRoundPanel4" runat="server" Width="100%" HeaderText="TPMs filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" BackColor="White">
                     <HeaderStyle ForeColor="White" />
                     <HeaderContent BackColor="#666666">
                     </HeaderContent>
@@ -439,7 +439,7 @@
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">
-                                        <dx:ASPxLabel ID="S03Report" runat="server" Text="TPM" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
+                                        <dx:ASPxLabel ID="S03Report" runat="server" Text="TPMs" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:ASPxLabel>
                                     </td>
                                     <td style="text-align: center">
                                         <dx:ASPxLabel ID="S03Actual" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
@@ -541,7 +541,7 @@
                                         <dx:ASPxLabel ID="ASPxLabelF9" runat="server" Text="Select Area filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF9" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceAreaS4"
+                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceVsmS4"
                                             AutoPostBack="True" OnDataBound="cmbox_DataBoundF9" OnSelectedIndexChanged="ASPxComboBoxF9_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -556,7 +556,7 @@
                                         <dx:ASPxLabel ID="ASPxLabelF10" runat="server" Text="Select Line filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF10" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceLineS4"
+                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceLinS4"
                                             AutoPostBack="True" OnDataBound="cmbox_DataBoundF10" OnSelectedIndexChanged="ASPxComboBoxF10_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -568,30 +568,30 @@
                                         </dx:ASPxComboBox>
                                     </th>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF11" runat="server" Text="Select Issue filter:">
+                                        <dx:ASPxLabel ID="ASPxLabelF11" runat="server" Text="Select Function filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF11" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceIssS4"
+                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceFunS4"
                                             AutoPostBack="True" OnDataBound="cmbox_DataBoundF11" OnSelectedIndexChanged="ASPxComboBoxF11_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Issue&quot;;
+                                            e.errorText = &quot;You should Select One Function&quot;;
                                             }}" />
                                             <ValidationSettings ValidateOnLeave="False">
                                             </ValidationSettings>
                                         </dx:ASPxComboBox>
                                     </th>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabelF12" runat="server" Text="Select Cost Center filter:">
+                                        <dx:ASPxLabel ID="ASPxLabelF12" runat="server" Text="Select Status filter:">
                                         </dx:ASPxLabel>
                                         <dx:ASPxComboBox ID="ASPxComboBoxF12" runat="server" ValueField="sclass"
-                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCCS4"
+                                            TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceStaS4"
                                             AutoPostBack="True" OnDataBound="cmbox_DataBoundF12" OnSelectedIndexChanged="ASPxComboBoxF12_SelectedIndexChanged">
                                             <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Cost Center&quot;;
+                                            e.errorText = &quot;You should Select One Status&quot;;
                                             }}" />
                                             <ValidationSettings ValidateOnLeave="False">
                                             </ValidationSettings>
@@ -625,7 +625,7 @@
                                         <dx:ASPxLabel ID="S04Actual" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
                                     </td>
                                     <td style="text-align: center">
-                                        <dx:ASPxLabel ID="S04Aop" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
+                                        <dx:ASPxLabel ID="S04AOP" runat="server" Text="" Font-Size="Medium"></dx:ASPxLabel>
                                     </td>
                                     <td style="text-align: center">
                                         <asp:Image ID="ImgS04" runat="server" ImageUrl="~/img/bad.png" />
@@ -698,14 +698,14 @@
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
-                <asp:SqlDataSource ID="SqlDataSourceAreaS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('mep') and sfilter = 'area' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceLineS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('mep') and sfilter = 'line' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceIssS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('mep') and sfilter = 'issue' order by sClass"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSourceCCS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('mep') and sfilter = 'costcenter' order by sClass"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceVsmS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('meps') and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceLinS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('meps') and sfilter = 'line' order by sClass"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceFunS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('meps') and sfilter = 'function' order by sClass"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceStaS4" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                    SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric in ('meps') and sfilter = 'status' order by sClass"></asp:SqlDataSource>
             </div>
 
         </ContentTemplate>

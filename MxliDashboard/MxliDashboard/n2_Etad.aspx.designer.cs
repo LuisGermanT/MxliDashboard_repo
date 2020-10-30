@@ -130,6 +130,24 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxF2;
         
         /// <summary>
+        /// ASPxLabelGV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelGV;
+        
+        /// <summary>
+        /// ASPxComboBoxGV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxGV;
+        
+        /// <summary>
         /// E01Report control.
         /// </summary>
         /// <remarks>
@@ -166,22 +184,13 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Image imgE01;
         
         /// <summary>
-        /// chartTE01 control.
+        /// chartE01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartTE01;
-        
-        /// <summary>
-        /// chartPE01 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chartPE01;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chartE01;
         
         /// <summary>
         /// ASPxLabelE01 control.

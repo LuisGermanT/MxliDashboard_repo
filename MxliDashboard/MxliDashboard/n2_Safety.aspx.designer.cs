@@ -679,13 +679,13 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxLabel S04Actual;
         
         /// <summary>
-        /// S04Aop control.
+        /// S04AOP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel S04Aop;
+        protected global::DevExpress.Web.ASPxLabel S04AOP;
         
         /// <summary>
         /// ImgS04 control.
@@ -733,39 +733,39 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Image ImageSeriesMEP;
         
         /// <summary>
-        /// SqlDataSourceAreaS4 control.
+        /// SqlDataSourceVsmS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceAreaS4;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsmS4;
         
         /// <summary>
-        /// SqlDataSourceLineS4 control.
+        /// SqlDataSourceLinS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceLineS4;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceLinS4;
         
         /// <summary>
-        /// SqlDataSourceIssS4 control.
+        /// SqlDataSourceFunS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIssS4;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFunS4;
         
         /// <summary>
-        /// SqlDataSourceCCS4 control.
+        /// SqlDataSourceStaS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCCS4;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceStaS4;
     }
 }
