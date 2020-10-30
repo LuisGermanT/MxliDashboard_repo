@@ -181,6 +181,11 @@
                                 FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
                                     ORDER BY [TU_Year] desc, [TU_Month] desc, [TU_Week] desc, [TU_Area], [TU_Celda]
                 ">
+                <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_DirectHrs], [TU_TotHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
+                                FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
+                                    ORDER BY [TU_Year] desc, [TU_Month] desc, [TU_Week] desc, [TU_Area], [TU_Celda]
+                ">--%>
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />
