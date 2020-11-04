@@ -12,7 +12,7 @@
                     <HeaderContent BackColor="#666666">
                     </HeaderContent>
                     <PanelCollection>
-                        <dx:PanelContent ID="PanelContent2" runat="server">
+                        <dx:PanelContent ID="PanelContent1" runat="server">
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>
@@ -73,7 +73,7 @@
                     <HeaderContent BackColor="#666666">
                     </HeaderContent>
                     <PanelCollection>
-                        <dx:PanelContent ID="PanelContent1" runat="server">
+                        <dx:PanelContent ID="PanelContent2" runat="server">
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>

@@ -649,7 +649,7 @@ namespace MxliDashboard
             }
             else
             {
-                query1 = "select tpo 6 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                query1 = "select top 6 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
             }
             string qry = "select * from (" + query1 + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();

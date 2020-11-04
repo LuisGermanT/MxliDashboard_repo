@@ -31,13 +31,13 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel1;
         
         /// <summary>
-        /// PanelContent2 control.
+        /// PanelContent1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.PanelContent PanelContent2;
+        protected global::DevExpress.Web.PanelContent PanelContent1;
         
         /// <summary>
         /// ASPxLabel1 control.
@@ -94,13 +94,13 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel2;
         
         /// <summary>
-        /// PanelContent1 control.
+        /// PanelContent2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.PanelContent PanelContent1;
+        protected global::DevExpress.Web.PanelContent PanelContent2;
         
         /// <summary>
         /// ASPxLabelCaptionF1 control.
