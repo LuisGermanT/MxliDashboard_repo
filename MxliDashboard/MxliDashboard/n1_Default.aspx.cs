@@ -392,7 +392,7 @@ namespace MxliDashboard
                 tipo = "yearly";
             }
 
-            string qry = "select * from [sta_nivel1] where smetric = 'productivity' and stype = '" + tipo + "' order by id";
+            string qry = "select top 6 * from [sta_nivel1] where smetric = 'productivity' and stype = '" + tipo + "' order by id";
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt2 = dBHelper.QryManager(qry);

@@ -211,7 +211,7 @@ namespace MxliDashboard.n3_Productivity
             {
                 double eHrs = Convert.ToDouble(dr1["NP_EarnedHrs"].ToString());
                 double tHrs = Convert.ToDouble(dr1["NP_TotalHrs"].ToString());
-                double prod = (eHrs / tHrs);
+                double prod = tHrs == 0 ? 0 : (eHrs / tHrs);
                 //prod = Math.Round(prod, 2);
                 chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), tHrs);
                 chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), eHrs);
