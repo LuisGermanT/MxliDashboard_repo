@@ -686,12 +686,18 @@ namespace MxliDashboard
                 xTipo = "YEARLY";
             }
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'incidentes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
+            string query1 = "";
+            if (xTipo == "WEEKLY")
+            {
+                query1 = "select top 13 * from [sta_nivel2] where smetric = 'incidentes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            }
+            else
+            {
+                query1 = "select top 6 * from [sta_nivel2] where smetric = 'incidentes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            }
+            string qry = "select * from (" + query1 + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());

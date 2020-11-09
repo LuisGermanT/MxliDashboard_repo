@@ -3,7 +3,7 @@
 <%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server" ID="MainContent">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
         <ContentTemplate>
             <p></p>
             <div class="row">
@@ -12,7 +12,7 @@
                     <HeaderContent BackColor="#666666">
                     </HeaderContent>
                     <PanelCollection>
-                        <dx:PanelContent ID="PanelContent2" runat="server">
+                        <dx:PanelContent ID="PanelContent1" runat="server">
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>
@@ -65,15 +65,15 @@
                 </dx:ASPxRoundPanel>
             </div>
             <p></p>
+            <hr />
             <p></p>
             <div class="row" id="I01" runat="server">
-                <%--Inventory--%>
                 <dx:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" Width="100%" HeaderText="Inventory Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" BackColor="White">
                     <HeaderStyle ForeColor="White" />
                     <HeaderContent BackColor="#666666">
                     </HeaderContent>
                     <PanelCollection>
-                        <dx:PanelContent ID="PanelContent1" runat="server">
+                        <dx:PanelContent ID="PanelContent2" runat="server">
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>
