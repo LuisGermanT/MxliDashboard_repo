@@ -465,6 +465,120 @@
                     SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'supplier' order by sClass"></asp:SqlDataSource>
             </div>
 
+            <asp:UpdatePanel runat="server" ID="UpdPnl4" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="row" id="I04" runat="server">
+                        <dx:ASPxRoundPanel ID="ASPxRoundPanel6" runat="server" Width="100%" HeaderText="COPQ Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" BackColor="White">
+                            <HeaderStyle ForeColor="White" />
+                            <HeaderContent BackColor="#666666">
+                            </HeaderContent>
+                            <PanelCollection>
+                                <dx:PanelContent ID="PanelContent6" runat="server">
+                                     <table style="table-layout: fixed">
+                                            <th>
+                                                <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM filter:">
+                                                </dx:ASPxLabel>
+                                                <dx:ASPxComboBox ID="ASPxComboBoxF9" runat="server" ValueField="sclass"
+                                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCOPQ1"
+                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF1" OnSelectedIndexChanged="ASPxComboBoxF9_SelectedIndexChanged">
+                                                    <ClientSideEvents Validation="function(s, e) {
+                                                            if (s.GetSelectedIndex()==0) {
+                                                            e.isValid = false;
+                                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                                            }}" />
+                                                    <ValidationSettings ValidateOnLeave="False">
+                                                    </ValidationSettings>
+                                                </dx:ASPxComboBox>
+                                            </th>
+                                            <th>
+                                                <dx:ASPxLabel ID="ASPxLabel3" runat="server" Text="Select Cell filter:">
+                                                </dx:ASPxLabel>
+                                                <dx:ASPxComboBox ID="ASPxComboBoxF10" runat="server" ValueField="sclass"
+                                                    TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCOPQ2"
+                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF2" OnSelectedIndexChanged="ASPxComboBoxF10_SelectedIndexChanged">
+                                                    <ClientSideEvents Validation="function(s, e) {
+                                                            if (s.GetSelectedIndex()==0) {
+                                                            e.isValid = false;
+                                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                                            }}" />
+                                                    <ValidationSettings ValidateOnLeave="False">
+                                                    </ValidationSettings>
+                                                </dx:ASPxComboBox>
+                                            </th>
+                                    </table>
+                                    <hr />
+                                    <table style="width:100%">
+                                       <tr>
+                                            <th style="text-align: center; width: 10%;">Report
+                                            </th>
+                                            <th style="text-align: center; width: 10%;">Actual
+                                            </th>
+                                            <th style="text-align: center; width: 10%;">AOP
+                                            </th>
+                                            <th style="text-align: center; width: 10%;">Status
+                                            </th>
+                                            <th style="text-align: center; width: 50%;">Trend
+                                            </th>
+                                            <th style="text-align: center; width: 10%;">Details
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                        <td style="text-align:center">
+                                            <dx:aspxlabel ID="I04Report" runat="server" Text="COPQ" Font-Size="Medium" Font-Bold="True" ForeColor="#333333"></dx:aspxlabel>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <dx:aspxlabel ID="I04Actual" runat="server" Text="ASPxLabel"  Font-Size="Medium"></dx:aspxlabel>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <dx:aspxlabel ID="D01AOP" runat="server"  Text="ASPxLabel"  Font-Size="Medium"></dx:aspxlabel>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <asp:Image ID="imgD01" runat="server" ImageUrl="~/img/bad.png" />
+                                        </td>
+                                        <td style="text-align:center">
+                                            <asp:Chart ID="chartTD01" runat="server" Height="120px" Width="500px">
+                                                <Series>
+                                                    <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
+                                                        <SmartLabelStyle CalloutLineAnchorCapStyle="None" CalloutLineColor="Transparent" Enabled="False" MovingDirection="Top, TopRight, BottomLeft, BottomRight" />
+                                                    </asp:Series>
+                                                    <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series2" Color="DodgerBlue" MarkerStyle="Circle" MarkerBorderColor="DodgerBlue" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
+                                                    </asp:Series>
+                                                    <asp:Series ChartArea="ChartArea1" ChartType="Line" Name="Series3" Color="0, 192, 0" MarkerStyle="Circle"  MarkerBorderColor="0, 192, 0" MarkerBorderWidth="3" MarkerColor="White" MarkerSize="8">
+                                                    </asp:Series>
+                                                </Series>
+                                                <ChartAreas>
+                                                    <asp:ChartArea Name="ChartArea1">
+                                                        <AxisY Enabled="False" LineWidth="0">
+                                                        </AxisY>
+                                                        <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
+                                                            <MajorGrid Enabled="False" />
+                                                            <LabelStyle Angle="-90" />
+                                                        </AxisX>
+                                                        <AxisX2 LineWidth="0">
+                                                        </AxisX2>
+                                                        <AxisY2 LineWidth="0" Enabled="True">
+                                                            <MajorGrid Enabled="False" />
+                                                        </AxisY2>
+                                                    </asp:ChartArea>
+                                                </ChartAreas>
+                                            </asp:Chart>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a class="btn btn-danger" href="n3_Delivery/OTTR.aspx">View &raquo;</a>
+                                        </td>
+                                    </tr>
+                                    </table> 
+                                </dx:PanelContent>
+                            </PanelCollection>
+                        </dx:ASPxRoundPanel>
+                         <asp:SqlDataSource ID="SqlDataSourceCOPQ1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'COPQ' and sfilter = 'vsm' order by sClass"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSourceCOPQ2" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                            SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'COPQ' and sfilter = 'cell' order by sClass"></asp:SqlDataSource>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
