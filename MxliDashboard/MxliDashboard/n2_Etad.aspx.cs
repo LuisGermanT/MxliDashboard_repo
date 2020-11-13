@@ -144,7 +144,7 @@ namespace MxliDashboard
         {
             double actual = 0;
             double aop = 0;
-            string imagen = "goodB";
+            string imagen = "good";
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
@@ -160,7 +160,7 @@ namespace MxliDashboard
                 ASPxLabelE01.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
             }
 
-            if (actual > aop) { imagen = "badB"; }
+            if (actual < aop) { imagen = "bad"; }
             imgE01.ImageUrl = "~/img/" + imagen + ".png";
 
             E01Actual.Text = (actual).ToString();
@@ -173,26 +173,26 @@ namespace MxliDashboard
             chartE01.Series["Series2"].Points.Clear();
             chartE01.Series["Series3"].Points.Clear();
 
+            string xTipo = "weekly";
+            if (tipo < 2)
+            {
+                xTipo = "WEEKLY";
+            }
+            if (tipo == 2)
+            {
+                xTipo = "MONTHLY";
+            }
+            if (tipo == 3)
+            {
+                xTipo = "QUARTERLY";
+            }
+            if (tipo == 4)
+            {
+                xTipo = "YEARLY";
+            }
+
             if (xGraph < 2)
             {
-                string xTipo = "weekly";
-                if (tipo < 2)
-                {
-                    xTipo = "WEEKLY";
-                }
-                if (tipo == 2)
-                {
-                    xTipo = "MONTHLY";
-                }
-                if (tipo == 3)
-                {
-                    xTipo = "QUARTERLY";
-                }
-                if (tipo == 4)
-                {
-                    xTipo = "YEARLY";
-                }
-
                 string query1 = "select top 13 * from [sta_nivel2] where smetric = 'kaizens' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -223,6 +223,18 @@ namespace MxliDashboard
             }
             if (xGraph == 3)
             {
+                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'kaizens' and stype = '" + xTipo + "' order by id desc";
+                string qry2 = "select * from (" + query2 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper2.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                    chartE01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                    chartE01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                    chartE01.Series["Series1"].ToolTip = "#VALX";
+                }
             }
         }
 

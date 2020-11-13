@@ -230,6 +230,7 @@
     <Content Include="n3_Delivery\pastdue.aspx" />
     <Content Include="n3_Delivery\output.aspx" />
     <Content Include="n3_Etad\kaizens.aspx" />
+    <Content Include="n3_Etad\v_kaizens.aspx" />
     <Content Include="n3_Inventory\entitlement.aspx" />
     <Content Include="n3_Inventory\vmi.aspx" />
     <Content Include="n3_Productivity\productivity.aspx" />
@@ -353,6 +354,16 @@
     </Compile>
     <Compile Include="n3_Etad\kaizens.aspx.designer.cs">
       <DependentUpon>kaizens.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Etad\r_kaizens.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="n3_Etad\v_kaizens.aspx.cs">
+      <DependentUpon>v_kaizens.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Etad\v_kaizens.aspx.designer.cs">
+      <DependentUpon>v_kaizens.aspx</DependentUpon>
     </Compile>
     <Compile Include="n3_Inventory\entitlement.aspx.cs">
       <DependentUpon>entitlement.aspx</DependentUpon>
@@ -562,6 +573,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="n3_Etad\r_kaizens.resx">
+      <DependentUpon>r_kaizens.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

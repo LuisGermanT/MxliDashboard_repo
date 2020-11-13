@@ -116,12 +116,10 @@ namespace MxliDashboard.n3_Quality
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_calidad WHERE smetric = 'defectos' and sType = '" + xType + "' and sfilter = '" + xFilter + "' ", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
+            string query = "SELECT top 13 id, sday, fTotal, fGoal, fAcc FROM cht_calidad WHERE smetric = 'defectos' and sType = '" + xType + "' and sfilter = '" + xFilter + "' ";
+            string qry = "select * from (" + query + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xTotal = Convert.ToDouble(dr1["fTotal"].ToString());

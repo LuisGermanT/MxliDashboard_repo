@@ -157,8 +157,6 @@
                     <Columns>
                         <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="0" Caption="QN">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qndate" VisibleIndex="1" Caption="NOTIF.DATE">
-                        </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="material" VisibleIndex="2" Caption="MATERIAL">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="order" VisibleIndex="3" Caption="ORDER">
@@ -177,9 +175,17 @@
                         </dx:GridViewDataTextColumn>                        
                         <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="10" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="qndate" VisibleIndex="1" Caption="NOTIF.DATE">
+                            <PropertiesTextEdit DisplayFormatString="&quot;MM/dd/yyyy&quot;">
+                            </PropertiesTextEdit>
+                        </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
+<dx:ASPxSummaryItem ShowInColumn="CELL" SummaryType="Count" FieldName="celda"></dx:ASPxSummaryItem>
+<dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Count" FieldName="mrp"></dx:ASPxSummaryItem>
+<dx:ASPxSummaryItem ShowInColumn="WEEK" SummaryType="Count" FieldName="week"></dx:ASPxSummaryItem>
+<dx:ASPxSummaryItem ShowInColumn="CAUSE" SummaryType="Count" FieldName="causecode"></dx:ASPxSummaryItem>
                     </GroupSummary>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="celda" ShowInColumn="CELL" SummaryType="Count" />

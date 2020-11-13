@@ -541,7 +541,7 @@ namespace MxliDashboard
             {
                 actual = Convert.ToDouble(dr1["factual"].ToString());
                 aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelQ03.Text = "Last update: " + dr1["sLstWkDay"].ToString();
+                ASPxLabelQ03.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
             }
 
             if (actual > aop) { imagen = "badB"; }

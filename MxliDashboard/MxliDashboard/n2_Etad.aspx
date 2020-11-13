@@ -129,17 +129,19 @@
                     <hr />
                     <table style="width: 100%">
                         <tr>
-                            <th style="text-align: center; width: 10%;">Report
+                            <th style="text-align: center; width: 8%;">Report
                             </th>
-                            <th style="text-align: center; width: 10%;">Actual
+                            <th style="text-align: center; width: 8%;">Actual
                             </th>
-                            <th style="text-align: center; width: 10%;">AOP
+                            <th style="text-align: center; width: 8%;">AOP
                             </th>
-                            <th style="text-align: center; width: 10%;">Status
+                            <th style="text-align: center; width: 8%;">Status
                             </th>
-                            <th style="text-align: center; width: 50%;">Trend
+                            <th style="text-align: center; width: 52%;">Trend
                             </th>
-                            <th style="text-align: center; width: 10%;">Details
+                            <th style="text-align: center; width: 8%;">Details
+                            </th>
+                            <th style="text-align: center; width: 8%;">Report
                             </th>
                         </tr>
                         <tr>
@@ -184,6 +186,9 @@
                             </td>
                             <td style="text-align: center">
                                 <a class="btn btn-danger" href="n3_etad/kaizens.aspx">View &raquo;</a>
+                            </td>
+                            <td style="text-align: center">
+                                <a class="btn btn-danger" href="n3_etad/v_kaizens.aspx">Open &raquo;</a>
                             </td>
                         </tr>
                         <tr>
