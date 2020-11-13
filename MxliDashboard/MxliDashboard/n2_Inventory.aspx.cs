@@ -26,6 +26,8 @@ namespace MxliDashboard
             this.ASPxComboBoxF6.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF6_SelectedIndexChanged);
             this.ASPxComboBoxF7.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF7_SelectedIndexChanged);
             this.ASPxComboBoxF8.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF8_SelectedIndexChanged);
+            this.ASPxComboBoxF9.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF9_SelectedIndexChanged);
+            this.ASPxComboBoxF10.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxF10_SelectedIndexChanged);
 
             llenarDatos_I01(0);
             loadChartI01(0, "All", "SITE");
@@ -91,6 +93,20 @@ namespace MxliDashboard
             ASPxComboBoxF8.Items.Insert(0, defaultItem);
             ASPxComboBoxF8.Items.Insert(1, defaultItem2);
             ASPxComboBoxF8.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF9(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF9.Items.Insert(0, defaultItem);
+            ASPxComboBoxF9.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundF10(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxF10.Items.Insert(0, defaultItem);
+            ASPxComboBoxF10.SelectedIndex = 0;
         }
 
         protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
@@ -437,6 +453,63 @@ namespace MxliDashboard
                 }
             }
 
+        }
+
+        protected void ASPxComboBoxF9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "VSM";
+                string tipoVSM = ASPxComboBoxF9.SelectedItem.ToString();
+                if (ASPxComboBoxF9.SelectedIndex == 0)
+                {
+                    //llenarDatos_I02(0);
+                    //loadChartI02(tipoV, "All", "SITE");
+                }
+                else
+                {
+                    //llenarDatos_I02(0);
+                    //loadChartI02(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF10.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF10.SelectedIndex = 0;
+                bandChange = 0;
+            }
+        }
+
+        protected void ASPxComboBoxF10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bandChange == 1) { }
+            else
+            {
+                int tipoV = ASPxComboBoxV.SelectedIndex;
+                string xFilter = "CELL";
+                string tipoVSM = ASPxComboBoxF10.SelectedItem.ToString();
+                if (ASPxComboBoxF10.SelectedIndex == 0)
+                {
+                    //llenarDatos_I02(0);
+                    //loadChartI02(0, "All", "SITE");
+                }
+                else
+                {
+                    //llenarDatos_I02(0);
+                    //loadChartI02(tipoV, tipoVSM, xFilter);
+                }
+            }
+
+            if (ASPxComboBoxF9.SelectedIndex > 0)
+            {
+                bandChange = 1;
+                ASPxComboBoxF9.SelectedIndex = 0;
+                bandChange = 0;
+            }
         }
 
         public void llenarDatos_I01(int indice)
