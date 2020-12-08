@@ -478,7 +478,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'ppms' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'ppms' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -506,7 +506,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'escapes' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'escapes' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -533,7 +533,7 @@ namespace MxliDashboard
 
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'defectos' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'defectos' and sfilter = 'SITE' and sdesc = 'weekly' order by id desc", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -560,29 +560,32 @@ namespace MxliDashboard
             chartPQ01.Series["Series2"].Points.Clear();
 
             string xTipo = "weekly";
+            int xTop = 13;
             if (tipo < 2)
             {
                 xTipo = "WEEKLY";
+                xTop = 13;
             }
             if (tipo == 2)
             {
                 xTipo = "MONTHLY";
+                xTop = 6;
             }
             if (tipo == 3)
             {
                 xTipo = "QUARTERLY";
+                xTop = 4;
             }
             if (tipo == 4)
             {
                 xTipo = "YEARLY";
+                xTop = 2;
             }
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
+            string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string qry = "select * from (" + query + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
@@ -592,12 +595,10 @@ namespace MxliDashboard
                 chartTQ01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
             }
 
-            string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'ppms' and stype = 'top' order by id", conn2);
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
+            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'ppms' and stype = 'top' order by id";
+            string qry2 = "select * from (" + query2 + ") q2 order by id";
+            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+            DataTable dt2 = dBHelper2.QryManager(qry2);
             foreach (DataRow dr2 in dt2.Rows)
             {
                 double xActual = Convert.ToDouble(dr2["factual"].ToString());
@@ -616,29 +617,32 @@ namespace MxliDashboard
             chartPQ02.Series["Series2"].Points.Clear();
 
             string xTipo = "weekly";
+            int xTop = 13;
             if (tipo < 2)
             {
                 xTipo = "WEEKLY";
+                xTop = 13;
             }
             if (tipo == 2)
             {
                 xTipo = "MONTHLY";
+                xTop = 6;
             }
             if (tipo == 3)
             {
                 xTipo = "QUARTERLY";
+                xTop = 4;
             }
             if (tipo == 4)
             {
                 xTipo = "YEARLY";
+                xTop = 2;
             }
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
+            string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string qry = "select * from (" + query + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
@@ -648,12 +652,10 @@ namespace MxliDashboard
                 chartTQ02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
             }
 
-            string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'escapes' and stype = 'causes' order by id", conn2);
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
+            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'escapes' and stype = 'causes' order by id";
+            string qry2 = "select * from (" + query2 + ") q2 order by id";
+            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+            DataTable dt2 = dBHelper2.QryManager(qry2);
             foreach (DataRow dr2 in dt2.Rows)
             {
                 double xActual = Convert.ToDouble(dr2["factual"].ToString());
@@ -672,29 +674,32 @@ namespace MxliDashboard
             chartPQ03.Series["Series2"].Points.Clear();
 
             string xTipo = "weekly";
+            int xTop = 13;
             if (tipo < 2)
             {
                 xTipo = "WEEKLY";
+                xTop = 13;
             }
             if (tipo == 2)
             {
                 xTipo = "MONTHLY";
+                xTop = 6;
             }
             if (tipo == 3)
             {
                 xTipo = "QUARTERLY";
+                xTop = 4;
             }
             if (tipo == 4)
             {
                 xTipo = "YEARLY";
+                xTop = 2;
             }
 
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'defectos' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
+            string query = "select top "+ xTop + " * from [sta_nivel2] where smetric = 'defectos' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+            string qry = "select * from (" + query + ") q1 order by id";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(qry);
             foreach (DataRow dr1 in dt1.Rows)
             {
                 double xActual = Convert.ToDouble(dr1["factual"].ToString());
@@ -704,12 +709,10 @@ namespace MxliDashboard
                 chartTQ03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
             }
 
-            string myCnStr2 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn2 = new SqlConnection(myCnStr2);
-            SqlCommand cmd2 = new SqlCommand("select * from [sta_nivel2p] where smetric = 'defectos' and stype = 'causes' order by id", conn2);
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
+            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'defectos' and stype = 'causes' order by id";
+            string qry2 = "select * from (" + query2 + ") q2 order by id";
+            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+            DataTable dt2 = dBHelper2.QryManager(qry2);
             foreach (DataRow dr2 in dt2.Rows)
             {
                 double xActual = Convert.ToDouble(dr2["factual"].ToString());

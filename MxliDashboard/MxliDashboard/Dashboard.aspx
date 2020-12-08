@@ -55,39 +55,51 @@
             </div>
             <p></p>
             <div>
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnCustomColumnDisplayText="ASPxGridView1_CustomColumnDisplayText">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared">
                     <SettingsPager Visible="False" PageSize="50">
                     </SettingsPager>
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
                         <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="150px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="YTD Plan" FieldName="factual" VisibleIndex="1" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="70px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="YTD Actual" FieldName="fgoal" VisibleIndex="2" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="70px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="NOV Plan" FieldName="factual" VisibleIndex="3" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="70px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="NOV Actual" FieldName="fgoal" VisibleIndex="4" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="70px">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="70px">
+                            <DataItemTemplate>
+                                <dx:ASPxImage runat="server" ID="imgControl" Width="24px" Height="24px" EnableViewState="true" />
+                            </DataItemTemplate>
+                            <CellStyle HorizontalAlign="Center">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="TREND" VisibleIndex="6" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="530px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="7" Width="460px">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="smetric" VisibleIndex="8" Width="70px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/{0}.aspx" Text="View Details" Style-HorizontalAlign="Center" > 
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="smetric" VisibleIndex="7" Width="70px" EditCellStyle-HorizontalAlign="Center">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/dEscapes.aspx" Text="View" Style-HorizontalAlign="Center" > 
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
+                            <EditCellStyle HorizontalAlign="Center">
+                            </EditCellStyle>
+                            <CellStyle HorizontalAlign="Center">
+                            </CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="smetric" VisibleIndex="8" Width="80px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "n3_etad/v_kaizens.aspx" Text="View Report" Style-HorizontalAlign="Center" > 
+                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="smetric" VisibleIndex="8" Width="80px" EditCellStyle-HorizontalAlign="Center">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "n3_quality/v_escapes.aspx" Text="Open" Style-HorizontalAlign="Center" > 
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
+                            <EditCellStyle HorizontalAlign="Center">
+                            </EditCellStyle>
+                            <CellStyle HorizontalAlign="Center">
+                            </CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
+                        
                     </Columns>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">
@@ -96,10 +108,12 @@
                         </Row>
                         <AlternatingRow BackColor="#F3F3F3">
                         </AlternatingRow>
+                        <Cell Font-Size="Small">
+                        </Cell>
                     </Styles>
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="
-                    SELECT [smetric], [factual], [fgoal] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where sfilter = 'site' and stype = 'yearly'
+                    SELECT DISTINCT [smetric] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] order by smetric
                 "></asp:SqlDataSource>
             </div>
         </ContentTemplate>

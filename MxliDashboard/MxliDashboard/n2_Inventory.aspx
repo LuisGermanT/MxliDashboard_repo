@@ -464,7 +464,9 @@
                 <asp:SqlDataSource ID="SqlDataSourceSup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                     SelectCommand="SELECT distinct [sClass] FROM [sta_nivel2] where smetric = 'vmi' and sfilter = 'supplier' order by sClass"></asp:SqlDataSource>
             </div>
-
+            p></p>
+            <hr />
+            <p></p>
             <asp:UpdatePanel runat="server" ID="UpdPnl4" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="row" id="I04" runat="server">
@@ -480,7 +482,7 @@
                                                 </dx:ASPxLabel>
                                                 <dx:ASPxComboBox ID="ASPxComboBoxF9" runat="server" ValueField="sclass"
                                                     TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCOPQ1"
-                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF1" OnSelectedIndexChanged="ASPxComboBoxF9_SelectedIndexChanged">
+                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF9" OnSelectedIndexChanged="ASPxComboBoxF9_SelectedIndexChanged">
                                                     <ClientSideEvents Validation="function(s, e) {
                                                             if (s.GetSelectedIndex()==0) {
                                                             e.isValid = false;
@@ -495,7 +497,7 @@
                                                 </dx:ASPxLabel>
                                                 <dx:ASPxComboBox ID="ASPxComboBoxF10" runat="server" ValueField="sclass"
                                                     TextField="sclass" ValueType="System.String" DataSourceID="SqlDataSourceCOPQ2"
-                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF2" OnSelectedIndexChanged="ASPxComboBoxF10_SelectedIndexChanged">
+                                                    AutoPostBack="True" OnDataBound="cmbox_DataBoundF10" OnSelectedIndexChanged="ASPxComboBoxF10_SelectedIndexChanged">
                                                     <ClientSideEvents Validation="function(s, e) {
                                                             if (s.GetSelectedIndex()==0) {
                                                             e.isValid = false;
@@ -530,13 +532,13 @@
                                             <dx:aspxlabel ID="I04Actual" runat="server" Text="ASPxLabel"  Font-Size="Medium"></dx:aspxlabel>
                                         </td>
                                         <td style="text-align:center">
-                                            <dx:aspxlabel ID="D01AOP" runat="server"  Text="ASPxLabel"  Font-Size="Medium"></dx:aspxlabel>
+                                            <dx:aspxlabel ID="I04AOP" runat="server"  Text="ASPxLabel"  Font-Size="Medium"></dx:aspxlabel>
                                         </td>
                                         <td style="text-align:center">
-                                            <asp:Image ID="imgD01" runat="server" ImageUrl="~/img/bad.png" />
+                                            <asp:Image ID="imgI04" runat="server" ImageUrl="~/img/bad.png" />
                                         </td>
                                         <td style="text-align:center">
-                                            <asp:Chart ID="chartTD01" runat="server" Height="120px" Width="500px">
+                                            <asp:Chart ID="chartTI04" runat="server" Height="120px" Width="500px">
                                                 <Series>
                                                     <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="SlateGray" IsValueShownAsLabel="True" Palette="Grayscale" CustomProperties="LabelStyle=Top">
                                                         <SmartLabelStyle CalloutLineAnchorCapStyle="None" CalloutLineColor="Transparent" Enabled="False" MovingDirection="Top, TopRight, BottomLeft, BottomRight" />

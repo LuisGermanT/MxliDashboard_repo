@@ -38,27 +38,6 @@
                                             </ValidationSettings>
                                         </dx:ASPxComboBox>
                                     </th>
-                                    <th>
-                                        <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select metric filter:">
-                                        </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
-                                            OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
-                                            <Items>
-                                                <dx:ListEditItem Selected="True" Text="Default" Value="0" />
-                                                <dx:ListEditItem Text="Weekly" Value="1" />
-                                                <dx:ListEditItem Text="Monthly" Value="2" />
-                                                <dx:ListEditItem Text="Quarterly" Value="3" />
-                                                <dx:ListEditItem Text="Yearly" Value="4" />
-                                            </Items>
-                                            <ClientSideEvents Validation="function(s, e) {
-                                                    if (s.GetSelectedIndex()==0) {
-                                                    e.isValid = false;
-                                                    e.errorText = &quot;You should Select One View&quot;;
-                                                    }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
-                                        </dx:ASPxComboBox>
-                                    </th>
                                 </tr>
                             </table>
                         </dx:PanelContent>
@@ -77,70 +56,80 @@
             </div>
             <p></p>
             <div>
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnCustomColumnDisplayText="ASPxGridView1_CustomColumnDisplayText" >
-                    <SettingsPager Visible="False" PageSize="50">
-                    </SettingsPager>
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
+                    <SettingsPager Visible="False" PageSize="50"></SettingsPager>
+                    <SettingsBehavior AllowCellMerge="true" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
                         <dx:GridViewDataTextColumn Caption="METRIC" FieldName="metric" VisibleIndex="0" Width="160px">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="TYPE"  FieldName="metric2" VisibleIndex="1" Width="100px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JAN" FieldName="mjan" VisibleIndex="2" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JAN" FieldName="mjan" VisibleIndex="2" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="FEB" FieldName="mfeb" VisibleIndex="3" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="FEB" FieldName="mfeb" VisibleIndex="3" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MAR" FieldName="mmar" VisibleIndex="4" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MAR" FieldName="mmar" VisibleIndex="4" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="APR" FieldName="mapr" VisibleIndex="5" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="APR" FieldName="mapr" VisibleIndex="5" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MAY" FieldName="mmay" VisibleIndex="6" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MAY" FieldName="mmay" VisibleIndex="6" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JUN" FieldName="mjun" VisibleIndex="7" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JUN" FieldName="mjun" VisibleIndex="7" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JUL" FieldName="mjul" VisibleIndex="8" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JUL" FieldName="mjul" VisibleIndex="8" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="AUG" FieldName="maug" VisibleIndex="9" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="AUG" FieldName="maug" VisibleIndex="9" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="SEP" FieldName="msep" VisibleIndex="10" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="SEP" FieldName="msep" VisibleIndex="10" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="OCT" FieldName="moct" VisibleIndex="11" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="OCT" FieldName="moct" VisibleIndex="11" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="NOV" FieldName="mnov" VisibleIndex="12" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="NOV" FieldName="mnov" VisibleIndex="12" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="DEC" FieldName="mdec" VisibleIndex="13" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="DEC" FieldName="mdec" VisibleIndex="13" Width="65px">
                             <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="metric" VisibleIndex="14" Width="80px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/{0}.aspx" Text="View Details" Style-HorizontalAlign="Center" > 
-                                <Style HorizontalAlign="Center">
-                                </Style>
-                            </PropertiesHyperLinkEdit>
+                        <dx:GridViewDataTextColumn Caption="YTD" FieldName="ytd" VisibleIndex="14" Width="65px">
+                            <Settings AllowCellMerge="False" />
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="url" VisibleIndex="15" Width="75px">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ></PropertiesHyperLinkEdit>
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                       
                     </Columns>
                     <Styles>
-                        <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">
-                        </Header>
-                        <Row Font-Size="Medium">
-                        </Row>
-                        <AlternatingRow BackColor="#F3F3F3">
-                        </AlternatingRow>
-                    </Styles>
-                    <SettingsBehavior AllowCellMerge="true" />
+                        <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center"></Header>
+                        <Row Font-Size="Medium"></Row>
+                        <AlternatingRow BackColor="#F3F3F3"></AlternatingRow>
+                    </Styles>                    
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="
-                    SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd]
+                    SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd]
                 "></asp:SqlDataSource>
             </div>
         </ContentTemplate>
