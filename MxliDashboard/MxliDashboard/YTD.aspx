@@ -82,53 +82,55 @@
                     </SettingsPager>
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
-                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="metric" VisibleIndex="0" Width="160px">
+                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="metric" VisibleIndex="0" Width="160px" FixedStyle="Left" >
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="TYPE"  FieldName="metric2" VisibleIndex="1" Width="100px">
+                        <dx:GridViewDataTextColumn Caption="TYPE"  FieldName="metric2" VisibleIndex="1" Width="100px" FixedStyle="Left" >
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JAN" FieldName="mjan" VisibleIndex="2" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JAN" FieldName="mjan" VisibleIndex="2" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="FEB" FieldName="mfeb" VisibleIndex="3" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="FEB" FieldName="mfeb" VisibleIndex="3" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MAR" FieldName="mmar" VisibleIndex="4" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MAR" FieldName="mmar" VisibleIndex="4" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="APR" FieldName="mapr" VisibleIndex="5" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="APR" FieldName="mapr" VisibleIndex="5" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MAY" FieldName="mmay" VisibleIndex="6" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MAY" FieldName="mmay" VisibleIndex="6" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JUN" FieldName="mjun" VisibleIndex="7" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JUN" FieldName="mjun" VisibleIndex="7" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="JUL" FieldName="mjul" VisibleIndex="8" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="JUL" FieldName="mjul" VisibleIndex="8" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="AUG" FieldName="maug" VisibleIndex="9" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="AUG" FieldName="maug" VisibleIndex="9" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="SEP" FieldName="msep" VisibleIndex="10" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="SEP" FieldName="msep" VisibleIndex="10" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="OCT" FieldName="moct" VisibleIndex="11" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="OCT" FieldName="moct" VisibleIndex="11" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="NOV" FieldName="mnov" VisibleIndex="12" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="NOV" FieldName="mnov" VisibleIndex="12" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="DEC" FieldName="mdec" VisibleIndex="13" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="DEC" FieldName="mdec" VisibleIndex="13" Width="100px">
                             <Settings AllowCellMerge="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="metric" VisibleIndex="14" Width="80px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/{0}.aspx" Text="View Details" Style-HorizontalAlign="Center" > 
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="url" VisibleIndex="14" Width="80px">
+                            <%--<PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/{0}.aspx" Text="View Details" Style-HorizontalAlign="Center" >--%>
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View Details" Style-HorizontalAlign="Center" > 
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
                         </dx:GridViewDataHyperLinkColumn>                       
                     </Columns>
+                    <Settings HorizontalScrollBarMode="Visible" />
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">
                         </Header>
@@ -136,11 +138,12 @@
                         </Row>
                         <AlternatingRow BackColor="#F3F3F3">
                         </AlternatingRow>
+                        <FixedColumn BackColor="LightYellow" />
                     </Styles>
                     <SettingsBehavior AllowCellMerge="true" />
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="
-                    SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd]
+                    SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [url] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd]
                 "></asp:SqlDataSource>
             </div>
         </ContentTemplate>
