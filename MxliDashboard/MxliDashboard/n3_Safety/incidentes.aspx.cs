@@ -93,7 +93,7 @@ namespace MxliDashboard.n3_Safety
             WebChartControl1.Series["Goal"].Points.Clear();
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
-            string query = "SELECT TOP 13 * FROM cht_seguridad WHERE smetric = 'incidentes' and sType = '" + xType + "' and sfilter = '" + xFilter + "' and sday < '"+(semana-1)+"' ";
+            string query = "SELECT TOP 13 * FROM cht_seguridad WHERE smetric = 'incidentes' and sType = '" + xType + "' and sfilter = '" + xFilter + "' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dt1 = dBHelper.QryManager(qry);

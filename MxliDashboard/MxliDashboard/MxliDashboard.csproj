@@ -224,6 +224,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\bad.png" />
+    <Content Include="img\badB.png" />
+    <Content Include="img\badC.png" />
+    <Content Include="img\good.png" />
+    <Content Include="img\goodB.png" />
+    <Content Include="img\goodC.png" />
+    <Content Include="n3_Quality\dEscapes.aspx" />
+    <Content Include="n3_Quality\v_escapes.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="img\ban1.jpg" />
@@ -276,13 +284,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="img\bad.png" />
-    <Content Include="img\badB.png" />
-    <Content Include="img\badC.png" />
     <Content Include="img\delivery.jpg" />
-    <Content Include="img\good.png" />
-    <Content Include="img\goodB.png" />
-    <Content Include="img\goodC.png" />
     <Content Include="img\inventory.png" />
     <Content Include="img\logo.jpg" />
     <Content Include="img\logo.png" />
@@ -327,6 +329,23 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="n3_Quality\dEscapes.aspx.cs">
+      <DependentUpon>dEscapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Quality\dEscapes.aspx.designer.cs">
+      <DependentUpon>dEscapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Quality\r_escapes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="n3_Quality\v_escapes.aspx.cs">
+      <DependentUpon>v_escapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Quality\v_escapes.aspx.designer.cs">
+      <DependentUpon>v_escapes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YTD.aspx.cs">
       <DependentUpon>YTD.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -604,6 +623,9 @@
   <ItemGroup>
     <EmbeddedResource Include="n3_Etad\r_kaizens.resx">
       <DependentUpon>r_kaizens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="n3_Quality\r_escapes.resx">
+      <DependentUpon>r_escapes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
