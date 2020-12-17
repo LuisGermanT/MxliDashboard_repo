@@ -61,9 +61,9 @@
                     <SettingsBehavior AllowCellMerge="true" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
-                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="metric" VisibleIndex="0" Width="160px">
+                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="metric" VisibleIndex="0" Width="160px" FixedStyle="Left">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="TYPE"  FieldName="metric2" VisibleIndex="1" Width="100px">
+                        <dx:GridViewDataTextColumn Caption="TYPE"  FieldName="metric2" VisibleIndex="1" Width="90px" FixedStyle="Left">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="JAN" FieldName="mjan" VisibleIndex="2" Width="65px">
                             <Settings AllowCellMerge="False" />
@@ -122,10 +122,12 @@
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                       
                     </Columns>
+                    <Settings HorizontalScrollBarMode="Visible" VerticalScrollBarMode="Hidden"  VerticalScrollableHeight="760"/>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center"></Header>
                         <Row Font-Size="Medium"></Row>
                         <AlternatingRow BackColor="#F3F3F3"></AlternatingRow>
+                        <FixedColumn BackColor="LightYellow" />
                     </Styles>                    
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="

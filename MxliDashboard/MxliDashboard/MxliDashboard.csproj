@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44337</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -232,6 +231,7 @@
     <Content Include="img\goodC.png" />
     <Content Include="n3_Quality\dEscapes.aspx" />
     <Content Include="n3_Quality\v_escapes.aspx" />
+    <Content Include="n3_Inventory\scrap.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="img\ban1.jpg" />
@@ -345,6 +345,13 @@
     </Compile>
     <Compile Include="n3_Quality\v_escapes.aspx.designer.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="n3_Inventory\scrap.aspx.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="n3_Inventory\scrap.aspx.designer.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
     </Compile>
     <Compile Include="YTD.aspx.cs">
       <DependentUpon>YTD.aspx</DependentUpon>
