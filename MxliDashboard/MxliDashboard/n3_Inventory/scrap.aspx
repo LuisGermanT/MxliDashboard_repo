@@ -25,15 +25,29 @@
                         
                         <table style="table-layout:fixed">
                             <tr>
+                                 <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select VSM"></dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxGroupInContent" runat="server" ValueField="VSM"
+                                        TextField="VSM" ValueType="System.String" DataSourceID="SqlDataSourceGroup"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM"></dx:ASPxLabel>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area"></dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="Area"
                                         TextField="Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
                                         AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    e.errorText = &quot;You should Select One Area&quot;;
                                                     }}" />
                                         <ValidationSettings ValidateOnLeave="False">
                                         </ValidationSettings>
@@ -139,39 +153,41 @@
                                 </dx:GridViewToolbar>
                             </Toolbars>
                             <Columns>
-                                <dx:GridViewDataTextColumn FieldName="AccName" VisibleIndex="0" Caption="Account">
+                                <dx:GridViewDataTextColumn FieldName="AccName" VisibleIndex="0">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="AccConcept" VisibleIndex="1" Caption="Concept">
+                                <dx:GridViewDataTextColumn FieldName="AccConcept" VisibleIndex="1">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="2" Caption="Amount">
+                                <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="2" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Qty" VisibleIndex="3" Caption="Qty">
+                                <dx:GridViewDataTextColumn FieldName="Qty" VisibleIndex="3" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Area" VisibleIndex="4" Caption="Area">
+                                <dx:GridViewDataTextColumn FieldName="VSM" VisibleIndex="4">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Cell" VisibleIndex="5" Caption="Cell">
+                                <dx:GridViewDataTextColumn FieldName="Area" VisibleIndex="5">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="6" Caption="MRP">
+                                <dx:GridViewDataTextColumn FieldName="Cell" VisibleIndex="6">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Material" VisibleIndex="7" Caption="Material">
+                                <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="7">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Ordr" VisibleIndex="8" Caption="Order">
+                                <dx:GridViewDataTextColumn FieldName="Material" VisibleIndex="8" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Text" VisibleIndex="9" Caption="QN">
+                                <dx:GridViewDataTextColumn FieldName="Ordr" VisibleIndex="9" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Defect" VisibleIndex="10" Caption="Defect">
+                                <dx:GridViewDataTextColumn FieldName="Text" VisibleIndex="10" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="EID" VisibleIndex="11" Caption="EID">
+                                <dx:GridViewDataTextColumn FieldName="Defect" VisibleIndex="11" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="PstDate" VisibleIndex="12" Caption="Posting Date">
+                                <dx:GridViewDataTextColumn FieldName="EID" VisibleIndex="12" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Week" VisibleIndex="13" Caption="Wk">
+                                <dx:GridViewDataDateColumn FieldName="PstDate" ShowInCustomizationForm="True" VisibleIndex="13">
+                                </dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="Week" VisibleIndex="14">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="MntNum" VisibleIndex="14" Caption="#Month">
+                                <dx:GridViewDataTextColumn FieldName="MntNum" VisibleIndex="15">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="MntName" VisibleIndex="15" Caption="Month">
+                                <dx:GridViewDataTextColumn FieldName="MntName" VisibleIndex="16">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="16" Caption="Yr">
+                                <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="17">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
                             <Styles>
@@ -185,15 +201,15 @@
 
 
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT * FROM [vw_scrap_gridview]
-                                  WHERE [Cell] LIKE @pCell AND [Area] LIKE @pVsm 
-                                    ORDER BY [PstDate],[Area],[Cell]
-                ">
+                SelectCommand="SELECT AccName, AccConcept, Amount, Qty, VSM, Area, Cell, MRP, Material, Ordr, Text, Defect, EID, PstDate, Week, MntNum, MntName, Year 
+                                FROM vw_scrap_gridview WHERE (Cell LIKE @pCell) AND (Area LIKE @pVsm) AND (VSM LIKE @pGroup) ORDER BY Year desc, Week desc, Area, Cell" ProviderName="System.Data.SqlClient">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                         Name="pVsm" PropertyName="Value" Type="String" />
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxGroupInContent"
+                        Name="pGroup" PropertyName="Value" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
 
@@ -201,6 +217,8 @@
                 SelectCommand="SELECT distinct [Cell] FROM [vw_scrap_gridview] order by Cell"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT distinct [Area] FROM [vw_scrap_gridview] order by Area"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceGroup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                SelectCommand="SELECT distinct [VSM] FROM [vw_scrap_gridview] order by VSM"></asp:SqlDataSource>
              <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
 

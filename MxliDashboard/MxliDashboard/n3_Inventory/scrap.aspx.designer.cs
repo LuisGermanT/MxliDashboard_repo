@@ -42,6 +42,24 @@ namespace MxliDashboard.n3_Inventory
         protected global::DevExpress.Web.PanelContent PanelContent1;
 
         /// <summary>
+        /// ASPxLabelCaption4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption4;
+
+        /// <summary>
+        /// ASPxComboBoxGroupInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxGroupInContent;
+
+        /// <summary>
         /// ASPxLabelCaption1 control.
         /// </summary>
         /// <remarks>
@@ -175,6 +193,15 @@ namespace MxliDashboard.n3_Inventory
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
+
+        /// <summary>
+        /// SqlDataSourceGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceGroup;
 
         /// <summary>
         /// SqlDataSourceFilters control.

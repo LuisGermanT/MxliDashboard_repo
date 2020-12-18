@@ -23,8 +23,23 @@
                     <dx:PanelContent ID="PanelContent1" runat="server">
                         <table style="table-layout: fixed">
                             <tr>
+                                 <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select VSM">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxGroupInContent" runat="server" ValueField="NP_Group"
+                                        TextField="NP_Group" ValueType="System.String" DataSourceID="SqlDataSourceGroup"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="NP_Area"
                                         TextField="NP_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -32,7 +47,7 @@
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    e.errorText = &quot;You should Select One Area&quot;;
                                                     }}" />
                                         <ValidationSettings ValidateOnLeave="False">
                                         </ValidationSettings>
@@ -146,25 +161,27 @@
                             <Columns>
                                 <dx:GridViewDataTextColumn FieldName="NP_CentroCostos" VisibleIndex="0" Caption="Cost Center">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Area" VisibleIndex="1" Caption="VSM">
+                                <dx:GridViewDataTextColumn FieldName="NP_Group" VisibleIndex="1" Caption="VSM">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Celda" VisibleIndex="2" Caption="Cell">
+                                <dx:GridViewDataTextColumn FieldName="NP_Area" VisibleIndex="2" Caption="Area">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_TotalHrs" VisibleIndex="3" Caption="Total Hrs">
+                                <dx:GridViewDataTextColumn FieldName="NP_Celda" VisibleIndex="3" Caption="Cell">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Qty" VisibleIndex="4" Caption="Units">
+                                <dx:GridViewDataTextColumn FieldName="NP_TotalHrs" VisibleIndex="4" Caption="Total Hrs">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_EarnedHrs" VisibleIndex="5" Caption="Earned Hrs">
+                                <dx:GridViewDataTextColumn FieldName="NP_Qty" VisibleIndex="5" Caption="Units">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Productivity" VisibleIndex="6" Caption="% Productivity">
+                                <dx:GridViewDataTextColumn FieldName="NP_EarnedHrs" VisibleIndex="6" Caption="Earned Hrs">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="NP_Productivity" VisibleIndex="7" Caption="% Productivity">
                                     <PropertiesTextEdit DisplayFormatString="{0:n2}%">
                                     </PropertiesTextEdit>
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Week" VisibleIndex="7" Caption="Wk">
+                                <dx:GridViewDataTextColumn FieldName="NP_Week" VisibleIndex="8" Caption="Wk">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Month" VisibleIndex="8" Caption="Month">
+                                <dx:GridViewDataTextColumn FieldName="NP_Month" VisibleIndex="9" Caption="Month">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="NP_Year" VisibleIndex="9" Caption="Yr">
+                                <dx:GridViewDataTextColumn FieldName="NP_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
                             <Styles>
@@ -177,35 +194,22 @@
             </dx:ASPxRoundPanel>
     
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT [NP_CentroCostos], [NP_Area], [NP_Celda], [NP_TotalHrs], [NP_Qty], [NP_EarnedHrs], [NP_Productivity], [NP_Week], [NP_Month], [NP_Year] FROM [tblLaborProductivity]
-                                  WHERE [NP_Celda] LIKE @pCell AND [NP_Area] LIKE @pVsm 
-                                    ORDER BY
-                                            CASE 
-				                                WHEN NP_Month = 'Jan' THEN 1
-				                                WHEN NP_Month = 'Feb' THEN 2
-				                                WHEN NP_Month = 'Mar' THEN 3
-				                                WHEN NP_Month = 'Apr' THEN 4
-				                                WHEN NP_Month = 'May' THEN 5
-				                                WHEN NP_Month = 'Jun' THEN 6
-				                                WHEN NP_Month = 'Jul' THEN 7
-				                                WHEN NP_Month = 'Aug' THEN 8
-				                                WHEN NP_Month = 'Sep' THEN 9
-				                                WHEN NP_Month = 'Oct' THEN 10
-				                                WHEN NP_Month = 'Nov' THEN 11
-				                                WHEN NP_Month = 'Dec' THEN 12
-			                                END desc, NP_Week desc, NP_Year, NP_Area, NP_Celda
-                ">
+                SelectCommand="SELECT NP_CentroCostos, NP_Group, NP_Area, NP_Celda, NP_TotalHrs, NP_Qty, NP_EarnedHrs, NP_Productivity, NP_Week, NP_Month, NP_Year FROM tblLaborProductivity WHERE (NP_Celda LIKE @pCell) AND (NP_Area LIKE @pVsm) AND (NP_Group LIKE @pGroup) ORDER BY CASE WHEN NP_Month = 'Jan' THEN 1 WHEN NP_Month = 'Feb' THEN 2 WHEN NP_Month = 'Mar' THEN 3 WHEN NP_Month = 'Apr' THEN 4 WHEN NP_Month = 'May' THEN 5 WHEN NP_Month = 'Jun' THEN 6 WHEN NP_Month = 'Jul' THEN 7 WHEN NP_Month = 'Aug' THEN 8 WHEN NP_Month = 'Sep' THEN 9 WHEN NP_Month = 'Oct' THEN 10 WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Year, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                         Name="pVsm" PropertyName="Value" Type="String" />
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxGroupInContent"
+                        Name="pGroup" PropertyName="Value" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [NP_Celda] FROM [tblLaborProductivity] order by NP_Celda"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [NP_Celda] FROM [tblLaborProductivity] order by [NP_Celda]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT distinct [NP_Area] FROM [tblLaborProductivity] order by NP_Area"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [NP_Area] FROM [tblLaborProductivity] order by [NP_Area]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceGroup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                SelectCommand="SELECT distinct [NP_Group] FROM [tblLaborProductivity] order by [NP_Group]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
             <p/>

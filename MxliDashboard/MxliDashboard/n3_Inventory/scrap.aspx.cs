@@ -20,6 +20,13 @@ namespace MxliDashboard.n3_Inventory
             }
         }
 
+        protected void cmbox_DataBoundGroup(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxGroupInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxGroupInContent.SelectedIndex = 0;
+        }
+
         protected void cmbox_DataBoundVsm(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
@@ -41,9 +48,45 @@ namespace MxliDashboard.n3_Inventory
             ASPxComboBoxMWInContent.SelectedIndex = 0;
         }
 
+        protected void ASPxComboBoxGroupInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string wk = "Week";
+
+            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxCellInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxMWInContent.SelectedIndex > 0)
+            {
+                wk = ASPxComboBoxMWInContent.SelectedItem.ToString();
+            }
+
+            int indx = ASPxComboBoxGroupInContent.SelectedIndex;
+            if (indx > 0)
+            {
+                string vsm = ASPxComboBoxGroupInContent.SelectedItem.ToString();
+                loadChartP01(1, vsm, wk);
+            }
+            else
+            {
+                loadChartP01(0, "", wk);
+            }
+        }
+
         protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
+
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
 
             if (ASPxComboBoxCellInContent.SelectedIndex > 0)
             {
@@ -59,7 +102,7 @@ namespace MxliDashboard.n3_Inventory
             if (indx > 0)
             {
                 string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
-                loadChartP01(1, vsm, wk);
+                loadChartP01(2, vsm, wk);
             }
             else
             {
@@ -70,6 +113,11 @@ namespace MxliDashboard.n3_Inventory
         protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
+
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
 
             if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
             {
@@ -85,7 +133,7 @@ namespace MxliDashboard.n3_Inventory
             if (idx > 0)
             {
                 string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
-                loadChartP01(2, cell, wk);
+                loadChartP01(3, cell, wk);
             }
             else
             {
@@ -136,31 +184,29 @@ namespace MxliDashboard.n3_Inventory
             chartTP01.Series["Series1"].Points.Clear();
             chartTP01.Series["Series2"].Points.Clear();
 
-            string qry = "", qryBaseline = "";
+            string query = "", qry = "", qryBaseline = "";
             string colName = "";
             string xClass = "";
-            string sTblName = "", cTblName = "", aTblName = "";
+            string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
 
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                ////sTblName = " FROM [vw_labor_productivity_by_site_wkly] WHERE [NP_Week] BETWEEN " + (semana - 12) + " AND " + semana;
-                sTblName = " FROM [vw_scrap_monthly_by_site]";
-                //cTblName = " FROM [vw_labor_productivity_by_cell_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                cTblName = " FROM [vw_scrap_monthly_by_cell] WHERE ";
-                //aTblName = " FROM [vw_labor_productivity_by_area_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                aTblName = " FROM [vw_scrap_monthly_by_area] WHERE ";
-                colName = "sMontName";
+                //sTblName = " FROM [vw_scrap_weekly_by_site] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
+                sTblName = " FROM [vw_scrap_weekly_by_site]";
+                //aTblName = " FROM [vw_scrap_weekly_by_area] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                aTblName = " FROM [vw_scrap_weekly_by_area] WHERE ";
+                //cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE ";
+                vTblName = " FROM [vw_scrap_weekly_by_vsm] WHERE ";
+                colName = "TCS_Week";
             }
             else
             {
-                sTblName = " FROM [vw_scrap_monthly_by_site] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
-                ////cTblName = "[vw_labor_productivity_by_cell_mntly] WHERE ";
-                //cTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_cell_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_cell_mntly].[NP_Year] " +
-                //            " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_cell_mntly] WHERE ";
-                ////aTblName = "[vw_labor_productivity_by_area_mntly] WHERE ";
-                //aTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_area_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_area_mntly].[NP_Year]" +
-                //            " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_area_mntly] WHERE ";
+                sTblName = " FROM [vw_scrap_monthly_by_site]";
+                aTblName = " FROM [vw_scrap_monthly_by_area] WHERE ";
+                cTblName = " FROM [vw_scrap_monthly_by_cell] WHERE ";
+                vTblName = " FROM [vw_scrap_monthly_by_vsm] WHERE ";
                 colName = "sMontName";
             }
 
@@ -169,19 +215,29 @@ namespace MxliDashboard.n3_Inventory
             {
                 case 1:
                     xClass = clase;
-                    qry = "SELECT * " + aTblName + " [TCS_Area] = '" + xClass +
-                          "' ORDER BY [sLstWkDay], [TCS_Area]";
+                    query = "SELECT TOP 12 * " + vTblName + " [TCS_Group] = '" + xClass +
+                          "' ORDER BY [sLstWkDay] desc, [TCS_Group]";
+                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
                     break;
                 case 2:
                     xClass = clase;
-                    qry = "SELECT * " + cTblName + " [TCS_Cell] = '" + xClass +
-                          "' ORDER BY [sLstWkDay], [TCS_Cell]";
+                    query = "SELECT TOP 12 * " + aTblName + " [TCS_Area] = '" + xClass +
+                          "' ORDER BY [sLstWkDay] desc, [TCS_Area]";
+                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
+                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                    break;
+                case 3:
+                    xClass = clase;
+                    query = "SELECT TOP 12 * " + cTblName + " [TCS_Cell] = '" + xClass +
+                          "' ORDER BY [sLstWkDay] desc, [TCS_Cell]";
+                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
                     break;
                 default:
-                    qry = "SELECT * " + sTblName +
-                          "  ORDER BY [TCS_MonthNum]";
+                    query = "SELECT TOP 12 * " + sTblName +
+                          "  ORDER BY [sLstWkDay] desc";
+                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
                     qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE 'Site'";
                     break;
             }
@@ -200,10 +256,15 @@ namespace MxliDashboard.n3_Inventory
 
             xGoal = xGoal / 100;
 
-            var maxVal = Convert.ToInt32(dtPareto.Compute("Max([TCS_Amount])", string.Empty));
+            var maxVal = 0;
+            if (dtPareto.Rows.Count > 0)
+            {
+                maxVal = Convert.ToInt32(dtPareto.Compute("Max([TCS_Amount])", string.Empty));
+            }
+            
             double maxScale = 1000000;
 
-            if (maxVal > 999999 && maxVal < 1000000000) 
+            if (maxVal > 999999) 
             {
                 chartTP01.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#,##0,,M";
 
@@ -214,13 +275,30 @@ namespace MxliDashboard.n3_Inventory
             {
                 chartTP01.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#,##0,k";
 
-                if (maxVal < 500000){
-                    maxScale = Math.Ceiling(Convert.ToDouble(maxVal) / (maxVal + 50000d)) * (maxVal+50000);
-                }
-                else
+                switch (maxVal)
                 {
-                    // set maximum scale to the nearest interval by 500,000
-                    maxScale = Math.Ceiling(Convert.ToDouble(maxVal) / 500000d) * 500000;
+                    case int val when (val <= 100):
+                        maxScale = 100;
+                        break;
+                    case int val when (val > 99 && val <= 999):
+                        maxScale = 1000;
+                        break;
+                    case int val when (val > 999 && val <= 10000):
+                        maxScale = 10000;
+                        break;
+                    case int val when (val > 9999 && val <= 50000):
+                        maxScale = maxVal + 10000;
+                        break;
+                    case int val when (val > 49999 && val <= 100000):
+                        maxScale = maxVal + 25000;
+                        break;
+                    case int val when (val > 99999 && val <= 500000):
+                        maxScale = maxVal + 50000;
+                        break;
+                    default:
+                        // set maximum scale to the nearest interval by 500,000
+                        maxScale = Math.Ceiling(Convert.ToDouble(maxVal) / 500000d) * 500000;
+                        break;
                 }
                     
             }
@@ -229,12 +307,8 @@ namespace MxliDashboard.n3_Inventory
 
             foreach (DataRow dr1 in dtPareto.Rows)
             {
-                //double eHrs = Convert.ToDouble(dr1["NP_EarnedHrs"].ToString());
-                double tHrs = Convert.ToDouble(dr1["TCS_Amount"].ToString());
-                //double prod = tHrs == 0 ? 0 : (eHrs / tHrs);
-                //prod = Math.Round(prod, 2);
-                chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), tHrs);
-                //chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), eHrs);
+                double tScrap = Convert.ToDouble(dr1["TCS_Amount"].ToString());
+                chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), tScrap);
             }
 
         }

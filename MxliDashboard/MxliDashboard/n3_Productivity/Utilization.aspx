@@ -24,11 +24,11 @@
                         <table style="table-layout: fixed">
                             <tr>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select VSM">
                                     </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TU_Area"
-                                        TextField="TU_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
+                                    <dx:ASPxComboBox ID="ASPxComboBoxGroupInContent" runat="server" ValueField="TU_Group"
+                                        TextField="TU_Group" ValueType="System.String" DataSourceID="SqlDataSourceGroup"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -39,7 +39,22 @@
                                     </dx:ASPxComboBox>
                                 </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TU_Area"
+                                        TextField="TU_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One Area&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="TU_Celda"
                                         TextField="TU_Celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
@@ -148,23 +163,25 @@
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="TU_CentroCostos" VisibleIndex="1" Caption="Cost Center">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Area" VisibleIndex="2" Caption="VSM">
+                                <dx:GridViewDataTextColumn FieldName="TU_Group" VisibleIndex="2" Caption="VSM">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="3" Caption="Cell">
+                                <dx:GridViewDataTextColumn FieldName="TU_Area" VisibleIndex="3" Caption="Area">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="4" Caption="Direct Hrs" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="4" Caption="Cell">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="5" Caption="Total Hrs" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="5" ReadOnly="True" Caption="Direct Hrs">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="6" Caption="% Utilization" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="6" ReadOnly="True" Caption="Total Hrs">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="7" ReadOnly="True" Caption="% Utilization">
                                     <PropertiesTextEdit DisplayFormatString="{0:n2}%">
                                     </PropertiesTextEdit>
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="7" Caption="Wk">
+                                 <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="8" Caption="Wk">
                                 </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="8" Caption="Month">
+                                <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="9" Caption="Month">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Year" VisibleIndex="9" Caption="Yr">
+                                <dx:GridViewDataTextColumn FieldName="TU_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
                             <Styles>
@@ -177,10 +194,7 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_DirectHrs], [TU_TotHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
-                                FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
-                                    ORDER BY [TU_Year] desc, [TU_Month] desc, [TU_Week] desc, [TU_Area], [TU_Celda]
-                ">
+                SelectCommand="SELECT TU_EID, TU_CentroCostos, TU_Group, TU_Area, TU_Celda, TU_DirectHrs, TU_TotHrs, TU_Util, TU_Week, TU_Month, TU_Year FROM vw_Util_Details WHERE (TU_Celda LIKE @pCell) AND (TU_Area LIKE @pVsm) AND (TU_Group LIKE @pGroup) ORDER BY TU_Year DESC, TU_Month DESC, TU_Week DESC, TU_Group, TU_Area, TU_Celda" ProviderName="System.Data.SqlClient">
                 <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_DirectHrs], [TU_TotHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
                                 FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
@@ -191,6 +205,8 @@
                         Name="pCell" PropertyName="Value" Type="String" />
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                         Name="pVsm" PropertyName="Value" Type="String" />
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxGroupInContent"
+                        Name="pGroup" PropertyName="Value" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
 
@@ -198,6 +214,8 @@
             SelectCommand="SELECT distinct [TU_Celda] FROM [tblUtilization] order by [TU_Celda]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
             SelectCommand="SELECT distinct [TU_Area] FROM [tblUtilization] order by [TU_Area]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceGroup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+            SelectCommand="SELECT distinct [TU_Group] FROM [tblUtilization] order by [TU_Group]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
             SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
 

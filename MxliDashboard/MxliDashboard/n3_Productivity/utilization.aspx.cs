@@ -20,6 +20,13 @@ namespace MxliDashboard.n3_Productivity
             }
         }
 
+        protected void cmbox_DataBoundGroup(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxGroupInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxGroupInContent.SelectedIndex = 0;
+        }
+
         protected void cmbox_DataBoundVsm(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
@@ -41,9 +48,45 @@ namespace MxliDashboard.n3_Productivity
             ASPxComboBoxMWInContent.SelectedIndex = 0;
         }
 
+        protected void ASPxComboBoxGroupInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string wk = "Week";
+
+            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxCellInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxMWInContent.SelectedIndex > 0)
+            {
+                wk = ASPxComboBoxMWInContent.SelectedItem.ToString();
+            }
+
+            int indx = ASPxComboBoxGroupInContent.SelectedIndex;
+            if (indx > 0)
+            {
+                string vsm = ASPxComboBoxGroupInContent.SelectedItem.ToString();
+                loadChartP01(1, vsm, wk);
+            }
+            else
+            {
+                loadChartP01(0, "", wk);
+            }
+        }
+
         protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
+
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
 
             if (ASPxComboBoxCellInContent.SelectedIndex > 0)
             {
@@ -59,7 +102,7 @@ namespace MxliDashboard.n3_Productivity
             if (indx > 0)
             {
                 string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
-                loadChartP01(1, vsm, wk);
+                loadChartP01(2, vsm, wk);
             }
             else
             {
@@ -70,6 +113,11 @@ namespace MxliDashboard.n3_Productivity
         protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
+
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
 
             if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
             {
@@ -85,7 +133,7 @@ namespace MxliDashboard.n3_Productivity
             if (idx > 0)
             {
                 string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
-                loadChartP01(2, cell, wk);
+                loadChartP01(3, cell, wk);
             }
             else
             {
@@ -98,15 +146,21 @@ namespace MxliDashboard.n3_Productivity
             string filter = "", wk = "";
             int idx = 0;
 
-            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
             {
                 idx = 1;
+                filter = ASPxComboBoxGroupInContent.SelectedItem.ToString();
+            }
+
+            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            {
+                idx = 2;
                 filter = ASPxComboBoxVsmInContent.SelectedItem.ToString();
             }
 
             if (ASPxComboBoxCellInContent.SelectedIndex > 0)
             {
-                idx = 2;
+                idx = 3;
                 filter = ASPxComboBoxCellInContent.SelectedItem.ToString();
             }
 
@@ -138,7 +192,7 @@ namespace MxliDashboard.n3_Productivity
             string qry = "", qryBaseline = "";
             string colName = "";
             string xClass = "";
-            string sTblName = "", cTblName = "", aTblName = "";
+            string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
 
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
@@ -149,6 +203,7 @@ namespace MxliDashboard.n3_Productivity
                 cTblName = "[vw_utilization_by_cell_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 //aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                vTblName = "[vw_utilization_by_vsm_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 colName = "TU_Week";
             }
             else
@@ -158,6 +213,7 @@ namespace MxliDashboard.n3_Productivity
                 cTblName = "[vw_utilization_by_cell_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 //aTblName = "[vw_utilization_by_area_mntly_wd] WHERE ";
                 aTblName = "[vw_utilization_by_area_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                vTblName = "[vw_utilization_by_vsm_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 colName = "TU_Month";
             }
 
@@ -165,6 +221,13 @@ namespace MxliDashboard.n3_Productivity
             switch (indice)
             {
                 case 1:
+                    xClass = clase;
+                    qry = "SELECT * FROM " + vTblName + " [TU_Group] = '" + xClass +
+                          "' ORDER BY [TU_LstWkDay]";
+                    //qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
+                    qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
+                    break;
+                case 2:
                     xClass = clase;
                     qry = "SELECT * FROM " + aTblName + " [TU_Area] = '" + xClass +
                           "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Area]";
@@ -184,7 +247,7 @@ namespace MxliDashboard.n3_Productivity
                           //"  END, " + colName + ", [TU_Area] ";
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
                     break;
-                case 2:
+                case 3:
                     xClass = clase;
                     qry = "SELECT * FROM " + cTblName + " [TU_Celda] = '" + xClass +
                           "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Celda]";
