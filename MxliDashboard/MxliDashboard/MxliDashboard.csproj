@@ -224,14 +224,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\settings_banner.png" />
+    <Content Include="metrics\productivity.aspx" />
+    <Content Include="metrics\Utilization.aspx" />
+    <Content Include="Settings.aspx" />
     <Content Include="img\bad.png" />
     <Content Include="img\badB.png" />
     <Content Include="img\badC.png" />
     <Content Include="img\good.png" />
     <Content Include="img\goodB.png" />
     <Content Include="img\goodC.png" />
-    <Content Include="n3_Quality\dEscapes.aspx" />
-    <Content Include="n3_Quality\v_escapes.aspx" />
+    <Content Include="metrics\dEscapes.aspx" />
+    <Content Include="metrics\v_escapes.aspx" />
+    <Content Include="settings\set_highlights.aspx" />
+    <Content Include="settings\set_tierviews.aspx" />
+    <Content Include="settings\set_actions.aspx" />
+    <Content Include="settings\set_forecast.aspx" />
+    <Content Include="settings\set_aop_goals.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="img\ban1.jpg" />
@@ -243,26 +252,23 @@
     <Content Include="Default.aspx" />
     <Content Include="n2_Delivery.aspx" />
     <Content Include="n2_Etad.aspx" />
-    <Content Include="n3_Delivery\pastdue.aspx" />
-    <Content Include="n3_Delivery\output.aspx" />
-    <Content Include="n3_Etad\kaizens.aspx" />
-    <Content Include="n3_Etad\v_kaizens.aspx" />
-    <Content Include="n3_Inventory\entitlement.aspx" />
-    <Content Include="n3_Inventory\vmi.aspx" />
-    <Content Include="n3_Productivity\productivity.aspx" />
-    <Content Include="n3_Productivity\utilization.aspx" />
-    <Content Include="n3_Safety\mep.aspx" />
-    <Content Include="n3_Safety\tpm.aspx" />
-    <Content Include="n3_Safety\mstactions.aspx" />
-    <Content Include="n3_Safety\incidentes.aspx" />
-    <Content Include="Settings.aspx" />
+    <Content Include="metrics\pastdue.aspx" />
+    <Content Include="metrics\output.aspx" />
+    <Content Include="metrics\kaizens.aspx" />
+    <Content Include="metrics\v_kaizens.aspx" />
+    <Content Include="metrics\entitlement.aspx" />
+    <Content Include="metrics\vmi.aspx" />
+    <Content Include="metrics\mep.aspx" />
+    <Content Include="metrics\tpm.aspx" />
+    <Content Include="metrics\mstactions.aspx" />
+    <Content Include="metrics\incidentes.aspx" />
     <Content Include="n2_Inventory.aspx" />
     <Content Include="n2_Productivity.aspx" />
     <Content Include="n2_Quality.aspx" />
-    <Content Include="n3_Inventory\inventory.aspx" />
-    <Content Include="n3_Quality\defects.aspx" />
-    <Content Include="n3_Quality\escapesppm.aspx" />
-    <Content Include="n3_Quality\escapes.aspx" />
+    <Content Include="metrics\inventory.aspx" />
+    <Content Include="metrics\defects.aspx" />
+    <Content Include="metrics\escapesppm.aspx" />
+    <Content Include="metrics\escapes.aspx" />
     <Content Include="Reports\ReportViewer1.aspx" />
     <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
@@ -276,8 +282,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="n3_Delivery\OTTR.aspx" />
-    <Content Include="WebForm2.aspx" />
+    <Content Include="metrics\OTTR.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -329,22 +334,78 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="n3_Quality\dEscapes.aspx.cs">
+    <Compile Include="metrics\productivity.aspx.cs">
+      <DependentUpon>productivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\productivity.aspx.designer.cs">
+      <DependentUpon>productivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\utilization.aspx.cs">
+      <DependentUpon>Utilization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\utilization.aspx.designer.cs">
+      <DependentUpon>Utilization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\dEscapes.aspx.cs">
       <DependentUpon>dEscapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Quality\dEscapes.aspx.designer.cs">
+    <Compile Include="metrics\dEscapes.aspx.designer.cs">
       <DependentUpon>dEscapes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Quality\r_escapes.cs">
+    <Compile Include="metrics\r_escapes.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="n3_Quality\v_escapes.aspx.cs">
+    <Compile Include="metrics\v_escapes.aspx.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Quality\v_escapes.aspx.designer.cs">
+    <Compile Include="metrics\v_escapes.aspx.designer.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="settings\set_highlights.aspx.cs">
+      <DependentUpon>set_highlights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="settings\set_highlights.aspx.designer.cs">
+      <DependentUpon>set_highlights.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="settings\set_tierviews.aspx.cs">
+      <DependentUpon>set_tierviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="settings\set_tierviews.aspx.designer.cs">
+      <DependentUpon>set_tierviews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="settings\set_actions.aspx.cs">
+      <DependentUpon>set_actions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="settings\set_actions.aspx.designer.cs">
+      <DependentUpon>set_actions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="settings\set_forecast.aspx.cs">
+      <DependentUpon>set_forecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="settings\set_forecast.aspx.designer.cs">
+      <DependentUpon>set_forecast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="settings\set_aop_goals.aspx.cs">
+      <DependentUpon>set_aop_goals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="settings\set_aop_goals.aspx.designer.cs">
+      <DependentUpon>set_aop_goals.aspx</DependentUpon>
     </Compile>
     <Compile Include="YTD.aspx.cs">
       <DependentUpon>YTD.aspx</DependentUpon>
@@ -382,99 +443,78 @@
     <Compile Include="n2_Etad.aspx.designer.cs">
       <DependentUpon>n2_Etad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Delivery\pastdue.aspx.cs">
+    <Compile Include="metrics\pastdue.aspx.cs">
       <DependentUpon>pastdue.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Delivery\pastdue.aspx.designer.cs">
+    <Compile Include="metrics\pastdue.aspx.designer.cs">
       <DependentUpon>pastdue.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Delivery\output.aspx.cs">
+    <Compile Include="metrics\output.aspx.cs">
       <DependentUpon>output.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Delivery\output.aspx.designer.cs">
+    <Compile Include="metrics\output.aspx.designer.cs">
       <DependentUpon>output.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Etad\kaizens.aspx.cs">
+    <Compile Include="metrics\kaizens.aspx.cs">
       <DependentUpon>kaizens.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Etad\kaizens.aspx.designer.cs">
+    <Compile Include="metrics\kaizens.aspx.designer.cs">
       <DependentUpon>kaizens.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Etad\r_kaizens.cs">
+    <Compile Include="metrics\r_kaizens.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="n3_Etad\v_kaizens.aspx.cs">
+    <Compile Include="metrics\v_kaizens.aspx.cs">
       <DependentUpon>v_kaizens.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Etad\v_kaizens.aspx.designer.cs">
+    <Compile Include="metrics\v_kaizens.aspx.designer.cs">
       <DependentUpon>v_kaizens.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Inventory\entitlement.aspx.cs">
+    <Compile Include="metrics\entitlement.aspx.cs">
       <DependentUpon>entitlement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Inventory\entitlement.aspx.designer.cs">
+    <Compile Include="metrics\entitlement.aspx.designer.cs">
       <DependentUpon>entitlement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Inventory\vmi.aspx.cs">
+    <Compile Include="metrics\vmi.aspx.cs">
       <DependentUpon>vmi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Inventory\vmi.aspx.designer.cs">
+    <Compile Include="metrics\vmi.aspx.designer.cs">
       <DependentUpon>vmi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Productivity\productivity.aspx.cs">
-      <DependentUpon>productivity.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="n3_Productivity\productivity.aspx.designer.cs">
-      <DependentUpon>productivity.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="n3_Productivity\utilization.aspx.cs">
-      <DependentUpon>utilization.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="n3_Productivity\utilization.aspx.designer.cs">
-      <DependentUpon>utilization.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="n3_Safety\mep.aspx.cs">
+    <Compile Include="metrics\mep.aspx.cs">
       <DependentUpon>mep.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Safety\mep.aspx.designer.cs">
+    <Compile Include="metrics\mep.aspx.designer.cs">
       <DependentUpon>mep.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Safety\tpm.aspx.cs">
+    <Compile Include="metrics\tpm.aspx.cs">
       <DependentUpon>tpm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Safety\tpm.aspx.designer.cs">
+    <Compile Include="metrics\tpm.aspx.designer.cs">
       <DependentUpon>tpm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Safety\mstactions.aspx.cs">
+    <Compile Include="metrics\mstactions.aspx.cs">
       <DependentUpon>mstactions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Safety\mstactions.aspx.designer.cs">
+    <Compile Include="metrics\mstactions.aspx.designer.cs">
       <DependentUpon>mstactions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Safety\incidentes.aspx.cs">
+    <Compile Include="metrics\incidentes.aspx.cs">
       <DependentUpon>incidentes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Safety\incidentes.aspx.designer.cs">
+    <Compile Include="metrics\incidentes.aspx.designer.cs">
       <DependentUpon>incidentes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.aspx.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Settings.aspx.designer.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="n2_Inventory.aspx.cs">
       <DependentUpon>n2_Inventory.aspx</DependentUpon>
@@ -497,32 +537,32 @@
     <Compile Include="n2_Quality.aspx.designer.cs">
       <DependentUpon>n2_Quality.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Inventory\inventory.aspx.cs">
+    <Compile Include="metrics\inventory.aspx.cs">
       <DependentUpon>inventory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Inventory\inventory.aspx.designer.cs">
+    <Compile Include="metrics\inventory.aspx.designer.cs">
       <DependentUpon>inventory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Quality\defects.aspx.cs">
+    <Compile Include="metrics\defects.aspx.cs">
       <DependentUpon>defects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Quality\defects.aspx.designer.cs">
+    <Compile Include="metrics\defects.aspx.designer.cs">
       <DependentUpon>defects.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Quality\escapesppm.aspx.cs">
+    <Compile Include="metrics\escapesppm.aspx.cs">
       <DependentUpon>escapesppm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Quality\escapesppm.aspx.designer.cs">
+    <Compile Include="metrics\escapesppm.aspx.designer.cs">
       <DependentUpon>escapesppm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Quality\escapes.aspx.cs">
+    <Compile Include="metrics\escapes.aspx.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Quality\escapes.aspx.designer.cs">
+    <Compile Include="metrics\escapes.aspx.designer.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportViewer1.aspx.cs">
@@ -588,26 +628,17 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="n3_Delivery\OTTR.aspx.cs">
+    <Compile Include="metrics\OTTR.aspx.cs">
       <DependentUpon>OTTR.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="n3_Delivery\OTTR.aspx.designer.cs">
+    <Compile Include="metrics\OTTR.aspx.designer.cs">
       <DependentUpon>OTTR.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="XtraReport1.cs">
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="scorecards\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -621,10 +652,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="n3_Etad\r_kaizens.resx">
+    <EmbeddedResource Include="metrics\r_kaizens.resx">
       <DependentUpon>r_kaizens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="n3_Quality\r_escapes.resx">
+    <EmbeddedResource Include="metrics\r_escapes.resx">
       <DependentUpon>r_escapes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -634,9 +665,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report1.resx">
       <DependentUpon>Report1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

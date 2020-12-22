@@ -31,7 +31,7 @@
                 <table style="width: 100%">
                     <tr>
                         <th>
-                            <asp:Label ID="Label1" runat="server" Text="NOVEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="DECEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
                         </th>
                     </tr>
                     <tr>

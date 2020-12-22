@@ -17,10 +17,67 @@ namespace MxliDashboard
         protected void Page_Load(object sender, EventArgs e)
         {
             this.ASPxComboBoxVF.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVF_SelectedIndexChanged);
+            this.ASPxComboBoxTV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxTV_SelectedIndexChanged);
         }
 
         protected void ASPxComboBoxVF_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            ASPxGridView1.DataSourceID = "SqlDataSource1";
+            ASPxGridView1.AutoGenerateColumns = false;
+            ASPxGridView1.DataBind();
+            ASPxComboBoxTV.SelectedIndex = 0;
+            if (ASPxComboBoxVF.SelectedIndex == 0)
+            {
+                ASPxLabel2.Visible = false;
+                ASPxComboBoxTV.Visible = false;
+            }
+            else
+            {
+                ASPxLabel2.Visible = true;
+                ASPxComboBoxTV.Visible = true;
+            }
+        }
+
+        protected void ASPxComboBoxTV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ASPxComboBoxTV.SelectedIndex == 0)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource1";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 1)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource2";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 2)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource3";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 3)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource4";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 4)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource5";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+        }
+
+        protected void cmbox_DataBoundVF(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxVF.Items.Insert(0, defaultItem);
+            ASPxComboBoxVF.SelectedIndex = 0;
+        }
 
         protected void ASPxGridView1_HtmlRowPrepared(object sender, ASPxGridViewTableRowEventArgs e)
         {

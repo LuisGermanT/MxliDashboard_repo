@@ -17,45 +17,57 @@
                             <table style="table-layout: fixed">
                                 <tr>
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Tier view:">
+                                        <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Function view:">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" AutoPostBack="True"
-                                            OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged">
-                                            <Items>
-                                                <dx:ListEditItem Selected="True" Text="All" Value="0" />
-                                                <dx:ListEditItem Text="T1" Value="1" />
-                                                <dx:ListEditItem Text="T2" Value="2" />
-                                                <dx:ListEditItem Text="T3" Value="3" />
-                                                <dx:ListEditItem Text="TFunction" Value="4" />
-                                                <dx:ListEditItem Text="WarRoom" Value="5" />
-                                            </Items>
+                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" DataSourceID="SqlDataSourceVF" ValueField="sfunc" TextField="sfunc"
+                                            OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged" OnDataBound="cmbox_DataBoundVF" AutoPostBack="True">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
                                                     e.errorText = &quot;You should Select One View&quot;;
                                                     }}" />
-                                            <ValidationSettings ValidateOnLeave="False">
-                                            </ValidationSettings>
+                                            <ValidationSettings ValidateOnLeave="False"></ValidationSettings>
+                                        </dx:ASPxComboBox>
+                                    </th>       
+                                    <th>
+                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select Tier view:" Visible="false">
+                                        </dx:ASPxLabel>
+                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True" Visible="false">
+                                            <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One View&quot;;
+                                                    }}" />
+                                            <ValidationSettings ValidateOnLeave="False"></ValidationSettings>
+                                            <Items>
+                                                <dx:ListEditItem Selected="true" Text="All" Value="1" />
+                                                <dx:ListEditItem Text="T1" Value="2" />
+                                                <dx:ListEditItem Text="T2" Value="3" />
+                                                <dx:ListEditItem Text="T3" Value="4" />
+                                                <dx:ListEditItem Text="WarRoom" Value="5" />
+                                            </Items>
                                         </dx:ASPxComboBox>
                                     </th>                                    
                             </table>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
+                <asp:SqlDataSource ID="SqlDataSourceVF" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" 
+                SelectCommand="SELECT distinct [sfunc] FROM [tbl_settings] where [stype] = 'DASHBOARD' order by sfunc"></asp:SqlDataSource>
             </div>
             <p></p>
             <div>
                 <table style="width: 100%">
                     <tr>
                         <th>
-                            <asp:Label ID="Label1" runat="server" Text="NOVEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="DECEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
                         </th>
                     </tr>
                 </table>
             </div>
             <p></p>
             <div>
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" ViewStateMode="Disabled" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
                     <SettingsPager Visible="False" PageSize="50">
                     </SettingsPager>
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
@@ -79,27 +91,14 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="530px">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="smetric" VisibleIndex="7" Width="70px" EditCellStyle-HorizontalAlign="Center">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "~/n3_quality/dEscapes.aspx" Text="View" Style-HorizontalAlign="Center" > 
-                                <Style HorizontalAlign="Center">
-                                </Style>
-                            </PropertiesHyperLinkEdit>
-                            <EditCellStyle HorizontalAlign="Center">
-                            </EditCellStyle>
-                            <CellStyle HorizontalAlign="Center">
-                            </CellStyle>
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="70px">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="smetric" VisibleIndex="8" Width="80px" EditCellStyle-HorizontalAlign="Center">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "n3_quality/v_escapes.aspx" Text="Open" Style-HorizontalAlign="Center" > 
-                                <Style HorizontalAlign="Center">
-                                </Style>
-                            </PropertiesHyperLinkEdit>
-                            <EditCellStyle HorizontalAlign="Center">
-                            </EditCellStyle>
-                            <CellStyle HorizontalAlign="Center">
-                            </CellStyle>
-                        </dx:GridViewDataHyperLinkColumn>
-                        
+                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sUrl" VisibleIndex="8" Width="80px">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
+                        </dx:GridViewDataHyperLinkColumn>                
                     </Columns>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">
@@ -112,9 +111,66 @@
                         </Cell>
                     </Styles>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="
-                    SELECT DISTINCT [smetric] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] order by smetric
-                "></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                                    where a.[smetric] = b.sValue
+                                    and b.[sType] = 'DASHBOARD'
+                                    and b.[sFunc] like @param1
+                                    and a.[smetric] in (select mname from tbl_set_tierviews)
+                                    order by a.smetric">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
+                            Name="param1" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                                    where a.[smetric] = b.sValue
+                                    and b.[sType] = 'DASHBOARD'
+                                    and b.[sFunc] like @param1
+                                    and a.[smetric] in (select mname from tbl_set_tierviews where vt1 = 'true')
+                                    order by a.smetric">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
+                            Name="param1" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                                    where a.[smetric] = b.sValue
+                                    and b.[sType] = 'DASHBOARD'
+                                    and b.[sFunc] like @param1
+                                    and a.[smetric] in (select mname from tbl_set_tierviews where vt2 = 'true')
+                                    order by a.smetric">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
+                            Name="param1" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                                    where a.[smetric] = b.sValue
+                                    and b.[sType] = 'DASHBOARD'
+                                    and b.[sFunc] like @param1
+                                    and a.[smetric] in (select mname from tbl_set_tierviews where vt3 = 'true')
+                                    order by a.smetric">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
+                            Name="param1" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                                    where a.[smetric] = b.sValue
+                                    and b.[sType] = 'DASHBOARD'
+                                    and b.[sFunc] like @param1
+                                    and a.[smetric] in (select mname from tbl_set_tierviews where vwr = 'true')
+                                    order by a.smetric">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
+                            Name="param1" PropertyName="Value" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
