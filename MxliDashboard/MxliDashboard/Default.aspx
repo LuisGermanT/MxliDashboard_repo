@@ -31,7 +31,7 @@
                 <table style="width: 100%">
                     <tr>
                         <th>
-                            <asp:Label ID="Label1" runat="server" Text="DECEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="JANUARY" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
                         </th>
                     </tr>
                     <tr>
@@ -51,14 +51,14 @@
                 <table style="width: 100%" >
                     <tr>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton1" runat="server" Text="DASHBOARD" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton1_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton1" runat="server" Text="SCORECARD" Font-Size="Large" Height="35px" Theme="Office365" Width="250px" OnClick="ASPxButton1_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton2" runat="server" Text="YTD" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton2_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton2" runat="server" Text="YTD" Font-Size="Large" Height="35px" Theme="Office365" Width="250px" OnClick="ASPxButton2_Click"></dx:ASPxButton>
                         </th>
-                        <th style="text-align: center">
+                        <%--<th style="text-align: center">
                             <dx:ASPxButton ID="ASPxButton3" runat="server" Text="METRICS" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton3_Click"></dx:ASPxButton>
-                        </th>
+                        </th>--%>
                     </tr>
                 </table>
             </div>

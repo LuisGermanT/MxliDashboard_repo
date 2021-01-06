@@ -60,7 +60,7 @@
                 <table style="width: 100%">
                     <tr>
                         <th>
-                            <asp:Label ID="Label1" runat="server" Text="DECEMBER" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="JANUARY" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
                         </th>
                     </tr>
                 </table>
@@ -95,7 +95,7 @@
                             <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sUrl" VisibleIndex="8" Width="80px">
+                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="80px">
                             <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                
@@ -112,7 +112,7 @@
                     </Styles>
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard
 {
-    public partial class Settings : Page
+    public partial class xSettings : Page
     {
 
         protected void Page_Load(object sender, EventArgs e)

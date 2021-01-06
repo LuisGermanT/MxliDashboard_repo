@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
     <div class="row">
-        <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Actions Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
+        <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Highlights Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True">
             <HeaderStyle ForeColor="White" />
             <HeaderContent BackColor="#666666">
             </HeaderContent>

@@ -10,7 +10,7 @@
 namespace MxliDashboard {
     
     
-    public partial class Settings {
+    public partial class xSettings {
         
         /// <summary>
         /// UpdatePanel1 control.
