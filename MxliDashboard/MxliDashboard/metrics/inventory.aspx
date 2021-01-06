@@ -9,8 +9,9 @@
     
     <p></p>
     <h3>Inventory cost.</h3>
-    <p></p>
-        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
+    <%--<p></p>
+        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>--%>
+        <asp:Label ID="Label1" runat="server" Text="labelUpdate"></asp:Label>
     <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />

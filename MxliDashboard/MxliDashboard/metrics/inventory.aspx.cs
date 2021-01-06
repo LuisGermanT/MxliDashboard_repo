@@ -18,7 +18,8 @@ namespace MxliDashboard.n3_Inventory
             this.ASPxComboBoxCellInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCellInContent_SelectedIndexChanged);
             this.ASPxComboBoxMrpInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxMrpInContent_SelectedIndexChanged);
             this.ASPxComboBoxPfepInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxPfepInContent_SelectedIndexChanged);
-            if(!Page.IsPostBack)
+            loadUpdate();
+            if (!Page.IsPostBack)
             {
                 chartDefault("SITE", "All");
             }
@@ -142,6 +143,20 @@ namespace MxliDashboard.n3_Inventory
                 WebChartControl1.Series["Total"].Points.AddPoint(dr1["sday"].ToString(), xTotal);
                 WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sday"].ToString(), xGoal);
                 WebChartControl1.Series["Adj"].Points.AddPoint(dr1["sday"].ToString(), xAcc);
+            }
+        }
+
+        protected void loadUpdate()
+        {
+            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+            SqlConnection conn1 = new SqlConnection(myCnStr1);
+            SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'inventario'", conn1);
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                Label1.Text =  dr1["lastUpdateText"].ToString();
             }
         }
 

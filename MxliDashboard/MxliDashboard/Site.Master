@@ -70,10 +70,9 @@
                 </div>--%>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Dashboard">DASHBOARD</a></li>
+                        <li><a runat="server" href="~/Dashboard">SCORECARD</a></li>
                         <li><a runat="server" href="~/YTD">YTD ACTUAL vs PLAN</a></li>
-                        <li><a runat="server" href="~/n2_Inventory">METRICS</a></li>
-                        <li><a runat="server" href="~/Settings">SETTINGS</a></li>                        
+                        <li><a runat="server" href="~/xSettings">SETTINGS</a></li>                        
                     </ul>
                 </div>
             </div>

@@ -17,10 +17,67 @@ namespace MxliDashboard
         protected void Page_Load(object sender, EventArgs e)
         {
             this.ASPxComboBoxVF.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVF_SelectedIndexChanged);
+            this.ASPxComboBoxTV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxTV_SelectedIndexChanged);
         }
 
         protected void ASPxComboBoxVF_SelectedIndexChanged(object sender, EventArgs e)
-        { }
+        {
+            ASPxGridView1.DataSourceID = "SqlDataSource1";
+            ASPxGridView1.AutoGenerateColumns = false;
+            ASPxGridView1.DataBind();
+            ASPxComboBoxTV.SelectedIndex = 0;
+            if (ASPxComboBoxVF.SelectedIndex == 0)
+            {
+                ASPxLabel2.Visible = false;
+                ASPxComboBoxTV.Visible = false;
+            }
+            else
+            {
+                ASPxLabel2.Visible = true;
+                ASPxComboBoxTV.Visible = true;
+            }
+        }
+
+        protected void ASPxComboBoxTV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ASPxComboBoxTV.SelectedIndex == 0)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource1";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 1)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource2";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 2)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource3";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 3)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource4";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+            if (ASPxComboBoxTV.SelectedIndex == 4)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource5";
+                ASPxGridView1.AutoGenerateColumns = false;
+                ASPxGridView1.DataBind();
+            }
+        }
+
+        protected void cmbox_DataBoundVF(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxVF.Items.Insert(0, defaultItem);
+            ASPxComboBoxVF.SelectedIndex = 0;
+        }
 
         protected void ASPxGridView1_HtmlRowPrepared(object sender, ASPxGridViewTableRowEventArgs e)
         {
@@ -83,7 +140,7 @@ namespace MxliDashboard
             e.Row.Cells[12 - index].Text = String.Format("{0:N0}", v11);
             e.Row.Cells[13 - index].Text = String.Format("{0:N0}", v12);
             e.Row.Cells[14 - index].Text = String.Format("{0:N0}", v13);
-            if (xMetric == "INVENTARIO" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI")
+            if (xMetric == "INVENTORY" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI")
             {
                 e.Row.Cells[2 - index].Text = String.Format("{0:C2}", v1 / 1000000) + "M";
                 e.Row.Cells[3 - index].Text = String.Format("{0:C2}", v2 / 1000000) + "M";
@@ -122,15 +179,63 @@ namespace MxliDashboard
             }
 
             //KAIZENS PRODUCTIVITY  OTTR OUTPUT
-            if (xMetric == "DEFECTOS" || xMetric == "ENTITLEMENT" || xMetric == "ESCAPES" || xMetric == "INCIDENTES" || xMetric == "INVENTARIO" || xMetric == "MEPS" || xMetric == "MST" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "TPMS")
+            if (xMetric == "DEFECTS" || xMetric == "ENTITLEMENT" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INVENTORY" || xMetric == "MEPS" || xMetric == "MST" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "TPMS")
             {
                 if (xComp == 1)
                 {
+                    e.Row.Cells[2 - index].Style.Add("color", "green");
+                    e.Row.Cells[2 - index].Font.Bold = true;
+                    //e.Row.Cells[3 - index].Style.Add("color", "green");
+                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    //e.Row.Cells[4 - index].Style.Add("color", "green");
+                    //e.Row.Cells[4 - index].Font.Bold = true;
+                    //e.Row.Cells[5 - index].Style.Add("color", "green");
+                    //e.Row.Cells[5 - index].Font.Bold = true;
+                    //e.Row.Cells[6 - index].Style.Add("color", "green");
+                    //e.Row.Cells[6 - index].Font.Bold = true;
+                    //e.Row.Cells[7 - index].Style.Add("color", "green");
+                    //e.Row.Cells[7 - index].Font.Bold = true;
+                    //e.Row.Cells[8 - index].Style.Add("color", "green");
+                    //e.Row.Cells[8 - index].Font.Bold = true;
+                    //e.Row.Cells[9 - index].Style.Add("color", "green");
+                    //e.Row.Cells[9 - index].Font.Bold = true;
+                    //e.Row.Cells[10 - index].Style.Add("color", "green");
+                    //e.Row.Cells[10 - index].Font.Bold = true;
+                    //e.Row.Cells[11 - index].Style.Add("color", "green");
+                    //e.Row.Cells[11 - index].Font.Bold = true;
+                    //e.Row.Cells[12 - index].Style.Add("color", "green");
+                    //e.Row.Cells[12 - index].Font.Bold = true;
+                    //e.Row.Cells[13 - index].Style.Add("color", "green");
+                    //e.Row.Cells[13 - index].Font.Bold = true;
                     e.Row.Cells[14 - index].Style.Add("color", "green");
                     e.Row.Cells[14 - index].Font.Bold = true;
                 }
                 if (xComp == 2)
                 {
+                    e.Row.Cells[2 - index].Style.Add("color", "red");
+                    e.Row.Cells[2 - index].Font.Bold = true;
+                    //e.Row.Cells[3 - index].Style.Add("color", "red");
+                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    //e.Row.Cells[4 - index].Style.Add("color", "red");
+                    //e.Row.Cells[4 - index].Font.Bold = true;
+                    //e.Row.Cells[5 - index].Style.Add("color", "red");
+                    //e.Row.Cells[5 - index].Font.Bold = true;
+                    //e.Row.Cells[6 - index].Style.Add("color", "red");
+                    //e.Row.Cells[6 - index].Font.Bold = true;
+                    //e.Row.Cells[7 - index].Style.Add("color", "red");
+                    //e.Row.Cells[7 - index].Font.Bold = true;
+                    //e.Row.Cells[8 - index].Style.Add("color", "red");
+                    //e.Row.Cells[8 - index].Font.Bold = true;
+                    //e.Row.Cells[9 - index].Style.Add("color", "red");
+                    //e.Row.Cells[9 - index].Font.Bold = true;
+                    //e.Row.Cells[10 - index].Style.Add("color", "red");
+                    //e.Row.Cells[10 - index].Font.Bold = true;
+                    //e.Row.Cells[11 - index].Style.Add("color", "red");
+                    //e.Row.Cells[11 - index].Font.Bold = true;
+                    //e.Row.Cells[12 - index].Style.Add("color", "red");
+                    //e.Row.Cells[12 - index].Font.Bold = true;
+                    //e.Row.Cells[13 - index].Style.Add("color", "red");
+                    //e.Row.Cells[13 - index].Font.Bold = true;
                     e.Row.Cells[14 - index].Style.Add("color", "red");
                     e.Row.Cells[14 - index].Font.Bold = true;
                 }
@@ -140,11 +245,59 @@ namespace MxliDashboard
             {
                 if (xComp == 1)
                 {
+                    e.Row.Cells[2 - index].Style.Add("color", "red");
+                    e.Row.Cells[2 - index].Font.Bold = true;
+                    //e.Row.Cells[3 - index].Style.Add("color", "red");
+                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    //e.Row.Cells[4 - index].Style.Add("color", "red");
+                    //e.Row.Cells[4 - index].Font.Bold = true;
+                    //e.Row.Cells[5 - index].Style.Add("color", "red");
+                    //e.Row.Cells[5 - index].Font.Bold = true;
+                    //e.Row.Cells[6 - index].Style.Add("color", "red");
+                    //e.Row.Cells[6 - index].Font.Bold = true;
+                    //e.Row.Cells[7 - index].Style.Add("color", "red");
+                    //e.Row.Cells[7 - index].Font.Bold = true;
+                    //e.Row.Cells[8 - index].Style.Add("color", "red");
+                    //e.Row.Cells[8 - index].Font.Bold = true;
+                    //e.Row.Cells[9 - index].Style.Add("color", "red");
+                    //e.Row.Cells[9 - index].Font.Bold = true;
+                    //e.Row.Cells[10 - index].Style.Add("color", "red");
+                    //e.Row.Cells[10 - index].Font.Bold = true;
+                    //e.Row.Cells[11 - index].Style.Add("color", "red");
+                    //e.Row.Cells[11 - index].Font.Bold = true;
+                    //e.Row.Cells[12 - index].Style.Add("color", "red");
+                    //e.Row.Cells[12 - index].Font.Bold = true;
+                    //e.Row.Cells[13 - index].Style.Add("color", "red");
+                    //e.Row.Cells[13 - index].Font.Bold = true;
                     e.Row.Cells[14 - index].Style.Add("color", "red");
                     e.Row.Cells[14 - index].Font.Bold = true;
                 }
                 if (xComp == 2)
                 {
+                    e.Row.Cells[2 - index].Style.Add("color", "green");
+                    e.Row.Cells[2 - index].Font.Bold = true;
+                    //e.Row.Cells[3 - index].Style.Add("color", "green");
+                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    //e.Row.Cells[4 - index].Style.Add("color", "green");
+                    //e.Row.Cells[4 - index].Font.Bold = true;
+                    //e.Row.Cells[5 - index].Style.Add("color", "green");
+                    //e.Row.Cells[5 - index].Font.Bold = true;
+                    //e.Row.Cells[6 - index].Style.Add("color", "green");
+                    //e.Row.Cells[6 - index].Font.Bold = true;
+                    //e.Row.Cells[7 - index].Style.Add("color", "green");
+                    //e.Row.Cells[7 - index].Font.Bold = true;
+                    //e.Row.Cells[8 - index].Style.Add("color", "green");
+                    //e.Row.Cells[8 - index].Font.Bold = true;
+                    //e.Row.Cells[9 - index].Style.Add("color", "green");
+                    //e.Row.Cells[9 - index].Font.Bold = true;
+                    //e.Row.Cells[10 - index].Style.Add("color", "green");
+                    //e.Row.Cells[10 - index].Font.Bold = true;
+                    //e.Row.Cells[11 - index].Style.Add("color", "green");
+                    //e.Row.Cells[11 - index].Font.Bold = true;
+                    //e.Row.Cells[12 - index].Style.Add("color", "green");
+                    //e.Row.Cells[12 - index].Font.Bold = true;
+                    //e.Row.Cells[13 - index].Style.Add("color", "green");
+                    //e.Row.Cells[13 - index].Font.Bold = true;
                     e.Row.Cells[14 - index].Style.Add("color", "green");
                     e.Row.Cells[14 - index].Font.Bold = true;
                 }

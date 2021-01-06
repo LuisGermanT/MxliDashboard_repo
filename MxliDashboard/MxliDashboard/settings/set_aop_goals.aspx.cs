@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard
 {
-    public partial class Settings : System.Web.UI.Page
+    public partial class set_aop_goals : System.Web.UI.Page
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace MxliDashboard
 
         protected void ASPxGridView1_CellEditorInitialize(object sender, ASPxGridViewEditorEventArgs e)
         {
-            if (e.Column.FieldName == "metricDesc")
+            if (e.Column.FieldName == "x")
             {
                 ASPxComboBox cmb = e.Editor as ASPxComboBox;
                 cmb.Items.Add("SITE");
@@ -40,21 +40,21 @@ namespace MxliDashboard
                 cmb.Items.Add("CELL");
                 cmb.Items.Add("MRP");
             }
-            if (e.Column.FieldName == "gType")
+            if (e.Column.FieldName == "y")
             {
                 ASPxComboBox cmb = e.Editor as ASPxComboBox;
                 cmb.Items.Add("AVERAGE");
                 cmb.Items.Add("LATEST");
                 cmb.Items.Add("SUM");
             }
-            if (e.Column.FieldName == "gUnit")
+            if (e.Column.FieldName == "z")
             {
                 ASPxComboBox cmb = e.Editor as ASPxComboBox;
                 cmb.Items.Add("PERCENT");
                 cmb.Items.Add("QUANTITY");
                 cmb.Items.Add("VALUE");
             }
-            if (e.Column.FieldName == "nYear")
+            if (e.Column.FieldName == "xyz")
             {
                 ASPxComboBox cmb = e.Editor as ASPxComboBox;
                 cmb.Items.Add("2020");

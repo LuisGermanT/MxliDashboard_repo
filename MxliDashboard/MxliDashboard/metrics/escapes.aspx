@@ -164,7 +164,7 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="11" Caption="MRP">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="12" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="nweek" VisibleIndex="12" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
@@ -188,7 +188,7 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [week], [dYear], [quantity] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm and cell like @pCell  order by id">
+        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [nweek], [nyear], [quantity] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm and cell like @pCell  order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
