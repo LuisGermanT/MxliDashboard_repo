@@ -462,7 +462,7 @@ namespace MxliDashboard
             else
             {
                 int tipoV = ASPxComboBoxV.SelectedIndex;
-                string xFilter = "VSM";
+                //string xFilter = "VSM";
                 string tipoVSM = ASPxComboBoxF9.SelectedItem.ToString();
                 if (ASPxComboBoxF9.SelectedIndex == 0)
                 {
@@ -490,7 +490,7 @@ namespace MxliDashboard
             else
             {
                 int tipoV = ASPxComboBoxV.SelectedIndex;
-                string xFilter = "CELL";
+                //string xFilter = "CELL";
                 string tipoVSM = ASPxComboBoxF10.SelectedItem.ToString();
                 if (ASPxComboBoxF10.SelectedIndex == 0)
                 {

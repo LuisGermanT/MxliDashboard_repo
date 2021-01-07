@@ -226,8 +226,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\settings_banner.png" />
     <Content Include="metrics\productivity.aspx" />
+    <Content Include="metrics\scrap.aspx" />
     <Content Include="metrics\Utilization.aspx" />
-    <Content Include="Settings.aspx" />
     <Content Include="img\bad.png" />
     <Content Include="img\badB.png" />
     <Content Include="img\badC.png" />
@@ -236,11 +236,15 @@
     <Content Include="img\goodC.png" />
     <Content Include="metrics\dEscapes.aspx" />
     <Content Include="metrics\v_escapes.aspx" />
+    <Content Include="metrics\v_inventory.aspx" />
+    <Content Include="metrics\v_ottr.aspx" />
+    <Content Include="metrics\v_pastdue.aspx" />
     <Content Include="settings\set_highlights.aspx" />
     <Content Include="settings\set_tierviews.aspx" />
     <Content Include="settings\set_actions.aspx" />
     <Content Include="settings\set_forecast.aspx" />
     <Content Include="settings\set_aop_goals.aspx" />
+    <Content Include="xSettings.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="img\ban1.jpg" />
@@ -341,19 +345,28 @@
     <Compile Include="metrics\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="metrics\r_ottr.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="metrics\r_inventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="metrics\r_pastdue.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="metrics\scrap.aspx.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\scrap.aspx.designer.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\utilization.aspx.cs">
       <DependentUpon>Utilization.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="metrics\utilization.aspx.designer.cs">
       <DependentUpon>Utilization.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.aspx.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Settings.aspx.designer.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="metrics\dEscapes.aspx.cs">
       <DependentUpon>dEscapes.aspx</DependentUpon>
@@ -371,6 +384,27 @@
     </Compile>
     <Compile Include="metrics\v_escapes.aspx.designer.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\v_inventory.aspx.cs">
+      <DependentUpon>v_inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\v_inventory.aspx.designer.cs">
+      <DependentUpon>v_inventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\v_ottr.aspx.cs">
+      <DependentUpon>v_ottr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\v_ottr.aspx.designer.cs">
+      <DependentUpon>v_ottr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\v_pastdue.aspx.cs">
+      <DependentUpon>v_pastdue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\v_pastdue.aspx.designer.cs">
+      <DependentUpon>v_pastdue.aspx</DependentUpon>
     </Compile>
     <Compile Include="settings\set_highlights.aspx.cs">
       <DependentUpon>set_highlights.aspx</DependentUpon>
@@ -406,6 +440,13 @@
     </Compile>
     <Compile Include="settings\set_aop_goals.aspx.designer.cs">
       <DependentUpon>set_aop_goals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="xSettings.aspx.cs">
+      <DependentUpon>xSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="xSettings.aspx.designer.cs">
+      <DependentUpon>xSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="YTD.aspx.cs">
       <DependentUpon>YTD.aspx</DependentUpon>
@@ -652,6 +693,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="metrics\r_ottr.resx">
+      <DependentUpon>r_ottr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="metrics\r_inventory.resx">
+      <DependentUpon>r_inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="metrics\r_pastdue.resx">
+      <DependentUpon>r_pastdue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="metrics\r_kaizens.resx">
       <DependentUpon>r_kaizens.cs</DependentUpon>
     </EmbeddedResource>
