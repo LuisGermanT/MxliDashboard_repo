@@ -239,6 +239,9 @@
     <Content Include="metrics\v_inventory.aspx" />
     <Content Include="metrics\v_ottr.aspx" />
     <Content Include="metrics\v_pastdue.aspx" />
+    <Content Include="scorecards\sc_escapes.aspx" />
+    <Content Include="scorecards\sc_kaizens.aspx" />
+    <Content Include="scorecards\sc_ppms.aspx" />
     <Content Include="settings\set_highlights.aspx" />
     <Content Include="settings\set_tierviews.aspx" />
     <Content Include="settings\set_actions.aspx" />
@@ -405,6 +408,27 @@
     </Compile>
     <Compile Include="metrics\v_pastdue.aspx.designer.cs">
       <DependentUpon>v_pastdue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_escapes.aspx.cs">
+      <DependentUpon>sc_escapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_escapes.aspx.designer.cs">
+      <DependentUpon>sc_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_kaizens.aspx.cs">
+      <DependentUpon>sc_kaizens.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_kaizens.aspx.designer.cs">
+      <DependentUpon>sc_kaizens.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_ppms.aspx.cs">
+      <DependentUpon>sc_ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_ppms.aspx.designer.cs">
+      <DependentUpon>sc_ppms.aspx</DependentUpon>
     </Compile>
     <Compile Include="settings\set_highlights.aspx.cs">
       <DependentUpon>set_highlights.aspx</DependentUpon>
@@ -679,7 +703,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="scorecards\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
