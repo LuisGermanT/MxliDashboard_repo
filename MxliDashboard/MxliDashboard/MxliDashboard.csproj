@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44337</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -226,8 +225,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\settings_banner.png" />
     <Content Include="metrics\productivity.aspx" />
+    <Content Include="metrics\scrap.aspx" />
     <Content Include="metrics\Utilization.aspx" />
-    <Content Include="Settings.aspx" />
     <Content Include="img\bad.png" />
     <Content Include="img\badB.png" />
     <Content Include="img\badC.png" />
@@ -241,6 +240,7 @@
     <Content Include="settings\set_actions.aspx" />
     <Content Include="settings\set_forecast.aspx" />
     <Content Include="settings\set_aop_goals.aspx" />
+    <Content Include="xSettings.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="img\ban1.jpg" />
@@ -341,19 +341,19 @@
     <Compile Include="metrics\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="metrics\scrap.aspx.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\scrap.aspx.designer.cs">
+      <DependentUpon>scrap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\utilization.aspx.cs">
       <DependentUpon>Utilization.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="metrics\utilization.aspx.designer.cs">
       <DependentUpon>Utilization.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.aspx.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Settings.aspx.designer.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="metrics\dEscapes.aspx.cs">
       <DependentUpon>dEscapes.aspx</DependentUpon>
@@ -406,6 +406,13 @@
     </Compile>
     <Compile Include="settings\set_aop_goals.aspx.designer.cs">
       <DependentUpon>set_aop_goals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="xSettings.aspx.cs">
+      <DependentUpon>xSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="xSettings.aspx.designer.cs">
+      <DependentUpon>xSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="YTD.aspx.cs">
       <DependentUpon>YTD.aspx</DependentUpon>

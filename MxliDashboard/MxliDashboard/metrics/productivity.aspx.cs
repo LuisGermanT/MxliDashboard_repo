@@ -17,6 +17,7 @@ namespace MxliDashboard.n3_Productivity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadUpdate();
             if (!Page.IsPostBack)
             {
                 loadChartP01(0,"","Week");
@@ -281,6 +282,22 @@ namespace MxliDashboard.n3_Productivity
                 chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), eHrs);
                 chartTP01.Series["Series3"].Points.AddXY(dr1[colName].ToString(), prod);
                 chartTP01.Series["Series4"].Points.AddXY(dr1[colName].ToString(), xGoal);
+            }
+
+            chartTP01.Series["Series1"].LegendText = "Total Hrs";
+            chartTP01.Series["Series2"].LegendText = "Earned Hrs";
+            chartTP01.Series["Series3"].LegendText = "Actual %";
+            chartTP01.Series["Series4"].LegendText = "Goal";
+        }
+
+        private void loadUpdate()
+        {
+            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'utilization'";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt = dBHelper.QryManager(qry);
+            foreach (DataRow dr1 in dt.Rows)
+            {
+                lbLUpd.Text = dr1["lastUpdateText"].ToString();
             }
         }
 

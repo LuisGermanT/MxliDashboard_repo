@@ -13,6 +13,7 @@
 
             <p/>
             <hr/>
+            <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
             <p />
 
             <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
@@ -101,13 +102,13 @@
                     <dx:PanelContent ID="PanelContent2" runat="server">
                         <asp:Chart ID="chartTP01" runat="server" Width="1024px">
                             <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -126,6 +127,10 @@
                                     </AxisY2>
                                 </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1">
+                                </asp:Legend>
+                            </Legends>
                         </asp:Chart>
                     </dx:PanelContent>
                 </PanelCollection>
@@ -194,7 +199,9 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT TU_EID, TU_CentroCostos, TU_Group, TU_Area, TU_Celda, TU_DirectHrs, TU_TotHrs, TU_Util, TU_Week, TU_Month, TU_Year FROM vw_Util_Details WHERE (TU_Celda LIKE @pCell) AND (TU_Area LIKE @pVsm) AND (TU_Group LIKE @pGroup) ORDER BY TU_Year DESC, TU_Month DESC, TU_Week DESC, TU_Group, TU_Area, TU_Celda" ProviderName="System.Data.SqlClient">
+                SelectCommand="SELECT TU_EID, TU_CentroCostos, TU_Group, TU_Area, TU_Celda, TU_DirectHrs, TU_TotHrs, TU_Util, TU_Week, TU_Month, TU_Year FROM vw_Util_Details 
+                                WHERE (TU_Celda LIKE @pCell) AND (TU_Area LIKE @pVsm) AND (TU_Group LIKE @pGroup) 
+                                    ORDER BY TU_Year DESC, TU_Month DESC, TU_Week DESC, TU_Group, TU_Area, TU_Celda" ProviderName="System.Data.SqlClient">
                 <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT [TU_EID], [TU_CentroCostos], [TU_Area], [TU_Celda], [TU_DirectHrs], [TU_TotHrs], [TU_Util], [TU_Week], [TU_Month], [TU_Year]
                                 FROM [vw_Util_Details] WHERE [TU_Celda] LIKE @pCell AND [TU_Area] LIKE @pVsm 
