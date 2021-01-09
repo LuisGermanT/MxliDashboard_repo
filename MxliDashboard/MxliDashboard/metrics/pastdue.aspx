@@ -9,7 +9,7 @@
     <p></p>
     <h3>PAST DUE.</h3>
     <p></p>
-        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>
+        <asp:Label ID="Label1" runat="server" Text="labelUpdate"></asp:Label>
     <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Filters" ForeColor="Black" AllowCollapsingByHeaderClick="True" >
         <HeaderStyle ForeColor="White" />
@@ -19,6 +19,27 @@
             <dx:PanelContent ID="PanelContent1" runat="server">
                 <table style="table-layout: fixed">
                     <tr>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaptionV" runat="server" Text="Select metric filter:">
+                                        </dx:ASPxLabel>
+                                        <dx:ASPxComboBox ID="ASPxComboBoxV" runat="server" ValueType="System.String" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ASPxComboBoxV_SelectedIndexChanged">
+                                            <Items>
+                                                <dx:ListEditItem Selected="True" Text="Default" Value="0" />
+                                                <dx:ListEditItem Text="Weekly" Value="1" />
+                                                <dx:ListEditItem Text="Monthly" Value="2" />
+                                                <dx:ListEditItem Text="Quarterly" Value="3" />
+                                                <dx:ListEditItem Text="Yearly" Value="4" />
+                                            </Items>
+                                            <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One View&quot;;
+                                                    }}" />
+                                            <ValidationSettings ValidateOnLeave="False">
+                                            </ValidationSettings>
+                                        </dx:ASPxComboBox>
+                        </th>   
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:">
                             </dx:ASPxLabel>
@@ -49,21 +70,7 @@
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Receiving plant:">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxPlantInContent" runat="server" ValueField="srecplant"
-                                TextField="srecplant" ValueType="System.String" DataSourceID="SqlDataSourcePlant"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundPlant">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One Plan&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>                       
+                                            
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -193,20 +200,16 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_output" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [smaterial], [sdescription], [sdocument], [iquantity], [fstdcost], [iopenqty], [fopenvalue], [dreqdeliv], [idayslate], [sarea], [smrp], [srecplant] FROM [tbl_pastdue] where sarea like @pArea and srecplant like @pPlant and smrp like @pMrp order by id">
+        SelectCommand="SELECT [id], [smaterial], [sdescription], [sdocument], [iquantity], [fstdcost], [iopenqty], [fopenvalue], [dreqdeliv], [idayslate], [sarea], [smrp], [srecplant] FROM [tbl_pastdue] where sarea like @pArea and smrp like @pMrp order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxAreaInContent"
                 Name="pArea" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxPlantInContent"
-                Name="pPlant" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [sarea] FROM [tbl_pastdue] order by sarea"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourcePlant" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [srecplant] FROM [tbl_pastdue] order by srecplant"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [smrp] FROM [tbl_pastdue] order by smrp"></asp:SqlDataSource>
     <p />

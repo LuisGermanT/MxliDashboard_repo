@@ -124,7 +124,7 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
@@ -136,7 +136,7 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
@@ -148,7 +148,7 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
@@ -160,7 +160,7 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1

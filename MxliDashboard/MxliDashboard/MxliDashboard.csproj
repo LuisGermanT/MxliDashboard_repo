@@ -234,7 +234,13 @@
     <Content Include="img\goodB.png" />
     <Content Include="img\goodC.png" />
     <Content Include="metrics\dEscapes.aspx" />
-    <Content Include="metrics\v_escapes.aspx" />
+    <Content Include="Reports\v_escapes.aspx" />
+    <Content Include="Reports\v_inventory.aspx" />
+    <Content Include="Reports\v_ottr.aspx" />
+    <Content Include="Reports\v_pastdue.aspx" />
+    <Content Include="scorecards\sc_escapes.aspx" />
+    <Content Include="scorecards\sc_kaizens.aspx" />
+    <Content Include="scorecards\sc_ppms.aspx" />
     <Content Include="settings\set_highlights.aspx" />
     <Content Include="settings\set_tierviews.aspx" />
     <Content Include="settings\set_actions.aspx" />
@@ -255,7 +261,7 @@
     <Content Include="metrics\pastdue.aspx" />
     <Content Include="metrics\output.aspx" />
     <Content Include="metrics\kaizens.aspx" />
-    <Content Include="metrics\v_kaizens.aspx" />
+    <Content Include="Reports\v_kaizens.aspx" />
     <Content Include="metrics\entitlement.aspx" />
     <Content Include="metrics\vmi.aspx" />
     <Content Include="metrics\mep.aspx" />
@@ -341,6 +347,15 @@
     <Compile Include="metrics\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\r_ottr.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_inventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_pastdue.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="metrics\scrap.aspx.cs">
       <DependentUpon>scrap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -362,15 +377,57 @@
     <Compile Include="metrics\dEscapes.aspx.designer.cs">
       <DependentUpon>dEscapes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metrics\r_escapes.cs">
+    <Compile Include="Reports\r_escapes.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="metrics\v_escapes.aspx.cs">
+    <Compile Include="Reports\v_escapes.aspx.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="metrics\v_escapes.aspx.designer.cs">
+    <Compile Include="Reports\v_escapes.aspx.designer.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_inventory.aspx.cs">
+      <DependentUpon>v_inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_inventory.aspx.designer.cs">
+      <DependentUpon>v_inventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_ottr.aspx.cs">
+      <DependentUpon>v_ottr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_ottr.aspx.designer.cs">
+      <DependentUpon>v_ottr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_pastdue.aspx.cs">
+      <DependentUpon>v_pastdue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_pastdue.aspx.designer.cs">
+      <DependentUpon>v_pastdue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_escapes.aspx.cs">
+      <DependentUpon>sc_escapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_escapes.aspx.designer.cs">
+      <DependentUpon>sc_escapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_kaizens.aspx.cs">
+      <DependentUpon>sc_kaizens.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_kaizens.aspx.designer.cs">
+      <DependentUpon>sc_kaizens.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecards\sc_ppms.aspx.cs">
+      <DependentUpon>sc_ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecards\sc_ppms.aspx.designer.cs">
+      <DependentUpon>sc_ppms.aspx</DependentUpon>
     </Compile>
     <Compile Include="settings\set_highlights.aspx.cs">
       <DependentUpon>set_highlights.aspx</DependentUpon>
@@ -471,14 +528,14 @@
     <Compile Include="metrics\kaizens.aspx.designer.cs">
       <DependentUpon>kaizens.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metrics\r_kaizens.cs">
+    <Compile Include="Reports\r_kaizens.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="metrics\v_kaizens.aspx.cs">
+    <Compile Include="Reports\v_kaizens.aspx.cs">
       <DependentUpon>v_kaizens.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="metrics\v_kaizens.aspx.designer.cs">
+    <Compile Include="Reports\v_kaizens.aspx.designer.cs">
       <DependentUpon>v_kaizens.aspx</DependentUpon>
     </Compile>
     <Compile Include="metrics\entitlement.aspx.cs">
@@ -645,7 +702,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="scorecards\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -659,10 +715,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="metrics\r_kaizens.resx">
+    <EmbeddedResource Include="Reports\r_ottr.resx">
+      <DependentUpon>r_ottr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_inventory.resx">
+      <DependentUpon>r_inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_pastdue.resx">
+      <DependentUpon>r_pastdue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_kaizens.resx">
       <DependentUpon>r_kaizens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="metrics\r_escapes.resx">
+    <EmbeddedResource Include="Reports\r_escapes.resx">
       <DependentUpon>r_escapes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

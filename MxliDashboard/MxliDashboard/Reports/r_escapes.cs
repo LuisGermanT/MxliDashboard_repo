@@ -343,7 +343,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             customSqlQuery2.Sql = "SELECT top 5 [factual],[fsum],[scause] \r\n FROM [DB_1033_Dashboard].[dbo].[sta_niv" +
     "el2p]\r\n where smetric = \'escapes\'\r\n";
             customSqlQuery3.Name = "Query_3";
-            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\n";
+            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'escapes\'\r\n";
             customSqlQuery4.Name = "Query_4";
             customSqlQuery4.Sql = "SELECT * FROM\r\n(SELECT top 3 [id],[factual],[fsum],[scause] \r\n FROM [DB_1033_Dash" +
     "board].[dbo].[sta_nivel2f]\r\n where smetric = \'escapes\'\r\nand stype = \'monthly\' or" +
