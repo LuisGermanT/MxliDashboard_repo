@@ -13,6 +13,7 @@
         <ContentTemplate>
             <p />
             <hr />
+            <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
             <p />
 
             <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
@@ -100,13 +101,13 @@
                     <dx:PanelContent ID="PanelContent2" runat="server">
                         <asp:Chart ID="chartTP01" runat="server" Width="1024px">
                             <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -125,6 +126,10 @@
                                     </AxisY2>
                                 </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1">
+                                </asp:Legend>
+                            </Legends>
                         </asp:Chart>
                     </dx:PanelContent>
                 </PanelCollection>
@@ -184,6 +189,12 @@
                                 <dx:GridViewDataTextColumn FieldName="NP_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
+                           <%-- <GroupSummary>
+                                <dx:ASPxSummaryItem Tag="X" SummaryType="Sum" FieldName="NP_TotalHrs"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_Units"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_EarnedHrs"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_TotalHrs"></dx:ASPxSummaryItem>
+                            </GroupSummary>--%>
                             <Styles>
                                 <Header BackColor="IndianRed" ForeColor="White">
                                 </Header>
@@ -194,7 +205,11 @@
             </dx:ASPxRoundPanel>
     
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT NP_CentroCostos, NP_Group, NP_Area, NP_Celda, NP_TotalHrs, NP_Qty, NP_EarnedHrs, NP_Productivity, NP_Week, NP_Month, NP_Year FROM tblLaborProductivity WHERE (NP_Celda LIKE @pCell) AND (NP_Area LIKE @pVsm) AND (NP_Group LIKE @pGroup) ORDER BY CASE WHEN NP_Month = 'Jan' THEN 1 WHEN NP_Month = 'Feb' THEN 2 WHEN NP_Month = 'Mar' THEN 3 WHEN NP_Month = 'Apr' THEN 4 WHEN NP_Month = 'May' THEN 5 WHEN NP_Month = 'Jun' THEN 6 WHEN NP_Month = 'Jul' THEN 7 WHEN NP_Month = 'Aug' THEN 8 WHEN NP_Month = 'Sep' THEN 9 WHEN NP_Month = 'Oct' THEN 10 WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Year, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
+                SelectCommand="SELECT NP_CentroCostos, NP_Group, NP_Area, NP_Celda, NP_TotalHrs, NP_Qty, NP_EarnedHrs, NP_Productivity, NP_Week, NP_Month, NP_Year FROM tblLaborProductivity
+                                WHERE (NP_Celda LIKE @pCell) AND (NP_Area LIKE @pVsm) AND (NP_Group LIKE @pGroup) 
+                                ORDER BY NP_Year desc, CASE WHEN NP_Month = 'Jan' THEN 1 WHEN NP_Month = 'Feb' THEN 2 WHEN NP_Month = 'Mar' THEN 3 WHEN NP_Month = 'Apr' THEN 4 WHEN NP_Month = 'May' THEN 5 
+                                                WHEN NP_Month = 'Jun' THEN 6 WHEN NP_Month = 'Jul' THEN 7 WHEN NP_Month = 'Aug' THEN 8 WHEN NP_Month = 'Sep' THEN 9 WHEN NP_Month = 'Oct' THEN 10 
+                                                WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Year, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />
