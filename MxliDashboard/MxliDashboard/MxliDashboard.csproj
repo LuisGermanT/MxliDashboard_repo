@@ -276,7 +276,6 @@
     <Content Include="metrics\defects.aspx" />
     <Content Include="metrics\escapesppm.aspx" />
     <Content Include="metrics\escapes.aspx" />
-    <Content Include="Reports\ReportViewer1.aspx" />
     <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -630,13 +629,6 @@
     <Compile Include="metrics\escapes.aspx.designer.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\ReportViewer1.aspx.cs">
-      <DependentUpon>ReportViewer1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\ReportViewer1.aspx.designer.cs">
-      <DependentUpon>ReportViewer1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="n1_Default.aspx.cs">
       <DependentUpon>n1_Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -657,12 +649,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Report1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Report1.Designer.cs">
-      <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
     <Compile Include="n2_Safety.aspx.cs">
       <DependentUpon>n2_Safety.aspx</DependentUpon>
@@ -735,9 +721,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Report1.resx">
-      <DependentUpon>Report1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
