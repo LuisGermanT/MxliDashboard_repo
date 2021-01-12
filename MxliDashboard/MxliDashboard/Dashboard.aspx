@@ -92,11 +92,17 @@
                         <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="530px">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="70px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png">
+                                <Style HorizontalAlign="Center">
+                                </Style>
+                            </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="80px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/chart.png" Target="_blank">
+                                <Style HorizontalAlign="Center">
+                                </Style>
+                            </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                
                     </Columns>

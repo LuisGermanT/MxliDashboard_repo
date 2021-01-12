@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace MxliDashboard.n3_Quality
 {
-    public partial class escapes : System.Web.UI.Page
+    public partial class ppms : System.Web.UI.Page
     {
         int xIndice = 0;
         string xFilter = "SITE";
@@ -196,7 +196,7 @@ namespace MxliDashboard.n3_Quality
             if (gType < 2)
             {
                 WebChartControl1.Height = 200;
-                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
+                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
                 DataTable dt1 = dBHelper.QryManager(qry1);
@@ -230,7 +230,7 @@ namespace MxliDashboard.n3_Quality
             if (gType == 3)
             {
                 WebChartControl1.Height = 200;
-                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'escapes' order by id desc";
+                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'ppms' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);

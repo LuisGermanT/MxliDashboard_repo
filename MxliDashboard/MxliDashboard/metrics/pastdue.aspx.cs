@@ -157,6 +157,7 @@ namespace MxliDashboard.n3_Safety
 
             if (gType < 2)
             {
+                WebChartControl1.Height = 200;
                 string query1 = "select top 13 * from [sta_nivel2] where smetric = 'pastdue' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -183,6 +184,7 @@ namespace MxliDashboard.n3_Safety
             }
             if (gType == 2)
             {
+                WebChartControl1.Height = 400;
                 double vSum = 0;
                 string qry2 = "SELECT top 10 smaterial, SUM(fopenvalue) as cValue FROM[DB_1033_Dashboard].[dbo].[tbl_pastdue] group by smaterial order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
@@ -201,6 +203,7 @@ namespace MxliDashboard.n3_Safety
             }
             if (gType == 3)
             {
+                WebChartControl1.Height = 200;
                 string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'pastdue' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();

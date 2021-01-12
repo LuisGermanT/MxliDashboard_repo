@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44337</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -223,17 +224,21 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\bad.png" />
+    <Content Include="img\badB.png" />
+    <Content Include="img\chart.png" />
+    <Content Include="img\good.png" />
+    <Content Include="img\goodB.png" />
     <Content Include="img\settings_banner.png" />
+    <Content Include="img\table.png" />
+    <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
     <Content Include="metrics\scrap.aspx" />
     <Content Include="metrics\Utilization.aspx" />
-    <Content Include="img\bad.png" />
-    <Content Include="img\badB.png" />
     <Content Include="img\badC.png" />
-    <Content Include="img\good.png" />
-    <Content Include="img\goodB.png" />
     <Content Include="img\goodC.png" />
     <Content Include="metrics\dEscapes.aspx" />
+    <Content Include="Reports\v_ppms.aspx" />
     <Content Include="Reports\v_escapes.aspx" />
     <Content Include="Reports\v_inventory.aspx" />
     <Content Include="Reports\v_ottr.aspx" />
@@ -273,7 +278,6 @@
     <Content Include="n2_Quality.aspx" />
     <Content Include="metrics\inventory.aspx" />
     <Content Include="metrics\defects.aspx" />
-    <Content Include="metrics\escapesppm.aspx" />
     <Content Include="metrics\escapes.aspx" />
     <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
@@ -339,6 +343,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="metrics\ppms.aspx.cs">
+      <DependentUpon>ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\ppms.aspx.designer.cs">
+      <DependentUpon>ppms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\productivity.aspx.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,6 +389,16 @@
     </Compile>
     <Compile Include="Reports\r_escapes.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_ppms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\v_ppms.aspx.cs">
+      <DependentUpon>v_ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_ppms.aspx.designer.cs">
+      <DependentUpon>v_ppms.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\v_escapes.aspx.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
@@ -614,13 +635,6 @@
     <Compile Include="metrics\defects.aspx.designer.cs">
       <DependentUpon>defects.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metrics\escapesppm.aspx.cs">
-      <DependentUpon>escapesppm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="metrics\escapesppm.aspx.designer.cs">
-      <DependentUpon>escapesppm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="metrics\escapes.aspx.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -720,6 +734,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_ppms.resx">
+      <DependentUpon>r_ppms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

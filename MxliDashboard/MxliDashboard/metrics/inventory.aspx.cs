@@ -130,18 +130,6 @@ namespace MxliDashboard.n3_Inventory
 
         protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ASPxComboBoxMrpInContent.SelectedIndex = 0;
-            //ASPxComboBoxCellInContent.SelectedIndex = 0;
-            //ASPxComboBoxPfepInContent.SelectedIndex = 0;
-            //if (ASPxComboBoxVsmInContent.SelectedIndex == 0)
-            //{
-            //    chartDefault("SITE", "All");
-            //}
-            //else
-            //{
-            //    chartDefault("VSM", ASPxComboBoxVsmInContent.SelectedItem.ToString());
-            //}
-
             if (noActualizar == 0)
             {
                 noActualizar = 1;
@@ -165,18 +153,6 @@ namespace MxliDashboard.n3_Inventory
 
         protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ASPxComboBoxVsmInContent.SelectedIndex = 0;
-            //ASPxComboBoxMrpInContent.SelectedIndex = 0;
-            //ASPxComboBoxPfepInContent.SelectedIndex = 0;
-            //if (ASPxComboBoxCellInContent.SelectedIndex == 0)
-            //{
-            //    chartDefault("SITE", "All");
-            //}
-            //else
-            //{
-            //    chartDefault("CELL", ASPxComboBoxCellInContent.SelectedItem.ToString());
-            //}
-
             if (noActualizar == 0)
             {
                 noActualizar = 1;
@@ -200,18 +176,6 @@ namespace MxliDashboard.n3_Inventory
 
         protected void ASPxComboBoxMrpInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ASPxComboBoxVsmInContent.SelectedIndex = 0;
-            //ASPxComboBoxCellInContent.SelectedIndex = 0;
-            //ASPxComboBoxPfepInContent.SelectedIndex = 0;
-            //if (ASPxComboBoxMrpInContent.SelectedIndex == 0)
-            //{
-            //    chartDefault("SITE", "All");
-            //}
-            //else
-            //{
-            //    chartDefault("MRP", ASPxComboBoxMrpInContent.SelectedItem.ToString());
-            //}
-
             if (noActualizar == 0)
             {
                 noActualizar = 1;
@@ -235,18 +199,6 @@ namespace MxliDashboard.n3_Inventory
 
         protected void ASPxComboBoxPfepInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ASPxComboBoxVsmInContent.SelectedIndex = 0;
-            //ASPxComboBoxMrpInContent.SelectedIndex = 0;
-            //ASPxComboBoxCellInContent.SelectedIndex = 0;           
-            //if (ASPxComboBoxPfepInContent.SelectedIndex == 0)
-            //{
-            //    chartDefault("SITE", "All");
-            //}
-            //else
-            //{
-            //    chartDefault("PFEP", ASPxComboBoxPfepInContent.SelectedItem.ToString());
-            //}
-
             if (noActualizar == 0)
             {
                 noActualizar = 1;
@@ -296,15 +248,9 @@ namespace MxliDashboard.n3_Inventory
                 xTipo = "YEARLY";
             }
 
-            //string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            //SqlConnection conn1 = new SqlConnection(myCnStr1);
-            //SqlCommand cmd1 = new SqlCommand("SELECT sday, fTotal, fGoal, fAcc FROM cht_inventario WHERE smetric = 'inventario' and sType = '" + xType + "' and sfilter = '" + xFilter + "' order by id", conn1);
-            //SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            //DataTable dt1 = new DataTable();
-            //da1.Fill(dt1);
-
             if (gType < 2)
             {
+                WebChartControl1.Height = 200;
                 string query1 = "select top 13 * from [sta_nivel2] where smetric = 'inventory' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -327,6 +273,7 @@ namespace MxliDashboard.n3_Inventory
             }
             if (gType == 2)
             {
+                WebChartControl1.Height = 400;
                 double vSum = 0;
                 string qry2 = "SELECT top 10 smaterial, SUM(total) as cValue FROM[DB_1033_Dashboard].[dbo].[tbl_inventario] group by smaterial order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
@@ -345,6 +292,7 @@ namespace MxliDashboard.n3_Inventory
             }
             if (gType == 3)
             {
+                WebChartControl1.Height = 200;
                 string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'inventory' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();

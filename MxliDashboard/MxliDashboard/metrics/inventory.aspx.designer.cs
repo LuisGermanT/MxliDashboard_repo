@@ -121,13 +121,13 @@ namespace MxliDashboard.n3_Inventory {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
         
         /// <summary>
-        /// ASPxComboBoxMrpInContent control.
+        /// ASPxComboBoxCellInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMrpInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
         
         /// <summary>
         /// ASPxLabelCaption3 control.
@@ -139,13 +139,13 @@ namespace MxliDashboard.n3_Inventory {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
         
         /// <summary>
-        /// ASPxComboBoxCellInContent control.
+        /// ASPxComboBoxMrpInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMrpInContent;
         
         /// <summary>
         /// ASPxLabelCaption4 control.

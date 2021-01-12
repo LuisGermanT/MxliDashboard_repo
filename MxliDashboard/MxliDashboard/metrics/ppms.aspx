@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="inventory.aspx.cs" Inherits="MxliDashboard.n3_Inventory.inventory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ppms.aspx.cs" Inherits="MxliDashboard.n3_Quality.ppms" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -6,11 +6,9 @@
 <%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
     <p></p>
-    <h3>Inventory cost.</h3>
-    <%--<p></p>
-        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>--%>
+    <h3>PPMS.</h3>
+    <p></p>
         <asp:Label ID="Label1" runat="server" Text="labelUpdate"></asp:Label>
     <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="True">
@@ -79,8 +77,8 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="svsm"
-                                TextField="svsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
+                                TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" 
                                 OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
@@ -95,8 +93,8 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="scell"
-                                TextField="scell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
+                                TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -110,8 +108,8 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="smrp"
-                                TextField="smrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
+                            <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
+                                TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundMrp" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
@@ -122,21 +120,6 @@
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>                       
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select PFEP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxPfepInContent" runat="server" ValueField="spfep"
-                                TextField="spfep" ValueType="System.String" DataSourceID="SqlDataSourcePfep"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundPfep" Theme="Office365">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One MRP&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -184,12 +167,6 @@
                                 </dx:LineSeriesView>
                             </ViewSerializable>
                         </dx:Series>
-                        <dx:Series Name="Adj" LabelsVisibility="True" CrosshairLabelPattern="{V:c2}">
-                            <ViewSerializable>
-                                <dx:StackedBarSeriesView Color="247, 150, 70">
-                                </dx:StackedBarSeriesView>
-                            </ViewSerializable>
-                        </dx:Series>
                     </SeriesSerializable>
                 </dx:WebChartControl>
             </dx:PanelContent>
@@ -204,10 +181,10 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent4" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_inventory" Theme="Metropolis" Width="1100px" EnableTheming="True" OnCustomUnboundColumnData="grid_CustomUnboundColumnData">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_escapes" Theme="Default" Width="1024px">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
-                    <Settings ShowFooter="True" ShowGroupPanel="True" />
+                    <Settings ShowGroupPanel="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <SettingsSearchPanel Visible="True" />
                     <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="WYSIWYG" />
@@ -223,66 +200,70 @@
                         </dx:GridViewToolbar>
                     </Toolbars>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="sMaterial" VisibleIndex="0" Caption="Material">
+                        <dx:GridViewDataTextColumn FieldName="id" VisibleIndex="0" Caption="ID">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="totQty" VisibleIndex="1">
+                        <dx:GridViewDataTextColumn FieldName="qn" VisibleIndex="1" Caption="QN">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" VisibleIndex="2">
-                            <PropertiesTextEdit DisplayFormatString="C2">
-                            </PropertiesTextEdit>
+                        <dx:GridViewDataTextColumn FieldName="partNumber" VisibleIndex="2" Caption="MATERIAL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Total" VisibleIndex="3">
-                            <PropertiesTextEdit DisplayFormatString="C2">
-                            </PropertiesTextEdit>
+                        <dx:GridViewDataTextColumn FieldName="partName" VisibleIndex="3" Caption="MAT.DESC">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sVsm" VisibleIndex="4" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="cause" VisibleIndex="4" Caption="CAUSE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sCell" VisibleIndex="5" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="qndescription" VisibleIndex="5" Caption="DESCRIPTION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sMrp" VisibleIndex="6" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="qncreatedBy" VisibleIndex="6" Caption="CREATED BY">
+                        </dx:GridViewDataTextColumn>                        
+                        <dx:GridViewDataTextColumn FieldName="Responsability" VisibleIndex="7" Caption="RESPONSABILITY">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sMakeBuy" VisibleIndex="7" Caption="MakeBuy">
+                        <dx:GridViewDataTextColumn FieldName="quantity" VisibleIndex="8" Caption="QTY">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sPfep" VisibleIndex="8" Caption="PFEP">
+                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="9" Caption="VSM">
+                        </dx:GridViewDataTextColumn>                       
+                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="10" Caption="CELL">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="11" Caption="MRP">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="nweek" VisibleIndex="12" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
                     </Columns>
-                    <TotalSummary>
-                        <dx:ASPxSummaryItem DisplayFormat="C2" FieldName="Total" ShowInColumn="Total" ShowInGroupFooterColumn="Total" SummaryType="Sum" />
-                    </TotalSummary>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="Total" SummaryType="Sum" />
+                        <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="VSM" SummaryType="Sum" />
+                    </GroupSummary>
+                    <GroupSummary>
+                        <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="MRP" SummaryType="Sum" />
+                    </GroupSummary>
+                    <GroupSummary>
+                        <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="CELL" SummaryType="Sum" />
+                    </GroupSummary>
+                    <GroupSummary>
+                        <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="WEEK" SummaryType="Sum" />
                     </GroupSummary>
                     <Styles>
-                        <Header BackColor="IndianRed" ForeColor="White" HorizontalAlign="Center">
+                        <Header BackColor="IndianRed" ForeColor="White">
                         </Header>
-                        <Cell HorizontalAlign="Center">
-                        </Cell>
                     </Styles>
                 </dx:ASPxGridView>
             </dx:PanelContent>
-        </PanelCollection>       
+        </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_inventory" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [sMaterial], [totQty], [Price], [Total], [sVsm], [sCell], [sMrp], [sMakeBuy], [sPfep] FROM [tbl_inventario] where [xDay] = 1 and smrp like @pMrp and svsm like @pVsm and scell like @pCell and spfep like @pPfep">
-    <SelectParameters>
+    <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [nweek], [nyear], [quantity] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm and cell like @pCell  order by id">
+        <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxPfepInContent"
-                Name="pPfep" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [smrp] FROM [tbl_inventario] order by smrp"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [svsm] FROM [tbl_inventario] order by svsm"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [mrp] FROM [sap_escapes] order by mrp"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [scell] FROM [tbl_inventario] order by scell"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourcePfep" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [spfep] FROM [tbl_inventario] order by spfep"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [cell] FROM [sap_escapes] order by cell"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [vsm] FROM [sap_escapes] order by vsm"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -352,7 +333,7 @@
                         <asp:Parameter Name="due_date" Type="DateTime" />
                     </InsertParameters>
                     <SelectParameters>
-                        <asp:Parameter DefaultValue="inventory" Name="report" Type="String" />
+                        <asp:Parameter DefaultValue="escapes" Name="report" Type="String" />
                     </SelectParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="area" Type="String" />

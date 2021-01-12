@@ -130,7 +130,7 @@
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="url" VisibleIndex="15" Width="75px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" >
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png" >
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
