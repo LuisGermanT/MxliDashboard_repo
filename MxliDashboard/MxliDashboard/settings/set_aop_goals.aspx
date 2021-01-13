@@ -132,7 +132,6 @@
                 </SettingsPager>
                 <SettingsEditing EditFormColumnCount="5" Mode="Inline">
                 </SettingsEditing>
-                <SettingsDataSecurity AllowDelete="False" />
                 <SettingsPopup>
                     <EditForm Modal="True" Width="750px" SettingsAdaptivity-Mode="OnWindowInnerWidth">
                         <SettingsAdaptivity Mode="OnWindowInnerWidth"></SettingsAdaptivity>
@@ -144,7 +143,7 @@
 
                 </EditFormLayoutProperties>
                 <Columns>
-                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True">
                     </dx:GridViewCommandColumn>
                     <dx:GridViewDataTextColumn FieldName="tbl_set_aopgoals_id" ReadOnly="True" VisibleIndex="1" Visible="False">
                         <EditFormSettings Visible="False" />
@@ -182,7 +181,8 @@
             <asp:SqlDataSource ID="SqlDataSourceVSM" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
                 SelectCommand="SELECT [tbl_set_aopgoals_id], [gVsm], [nYear], [gYear], [gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12] FROM [tbl_set_aopgoals] where [metric] = @param1 and gType = 'vsm'"
                 UpdateCommand="UPDATE [tbl_set_aopgoals] SET [gYear] = @gYear, [gM1] = @gM1, [gM2] = @gM2, [gM3] = @gM3, [gM4] = @gM4, [gM5] = @gM5, [gM6] = @gM6, [gM7] = @gM7, [gM8] = @gM8, [gM9] = @gM9, [gM10] = @gM10, [gM11] = @gM11, [gM12] = @gM12 WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id"
-                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gVsm],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'VSM', @gVsm, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)">
+                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gVsm],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'VSM', @gVsm, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)"
+                DeleteCommand="DELETE FROM [tbl_set_aopgoals] WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxF1"
                         Name="param1" PropertyName="Value" Type="String" />
@@ -221,6 +221,9 @@
                     <asp:Parameter Name="gM11" Type="String" />
                     <asp:Parameter Name="gM12" Type="String" />
                 </InsertParameters>
+                <DeleteParameters>
+                    <asp:Parameter Name="tbl_set_aopgoals_id" Type="Int32" />
+                </DeleteParameters>
             </asp:SqlDataSource>
         </div>
         <p></p>
@@ -234,7 +237,6 @@
                 </SettingsPager>
                 <SettingsEditing EditFormColumnCount="5" Mode="Inline">
                 </SettingsEditing>
-                <SettingsDataSecurity AllowDelete="False" />
                 <SettingsPopup>
                     <EditForm Modal="True" Width="750px" SettingsAdaptivity-Mode="OnWindowInnerWidth">
                         <SettingsAdaptivity Mode="OnWindowInnerWidth"></SettingsAdaptivity>
@@ -246,7 +248,7 @@
 
                 </EditFormLayoutProperties>
                 <Columns>
-                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True">
                     </dx:GridViewCommandColumn>
                     <dx:GridViewDataTextColumn FieldName="tbl_set_aopgoals_id" ReadOnly="True" VisibleIndex="1" Visible="False">
                         <EditFormSettings Visible="False" />
@@ -284,7 +286,8 @@
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
                 SelectCommand="SELECT [tbl_set_aopgoals_id], [gCell], [nYear], [gYear], [gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12] FROM [tbl_set_aopgoals] where [metric] = @param1 and gType = 'cell'"
                 UpdateCommand="UPDATE [tbl_set_aopgoals] SET [gYear] = @gYear, [gM1] = @gM1, [gM2] = @gM2, [gM3] = @gM3, [gM4] = @gM4, [gM5] = @gM5, [gM6] = @gM6, [gM7] = @gM7, [gM8] = @gM8, [gM9] = @gM9, [gM10] = @gM10, [gM11] = @gM11, [gM12] = @gM12 WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id"
-                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gCell],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'CELL', @gCell, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)">
+                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gCell],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'CELL', @gCell, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)"
+                DeleteCommand="DELETE FROM [tbl_set_aopgoals] WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxF1"
                         Name="param1" PropertyName="Value" Type="String" />
@@ -323,6 +326,9 @@
                     <asp:Parameter Name="gM11" Type="String" />
                     <asp:Parameter Name="gM12" Type="String" />
                 </InsertParameters>
+                <DeleteParameters>
+                    <asp:Parameter Name="tbl_set_aopgoals_id" Type="Int32" />
+                </DeleteParameters>
             </asp:SqlDataSource>
         </div>
         <p></p>
@@ -336,7 +342,6 @@
                 </SettingsPager>
                 <SettingsEditing EditFormColumnCount="5" Mode="Inline">
                 </SettingsEditing>
-                <SettingsDataSecurity AllowDelete="False" />
                 <SettingsPopup>
                     <EditForm Modal="True" Width="750px" SettingsAdaptivity-Mode="OnWindowInnerWidth">
                         <SettingsAdaptivity Mode="OnWindowInnerWidth"></SettingsAdaptivity>
@@ -348,7 +353,7 @@
 
                 </EditFormLayoutProperties>
                 <Columns>
-                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
+                    <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True">
                     </dx:GridViewCommandColumn>
                     <dx:GridViewDataTextColumn FieldName="tbl_set_aopgoals_id" ReadOnly="True" VisibleIndex="1" Visible="False">
                         <EditFormSettings Visible="False" />
@@ -386,7 +391,8 @@
             <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
                 SelectCommand="SELECT [tbl_set_aopgoals_id], [gMrp], [nYear], [gYear], [gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12] FROM [tbl_set_aopgoals] where [metric] = @param1 and gType = 'mrp'"
                 UpdateCommand="UPDATE [tbl_set_aopgoals] SET [gYear] = @gYear, [gM1] = @gM1, [gM2] = @gM2, [gM3] = @gM3, [gM4] = @gM4, [gM5] = @gM5, [gM6] = @gM6, [gM7] = @gM7, [gM8] = @gM8, [gM9] = @gM9, [gM10] = @gM10, [gM11] = @gM11, [gM12] = @gM12 WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id"
-                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gMrp],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'MRP', @gMrp, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)">
+                InsertCommand="INSERT into[tbl_set_aopgoals]([metric],[nYear],[gType],[gMrp],[gYear],[gM1], [gM2], [gM3], [gM4], [gM5], [gM6], [gM7], [gM8], [gM9], [gM10], [gM11], [gM12]) values(@metric, '2021', 'MRP', @gMrp, @gYear, @gM1, @gM2, @gM3, @gM4, @gM5, @gM6, @gM7, @gM8, @gM9, @gM10, @gM11, @gM12)"
+                DeleteCommand="DELETE FROM [tbl_set_aopgoals] WHERE [tbl_set_aopgoals_id] = @tbl_set_aopgoals_id">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxF1"
                         Name="param1" PropertyName="Value" Type="String" />
@@ -425,6 +431,9 @@
                     <asp:Parameter Name="gM11" Type="String" />
                     <asp:Parameter Name="gM12" Type="String" />
                 </InsertParameters>
+                <DeleteParameters>
+                    <asp:Parameter Name="tbl_set_aopgoals_id" Type="Int32" />
+                </DeleteParameters>
             </asp:SqlDataSource>
         </div>
     </div>

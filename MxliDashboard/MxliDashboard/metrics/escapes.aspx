@@ -152,7 +152,7 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend" Font="Honeywell Sans Web Medium, 8pt"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" CrosshairLabelPattern="{V:c2}">
+                        <dx:Series Name="Total" LabelsVisibility="True" >
                             <ViewSerializable>
                                 <dx:SideBySideBarSeriesView BarWidth="0.8" Color="0, 102, 153">
                                     <Border Color="79, 129, 189" Visibility="False" />
@@ -161,7 +161,7 @@
                                 </dx:SideBySideBarSeriesView>
                             </ViewSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="True" Name="Goal" CrosshairLabelPattern="{V:c2}">
+                        <dx:Series LabelsVisibility="True" Name="Goal" >
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="192, 80, 77">
                                 </dx:LineSeriesView>

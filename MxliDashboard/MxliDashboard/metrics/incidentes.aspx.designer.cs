@@ -13,6 +13,15 @@ namespace MxliDashboard.n3_Safety {
     public partial class incidentes {
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// ASPxRoundPanel1 control.
         /// </summary>
         /// <remarks>
@@ -31,58 +40,40 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.PanelContent PanelContent1;
         
         /// <summary>
-        /// ASPxLabelCaption1 control.
+        /// ASPxLabelV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelV;
         
         /// <summary>
-        /// ASPxComboBoxAreaInContent control.
+        /// ASPxComboBoxV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxV;
         
         /// <summary>
-        /// ASPxLabelCaption2 control.
+        /// ASPxLabelGV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelGV;
         
         /// <summary>
-        /// ASPxComboBoxCeldaInContent control.
+        /// ASPxComboBoxGV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCeldaInContent;
-        
-        /// <summary>
-        /// ASPxLabelCaption3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
-        
-        /// <summary>
-        /// ASPxComboBoxCausaInContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCausaInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxGV;
         
         /// <summary>
         /// ASPxRoundPanel2 control.
@@ -103,13 +94,58 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.PanelContent PanelContent2;
         
         /// <summary>
-        /// WebChartControl1 control.
+        /// ASPxLabelCaption1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl1;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
+        
+        /// <summary>
+        /// ASPxComboBoxVsmInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxVsmInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
+        
+        /// <summary>
+        /// ASPxComboBoxCellInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
+        
+        /// <summary>
+        /// ASPxComboBoxCausaInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCausaInContent;
         
         /// <summary>
         /// ASPxRoundPanel3 control.
@@ -130,49 +166,13 @@ namespace MxliDashboard.n3_Safety {
         protected global::DevExpress.Web.PanelContent PanelContent3;
         
         /// <summary>
-        /// ASPxGridView1 control.
+        /// WebChartControl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
-        
-        /// <summary>
-        /// ds_incidentes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ds_incidentes;
-        
-        /// <summary>
-        /// SqlDataSourceArea control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
-        
-        /// <summary>
-        /// SqlDataSourceCelda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCelda;
-        
-        /// <summary>
-        /// SqlDataSourceCausa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCausa;
+        protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl1;
         
         /// <summary>
         /// ASPxRoundPanel4 control.
@@ -191,6 +191,69 @@ namespace MxliDashboard.n3_Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.PanelContent PanelContent4;
+        
+        /// <summary>
+        /// ASPxGridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
+        
+        /// <summary>
+        /// ds_incidentes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ds_incidentes;
+        
+        /// <summary>
+        /// SqlDataSourceVsm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceVsm;
+        
+        /// <summary>
+        /// SqlDataSourceCell control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        
+        /// <summary>
+        /// SqlDataSourceCausa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCausa;
+        
+        /// <summary>
+        /// ASPxRoundPanel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel5;
+        
+        /// <summary>
+        /// PanelContent5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent5;
         
         /// <summary>
         /// ASPxGridView2 control.
