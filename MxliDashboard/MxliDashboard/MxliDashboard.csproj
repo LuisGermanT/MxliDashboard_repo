@@ -231,6 +231,7 @@
     <Content Include="img\goodB.png" />
     <Content Include="img\settings_banner.png" />
     <Content Include="img\table.png" />
+    <Content Include="metrics\agedwip.aspx" />
     <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
     <Content Include="metrics\scrap.aspx" />
@@ -347,6 +348,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="metrics\agedwip.aspx.cs">
+      <DependentUpon>agedwip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\agedwip.aspx.designer.cs">
+      <DependentUpon>agedwip.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\ppms.aspx.cs">
       <DependentUpon>ppms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

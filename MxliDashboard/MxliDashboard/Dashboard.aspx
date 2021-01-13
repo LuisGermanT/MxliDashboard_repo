@@ -73,14 +73,24 @@
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
                         <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="150px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="70px">
                             <DataItemTemplate>

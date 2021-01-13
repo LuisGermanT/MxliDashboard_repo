@@ -68,7 +68,7 @@
             <p></p>
             <div>
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" ViewStateMode="Disabled" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
-                    <SettingsPager Visible="False" PageSize="50">
+                    <SettingsPager Visible="False" PageSize="100">
                     </SettingsPager>
                     <SettingsBehavior AllowCellMerge="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />

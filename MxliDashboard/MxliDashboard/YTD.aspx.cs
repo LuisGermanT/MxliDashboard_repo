@@ -140,7 +140,7 @@ namespace MxliDashboard
             e.Row.Cells[12 - index].Text = String.Format("{0:N0}", v11);
             e.Row.Cells[13 - index].Text = String.Format("{0:N0}", v12);
             e.Row.Cells[14 - index].Text = String.Format("{0:N0}", v13);
-            if (xMetric == "INVENTORY" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI")
+            if (xMetric == "INVENTORY" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI" || xMetric == "AGED WIP")
             {
                 e.Row.Cells[2 - index].Text = String.Format("{0:C2}", v1 / 1000000) + "M";
                 e.Row.Cells[3 - index].Text = String.Format("{0:C2}", v2 / 1000000) + "M";
@@ -156,7 +156,7 @@ namespace MxliDashboard
                 e.Row.Cells[13 - index].Text = String.Format("{0:C2}", v12 / 1000000) + "M";
                 e.Row.Cells[14 - index].Text = String.Format("{0:C2}", v13 / 1000000) + "M";
             }
-            if (xMetric == "OTTR" || xMetric == "UTILIZATION" || xMetric == "PRODUCTIVITY")
+            if (xMetric == "OTTR" || xMetric == "UTILIZATION" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "ACCURACY" || xMetric == "CARS" || xMetric == "TRAINING" || xMetric == "LPAS" || xMetric == "QSAT")
             {
                 e.Row.Cells[2 - index].Text = String.Format("{0:N2}", v1) + "%";
                 e.Row.Cells[3 - index].Text = String.Format("{0:N2}", v2) + "%";
@@ -171,6 +171,38 @@ namespace MxliDashboard
                 e.Row.Cells[12 - index].Text = String.Format("{0:N2}", v11) + "%";
                 e.Row.Cells[13 - index].Text = String.Format("{0:N2}", v12) + "%";
                 e.Row.Cells[14 - index].Text = String.Format("{0:N2}", v13) + "%";
+            }
+            if (xMetric == "PRB" || xMetric == "RTV")
+            {
+                e.Row.Cells[2 - index].Text = String.Format("{0:C2}", v1 / 1000) + "K";
+                e.Row.Cells[3 - index].Text = String.Format("{0:C2}", v2 / 1000) + "K";
+                e.Row.Cells[4 - index].Text = String.Format("{0:C2}", v3 / 1000) + "K";
+                e.Row.Cells[5 - index].Text = String.Format("{0:C2}", v4 / 1000) + "K";
+                e.Row.Cells[6 - index].Text = String.Format("{0:C2}", v5 / 1000) + "K";
+                e.Row.Cells[7 - index].Text = String.Format("{0:C2}", v6 / 1000) + "K";
+                e.Row.Cells[8 - index].Text = String.Format("{0:C2}", v7 / 1000) + "K";
+                e.Row.Cells[9 - index].Text = String.Format("{0:C2}", v8 / 1000) + "K";
+                e.Row.Cells[10 - index].Text = String.Format("{0:C2}", v9 / 1000) + "K";
+                e.Row.Cells[11 - index].Text = String.Format("{0:C2}", v10 / 1000) + "K";
+                e.Row.Cells[12 - index].Text = String.Format("{0:C2}", v11 / 1000) + "K";
+                e.Row.Cells[13 - index].Text = String.Format("{0:C2}", v12 / 1000) + "K";
+                e.Row.Cells[14 - index].Text = String.Format("{0:C2}", v13 / 1000) + "K";
+            }
+            if (xMetric == "BALANCED SCORECARD")
+            {
+                e.Row.Cells[2 - index].Text = String.Format("{0:N2}", v1) + "";
+                e.Row.Cells[3 - index].Text = String.Format("{0:N2}", v2) + "";
+                e.Row.Cells[4 - index].Text = String.Format("{0:N2}", v3) + "";
+                e.Row.Cells[5 - index].Text = String.Format("{0:N2}", v4) + "";
+                e.Row.Cells[6 - index].Text = String.Format("{0:N2}", v5) + "";
+                e.Row.Cells[7 - index].Text = String.Format("{0:N2}", v6) + "";
+                e.Row.Cells[8 - index].Text = String.Format("{0:N2}", v7) + "";
+                e.Row.Cells[9 - index].Text = String.Format("{0:N2}", v8) + "";
+                e.Row.Cells[10 - index].Text = String.Format("{0:N2}", v9) + "";
+                e.Row.Cells[11 - index].Text = String.Format("{0:N2}", v10) + "";
+                e.Row.Cells[12 - index].Text = String.Format("{0:N2}", v11) + "";
+                e.Row.Cells[13 - index].Text = String.Format("{0:N2}", v12) + "";
+                e.Row.Cells[14 - index].Text = String.Format("{0:N2}", v13) + "";
             }
 
             if (xStyle == 1)
@@ -241,7 +273,7 @@ namespace MxliDashboard
                 }
             }
             //KAIZENS PRODUCTIVITY  OTTR OUTPUT
-            if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT")
+            if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT" || xMetric == "ACCURACY")
             {
                 if (xComp == 1)
                 {
