@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44337</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -223,17 +224,26 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\bad.png" />
+    <Content Include="img\badB.png" />
+    <Content Include="img\chart.png" />
+    <Content Include="img\good.png" />
+    <Content Include="img\goodB.png" />
     <Content Include="img\settings_banner.png" />
+    <Content Include="img\table.png" />
+    <Content Include="metrics\agedwip.aspx" />
+    <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
     <Content Include="metrics\scrap.aspx" />
     <Content Include="metrics\Utilization.aspx" />
-    <Content Include="img\bad.png" />
-    <Content Include="img\badB.png" />
     <Content Include="img\badC.png" />
-    <Content Include="img\good.png" />
-    <Content Include="img\goodB.png" />
     <Content Include="img\goodC.png" />
-    <Content Include="metrics\dEscapes.aspx" />
+    <Content Include="Reports\v_defects.aspx" />
+    <Content Include="Reports\v_entitlement.aspx" />
+    <Content Include="Reports\v_vmi.aspx" />
+    <Content Include="Reports\v_output.aspx" />
+    <Content Include="Reports\v_incidents.aspx" />
+    <Content Include="Reports\v_ppms.aspx" />
     <Content Include="Reports\v_escapes.aspx" />
     <Content Include="Reports\v_inventory.aspx" />
     <Content Include="Reports\v_ottr.aspx" />
@@ -273,9 +283,7 @@
     <Content Include="n2_Quality.aspx" />
     <Content Include="metrics\inventory.aspx" />
     <Content Include="metrics\defects.aspx" />
-    <Content Include="metrics\escapesppm.aspx" />
     <Content Include="metrics\escapes.aspx" />
-    <Content Include="Reports\ReportViewer1.aspx" />
     <Content Include="n1_Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -340,12 +348,41 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="metrics\agedwip.aspx.cs">
+      <DependentUpon>agedwip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\agedwip.aspx.designer.cs">
+      <DependentUpon>agedwip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\ppms.aspx.cs">
+      <DependentUpon>ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\ppms.aspx.designer.cs">
+      <DependentUpon>ppms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\productivity.aspx.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="metrics\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\r_defects.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_entitlement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_vmi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_output.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_incidents.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\r_ottr.cs">
       <SubType>Component</SubType>
@@ -370,15 +407,53 @@
     <Compile Include="metrics\utilization.aspx.designer.cs">
       <DependentUpon>Utilization.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metrics\dEscapes.aspx.cs">
-      <DependentUpon>dEscapes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="metrics\dEscapes.aspx.designer.cs">
-      <DependentUpon>dEscapes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Reports\r_escapes.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_ppms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\v_defects.aspx.cs">
+      <DependentUpon>v_defects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_defects.aspx.designer.cs">
+      <DependentUpon>v_defects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_entitlement.aspx.cs">
+      <DependentUpon>v_entitlement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_entitlement.aspx.designer.cs">
+      <DependentUpon>v_entitlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_vmi.aspx.cs">
+      <DependentUpon>v_vmi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_vmi.aspx.designer.cs">
+      <DependentUpon>v_vmi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_output.aspx.cs">
+      <DependentUpon>v_output.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_output.aspx.designer.cs">
+      <DependentUpon>v_output.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_incidents.aspx.cs">
+      <DependentUpon>v_incidents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_incidents.aspx.designer.cs">
+      <DependentUpon>v_incidents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_ppms.aspx.cs">
+      <DependentUpon>v_ppms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_ppms.aspx.designer.cs">
+      <DependentUpon>v_ppms.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\v_escapes.aspx.cs">
       <DependentUpon>v_escapes.aspx</DependentUpon>
@@ -615,26 +690,12 @@
     <Compile Include="metrics\defects.aspx.designer.cs">
       <DependentUpon>defects.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metrics\escapesppm.aspx.cs">
-      <DependentUpon>escapesppm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="metrics\escapesppm.aspx.designer.cs">
-      <DependentUpon>escapesppm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="metrics\escapes.aspx.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="metrics\escapes.aspx.designer.cs">
       <DependentUpon>escapes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\ReportViewer1.aspx.cs">
-      <DependentUpon>ReportViewer1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\ReportViewer1.aspx.designer.cs">
-      <DependentUpon>ReportViewer1.aspx</DependentUpon>
     </Compile>
     <Compile Include="n1_Default.aspx.cs">
       <DependentUpon>n1_Default.aspx</DependentUpon>
@@ -656,12 +717,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Report1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Report1.Designer.cs">
-      <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
     <Compile Include="n2_Safety.aspx.cs">
       <DependentUpon>n2_Safety.aspx</DependentUpon>
@@ -715,6 +770,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\r_defects.resx">
+      <DependentUpon>r_defects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_entitlement.resx">
+      <DependentUpon>r_entitlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_vmi.resx">
+      <DependentUpon>r_vmi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_output.resx">
+      <DependentUpon>r_output.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_incidents.resx">
+      <DependentUpon>r_incidents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_ottr.resx">
       <DependentUpon>r_ottr.cs</DependentUpon>
     </EmbeddedResource>
@@ -735,8 +805,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Report1.resx">
-      <DependentUpon>Report1.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\r_ppms.resx">
+      <DependentUpon>r_ppms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

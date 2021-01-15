@@ -68,7 +68,7 @@
             <p></p>
             <div>
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" ViewStateMode="Disabled" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
-                    <SettingsPager Visible="False" PageSize="50">
+                    <SettingsPager Visible="False" PageSize="100">
                     </SettingsPager>
                     <SettingsBehavior AllowCellMerge="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
@@ -130,7 +130,7 @@
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="url" VisibleIndex="15" Width="75px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" >
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png" >
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>

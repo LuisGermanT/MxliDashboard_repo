@@ -155,7 +155,7 @@
                                 <dx:ASPxLabel ID="E01AOP" runat="server" Text="ASPxLabel" Font-Size="Medium"></dx:ASPxLabel>
                             </td>
                             <td style="text-align: center">
-                                <asp:Image ID="imgE01" runat="server" ImageUrl="~/img/bad.png" />
+                                <asp:Image ID="imgE01" runat="server" ImageUrl="~/img/bad.png" Height="32px" />
                             </td>
                             <td style="text-align: center">
                                 <asp:Chart ID="chartE01" runat="server" Height="120px" Width="500">

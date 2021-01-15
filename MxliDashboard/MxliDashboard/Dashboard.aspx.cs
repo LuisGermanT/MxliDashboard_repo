@@ -112,6 +112,13 @@ namespace MxliDashboard
                 e.Row.Cells[3].Text = String.Format("{0:N2}", v3) + "%";
                 e.Row.Cells[4].Text = String.Format("{0:N2}", v4) + "%";
             }
+            if (regresValueType(xMetric) == 22)
+            {
+                e.Row.Cells[1].Text = String.Format("{0:C2}", v1 / 1000) + "K";
+                e.Row.Cells[2].Text = String.Format("{0:C2}", v2 / 1000) + "K";
+                e.Row.Cells[3].Text = String.Format("{0:C2}", v3 / 1000) + "K";
+                e.Row.Cells[4].Text = String.Format("{0:C2}", v4 / 1000) + "K";
+            }
 
             ASPxImage img = ASPxGridView1.FindRowCellTemplateControl(e.VisibleIndex, null, "imgControl") as ASPxImage;
             if (regresaIconType(xMetric) == 1)

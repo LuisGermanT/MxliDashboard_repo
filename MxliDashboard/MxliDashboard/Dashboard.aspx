@@ -73,14 +73,24 @@
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
                         <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="150px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="70px">
+                            <CellStyle Font-Size="Medium">
+                            </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="70px">
                             <DataItemTemplate>
@@ -92,11 +102,17 @@
                         <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="530px">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="70px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png">
+                                <Style HorizontalAlign="Center">
+                                </Style>
+                            </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
                         <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="80px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center"></PropertiesHyperLinkEdit>
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/chart.png" Target="_blank">
+                                <Style HorizontalAlign="Center">
+                                </Style>
+                            </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                
                     </Columns>
