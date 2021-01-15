@@ -209,7 +209,7 @@
                                 WHERE (NP_Celda LIKE @pCell) AND (NP_Area LIKE @pVsm) AND (NP_Group LIKE @pGroup) 
                                 ORDER BY NP_Year desc, CASE WHEN NP_Month = 'Jan' THEN 1 WHEN NP_Month = 'Feb' THEN 2 WHEN NP_Month = 'Mar' THEN 3 WHEN NP_Month = 'Apr' THEN 4 WHEN NP_Month = 'May' THEN 5 
                                                 WHEN NP_Month = 'Jun' THEN 6 WHEN NP_Month = 'Jul' THEN 7 WHEN NP_Month = 'Aug' THEN 8 WHEN NP_Month = 'Sep' THEN 9 WHEN NP_Month = 'Oct' THEN 10 
-                                                WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Year, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
+                                                WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />

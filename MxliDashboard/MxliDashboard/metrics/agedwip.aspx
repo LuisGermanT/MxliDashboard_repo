@@ -9,8 +9,6 @@
     
     <p></p>
     <h3>Aged WIP.</h3>
-    <%--<p></p>
-        <a class="btn btn-danger" href="../Reports/ReportViewer1.aspx">Print</a>--%>
         <asp:Label ID="Label1" runat="server" Text="labelUpdate"></asp:Label>
     <p></p>
     <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="True">
@@ -123,7 +121,7 @@
                             </dx:ASPxComboBox>
                         </th>                       
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select PFEP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Aged" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxClasInContent" runat="server" ValueField="sClassif"
                                 TextField="sClassif" ValueType="System.String" DataSourceID="SqlDataSourceClas"
