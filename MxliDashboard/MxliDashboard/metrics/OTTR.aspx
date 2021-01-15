@@ -12,6 +12,7 @@
         <ContentTemplate>
             <p />
             <hr />
+            <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
             <p />
 
             <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
@@ -99,13 +100,13 @@
                     <dx:PanelContent ID="PanelContent2" runat="server">
                         <asp:Chart ID="chartTP01" runat="server" Width="1024px">
                             <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -124,6 +125,10 @@
                                     </AxisY2>
                                 </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1">
+                                </asp:Legend>
+                            </Legends>
                         </asp:Chart>
                     </dx:PanelContent>
                 </PanelCollection>

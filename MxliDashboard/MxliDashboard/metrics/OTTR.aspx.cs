@@ -14,6 +14,7 @@ namespace MxliDashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadUpdate();
             if (!Page.IsPostBack)
             {
                 loadChartP01(0, "", "Week");
@@ -291,6 +292,22 @@ namespace MxliDashboard
                 chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), xTotHrs);
                 chartTP01.Series["Series3"].Points.AddXY(dr1[colName].ToString(), perc);
                 chartTP01.Series["Series4"].Points.AddXY(dr1[colName].ToString(), xGoal);
+            }
+
+            chartTP01.Series["Series1"].LegendText = "On Time";
+            chartTP01.Series["Series2"].LegendText = "Miss";
+            chartTP01.Series["Series3"].LegendText = "% OTTR";
+            chartTP01.Series["Series4"].LegendText = "AOP";
+        }
+
+        private void loadUpdate()
+        {
+            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'ottr'";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt = dBHelper.QryManager(qry);
+            foreach (DataRow dr1 in dt.Rows)
+            {
+                lbLUpd.Text = dr1["lastUpdateText"].ToString();
             }
         }
     }

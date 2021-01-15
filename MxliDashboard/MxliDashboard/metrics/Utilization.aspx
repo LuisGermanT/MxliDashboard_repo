@@ -189,6 +189,26 @@
                                 <dx:GridViewDataTextColumn FieldName="TU_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_EID"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_CentroCostos"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Group"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Celda"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Month"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Direct Hrs: {0:n2}" FieldName="TU_DirectHrs" ShowInColumn="TU_Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_EID"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_CentroCostos"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Group"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Celda"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Month"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="TU_TotHrs" ShowInColumn="TU_Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
                             <Styles>
                                 <Header BackColor="IndianRed" ForeColor="White">
                                 </Header>

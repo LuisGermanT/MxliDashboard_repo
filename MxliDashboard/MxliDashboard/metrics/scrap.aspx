@@ -13,6 +13,7 @@
             
             <p />
             <hr />
+            <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
             <p />
 
             <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
@@ -103,9 +104,9 @@
                     <dx:PanelContent ID="PanelContent2" runat="server">
                         <asp:Chart ID="chartTP01" runat="server" Width="1024px">
                             <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}">
+                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
                                 </asp:Series>
                             </Series>
                             <ChartAreas>
@@ -119,6 +120,10 @@
                                     </AxisX>
                                 </asp:ChartArea>
                             </ChartAreas>
+                            <Legends>
+                                <asp:Legend Name="Legend1">
+                                </asp:Legend>
+                            </Legends>
                         </asp:Chart>
                     </dx:PanelContent>
                 </PanelCollection>
@@ -190,6 +195,38 @@
                                 <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="17">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Defect"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="AccName"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="AccConcept"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="VSM"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Cell"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="MRP"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Material"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="EID"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="PstDate"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="MntNum"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="MntName"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total $: {0:c}" FieldName="Amount" ShowInColumn="Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Defect"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="AccName"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="AccConcept"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="VSM"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Cell"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="MRP"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Material"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="EID"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="PstDate"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="MntNum"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="MntName"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:n2}" FieldName="Qty" ShowInColumn="Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
                             <Styles>
                                 <Header BackColor="IndianRed" ForeColor="White">
                                 </Header>

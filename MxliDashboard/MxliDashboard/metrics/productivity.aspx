@@ -189,12 +189,33 @@
                                 <dx:GridViewDataTextColumn FieldName="NP_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
-                           <%-- <GroupSummary>
-                                <dx:ASPxSummaryItem Tag="X" SummaryType="Sum" FieldName="NP_TotalHrs"></dx:ASPxSummaryItem>
-                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_Units"></dx:ASPxSummaryItem>
-                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_EarnedHrs"></dx:ASPxSummaryItem>
-                                <dx:ASPxSummaryItem SummaryType="Sum" FieldName="NP_TotalHrs"></dx:ASPxSummaryItem>
-                            </GroupSummary>--%>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_CentroCostos"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Group"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Celda"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Month"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Hrs: {0:n2}" FieldName="NP_TotalHrs" ShowInColumn="NP_Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_CentroCostos"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Group"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Celda"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Month"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Earned Hrs: {0:n2}" FieldName="NP_EarnedHrs" ShowInColumn="NP_Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_CentroCostos"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Group"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Area"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Celda"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Week"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Month"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Sum" DisplayFormat="Total Qty: {0:0}" FieldName="NP_Qty" ShowInColumn="NP_Year"></dx:ASPxSummaryItem>
+                            </GroupSummary>
                             <Styles>
                                 <Header BackColor="IndianRed" ForeColor="White">
                                 </Header>
@@ -209,7 +230,7 @@
                                 WHERE (NP_Celda LIKE @pCell) AND (NP_Area LIKE @pVsm) AND (NP_Group LIKE @pGroup) 
                                 ORDER BY NP_Year desc, CASE WHEN NP_Month = 'Jan' THEN 1 WHEN NP_Month = 'Feb' THEN 2 WHEN NP_Month = 'Mar' THEN 3 WHEN NP_Month = 'Apr' THEN 4 WHEN NP_Month = 'May' THEN 5 
                                                 WHEN NP_Month = 'Jun' THEN 6 WHEN NP_Month = 'Jul' THEN 7 WHEN NP_Month = 'Aug' THEN 8 WHEN NP_Month = 'Sep' THEN 9 WHEN NP_Month = 'Oct' THEN 10 
-                                                WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Year, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
+                                                WHEN NP_Month = 'Nov' THEN 11 WHEN NP_Month = 'Dec' THEN 12 END DESC, NP_Week DESC, NP_Group, NP_Celda" ProviderName="System.Data.SqlClient">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxCellInContent"
                         Name="pCell" PropertyName="Value" Type="String" />
