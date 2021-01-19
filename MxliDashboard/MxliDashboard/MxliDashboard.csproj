@@ -232,14 +232,19 @@
     <Content Include="img\settings_banner.png" />
     <Content Include="img\table.png" />
     <Content Include="metrics\agedwip.aspx" />
+    <Content Include="metrics\balancedscorecard.aspx" />
+    <Content Include="metrics\cars.aspx" />
     <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
     <Content Include="metrics\scrap.aspx" />
     <Content Include="metrics\Utilization.aspx" />
     <Content Include="img\badC.png" />
     <Content Include="img\goodC.png" />
+    <Content Include="Reports\v_cars.aspx" />
     <Content Include="Reports\v_defects.aspx" />
+    <Content Include="Reports\v_agedwip.aspx" />
     <Content Include="Reports\v_entitlement.aspx" />
+    <Content Include="Reports\v_balancedscorecard.aspx" />
     <Content Include="Reports\v_vmi.aspx" />
     <Content Include="Reports\v_output.aspx" />
     <Content Include="Reports\v_incidents.aspx" />
@@ -355,6 +360,20 @@
     <Compile Include="metrics\agedwip.aspx.designer.cs">
       <DependentUpon>agedwip.aspx</DependentUpon>
     </Compile>
+    <Compile Include="metrics\balancedscorecard.aspx.cs">
+      <DependentUpon>balancedscorecard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\balancedscorecard.aspx.designer.cs">
+      <DependentUpon>balancedscorecard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\cars.aspx.cs">
+      <DependentUpon>cars.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\cars.aspx.designer.cs">
+      <DependentUpon>cars.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\ppms.aspx.cs">
       <DependentUpon>ppms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -369,10 +388,19 @@
     <Compile Include="metrics\productivity.aspx.designer.cs">
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\r_cars.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\r_defects.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\r_agedwip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\r_entitlement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_balancedscorecard.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\r_vmi.cs">
@@ -413,6 +441,13 @@
     <Compile Include="Reports\r_ppms.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\v_cars.aspx.cs">
+      <DependentUpon>v_cars.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_cars.aspx.designer.cs">
+      <DependentUpon>v_cars.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\v_defects.aspx.cs">
       <DependentUpon>v_defects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -420,12 +455,26 @@
     <Compile Include="Reports\v_defects.aspx.designer.cs">
       <DependentUpon>v_defects.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\v_agedwip.aspx.cs">
+      <DependentUpon>v_agedwip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_agedwip.aspx.designer.cs">
+      <DependentUpon>v_agedwip.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\v_entitlement.aspx.cs">
       <DependentUpon>v_entitlement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\v_entitlement.aspx.designer.cs">
       <DependentUpon>v_entitlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_balancedscorecard.aspx.cs">
+      <DependentUpon>v_balancedscorecard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_balancedscorecard.aspx.designer.cs">
+      <DependentUpon>v_balancedscorecard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\v_vmi.aspx.cs">
       <DependentUpon>v_vmi.aspx</DependentUpon>
@@ -770,11 +819,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\r_cars.resx">
+      <DependentUpon>r_cars.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_defects.resx">
       <DependentUpon>r_defects.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_agedwip.resx">
+      <DependentUpon>r_agedwip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_entitlement.resx">
       <DependentUpon>r_entitlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_balancedscorecard.resx">
+      <DependentUpon>r_balancedscorecard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_vmi.resx">
       <DependentUpon>r_vmi.cs</DependentUpon>

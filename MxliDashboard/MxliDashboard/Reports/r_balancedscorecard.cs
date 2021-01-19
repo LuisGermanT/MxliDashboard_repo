@@ -7,7 +7,7 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for XtraReport1
 /// </summary>
-public class r_defects : DevExpress.XtraReports.UI.XtraReport
+public class r_balancedscorecard : DevExpress.XtraReports.UI.XtraReport
 {
     private TopMarginBand TopMargin;
     private BottomMarginBand BottomMargin;
@@ -18,7 +18,6 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     private XRPictureBox xrPictureBox1;
     private XRLabel xrLabel1;
     private XRLine xrLine2;
-    private XRChart xrChart2;
     private XRTable xrTable2;
     private XRTableRow xrTableRow2;
     private XRTableCell xrColumn1;
@@ -39,7 +38,6 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     private DetailBand Detail1;
     private XRLabel xrLabel4;
     private XRLabel xrLabel3;
-    private XRLabel xrLabel2;
     private ReportFooterBand ReportFooter;
     private XRChart xrChart3;
     private XRLabel xrLabel5;
@@ -50,7 +48,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public r_defects()
+    public r_balancedscorecard()
     {
         InitializeComponent();
         //
@@ -81,7 +79,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_defects));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_balancedscorecard));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
@@ -96,18 +94,10 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView3 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel2 = new DevExpress.XtraCharts.PointSeriesLabel();
             DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView4 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
-            DevExpress.XtraCharts.XYDiagram xyDiagram3 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series5 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView5 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
-            DevExpress.XtraCharts.Series series6 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel3 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView2 = new DevExpress.XtraCharts.LineSeriesView();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
@@ -121,7 +111,6 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrColumn1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -130,7 +119,6 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrColumn4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrColumn5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrColumn6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrChart2 = new DevExpress.XtraReports.UI.XRChart();
             this.xrChart1 = new DevExpress.XtraReports.UI.XRChart();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -153,22 +141,13 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(splineSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -189,7 +168,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(391.0416F, 23F);
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "DEFECTS";
+            this.xrLabel4.Text = "BALANCED SCORECARD";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLine1
@@ -248,9 +227,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrChart3,
             this.xrLabel3,
             this.xrLabel5,
-            this.xrLabel2,
             this.xrTable2,
-            this.xrChart2,
             this.xrChart1});
             this.Detail.HeightF = 582.7084F;
             this.Detail.Name = "Detail";
@@ -258,7 +235,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             // xrLabel6
             // 
             this.xrLabel6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(0F, 534.7084F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(0F, 524.2917F);
             this.xrLabel6.Multiline = true;
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -297,7 +274,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrChart3.Legend.Name = "Default Legend";
             this.xrChart3.Legend.Title.Text = "Actual";
             this.xrChart3.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            this.xrChart3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 375.625F);
+            this.xrChart3.LocationFloat = new DevExpress.Utils.PointFloat(605.1041F, 23.00002F);
             this.xrChart3.Name = "xrChart3";
             this.xrChart3.PaletteBaseColorNumber = 2;
             this.xrChart3.PaletteName = "Grayscale";
@@ -331,7 +308,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
         series2};
             sideBySideBarSeriesView2.Transparency = ((byte)(135));
             this.xrChart3.SeriesTemplate.View = sideBySideBarSeriesView2;
-            this.xrChart3.SizeF = new System.Drawing.SizeF(601.0417F, 159.0834F);
+            this.xrChart3.SizeF = new System.Drawing.SizeF(384.8958F, 476.5417F);
             // 
             // sqlDataSource1
             // 
@@ -340,13 +317,12 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             customSqlQuery1.Name = "Query_1";
             customSqlQuery1.Sql = resources.GetString("customSqlQuery1.Sql");
             customSqlQuery2.Name = "Query_2";
-            customSqlQuery2.Sql = resources.GetString("customSqlQuery2.Sql");
+            customSqlQuery2.Sql = "SELECT top 5 [factual],[fsum],[scause] \r\n FROM [DB_1033_Dashboard].[dbo].[sta_niv" +
+    "el2p]\r\n where smetric = \'balanced scorecard\'\r\n";
             customSqlQuery3.Name = "Query_3";
-            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'defects\'\r\n";
+            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'balanced scorecard\'";
             customSqlQuery4.Name = "Query_4";
-            customSqlQuery4.Sql = "SELECT * FROM\r\n(SELECT top 3 [id],[factual],[fsum],[scause] \r\n FROM [DB_1033_Dash" +
-    "board].[dbo].[sta_nivel2f]\r\n where smetric = \'defects\'\r\nand stype = \'monthly\' or" +
-    "der by id desc)\r\nq1 order by id ";
+            customSqlQuery4.Sql = resources.GetString("customSqlQuery4.Sql");
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1,
             customSqlQuery2,
@@ -357,7 +333,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(259.9998F, 352.625F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(748.9583F, 0F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -379,19 +355,6 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "TREND";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(748.9583F, 0F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "PARETO";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrTable2
             // 
@@ -470,91 +433,25 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrColumn6.Text = "DUE_DATE";
             this.xrColumn6.Weight = 0.58620652919279D;
             // 
-            // xrChart2
+            // xrChart1
             // 
-            this.xrChart2.AutoLayout = true;
-            this.xrChart2.BackColor = System.Drawing.Color.White;
-            this.xrChart2.BorderColor = System.Drawing.Color.Black;
-            this.xrChart2.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrChart2.DataSource = this.sqlDataSource1;
-            xyDiagram2.AxisX.Label.Angle = 270;
-            xyDiagram2.AxisX.Label.ResolveOverlappingOptions.AllowHide = false;
-            xyDiagram2.AxisX.Label.ResolveOverlappingOptions.AllowStagger = false;
-            xyDiagram2.AxisX.Label.ResolveOverlappingOptions.MinIndent = 0;
+            this.xrChart1.BorderColor = System.Drawing.Color.Black;
+            this.xrChart1.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrChart1.DataSource = this.sqlDataSource1;
+            xyDiagram2.AxisX.AutoScaleBreaks.MaxCount = 1;
+            xyDiagram2.AxisX.InterlacedColor = System.Drawing.Color.DimGray;
             xyDiagram2.AxisX.MinorCount = 1;
+            xyDiagram2.AxisX.Tickmarks.MinorVisible = false;
+            xyDiagram2.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.Default;
+            xyDiagram2.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.True;
             xyDiagram2.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram2.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram2.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram2.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram2.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram2.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
-            this.xrChart2.Diagram = xyDiagram2;
-            this.xrChart2.IndicatorsPaletteName = "Grayscale";
-            this.xrChart2.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Center;
-            this.xrChart2.Legend.BackColor = System.Drawing.Color.Transparent;
-            this.xrChart2.Legend.Border.Color = System.Drawing.SystemColors.ActiveBorder;
-            this.xrChart2.Legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            this.xrChart2.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
-            this.xrChart2.Legend.MarkerSize = new System.Drawing.Size(20, 10);
-            this.xrChart2.Legend.Name = "Default Legend";
-            this.xrChart2.Legend.Title.Text = "Actual";
-            this.xrChart2.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            this.xrChart2.LocationFloat = new DevExpress.Utils.PointFloat(611.4583F, 23.00002F);
-            this.xrChart2.Name = "xrChart2";
-            this.xrChart2.PaletteBaseColorNumber = 2;
-            this.xrChart2.PaletteName = "Grayscale";
-            series3.ArgumentDataMember = "Query_2.causecode";
-            sideBySideBarSeriesLabel2.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            sideBySideBarSeriesLabel2.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
-            sideBySideBarSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
-            sideBySideBarSeriesLabel2.TextColor = System.Drawing.Color.Black;
-            sideBySideBarSeriesLabel2.TextOrientation = DevExpress.XtraCharts.TextOrientation.BottomToTop;
-            series3.Label = sideBySideBarSeriesLabel2;
-            series3.LegendName = "Default Legend";
-            series3.Name = "Actual";
-            series3.ValueDataMembersSerializable = "Query_2.cValue";
-            sideBySideBarSeriesView3.Color = System.Drawing.Color.Firebrick;
-            sideBySideBarSeriesView3.Transparency = ((byte)(135));
-            series3.View = sideBySideBarSeriesView3;
-            series4.ArgumentDataMember = "Query_2.causecode";
-            pointSeriesLabel2.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel2.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel2.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Empty;
-            pointSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel2.TextColor = System.Drawing.Color.Black;
-            series4.Label = pointSeriesLabel2;
-            series4.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series4.Name = "Goal";
-            series4.ShowInLegend = false;
-            series4.ValueDataMembersSerializable = "Query_2.Acum";
-            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            series4.View = lineSeriesView1;
-            this.xrChart2.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series3,
-        series4};
-            sideBySideBarSeriesView4.Transparency = ((byte)(135));
-            this.xrChart2.SeriesTemplate.View = sideBySideBarSeriesView4;
-            this.xrChart2.SizeF = new System.Drawing.SizeF(378.5416F, 511.7083F);
-            // 
-            // xrChart1
-            // 
-            this.xrChart1.BorderColor = System.Drawing.Color.Black;
-            this.xrChart1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrChart1.DataSource = this.sqlDataSource1;
-            xyDiagram3.AxisX.AutoScaleBreaks.MaxCount = 1;
-            xyDiagram3.AxisX.InterlacedColor = System.Drawing.Color.DimGray;
-            xyDiagram3.AxisX.MinorCount = 1;
-            xyDiagram3.AxisX.Tickmarks.MinorVisible = false;
-            xyDiagram3.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.Default;
-            xyDiagram3.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            xyDiagram3.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram3.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram3.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.False;
-            xyDiagram3.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.False;
-            xyDiagram3.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.False;
-            xyDiagram3.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
-            xyDiagram3.RuntimePaneCollapse = false;
-            this.xrChart1.Diagram = xyDiagram3;
+            xyDiagram2.RuntimePaneCollapse = false;
+            this.xrChart1.Diagram = xyDiagram2;
             this.xrChart1.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Center;
             this.xrChart1.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.BottomOutside;
             this.xrChart1.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
@@ -564,26 +461,26 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrChart1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 23.00002F);
             this.xrChart1.Name = "xrChart1";
             this.xrChart1.PaletteName = "Grayscale";
-            series5.ArgumentDataMember = "Query_1.sdesc";
-            series5.Name = "Actual";
-            series5.ValueDataMembersSerializable = "Query_1.factual";
-            sideBySideBarSeriesView5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            series5.View = sideBySideBarSeriesView5;
-            series6.ArgumentDataMember = "Query_1.sdesc";
-            pointSeriesLabel3.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel3.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel3.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Empty;
-            pointSeriesLabel3.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel3.TextColor = System.Drawing.Color.Black;
-            series6.Label = pointSeriesLabel3;
-            series6.Name = "Goal";
-            series6.ValueDataMembersSerializable = "Query_1.fgoal";
-            lineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series6.View = lineSeriesView2;
+            series3.ArgumentDataMember = "Query_1.sdesc";
+            series3.Name = "Actual";
+            series3.ValueDataMembersSerializable = "Query_1.factual";
+            sideBySideBarSeriesView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            series3.View = sideBySideBarSeriesView3;
+            series4.ArgumentDataMember = "Query_1.sdesc";
+            pointSeriesLabel2.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
+            pointSeriesLabel2.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
+            pointSeriesLabel2.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Empty;
+            pointSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
+            pointSeriesLabel2.TextColor = System.Drawing.Color.Black;
+            series4.Label = pointSeriesLabel2;
+            series4.Name = "Goal";
+            series4.ValueDataMembersSerializable = "Query_1.fgoal";
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series4.View = lineSeriesView1;
             this.xrChart1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series5,
-        series6};
-            this.xrChart1.SizeF = new System.Drawing.SizeF(601.0417F, 326.5833F);
+        series3,
+        series4};
+            this.xrChart1.SizeF = new System.Drawing.SizeF(601.0417F, 476.5417F);
             // 
             // xrTable1
             // 
@@ -690,7 +587,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.HeightF = 2.708689F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // r_defects
+            // r_balancedscorecard
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
@@ -719,20 +616,11 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.xrChart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

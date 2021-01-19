@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="kaizens.aspx.cs" Inherits="MxliDashboard.n3_Safety.kaizens" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cars.aspx.cs" Inherits="MxliDashboard.n3_Quality.cars" %>
 
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web.Designer" TagPrefix="dxchartdesigner" %>
 <%@ Register Assembly="DevExpress.XtraCharts.v20.1.Web, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts.Web" TagPrefix="dx" %>
@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p></p>
-    <h3>KAIZENS.</h3>
+    <h3>CARS.</h3>
     <p></p>
         <asp:Label ID="Label1" runat="server" Text="labelUpdate"></asp:Label>
     <p></p>
@@ -75,51 +75,51 @@
                 <table style="table-layout: fixed">
                     <tr>                       
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Due Status" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="area"
-                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" 
-                                OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged" Theme="Office365">
+                            <dx:ASPxComboBox ID="ASPxComboBoxPDInContent" runat="server" ValueField="dueStatus"
+                                TextField="dueStatus" ValueType="System.String" DataSourceID="SqlDataSourcePD"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundPD" 
+                                OnSelectedIndexChanged="ASPxComboBoxPDInContent_SelectedIndexChanged" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                            e.errorText = &quot;You should Select One Due Date&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Status" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="celda"
-                                TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" Theme="Office365">
+                            <dx:ASPxComboBox ID="ASPxComboBoxStaInContent" runat="server" ValueField="carStatusShort"
+                                TextField="carStatusShort" ValueType="System.String" DataSourceID="SqlDataSourceSta"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundSta" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Cell&quot;;
+                                            e.errorText = &quot;You should Select One Status&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cause" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Open/Close" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCausaInContent" runat="server" ValueField="estatus_kaizen"
-                                TextField="estatus_kaizen" ValueType="System.String" DataSourceID="SqlDataSourceCausa"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCausa" Theme="Office365">
+                            <dx:ASPxComboBox ID="ASPxComboBoxOCInContent" runat="server" ValueField="gralStatus"
+                                TextField="gralStatus" ValueType="System.String" DataSourceID="SqlDataSourceOC"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundOC" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
-                                            e.errorText = &quot;You should Select One Cause&quot;;
+                                            e.errorText = &quot;You should Select One Open/Close&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
-                        </th>                       
+                        </th>       
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -152,16 +152,29 @@
                     </DiagramSerializable>
                     <Legend Name="Default Legend" Font="Honeywell Sans Web Medium, 8pt"></Legend>
                     <SeriesSerializable>
-                        <dx:Series Name="Total" LabelsVisibility="True" >
+                        <dx:Series Name="PastDue" LabelsVisibility="True" >
                             <ViewSerializable>
-                                <dx:SideBySideBarSeriesView BarWidth="0.8" Color="0, 102, 153">
+                                <dx:SideBySideBarSeriesView Color="247, 150, 70">
                                     <Border Color="79, 129, 189" Visibility="False" />
                                     <FillStyle FillMode="Solid">
                                     </FillStyle>
                                 </dx:SideBySideBarSeriesView>
                             </ViewSerializable>
                         </dx:Series>
-                        <dx:Series LabelsVisibility="True" Name="Goal" >
+                        <dx:Series LabelsVisibility="True" Name="Response" >
+                            <ViewSerializable>
+                                <dx:SideBySideBarSeriesView Color="155, 187, 89">
+                                    <Border Visibility="False" />
+                                </dx:SideBySideBarSeriesView>
+                            </ViewSerializable>
+                        </dx:Series>
+                        <dx:Series LabelsVisibility="True" Name="Implemented">
+                            <ViewSerializable>
+                                <dx:SideBySideBarSeriesView Color="79, 129, 189">
+                                </dx:SideBySideBarSeriesView>
+                            </ViewSerializable>
+                        </dx:Series>
+                        <dx:Series LabelsVisibility="True" Name="Goal">
                             <ViewSerializable>
                                 <dx:LineSeriesView Color="192, 80, 77">
                                 </dx:LineSeriesView>
@@ -181,7 +194,7 @@
         </HeaderContent>
         <PanelCollection>
             <dx:PanelContent ID="PanelContent4" runat="server">
-                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_kaizens" Theme="Default" Width="1024px">
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_cars" Theme="Default" Width="1024px">
                     <SettingsPager Mode="ShowPager" PageSize="20">
                     </SettingsPager>
                     <Settings ShowGroupPanel="True" />
@@ -200,43 +213,41 @@
                         </dx:GridViewToolbar>
                     </Toolbars>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="kaizenid" VisibleIndex="0" Caption="KAIZEN_#">
+                        <dx:GridViewDataTextColumn FieldName="id" VisibleIndex="0" Caption="#">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="eid_originador" VisibleIndex="1" Caption="EID">
+                        <dx:GridViewDataTextColumn FieldName="carId" VisibleIndex="1" Caption="CAR ID">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="nombre_originador" VisibleIndex="2" Caption="NOMBRE">
+                        <dx:GridViewDataTextColumn FieldName="respStatus" VisibleIndex="2" Caption="RESPONSE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="eid_lun" VisibleIndex="3" Caption="EID_LUN">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="nombre_lun" VisibleIndex="4" Caption="NOMBRE_LUN">
+                        <dx:GridViewDataTextColumn FieldName="ImplStatus" VisibleIndex="3" Caption="IMPLEMENTED">
                         </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="material" VisibleIndex="5" Caption="MATERIAL">
+                        <dx:GridViewDataTextColumn FieldName="dueDate" VisibleIndex="4" Caption="DUE DATE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="estado_actual" VisibleIndex="6" Caption="DESCRIPCION">
+                        <dx:GridViewDataTextColumn FieldName="age" VisibleIndex="5" Caption="AGE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="estatus_kaizen" VisibleIndex="7" Caption="ESTATUS">
+                        <dx:GridViewDataTextColumn FieldName="carStatusShort" VisibleIndex="6" Caption="STATUS">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="impacto" VisibleIndex="9" Caption="IMPACTO">
+                        <dx:GridViewDataTextColumn FieldName="responsible" VisibleIndex="7" Caption="RESPONSIBLE">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="requester" VisibleIndex="8" Caption="REQUESTER">
                         </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="categoria" VisibleIndex="10" Caption="CATEGORIA">
+                        <dx:GridViewDataTextColumn FieldName="material" VisibleIndex="9" Caption="MATERIAL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="area" VisibleIndex="11" Caption="AREA">
+                        <dx:GridViewDataTextColumn FieldName="gralStatus" VisibleIndex="10" Caption="OPEN/CLOSE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="12" Caption="CELDA">
-                        </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="xweek" VisibleIndex="13" Caption="SEMANA">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn Caption="FECHA_ALTA" FieldName="fecha_alta" ShowInCustomizationForm="True" VisibleIndex="8">
+                        <dx:GridViewDataDateColumn Caption="UPDATED" FieldName="updatedDate" ShowInCustomizationForm="True" VisibleIndex="11">
+                            <PropertiesDateEdit DisplayFormatString="" EditFormat="Custom" EditFormatString="d">
+                            </PropertiesDateEdit>
                         </dx:GridViewDataDateColumn>
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="area" ShowInColumn="AREA" SummaryType="Count" />
-                        <dx:ASPxSummaryItem ShowInColumn="CELDA" SummaryType="Count" FieldName="celda"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="ESTATUS" SummaryType="Count" FieldName="estatus_kaizen"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="IMPACTO" SummaryType="Count" FieldName="impacto"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="CATEGORIA" SummaryType="Count" FieldName="categoria"></dx:ASPxSummaryItem>
-                        <dx:ASPxSummaryItem ShowInColumn="SEMANA" SummaryType="Count" FieldName="xweek"></dx:ASPxSummaryItem>
-                    </GroupSummary>
+                        <dx:ASPxSummaryItem ShowInColumn="RESPONSE" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="IMPLEMENTED" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="STATUS" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="RESPONSIBLE" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="REQUESTER" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="OPEN/CLOSE" SummaryType="Count" FieldName="carId"></dx:ASPxSummaryItem>
+                    </GroupSummary>                 
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
                         </Header>
@@ -245,23 +256,23 @@
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
-    <asp:SqlDataSource ID="ds_kaizens" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [kaizenid], [eid_originador], [nombre_originador], [eid_lun], [nombre_lun], [material], [estado_actual], [estatus_kaizen], [impacto], [categoria], [fecha_alta], [area], [celda], [xweek] FROM [tbl_kaizens] where area like @pArea and celda like @pCelda and estatus_kaizen like @pCausa order by id">
+    <asp:SqlDataSource ID="ds_cars" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT * FROM [tbl_cars] where dueStatus like @pdueStatus and carStatusShort like @pcarStatusShort and gralStatus like @pgralStatus order by id">
         <SelectParameters>
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
-                Name="pArea" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
-                Name="pCelda" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCausaInContent"
-                Name="pCausa" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxPDInContent"
+                Name="pdueStatus" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxStaInContent"
+                Name="pcarStatusShort" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxOCInContent"
+                Name="pgralStatus" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [area] FROM [tbl_kaizens] order by area"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [celda] FROM [tbl_kaizens] order by celda"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceCausa" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [estatus_kaizen] FROM [tbl_kaizens] order by estatus_kaizen"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourcePD" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [dueStatus] FROM [tbl_cars] order by dueStatus"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceSta" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [carStatusShort] FROM [tbl_cars] order by carStatusShort"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceOC" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [gralStatus] FROM [tbl_cars] order by gralStatus"></asp:SqlDataSource>
     <p />
     <hr />
     <p />
@@ -320,7 +331,7 @@
                         <asp:Parameter Name="area" Type="String" DefaultValue="MATERIALES" />
                         <asp:Parameter Name="vsm" Type="String" />
                         <asp:Parameter Name="mrp" Type="String" />
-                        <asp:Parameter Name="report" Type="String" DefaultValue="KAIZENS" />
+                        <asp:Parameter Name="report" Type="String" DefaultValue="CARS" />
                         <asp:Parameter Name="material" Type="String" />
                         <asp:Parameter Name="issue" Type="String" />
                         <asp:Parameter Name="action" Type="String" />
@@ -331,7 +342,7 @@
                         <asp:Parameter Name="due_date" Type="DateTime" />
                     </InsertParameters>
                     <SelectParameters>
-                        <asp:Parameter DefaultValue="kaizens" Name="report" Type="String" />
+                        <asp:Parameter DefaultValue="cars" Name="report" Type="String" />
                     </SelectParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="area" Type="String" />
