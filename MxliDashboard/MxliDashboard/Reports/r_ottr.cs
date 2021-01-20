@@ -168,7 +168,7 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(391.0416F, 23F);
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "INVENTORY";
+            this.xrLabel4.Text = "OTTR";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLine1

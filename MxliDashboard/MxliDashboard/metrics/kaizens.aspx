@@ -320,7 +320,7 @@
                         <asp:Parameter Name="area" Type="String" DefaultValue="MATERIALES" />
                         <asp:Parameter Name="vsm" Type="String" />
                         <asp:Parameter Name="mrp" Type="String" />
-                        <asp:Parameter Name="report" Type="String" DefaultValue="INVENTARIO" />
+                        <asp:Parameter Name="report" Type="String" DefaultValue="KAIZENS" />
                         <asp:Parameter Name="material" Type="String" />
                         <asp:Parameter Name="issue" Type="String" />
                         <asp:Parameter Name="action" Type="String" />
@@ -331,7 +331,7 @@
                         <asp:Parameter Name="due_date" Type="DateTime" />
                     </InsertParameters>
                     <SelectParameters>
-                        <asp:Parameter DefaultValue="incidents" Name="report" Type="String" />
+                        <asp:Parameter DefaultValue="kaizens" Name="report" Type="String" />
                     </SelectParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="area" Type="String" />

@@ -225,6 +225,9 @@ namespace MxliDashboard.n3_Inventory
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
             WebChartControl1.Series["Adj"].Points.Clear();
+            WebChartControl1.Series["Total"].LegendTextPattern = "";
+            WebChartControl1.Series["Goal"].LegendTextPattern = "";
+            WebChartControl1.Series["Adj"].Visible = true;
 
             string xTipo = "DAILY";
             if (tipo < 1)
@@ -288,6 +291,9 @@ namespace MxliDashboard.n3_Inventory
                     WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}K";
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series["Total"].LegendTextPattern = "Total";
+                    WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
+                    WebChartControl1.Series["Adj"].Visible = false;
                 }
             }
             if (gType == 3)
@@ -307,6 +313,7 @@ namespace MxliDashboard.n3_Inventory
                     WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}M";
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series["Adj"].Visible = false;
                 }
             }
         }

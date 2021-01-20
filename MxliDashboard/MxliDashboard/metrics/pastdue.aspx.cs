@@ -136,6 +136,8 @@ namespace MxliDashboard.n3_Safety
         {
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
+            WebChartControl1.Series["Total"].LegendTextPattern = "";
+            WebChartControl1.Series["Goal"].LegendTextPattern = "";
 
             string xTipo = "weekly";
             if (tipo < 2)
@@ -199,6 +201,8 @@ namespace MxliDashboard.n3_Safety
                     WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}K";
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series["Total"].LegendTextPattern = "Total";
+                    WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
                 }
             }
             if (gType == 3)

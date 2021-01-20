@@ -322,7 +322,7 @@
                         <asp:Parameter Name="area" Type="String" DefaultValue="MATERIALES" />
                         <asp:Parameter Name="vsm" Type="String" />
                         <asp:Parameter Name="mrp" Type="String" />
-                        <asp:Parameter Name="report" Type="String" DefaultValue="INVENTARIO" />
+                        <asp:Parameter Name="report" Type="String" DefaultValue="PPMS" />
                         <asp:Parameter Name="material" Type="String" />
                         <asp:Parameter Name="issue" Type="String" />
                         <asp:Parameter Name="action" Type="String" />
@@ -333,7 +333,7 @@
                         <asp:Parameter Name="due_date" Type="DateTime" />
                     </InsertParameters>
                     <SelectParameters>
-                        <asp:Parameter DefaultValue="escapes" Name="report" Type="String" />
+                        <asp:Parameter DefaultValue="ppms" Name="report" Type="String" />
                     </SelectParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="area" Type="String" />

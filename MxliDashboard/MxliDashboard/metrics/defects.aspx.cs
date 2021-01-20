@@ -213,6 +213,8 @@ namespace MxliDashboard.n3_Quality
         {
             WebChartControl1.Series["Total"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
+            WebChartControl1.Series["Total"].LegendTextPattern = "";
+            WebChartControl1.Series["Goal"].LegendTextPattern = "";
 
             string xTipo = "WEEKLY";
             if (tipo < 2)
@@ -253,17 +255,19 @@ namespace MxliDashboard.n3_Quality
             {
                 WebChartControl1.Height = 400;
                 double vSum = 0;
-                string qry2 = "SELECT top 10 causecode, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_defects] group by cause order by cValue desc";
+                string qry2 = "SELECT top 10 causecode, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_defects] group by causecode order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
                 foreach (DataRow dr2 in dt2.Rows)
                 {
                     double xActual = Convert.ToDouble(dr2["cValue"].ToString());
                     vSum = vSum + xActual;
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["cause"].ToString(), xActual);
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["cause"].ToString(), vSum);
+                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["causecode"].ToString(), xActual);
+                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["causecode"].ToString(), vSum);
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series["Total"].LegendTextPattern = "Total";
+                    WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
                 }
             }
             if (gType == 3)
