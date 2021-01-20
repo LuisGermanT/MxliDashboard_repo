@@ -104,7 +104,7 @@
                 <HeaderContent BackColor="#666666"/>
                 <PanelCollection>
                     <dx:PanelContent ID="PanelContent2" runat="server">
-                        <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="" CrosshairEnabled="True" Height="200px" Width="1100px"
+                        <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="" CrosshairEnabled="True" Height="300px" Width="1100px"
                             ClientInstanceName="chart" AutoLayout="True">
                             <DiagramSerializable>
                                 <dx:XYDiagram>
@@ -152,7 +152,7 @@
                                         </dx:SideBySideBarSeriesLabel>
                                     </LabelSerializable>
                                 </dx:Series>
-                                <dx:Series Name="Actual %" CrosshairLabelPattern="{V:0.00%}" LabelsVisibility="False" LegendName="Default Legend" LegendTextPattern="{V:0.00%}">
+                                <dx:Series Name="Actual %" CrosshairLabelPattern="{V:0.00%}" LabelsVisibility="True" LegendName="Default Legend" LegendTextPattern="{V:0.00%}">
                                     <ViewSerializable>
                                         <dx:LineSeriesView AxisYName="Secondary AxisY 1" Color="Black" MarkerVisibility="True">
                                             <LineMarkerOptions Color="White" Size="8">

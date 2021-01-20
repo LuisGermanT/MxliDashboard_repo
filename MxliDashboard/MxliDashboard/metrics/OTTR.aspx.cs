@@ -1,4 +1,5 @@
 ﻿using DevExpress.Web;
+using DevExpress.XtraCharts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -183,9 +184,6 @@ namespace MxliDashboard
             //Week range, from current week - 13 to current week
             int yr = DateTime.Now.Year;
             int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            //double diff = (DateTime.Today.DayOfWeek - CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)+1;
-            //DateTime dtFrom = DateTime.Today.AddDays(-diff-(12*7));
-            //DateTime dtTo = DateTime.Today.AddDays(-diff);
             FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
             DateTime st = fh.GetSaturday(DateTime.Now);
             string dtFrom = st.AddDays(-91).ToShortDateString();
@@ -202,43 +200,36 @@ namespace MxliDashboard
                 semana = semana - 1;
             }
             
-
-            chartTP01.Series["Series1"].Points.Clear();
-            chartTP01.Series["Series2"].Points.Clear();
-            chartTP01.Series["Series3"].Points.Clear();
-            chartTP01.Series["Series4"].Points.Clear();
+            WebChartControl1.Series[0].Points.Clear();
+            WebChartControl1.Series[1].Points.Clear();
+            WebChartControl1.Series[2].Points.Clear();
+            WebChartControl1.Series[3].Points.Clear();
+            WebChartControl1.SeriesSorting = SortingMode.None;
+            WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
 
             string qry = "", qryBaseline = "";
             string colName = "";
-            string xClass = "";
+            string xClass = "", prefix = "";
             string sTblName = "", cTblName = "", aTblName = "", mTblName = "";
             string qryOrder = "";
 
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                //sTblName = "[vw_ottr_by_site_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr;
                 sTblName = "[vw_ottr_by_site_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
-                //cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
                 cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                //aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
                 aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                //mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Wk] BETWEEN " + (semana - 12) + " AND " + semana + " AND [TO_Yr] = " + yr + " AND ";
                 mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                //qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] BETWEEN " + (semana - 12) + " AND " + semana;
                 qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
                 qryOrder = "[TO_Wk]";
                 colName = "TO_Wk";
+                prefix = "Wk";
             }
             else
             {
-                //sTblName = "[vw_ottr_by_site_mntly] WHERE [TO_Yr] = " + yr;
                 sTblName = "[vw_ottr_by_site_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "'";
-                //cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
-                //aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
-                //mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND ";
                 mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
                 qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
                                 "[sDesc] = [TO_Month]";
@@ -287,17 +278,18 @@ namespace MxliDashboard
                 double xTotHrs = Convert.ToDouble(dr1["TotalOrdrs"].ToString());
                 double perc = (xHit / xTotHrs);
                 double xGoal = Convert.ToDouble(dr1["AOP"].ToString())/100;
-                
-                chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), xHit);
-                chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), xTotHrs);
-                chartTP01.Series["Series3"].Points.AddXY(dr1[colName].ToString(), perc);
-                chartTP01.Series["Series4"].Points.AddXY(dr1[colName].ToString(), xGoal);
+             
+                WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xHit));
+                WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xTotHrs));
+                WebChartControl1.Series[2].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), perc));
+                WebChartControl1.Series[3].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+
+                WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                WebChartControl1.Series[2].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                WebChartControl1.Series[3].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
             }
 
-            chartTP01.Series["Series1"].LegendText = "On Time";
-            chartTP01.Series["Series2"].LegendText = "Miss";
-            chartTP01.Series["Series3"].LegendText = "% OTTR";
-            chartTP01.Series["Series4"].LegendText = "AOP";
         }
 
         private void loadUpdate()

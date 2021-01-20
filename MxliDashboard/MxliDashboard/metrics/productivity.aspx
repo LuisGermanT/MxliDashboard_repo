@@ -155,7 +155,7 @@
                                         </dx:SideBySideBarSeriesLabel>
                                     </LabelSerializable>
                                 </dx:Series>
-                                <dx:Series Name="Actual %" CrosshairLabelPattern="{V:0.00%}" LabelsVisibility="False" LegendName="Default Legend" LegendTextPattern="{V:0.00%}">
+                                <dx:Series Name="Actual %" CrosshairLabelPattern="{V:0.00%}" LabelsVisibility="True" LegendName="Default Legend" LegendTextPattern="{V:0.00%}">
                                     <ViewSerializable>
                                         <dx:LineSeriesView AxisYName="Secondary AxisY 1" Color="Black" MarkerVisibility="True">
                                             <LineMarkerOptions Color="White" Size="8">
