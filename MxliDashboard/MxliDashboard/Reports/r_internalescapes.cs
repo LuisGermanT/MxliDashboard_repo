@@ -7,7 +7,7 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for XtraReport1
 /// </summary>
-public class r_defects : DevExpress.XtraReports.UI.XtraReport
+public class r_internalescapes : DevExpress.XtraReports.UI.XtraReport
 {
     private TopMarginBand TopMargin;
     private BottomMarginBand BottomMargin;
@@ -50,7 +50,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public r_defects()
+    public r_internalescapes()
     {
         InitializeComponent();
         //
@@ -81,7 +81,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_defects));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_internalescapes));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
@@ -189,7 +189,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(391.0416F, 23F);
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "DEFECTS";
+            this.xrLabel4.Text = "INTERNAL ESCAPES";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLine1
@@ -344,11 +344,9 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             customSqlQuery2.Name = "Query_2";
             customSqlQuery2.Sql = resources.GetString("customSqlQuery2.Sql");
             customSqlQuery3.Name = "Query_3";
-            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'defects\'\r\n";
+            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'internal escapes\'\r\n";
             customSqlQuery4.Name = "Query_4";
-            customSqlQuery4.Sql = "SELECT * FROM\r\n(SELECT top 3 [id],[factual],[fsum],[scause] \r\n FROM [DB_1033_Dash" +
-    "board].[dbo].[sta_nivel2f]\r\n where smetric = \'defects\'\r\nand stype = \'monthly\' or" +
-    "der by id desc)\r\nq1 order by id ";
+            customSqlQuery4.Sql = resources.GetString("customSqlQuery4.Sql");
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1,
             customSqlQuery2,
@@ -692,7 +690,7 @@ public class r_defects : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.HeightF = 2.708689F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // r_defects
+            // r_internalescapes
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,

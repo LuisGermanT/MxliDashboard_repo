@@ -234,6 +234,7 @@
     <Content Include="metrics\agedwip.aspx" />
     <Content Include="metrics\balancedscorecard.aspx" />
     <Content Include="metrics\cars.aspx" />
+    <Content Include="metrics\internalescapes.aspx" />
     <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
     <Content Include="metrics\scrap.aspx" />
@@ -374,6 +375,13 @@
     <Compile Include="metrics\cars.aspx.designer.cs">
       <DependentUpon>cars.aspx</DependentUpon>
     </Compile>
+    <Compile Include="metrics\internalescapes.aspx.cs">
+      <DependentUpon>internalescapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\internalescapes.aspx.designer.cs">
+      <DependentUpon>internalescapes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\ppms.aspx.cs">
       <DependentUpon>ppms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,6 +397,9 @@
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\r_cars.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_internalescapes.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\r_defects.cs">
@@ -821,6 +832,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\r_cars.resx">
       <DependentUpon>r_cars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_internalescapes.resx">
+      <DependentUpon>r_internalescapes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_defects.resx">
       <DependentUpon>r_defects.cs</DependentUpon>

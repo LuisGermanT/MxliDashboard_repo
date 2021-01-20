@@ -171,11 +171,14 @@ namespace MxliDashboard.n3_Quality
 
         protected void chartDefault(int tipo, string xType, string xFilter, int gType)
         {
-            WebChartControl1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
             WebChartControl1.Series["PastDue"].Points.Clear();
             WebChartControl1.Series["Response"].Points.Clear();
             WebChartControl1.Series["Implemented"].Points.Clear();
             WebChartControl1.Series["Goal"].Points.Clear();
+            WebChartControl1.Series["Implemented"].LegendTextPattern = "";
+            WebChartControl1.Series["Goal"].LegendTextPattern = "";
+            WebChartControl1.Series["PastDue"].Visible = true;
+            WebChartControl1.Series["Response"].Visible = true;
 
             string xTipo = "WEEKLY";
             if (tipo < 2)
@@ -241,7 +244,10 @@ namespace MxliDashboard.n3_Quality
                     WebChartControl1.Series["Goal"].Points.AddPoint(dr2["responsible"].ToString(), vSum);
                     WebChartControl1.Series["Implemented"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+                    WebChartControl1.Series["Implemented"].LegendTextPattern = "Total";
+                    WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
+                    WebChartControl1.Series["PastDue"].Visible = false;
+                    WebChartControl1.Series["Response"].Visible = false;
                 }
             }
             if (gType == 3)

@@ -235,10 +235,8 @@
                         </dx:GridViewDataTextColumn>                        
                         <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="10" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="qndate" VisibleIndex="1" Caption="NOTIF.DATE">
-                            <PropertiesTextEdit DisplayFormatString="&quot;MM/dd/yyyy&quot;">
-                            </PropertiesTextEdit>
-                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn Caption="NOTIF.DATE" FieldName="qndate" ShowInCustomizationForm="True" VisibleIndex="1">
+                        </dx:GridViewDataDateColumn>
                     </Columns>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
@@ -246,18 +244,6 @@
 <dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Count" FieldName="mrp"></dx:ASPxSummaryItem>
 <dx:ASPxSummaryItem ShowInColumn="WEEK" SummaryType="Count" FieldName="week"></dx:ASPxSummaryItem>
 <dx:ASPxSummaryItem ShowInColumn="CAUSE" SummaryType="Count" FieldName="causecode"></dx:ASPxSummaryItem>
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="celda" ShowInColumn="CELL" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="mrp" ShowInColumn="MRP" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="week" ShowInColumn="WEEK" SummaryType="Count" />
-                    </GroupSummary>
-                    <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="causecode" ShowInColumn="CAUSE" SummaryType="Count" />
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
