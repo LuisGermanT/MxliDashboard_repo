@@ -1,4 +1,5 @@
 ﻿using DevExpress.Web;
+using DevExpress.XtraCharts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -182,26 +183,26 @@ namespace MxliDashboard.n3_Inventory
             string dtFrom = st.AddDays(-91).ToShortDateString();
             string dtTo = st.ToShortDateString();
 
-            chartTP01.Series["Series1"].Points.Clear();
-            chartTP01.Series["Series2"].Points.Clear();
-            chartTP01.Series["Series2"].IsVisibleInLegend = false;
+            WebChartControl1.Series[0].Points.Clear();
+            WebChartControl1.Series[1].Points.Clear();
+            WebChartControl1.SeriesSorting = SortingMode.None;
+            WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
 
             string query = "", qry = "", qryBaseline = "";
-            string colName = "";
+            string colName = "", prefix = "", qFilter = "";
             string xClass = "";
             string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
 
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                //sTblName = " FROM [vw_scrap_weekly_by_site] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
                 sTblName = " FROM [vw_scrap_weekly_by_site]";
-                //aTblName = " FROM [vw_scrap_weekly_by_area] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
                 aTblName = " FROM [vw_scrap_weekly_by_area] WHERE ";
-                //cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
                 cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE ";
                 vTblName = " FROM [vw_scrap_weekly_by_vsm] WHERE ";
                 colName = "TCS_Week";
+                prefix = "Wk";
+                qFilter = "Weekly";
             }
             else
             {
@@ -210,6 +211,8 @@ namespace MxliDashboard.n3_Inventory
                 cTblName = " FROM [vw_scrap_monthly_by_cell] WHERE ";
                 vTblName = " FROM [vw_scrap_monthly_by_vsm] WHERE ";
                 colName = "sMontName";
+                prefix = "";
+                qFilter = "Monthly";
             }
 
             //Validates filter level by site/area/cell, default filter is by site
@@ -220,43 +223,41 @@ namespace MxliDashboard.n3_Inventory
                     query = "SELECT TOP 12 * " + vTblName + " [TCS_Group] = '" + xClass +
                           "' ORDER BY [sLstWkDay] desc, [TCS_Group]";
                     qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
                     break;
                 case 2:
                     xClass = clase;
                     query = "SELECT TOP 12 * " + aTblName + " [TCS_Area] = '" + xClass +
                           "' ORDER BY [sLstWkDay] desc, [TCS_Area]";
                     qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
                     break;
                 case 3:
                     xClass = clase;
                     query = "SELECT TOP 12 * " + cTblName + " [TCS_Cell] = '" + xClass +
                           "' ORDER BY [sLstWkDay] desc, [TCS_Cell]";
                     qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Cell' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
                     break;
                 default:
                     query = "SELECT TOP 12 * " + sTblName +
                           "  ORDER BY [sLstWkDay] desc";
                     qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE 'Site'";
+                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Site' and [sType] = '" + qFilter + "'";
                     break;
             }
 
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dtPareto = dBHelper.QryManager(qry);
-            DataTable dtBaseline = dBHelper.GetBaseLine(qryBaseline);
+            DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
 
             double xGoal = 0;
 
             if (dtBaseline.Rows.Count > 0)
             {
-                Double.TryParse(dtBaseline.Rows[0]["TBP_Base"].ToString(), out xGoal);
+                Double.TryParse(dtBaseline.Rows[0]["fGoal"].ToString(), out xGoal);
             }
-
-            xGoal = xGoal / 100;
 
             var maxVal = 0;
             if (dtPareto.Rows.Count > 0)
@@ -264,56 +265,45 @@ namespace MxliDashboard.n3_Inventory
                 maxVal = Convert.ToInt32(dtPareto.Compute("Max([TCS_Amount])", string.Empty));
             }
             
-            double maxScale = 1000000;
+            AxisLabel lbaxisY = ((XYDiagram)WebChartControl1.Diagram).AxisY.Label;
+            string lbFmt = "";
+            int div = 0;
 
             if (maxVal > 999999) 
             {
-                chartTP01.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#,##0,,M";
-
-                // set maximum scale to the nearest interval by 5 million
-                maxScale = Math.Ceiling(Convert.ToDouble(maxVal) / 5000000d) * 5000000;
+                lbFmt = "{V:c2}" + " M";
+                WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
+                WebChartControl1.Series[0].Label.TextPattern = lbFmt;
+                WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
+                WebChartControl1.Series[1].Label.TextPattern = lbFmt;
+                lbaxisY.TextPattern = lbFmt;
+                div = 1000000;
             }
             else if(maxVal <= 999999)
             {
-                chartTP01.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#,##0,k";
-
-                switch (maxVal)
-                {
-                    case int val when (val <= 100):
-                        maxScale = 100;
-                        break;
-                    case int val when (val > 99 && val <= 999):
-                        maxScale = 1000;
-                        break;
-                    case int val when (val > 999 && val <= 10000):
-                        maxScale = 10000;
-                        break;
-                    case int val when (val > 9999 && val <= 50000):
-                        maxScale = maxVal + 10000;
-                        break;
-                    case int val when (val > 49999 && val <= 100000):
-                        maxScale = maxVal + 25000;
-                        break;
-                    case int val when (val > 99999 && val <= 500000):
-                        maxScale = maxVal + 50000;
-                        break;
-                    default:
-                        // set maximum scale to the nearest interval by 500,000
-                        maxScale = Math.Ceiling(Convert.ToDouble(maxVal) / 500000d) * 500000;
-                        break;
-                }
-                    
+                lbFmt = "{V:c2}" + " K";
+                WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
+                WebChartControl1.Series[0].Label.TextPattern = lbFmt;
+                WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
+                WebChartControl1.Series[1].Label.TextPattern = lbFmt;
+                lbaxisY.TextPattern = lbFmt;
+                div = 1000;                   
             }
 
-            chartTP01.ChartAreas["ChartArea1"].AxisY.Maximum = maxScale;
+            xGoal = xGoal / div;
 
             foreach (DataRow dr1 in dtPareto.Rows)
             {
                 double tScrap = Convert.ToDouble(dr1["TCS_Amount"].ToString());
-                chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), tScrap);
+
+                tScrap = tScrap / div;
+
+                WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), tScrap));
+                WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+                WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
             }
 
-            chartTP01.Series["Series1"].LegendText = "$ Total Scrap";
         }
 
         private void loadUpdate()

@@ -185,37 +185,36 @@ namespace MxliDashboard.n3_Productivity
             FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
             DateTime st = fh.GetSaturday(DateTime.Now);
 
-            chartTP01.Series["Series1"].Points.Clear();
-            chartTP01.Series["Series2"].Points.Clear();
-            chartTP01.Series["Series3"].Points.Clear();
-            chartTP01.Series["Series4"].Points.Clear();
-
+            WebChartControl1.Series[0].Points.Clear();
+            WebChartControl1.Series[1].Points.Clear();
+            WebChartControl1.Series[2].Points.Clear();
+            WebChartControl1.Series[3].Points.Clear();
+            WebChartControl1.SeriesSorting = DevExpress.XtraCharts.SortingMode.None;
+            WebChartControl1.SeriesTemplate.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.None;
+            
             string qry = "", qryBaseline = "";
-            string colName = "";
+            string colName = "", prefix = "";
             string xClass = "";
             string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
 
             //Selects filter according to user's selection, dafult filter is by week
             if (sFilter == "Week")
             {
-                //sTblName = "[vw_utilization_by_site_wkly] WHERE [TU_Week] BETWEEN " + (semana - 12) + " AND " + semana;
                 sTblName = "[vw_utilization_by_site_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
-                //cTblName = "[vw_utilization_by_cell_wkly] WHERE [TU_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 cTblName = "[vw_utilization_by_cell_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                //aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_Week] BETWEEN " + (semana - 12) + " AND " + semana + " AND";
                 aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 vTblName = "[vw_utilization_by_vsm_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 colName = "TU_Week";
+                prefix = "Wk";
             }
             else
             {
                 sTblName = "[vw_utilization_by_site_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
-                //cTblName = "[vw_utilization_by_cell_mntly_wd] WHERE ";
                 cTblName = "[vw_utilization_by_cell_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                //aTblName = "[vw_utilization_by_area_mntly_wd] WHERE ";
                 aTblName = "[vw_utilization_by_area_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 vTblName = "[vw_utilization_by_vsm_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
                 colName = "TU_Month";
+                prefix = "";
             }
 
             //Validates filter level by site/area/cell, default filter is by site
@@ -225,66 +224,23 @@ namespace MxliDashboard.n3_Productivity
                     xClass = clase;
                     qry = "SELECT * FROM " + vTblName + " [TU_Group] = '" + xClass +
                           "' ORDER BY [TU_LstWkDay]";
-                    //qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
                     break;
                 case 2:
                     xClass = clase;
                     qry = "SELECT * FROM " + aTblName + " [TU_Area] = '" + xClass +
-                          "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Area]";
-                          //"' Order by [TU_Year] DESC, CASE " +
-                          //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
-                          //"  WHEN [TU_Month] = 'Feb' THEN 2 " +
-                          //"  WHEN [TU_Month] = 'Mar' THEN 3 " +
-                          //"  WHEN [TU_Month] = 'Apr' THEN 4 " +
-                          //"  WHEN [TU_Month] = 'May' THEN 5 " +
-                          //"  WHEN [TU_Month] = 'Jun' THEN 6 " +
-                          //"  WHEN [TU_Month] = 'Jul' THEN 7 " +
-                          //"  WHEN [TU_Month] = 'Aug' THEN 8 " +
-                          //"  WHEN [TU_Month] = 'Sep' THEN 9 " +
-                          //"  WHEN [TU_Month] = 'Oct' THEN 10 " +
-                          //"  WHEN [TU_Month] = 'Nov' THEN 11 " +
-                          //"  WHEN [TU_Month] = 'Dec' THEN 12 " +
-                          //"  END, " + colName + ", [TU_Area] ";
+                          "' ORDER BY [TU_LstWkDay]";
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
                     break;
                 case 3:
                     xClass = clase;
                     qry = "SELECT * FROM " + cTblName + " [TU_Celda] = '" + xClass +
-                          "' ORDER BY [TU_LstWkDay]"; //+ colName + ", [TU_Celda]";
-                          //"' Order by [TU_Year] DESC, CASE " +
-                          //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
-                          //"  WHEN [TU_Month] = 'Feb' THEN 2 " +
-                          //"  WHEN [TU_Month] = 'Mar' THEN 3 " +
-                          //"  WHEN [TU_Month] = 'Apr' THEN 4 " +
-                          //"  WHEN [TU_Month] = 'May' THEN 5 " +
-                          //"  WHEN [TU_Month] = 'Jun' THEN 6 " +
-                          //"  WHEN [TU_Month] = 'Jul' THEN 7 " +
-                          //"  WHEN [TU_Month] = 'Aug' THEN 8 " +
-                          //"  WHEN [TU_Month] = 'Sep' THEN 9 " +
-                          //"  WHEN [TU_Month] = 'Oct' THEN 10 " +
-                          //"  WHEN [TU_Month] = 'Nov' THEN 11 " +
-                          //"  WHEN [TU_Month] = 'Dec' THEN 12 " +
-                          //"  END, " + colName + ", [TU_Celda] ";
+                          "' ORDER BY [TU_LstWkDay]";
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
                     break;
                 default:
                     qry = "SELECT * FROM " + sTblName +
                           "  ORDER BY [TU_LstWkDay]";
-                          //" Order by [TU_Year] DESC, CASE " +
-                          //"  WHEN [TU_Month] = 'Jan' THEN 1 " +
-                          //"  WHEN [TU_Month] = 'Feb' THEN 2 " +
-                          //"  WHEN [TU_Month] = 'Mar' THEN 3 " +
-                          //"  WHEN [TU_Month] = 'Apr' THEN 4 " +
-                          //"  WHEN [TU_Month] = 'May' THEN 5 " +
-                          //"  WHEN [TU_Month] = 'Jun' THEN 6 " +
-                          //"  WHEN [TU_Month] = 'Jul' THEN 7 " +
-                          //"  WHEN [TU_Month] = 'Aug' THEN 8 " +
-                          //"  WHEN [TU_Month] = 'Sep' THEN 9 " +
-                          //"  WHEN [TU_Month] = 'Oct' THEN 10 " +
-                          //"  WHEN [TU_Month] = 'Nov' THEN 11 " +
-                          //"  WHEN [TU_Month] = 'Dec' THEN 12 " +
-                          //"  END, " + colName;
                     qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
                     break;
             }
@@ -308,17 +264,17 @@ namespace MxliDashboard.n3_Productivity
                 double eHrs = Convert.ToDouble(dr1["TU_DirectHrs"].ToString());
                 double tHrs = Convert.ToDouble(dr1["TU_TotHrs"].ToString());
                 double prod = (eHrs / tHrs);
-                //prod = Math.Round(prod, 2);
-                chartTP01.Series["Series1"].Points.AddXY(dr1[colName].ToString(), tHrs);
-                chartTP01.Series["Series2"].Points.AddXY(dr1[colName].ToString(), eHrs);
-                chartTP01.Series["Series3"].Points.AddXY(dr1[colName].ToString(), prod);
-                chartTP01.Series["Series4"].Points.AddXY(dr1[colName].ToString(), xGoal);
-            }
 
-            chartTP01.Series["Series1"].LegendText = "Total Hrs";
-            chartTP01.Series["Series2"].LegendText = "Direct Hrs";
-            chartTP01.Series["Series3"].LegendText = "Actual %";
-            chartTP01.Series["Series4"].LegendText = "Goal";
+                WebChartControl1.Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), tHrs));
+                WebChartControl1.Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), eHrs));
+                WebChartControl1.Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), prod));
+                WebChartControl1.Series[3].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+
+                WebChartControl1.Series[0].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                WebChartControl1.Series[1].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                WebChartControl1.Series[2].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                WebChartControl1.Series[3].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+            }
 
         }
 

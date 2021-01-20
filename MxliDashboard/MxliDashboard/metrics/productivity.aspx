@@ -25,11 +25,13 @@
                         <table style="table-layout: fixed">
                             <tr>
                                  <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select VSM">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select VSM" 
+                                        Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxGroupInContent" runat="server" ValueField="NP_Group"
                                         TextField="NP_Group" ValueType="System.String" DataSourceID="SqlDataSourceGroup"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged">
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged"
+                                        Theme="Office365">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -40,11 +42,13 @@
                                     </dx:ASPxComboBox>
                                 </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area"
+                                        Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="NP_Area"
                                         TextField="NP_Area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged">
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged"
+                                        Theme="Office365">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -55,11 +59,13 @@
                                     </dx:ASPxComboBox>
                                 </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:"
+                                        Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="NP_Celda"
                                         TextField="NP_Celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged">
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged"
+                                        Theme="Office365">
                                         <ClientSideEvents Validation="function(s, e) {
                                                 if (s.GetSelectedIndex()==0) {
                                                 e.isValid = false;
@@ -70,11 +76,13 @@
                                     </dx:ASPxComboBox>
                                 </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="View By Month/Week">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="View By Month/Week"
+                                        Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxMWInContent" runat="server" ValueField="TF_ID"
                                         TextField="TF_Name" ValueType="System.String" DataSourceID="SqlDataSourceFilters"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundFilters" OnSelectedIndexChanged="ASPxComboBoxFiltersInContent_SelectedIndexChanged">
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundFilters" OnSelectedIndexChanged="ASPxComboBoxFiltersInContent_SelectedIndexChanged"
+                                        Theme="Office365">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -99,38 +107,79 @@
                 <HeaderContent BackColor="#666666"/>
                 <PanelCollection>
                     <dx:PanelContent ID="PanelContent2" runat="server">
-                        <asp:Chart ID="chartTP01" runat="server" Width="1024px">
-                            <Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series1" Color="55, 96, 146" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
-                                </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Column" Name="Series2" Color="185, 205, 229" IsValueShownAsLabel="True" LabelFormat="{0:#,#}" Legend="Legend1">
-                                </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series3" Color="Black" MarkerStyle="Circle" BorderWidth="2" MarkerBorderColor="Black" MarkerBorderWidth="2" MarkerColor="White" MarkerSize="10" YAxisType="Secondary" IsValueShownAsLabel="True" LabelFormat="{0:0.0%}" Legend="Legend1">
-                                </asp:Series>
-                                <asp:Series ChartArea="ChartArea1" ChartType="Spline" Name="Series4" Color="IndianRed" BorderWidth="2" MarkerSize="1" YAxisType="Secondary" LabelFormat="{0:0.0%}" Legend="Legend1">
-                                </asp:Series>
-                            </Series>
-                            <ChartAreas>
-                                <asp:ChartArea Name="ChartArea1">
-                                    <AxisY Enabled="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                    </AxisY>
-                                    <AxisX Interval="1" IsLabelAutoFit="False" LineWidth="0">
-                                        <MajorGrid Enabled="False" />
-                                        <LabelStyle Angle="-90" />
+                        <dx:WebChartControl ID="WebChartControl1" runat="server" DataSourceID="" CrosshairEnabled="True" Height="200px" Width="1100px"
+                            ClientInstanceName="chart" AutoLayout="True">
+                            <DiagramSerializable>
+                                <dx:XYDiagram>
+                                    <AxisX VisibleInPanesSerializable="-1" MinorCount="1" Visibility="True">
+                                        <QualitativeScaleOptions AutoGrid="False" />
+                                        <Tickmarks MinorVisible="False" />
+                                        <Label Angle="270" Alignment="Center">
+                                            <ResolveOverlappingOptions AllowHide="False" />
+                                        </Label>
+                                        <NumericScaleOptions AutoGrid="False" ScaleMode="Automatic" />
                                     </AxisX>
-                                    <AxisX2 LineWidth="0">
-                                    </AxisX2>
-                                    <AxisY2 LineWidth="0">
-                                        <LabelStyle Format="{0:0.00%}" />
-                                    </AxisY2>
-                                </asp:ChartArea>
-                            </ChartAreas>
-                            <Legends>
-                                <asp:Legend Name="Legend1">
-                                </asp:Legend>
-                            </Legends>
-                        </asp:Chart>
+                                    <AxisY VisibleInPanesSerializable="-1">
+                                    </AxisY>
+                                    <SecondaryAxesY>
+                                        <dx:SecondaryAxisY AxisID="0" Name="Secondary AxisY 1" VisibleInPanesSerializable="-1">
+                                            <Label TextPattern="{V:0%}">
+                                            </Label>
+                                            <NumericScaleOptions AutoGrid="False" GridSpacing="0.5" />
+                                        </dx:SecondaryAxisY>
+                                    </SecondaryAxesY>
+                                </dx:XYDiagram>
+                            </DiagramSerializable>
+                            <Legend Name="Default Legend" Font="Honeywell Sans Web Medium, 8pt"></Legend>
+                            <SeriesSerializable>
+                                <dx:Series LabelsVisibility="True" Name="Total Hrs" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
+                                    <ViewSerializable>
+                                        <dx:SideBySideBarSeriesView Color="55, 96, 146" BarWidth="0.8">
+                                            <Border Color="79, 129, 189" Visibility="False" />
+                                            <FillStyle FillMode="Solid">
+                                            </FillStyle>
+                                        </dx:SideBySideBarSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:SideBySideBarSeriesLabel TextPattern="{V:#,#}">
+                                        </dx:SideBySideBarSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                                <dx:Series Name="Earned Hrs" LabelsVisibility="True" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
+                                    <ViewSerializable>
+                                        <dx:SideBySideBarSeriesView Color="185, 205, 229">
+                                        </dx:SideBySideBarSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:SideBySideBarSeriesLabel TextPattern="{V:#,#}">
+                                        </dx:SideBySideBarSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                                <dx:Series Name="Actual %" CrosshairLabelPattern="{V:0.00%}" LabelsVisibility="False" LegendName="Default Legend" LegendTextPattern="{V:0.00%}">
+                                    <ViewSerializable>
+                                        <dx:LineSeriesView AxisYName="Secondary AxisY 1" Color="Black" MarkerVisibility="True">
+                                            <LineMarkerOptions Color="White" Size="8">
+                                            </LineMarkerOptions>
+                                        </dx:LineSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:PointSeriesLabel TextPattern="{V:0.00%}">
+                                        </dx:PointSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                                <dx:Series Name="Goal" CrosshairLabelPattern="{V:0.00%}" LegendTextPattern="{V:0.00%}">
+                                    <ViewSerializable>
+                                        <dx:LineSeriesView AxisYName="Secondary AxisY 1" Color="192, 80, 77" MarkerVisibility="False">
+                                        </dx:LineSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:PointSeriesLabel TextPattern="{V:0.00%}">
+                                        </dx:PointSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                            </SeriesSerializable>
+                        </dx:WebChartControl>
+
                     </dx:PanelContent>
                 </PanelCollection>
             </dx:ASPxRoundPanel>
@@ -145,7 +194,7 @@
                 <HeaderContent BackColor="#666666"/>
                 <PanelCollection>
                     <dx:PanelContent ID="PanelContent3" runat="server">
-                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_prod" Theme="Default" Width="1024px">
+                        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ds_prod" Theme="Metropolis" Width="1024px">
                             <SettingsPager Mode="ShowPager" PageSize="20">
                             </SettingsPager>
                             <Settings ShowGroupPanel="True" />
