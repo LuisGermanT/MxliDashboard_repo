@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44337</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -246,6 +245,9 @@
     <Content Include="Reports\v_agedwip.aspx" />
     <Content Include="Reports\v_entitlement.aspx" />
     <Content Include="Reports\v_balancedscorecard.aspx" />
+    <Content Include="Reports\v_scrap.aspx" />
+    <Content Include="Reports\v_productivity.aspx" />
+    <Content Include="Reports\v_utilization.aspx" />
     <Content Include="Reports\v_vmi.aspx" />
     <Content Include="Reports\v_output.aspx" />
     <Content Include="Reports\v_incidents.aspx" />
@@ -414,6 +416,15 @@
     <Compile Include="Reports\r_balancedscorecard.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\r_scrap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_productivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_utilization.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\r_vmi.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -486,6 +497,27 @@
     </Compile>
     <Compile Include="Reports\v_balancedscorecard.aspx.designer.cs">
       <DependentUpon>v_balancedscorecard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_scrap.aspx.cs">
+      <DependentUpon>v_scrap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_scrap.aspx.designer.cs">
+      <DependentUpon>v_scrap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_productivity.aspx.cs">
+      <DependentUpon>v_productivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_productivity.aspx.designer.cs">
+      <DependentUpon>v_productivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_utilization.aspx.cs">
+      <DependentUpon>v_utilization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_utilization.aspx.designer.cs">
+      <DependentUpon>v_utilization.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\v_vmi.aspx.cs">
       <DependentUpon>v_vmi.aspx</DependentUpon>
@@ -847,6 +879,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_balancedscorecard.resx">
       <DependentUpon>r_balancedscorecard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_scrap.resx">
+      <DependentUpon>r_scrap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_productivity.resx">
+      <DependentUpon>r_productivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_utilization.resx">
+      <DependentUpon>r_utilization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_vmi.resx">
       <DependentUpon>r_vmi.cs</DependentUpon>
