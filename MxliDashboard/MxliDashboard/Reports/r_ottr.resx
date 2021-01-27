@@ -132,6 +132,14 @@
  and stype = 'monthly' order by id desc)
 q1 order by id</value>
   </data>
+  <data name="customSqlQuery2.Sql" xml:space="preserve">
+    <value>SELECT top 5 [factual],[fsum],[scause] 
+ FROM [DB_1033_Dashboard].[dbo].[sta_nivel2p]
+ where smetric = 'ottr' and sUpdateDate = (SELECT CASE WHEN DATEPART(dw,GETDATE()) &gt;= 3 THEN DATEADD(wk, DATEDIFF(wk, -2, GETDATE()-7), -2)
+												ELSE DATEADD(wk, DATEDIFF(wk, -2, GETDATE()-14), -2)
+										   END )
+order by sUpdateDate desc</value>
+  </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
     <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5XzEiPjxGaWVsZCBOYW1lPSJpZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9ImZhY3R1YWwiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iZmdvYWwiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0ic2Rlc2MiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iUXVlcnlfMiI+PEZpZWxkIE5hbWU9ImZhY3R1YWwiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iZnN1bSIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJzY2F1c2UiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iUXVlcnlfMyI+PEZpZWxkIE5hbWU9InRibF9hY3Rpb25zX2lkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iYXJlYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ2c20iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ibXJwIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InJlcG9ydCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJtYXRlcmlhbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJpc3N1ZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJhY3Rpb24iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0icmVzcG9uc2libGUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ib3Blbl9jbG9zZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJjcmVhdGlvbl9kYXRlIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iY3JlYXRpb25fdXNlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJkdWVfZGF0ZSIgVHlwZT0iRGF0ZVRpbWUiIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlF1ZXJ5XzQiPjxGaWVsZCBOYW1lPSJpZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9ImZhY3R1YWwiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iZnN1bSIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJzY2F1c2UiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
   </data>
