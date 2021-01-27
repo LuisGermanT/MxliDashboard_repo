@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44337</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -233,6 +234,9 @@
     <Content Include="metrics\agedwip.aspx" />
     <Content Include="metrics\balancedscorecard.aspx" />
     <Content Include="metrics\cars.aspx" />
+    <Content Include="metrics\rtv.aspx" />
+    <Content Include="metrics\qsat.aspx" />
+    <Content Include="metrics\pros.aspx" />
     <Content Include="metrics\internalescapes.aspx" />
     <Content Include="metrics\ppms.aspx" />
     <Content Include="metrics\productivity.aspx" />
@@ -240,11 +244,15 @@
     <Content Include="metrics\Utilization.aspx" />
     <Content Include="img\badC.png" />
     <Content Include="img\goodC.png" />
+    <Content Include="Reports\v_rtv.aspx" />
+    <Content Include="Reports\v_qsat.aspx" />
     <Content Include="Reports\v_cars.aspx" />
     <Content Include="Reports\v_defects.aspx" />
     <Content Include="Reports\v_agedwip.aspx" />
     <Content Include="Reports\v_entitlement.aspx" />
     <Content Include="Reports\v_balancedscorecard.aspx" />
+    <Content Include="Reports\v_pros.aspx" />
+    <Content Include="Reports\v_internalescapes.aspx" />
     <Content Include="Reports\v_scrap.aspx" />
     <Content Include="Reports\v_productivity.aspx" />
     <Content Include="Reports\v_utilization.aspx" />
@@ -377,6 +385,27 @@
     <Compile Include="metrics\cars.aspx.designer.cs">
       <DependentUpon>cars.aspx</DependentUpon>
     </Compile>
+    <Compile Include="metrics\rtv.aspx.cs">
+      <DependentUpon>rtv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\rtv.aspx.designer.cs">
+      <DependentUpon>rtv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\qsat.aspx.cs">
+      <DependentUpon>qsat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\qsat.aspx.designer.cs">
+      <DependentUpon>qsat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="metrics\pros.aspx.cs">
+      <DependentUpon>pros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="metrics\pros.aspx.designer.cs">
+      <DependentUpon>pros.aspx</DependentUpon>
+    </Compile>
     <Compile Include="metrics\internalescapes.aspx.cs">
       <DependentUpon>internalescapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -399,6 +428,15 @@
       <DependentUpon>productivity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\r_cars.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_rtv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_qsat.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\r_pros.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\r_internalescapes.cs">
@@ -463,6 +501,20 @@
     <Compile Include="Reports\r_ppms.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\v_rtv.aspx.cs">
+      <DependentUpon>v_rtv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_rtv.aspx.designer.cs">
+      <DependentUpon>v_rtv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_qsat.aspx.cs">
+      <DependentUpon>v_qsat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_qsat.aspx.designer.cs">
+      <DependentUpon>v_qsat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\v_cars.aspx.cs">
       <DependentUpon>v_cars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -497,6 +549,20 @@
     </Compile>
     <Compile Include="Reports\v_balancedscorecard.aspx.designer.cs">
       <DependentUpon>v_balancedscorecard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_pros.aspx.cs">
+      <DependentUpon>v_pros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_pros.aspx.designer.cs">
+      <DependentUpon>v_pros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\v_internalescapes.aspx.cs">
+      <DependentUpon>v_internalescapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\v_internalescapes.aspx.designer.cs">
+      <DependentUpon>v_internalescapes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\v_scrap.aspx.cs">
       <DependentUpon>v_scrap.aspx</DependentUpon>
@@ -864,6 +930,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\r_cars.resx">
       <DependentUpon>r_cars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_rtv.resx">
+      <DependentUpon>r_rtv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_qsat.resx">
+      <DependentUpon>r_qsat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\r_pros.resx">
+      <DependentUpon>r_pros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_internalescapes.resx">
       <DependentUpon>r_internalescapes.cs</DependentUpon>
