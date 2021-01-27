@@ -7,7 +7,7 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for XtraReport1
 /// </summary>
-public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
+public class r_qsat : DevExpress.XtraReports.UI.XtraReport
 {
     private TopMarginBand TopMargin;
     private BottomMarginBand BottomMargin;
@@ -50,7 +50,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public r_entitlement()
+    public r_qsat()
     {
         InitializeComponent();
         //
@@ -81,7 +81,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_entitlement));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(r_qsat));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
@@ -191,7 +191,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(391.0416F, 23F);
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "ENTITLEMENT";
+            this.xrLabel4.Text = "QSAT";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLine1
@@ -303,7 +303,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
             this.xrChart2.Name = "xrChart2";
             this.xrChart2.PaletteBaseColorNumber = 2;
             this.xrChart2.PaletteName = "Grayscale";
-            series1.ArgumentDataMember = "Query_2.outline";
+            series1.ArgumentDataMember = "Query_2.smaterial";
             sideBySideBarSeriesLabel1.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
             sideBySideBarSeriesLabel1.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
             sideBySideBarSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
@@ -317,7 +317,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
             sideBySideBarSeriesView1.Color = System.Drawing.Color.Firebrick;
             sideBySideBarSeriesView1.Transparency = ((byte)(135));
             series1.View = sideBySideBarSeriesView1;
-            series2.ArgumentDataMember = "Query_2.outline";
+            series2.ArgumentDataMember = "Query_2.smaterial";
             pointSeriesLabel1.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
             pointSeriesLabel1.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
             pointSeriesLabel1.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Empty;
@@ -345,13 +345,13 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
             customSqlQuery1.Name = "Query_1";
             customSqlQuery1.Sql = resources.GetString("customSqlQuery1.Sql");
             customSqlQuery2.Name = "Query_2";
-            customSqlQuery2.Sql = "SELECT top 5 outline, SUM(total)/1000 as cValue, \r\nsum(sum(total)) over (order by" +
-    " sum(total) desc)/1000 as Acum\r\nFROM[DB_1033_Dashboard].[dbo].[sap_entitlement]\r" +
-    "\ngroup by outline order by cValue desc";
+            customSqlQuery2.Sql = resources.GetString("customSqlQuery2.Sql");
             customSqlQuery3.Name = "Query_3";
-            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'entitlement\'";
+            customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'qsat\'";
             customSqlQuery4.Name = "Query_4";
-            customSqlQuery4.Sql = resources.GetString("customSqlQuery4.Sql");
+            customSqlQuery4.Sql = "SELECT * FROM\r\n(SELECT top 3 [id],factual,fsum,[scause] \r\n FROM [DB_1033_Dashboar" +
+    "d].[dbo].[sta_nivel2f]\r\n where smetric = \'qsat\'\r\nand stype = \'monthly\' order by " +
+    "id desc)\r\nq1 order by id ";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1,
             customSqlQuery2,
@@ -699,7 +699,7 @@ public class r_entitlement : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.HeightF = 2.708689F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // r_entitlement
+            // r_qsat
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,

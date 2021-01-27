@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MxliDashboard.n3_Inventory
+namespace MxliDashboard.n3_Quality
 {
-    public partial class entitlement : System.Web.UI.Page
+    public partial class pros : System.Web.UI.Page
     {
         int xIndice = 0;
         string xFilter = "SITE";
@@ -21,10 +22,9 @@ namespace MxliDashboard.n3_Inventory
         {
             this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
             this.ASPxComboBoxGV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxGV_SelectedIndexChanged);
-            this.ASPxComboBoxVsmInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVsmInContent_SelectedIndexChanged);
-            this.ASPxComboBoxCellInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCellInContent_SelectedIndexChanged);
-            this.ASPxComboBoxMrpInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxMrpInContent_SelectedIndexChanged);
-            this.ASPxComboBoxAorbInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxAorbInContent_SelectedIndexChanged);
+            this.ASPxComboBoxClasInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxClasInContent_SelectedIndexChanged);
+            this.ASPxComboBoxCauseInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCauseInContent_SelectedIndexChanged);
+            this.ASPxComboBoxStaInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxStaInContent_SelectedIndexChanged);
             loadUpdate();
             if (!Page.IsPostBack)
             {
@@ -32,32 +32,25 @@ namespace MxliDashboard.n3_Inventory
             }
         }
 
-        protected void cmbox_DataBoundCell(object sender, EventArgs e)
+        protected void cmbox_DataBoundClas(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxCellInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxCellInContent.SelectedIndex = 0;
+            ASPxComboBoxClasInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxClasInContent.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundMrp(object sender, EventArgs e)
+        protected void cmbox_DataBoundCause(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxMrpInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxMrpInContent.SelectedIndex = 0;
+            ASPxComboBoxCauseInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxCauseInContent.SelectedIndex = 0;
         }
 
-        protected void cmbox_DataBoundVsm(object sender, EventArgs e)
+        protected void cmbox_DataBoundSta(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxVsmInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxVsmInContent.SelectedIndex = 0;
-        }
-
-        protected void cmbox_DataBoundAorb(object sender, EventArgs e)
-        {
-            ListEditItem defaultItem = new ListEditItem("All", "%%");
-            ASPxComboBoxAorbInContent.Items.Insert(0, defaultItem);
-            ASPxComboBoxAorbInContent.SelectedIndex = 0;
+            ASPxComboBoxStaInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxStaInContent.SelectedIndex = 0;
         }
 
         protected void ASPxComboBoxV_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,34 +62,28 @@ namespace MxliDashboard.n3_Inventory
                 noActualizar = 0;
                 if (ASPxComboBoxV.SelectedIndex == 0)
                 {
-                    ASPxComboBoxVsmInContent.SelectedIndex = 0;
-                    ASPxComboBoxCellInContent.SelectedIndex = 0;
-                    ASPxComboBoxMrpInContent.SelectedIndex = 0;
-                    ASPxComboBoxAorbInContent.SelectedIndex = 0;
+                    ASPxComboBoxClasInContent.SelectedIndex = 0;
+                    ASPxComboBoxCauseInContent.SelectedIndex = 0;
+                    ASPxComboBoxStaInContent.SelectedIndex = 0;
                     chartDefault(0, "SITE", "All", 0);
                 }
                 else
                 {
                     xIndice = ASPxComboBoxV.SelectedIndex;
-                    if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+                    if (ASPxComboBoxClasInContent.SelectedIndex > 0)
                     {
-                        xFilter = "VSM";
-                        xClass = ASPxComboBoxVsmInContent.SelectedItem.ToString();
+                        xFilter = "CLASS";
+                        xClass = ASPxComboBoxClasInContent.SelectedItem.ToString();
                     }
-                    if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+                    if (ASPxComboBoxCauseInContent.SelectedIndex > 0)
                     {
-                        xFilter = "CELL";
-                        xClass = ASPxComboBoxCellInContent.SelectedItem.ToString();
+                        xFilter = "CAUSE";
+                        xClass = ASPxComboBoxCauseInContent.SelectedItem.ToString();
                     }
-                    if (ASPxComboBoxMrpInContent.SelectedIndex > 0)
+                    if (ASPxComboBoxStaInContent.SelectedIndex > 0)
                     {
-                        xFilter = "MRP";
-                        xClass = ASPxComboBoxMrpInContent.SelectedItem.ToString();
-                    }
-                    if (ASPxComboBoxAorbInContent.SelectedIndex > 0)
-                    {
-                        xFilter = "AORB";
-                        xClass = ASPxComboBoxAorbInContent.SelectedItem.ToString();
+                        xFilter = "STATUS";
+                        xClass = ASPxComboBoxStaInContent.SelectedItem.ToString();
                     }
                     chartDefault(xIndice, xFilter, xClass, ASPxComboBoxGV.SelectedIndex);
                 }
@@ -109,31 +96,28 @@ namespace MxliDashboard.n3_Inventory
             {
                 noActualizar = 1;
                 ASPxComboBoxV.SelectedIndex = 0;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
-                ASPxComboBoxMrpInContent.SelectedIndex = 0;
-                ASPxComboBoxAorbInContent.SelectedIndex = 0;
+                ASPxComboBoxClasInContent.SelectedIndex = 0;
+                ASPxComboBoxCauseInContent.SelectedIndex = 0;
+                ASPxComboBoxStaInContent.SelectedIndex = 0;
                 noActualizar = 0;
                 chartDefault(0, "SITE", "All", ASPxComboBoxGV.SelectedIndex);
             }
         }
 
-
-        protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxClasInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (noActualizar == 0)
             {
                 noActualizar = 1;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
-                ASPxComboBoxMrpInContent.SelectedIndex = 0;
-                ASPxComboBoxAorbInContent.SelectedIndex = 0;
+                ASPxComboBoxCauseInContent.SelectedIndex = 0;
+                ASPxComboBoxStaInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;
                 noActualizar = 0;
 
                 xIndice = ASPxComboBoxV.SelectedIndex;
-                xFilter = "VSM";
-                xClass = ASPxComboBoxVsmInContent.SelectedItem.ToString();
-                if (ASPxComboBoxVsmInContent.SelectedIndex == 0)
+                xFilter = "CLASS";
+                xClass = ASPxComboBoxClasInContent.SelectedItem.ToString();
+                if (ASPxComboBoxClasInContent.SelectedIndex == 0)
                 {
                     xFilter = "SITE";
                     xClass = "All";
@@ -142,21 +126,20 @@ namespace MxliDashboard.n3_Inventory
             }
         }
 
-        protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxCauseInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (noActualizar == 0)
             {
                 noActualizar = 1;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
-                ASPxComboBoxMrpInContent.SelectedIndex = 0;
-                ASPxComboBoxAorbInContent.SelectedIndex = 0;
+                ASPxComboBoxClasInContent.SelectedIndex = 0;
+                ASPxComboBoxStaInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;
                 noActualizar = 0;
 
                 xIndice = ASPxComboBoxV.SelectedIndex;
-                xFilter = "CELL";
-                xClass = ASPxComboBoxCellInContent.SelectedItem.ToString();
-                if (ASPxComboBoxCellInContent.SelectedIndex == 0)
+                xFilter = "CAUSE";
+                xClass = ASPxComboBoxCauseInContent.SelectedItem.ToString();
+                if (ASPxComboBoxCauseInContent.SelectedIndex == 0)
                 {
                     xFilter = "SITE";
                     xClass = "All";
@@ -165,44 +148,20 @@ namespace MxliDashboard.n3_Inventory
             }
         }
 
-        protected void ASPxComboBoxMrpInContent_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ASPxComboBoxStaInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (noActualizar == 0)
             {
                 noActualizar = 1;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
-                ASPxComboBoxAorbInContent.SelectedIndex = 0;
+                ASPxComboBoxClasInContent.SelectedIndex = 0;
+                ASPxComboBoxCauseInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;
                 noActualizar = 0;
 
                 xIndice = ASPxComboBoxV.SelectedIndex;
-                xFilter = "MRP";
-                xClass = ASPxComboBoxMrpInContent.SelectedItem.ToString();
-                if (ASPxComboBoxMrpInContent.SelectedIndex == 0)
-                {
-                    xFilter = "SITE";
-                    xClass = "All";
-                }
-                chartDefault(xIndice, xFilter, xClass, ASPxComboBoxGV.SelectedIndex);
-            }
-        }
-
-        protected void ASPxComboBoxAorbInContent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (noActualizar == 0)
-            {
-                noActualizar = 1;
-                ASPxComboBoxVsmInContent.SelectedIndex = 0;
-                ASPxComboBoxCellInContent.SelectedIndex = 0;
-                ASPxComboBoxMrpInContent.SelectedIndex = 0;
-                ASPxComboBoxGV.SelectedIndex = 0;
-                noActualizar = 0;
-
-                xIndice = ASPxComboBoxV.SelectedIndex;
-                xFilter = "AORB";
-                xClass = ASPxComboBoxAorbInContent.SelectedItem.ToString();
-                if (ASPxComboBoxAorbInContent.SelectedIndex == 0)
+                xFilter = "STATUS";
+                xClass = ASPxComboBoxStaInContent.SelectedItem.ToString();
+                if (ASPxComboBoxStaInContent.SelectedIndex == 0)
                 {
                     xFilter = "SITE";
                     xClass = "All";
@@ -239,7 +198,7 @@ namespace MxliDashboard.n3_Inventory
             if (gType < 2)
             {
                 WebChartControl1.Height = 200;
-                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'entitlement' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
+                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'pros' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
                 DataTable dt1 = dBHelper.QryManager(qry1);
@@ -247,31 +206,25 @@ namespace MxliDashboard.n3_Inventory
                 {
                     double xTotal = Convert.ToDouble(dr1["factual"].ToString());
                     double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr1["sdesc"].ToString(), Math.Round((xTotal / 1000000), 2));
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}M";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}M";
+                    WebChartControl1.Series["Total"].Points.AddPoint(dr1["sdesc"].ToString(), xTotal);
+                    WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sdesc"].ToString(), xGoal);
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Series["Total"].LegendTextPattern = "Total";
-                    WebChartControl1.Series["Goal"].LegendTextPattern = "Ideal";
                 }
             }
             if (gType == 2)
             {
                 WebChartControl1.Height = 400;
                 double vSum = 0;
-                string qry2 = "SELECT top 10 outline, SUM(total) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_entitlement] group by outline order by cValue desc";
+                string qry2 = "SELECT top 10 causa, COUNT(id) as cValue FROM[DB_1033_Dashboard].[dbo].[tbl_pros] group by causa order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
                 foreach (DataRow dr2 in dt2.Rows)
                 {
                     double xActual = Convert.ToDouble(dr2["cValue"].ToString());
                     vSum = vSum + xActual;
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["outline"].ToString(), Math.Round((xActual / 1000), 2));
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["outline"].ToString(), Math.Round((vSum / 1000), 2));
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}K";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}K";
+                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["causa"].ToString(), xActual);
+                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["causa"].ToString(), vSum);
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Total"].LegendTextPattern = "Total";
@@ -281,7 +234,7 @@ namespace MxliDashboard.n3_Inventory
             if (gType == 3)
             {
                 WebChartControl1.Height = 200;
-                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'entitlement' order by id desc";
+                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'pros' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
@@ -289,10 +242,8 @@ namespace MxliDashboard.n3_Inventory
                 {
                     double xActual = Convert.ToDouble(dr2["factual"].ToString());
                     double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["scause"].ToString(), Math.Round((xActual / 1000000), 2));
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["scause"].ToString(), Math.Round((xGoal / 1000000), 2));
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}M";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}M";
+                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["scause"].ToString(), xActual);
+                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["scause"].ToString(), xGoal);
                     WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                     WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
                 }
@@ -303,7 +254,7 @@ namespace MxliDashboard.n3_Inventory
         {
             string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
             SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'entitlement'", conn1);
+            SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'pros'", conn1);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
