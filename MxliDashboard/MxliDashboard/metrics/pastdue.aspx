@@ -171,7 +171,7 @@
                     <Settings ShowFooter="True" ShowGroupPanel="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <SettingsSearchPanel Visible="True" />
-                    <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="WYSIWYG" />
+                    <SettingsExport EnableClientSideExportAPI="true" FileName="PASTDUE" />
                     <Toolbars>
                         <dx:GridViewToolbar>
                             <SettingsAdaptivity Enabled="true" EnableCollapseRootItemsToIcons="true" />
@@ -262,39 +262,83 @@
                         <dx:GridViewDataTextColumn Caption="#" FieldName="tbl_actions_id" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="1">
                             <EditFormSettings Visible="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="area" ShowInCustomizationForm="True" Visible="False" VisibleIndex="2">
+                        <dx:GridViewDataTextColumn FieldName="issue" ShowInCustomizationForm="True" VisibleIndex="2" Caption="ISSUE" Width="25%">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="vsm" ShowInCustomizationForm="True" Visible="False" VisibleIndex="3">
+                        <dx:GridViewDataTextColumn FieldName="action" ShowInCustomizationForm="True" VisibleIndex="3" Caption="ACTION" Width="25%">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" ShowInCustomizationForm="True" Visible="False" VisibleIndex="4">
+                        <dx:GridViewDataComboBoxColumn FieldName="impact" ShowInCustomizationForm="True" VisibleIndex="4" Caption="IMPACT" Width="7%">
+                            <PropertiesComboBox DropDownStyle="DropDownList" TextField="SelectImpact" ValueField="SelectImpact">
+                                <Items>
+                                    <dx:ListEditItem Text="DATE" Value="DATE" />
+                                    <dx:ListEditItem Text="QUANTITY" Value="QUANTITY" />
+                                    <dx:ListEditItem Text="VALUE" Value="VALUE" />
+                                    <dx:ListEditItem Text="OTHER" Value="OTHER" />
+                                </Items>
+                            </PropertiesComboBox>
+                        </dx:GridViewDataComboBoxColumn>
+                        <dx:GridViewDataTextColumn FieldName="imp_description" ShowInCustomizationForm="True" VisibleIndex="5" Caption="DESCRIPTION" Width="7%">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="report" ShowInCustomizationForm="True" Visible="False" VisibleIndex="5">
+                        <dx:GridViewDataTextColumn FieldName="material" ShowInCustomizationForm="True" VisibleIndex="6" Caption="MATERIAL" Width="7%" >
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="material" ShowInCustomizationForm="True" VisibleIndex="6" Width="10%">
+                        <dx:GridViewDataTextColumn FieldName="responsible" ShowInCustomizationForm="True" VisibleIndex="7" Caption="RESPONSIBLE" Width="7%">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="issue" ShowInCustomizationForm="True" VisibleIndex="7" Width="25%">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="action" ShowInCustomizationForm="True" VisibleIndex="8" Width="25%">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="responsible" ShowInCustomizationForm="True" VisibleIndex="9">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="open_close" ShowInCustomizationForm="True" VisibleIndex="10">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="creation_date" ShowInCustomizationForm="True" VisibleIndex="11">
+                        <dx:GridViewDataDateColumn FieldName="creation_date" ShowInCustomizationForm="True" VisibleIndex="8" Caption="Created on" Width="7%">
                         </dx:GridViewDataDateColumn>
-                        <dx:GridViewDataTextColumn FieldName="creation_user" ShowInCustomizationForm="True" VisibleIndex="12">
+                        <dx:GridViewDataTextColumn FieldName="creation_user" ShowInCustomizationForm="True" VisibleIndex="9" Caption="Created by" Width="7%">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="due_date" ShowInCustomizationForm="True" VisibleIndex="13">
+                        <dx:GridViewDataDateColumn FieldName="due_date" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Due date" Width="7%">
                         </dx:GridViewDataDateColumn>
+                        <dx:GridViewDataComboBoxColumn FieldName="open_close" ShowInCustomizationForm="True" VisibleIndex="11" Caption="Status" Width="7%">
+                            <PropertiesComboBox DropDownStyle="DropDownList" TextField="SelectStatus" ValueField="SelectStatus">
+                                <Items>
+                                    <dx:ListEditItem Text="OPEN" Value="OPEN" />
+                                    <dx:ListEditItem Text="CLOSED" Value="CLOSED" />
+                                </Items>
+                            </PropertiesComboBox>
+                        </dx:GridViewDataComboBoxColumn>
                     </Columns>
                     <Styles>
                         <Header BackColor="#006699" ForeColor="White">
                         </Header>
-                        <BatchEditNewRow ForeColor="White">
-                        </BatchEditNewRow>
                     </Styles>
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" SelectCommand="SELECT [tbl_actions_id], [area], [vsm], [mrp], [report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date] FROM [tbl_actions] where report = 'pastdue'"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSourceActions" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" 
+                    SelectCommand="SELECT * FROM [tbl_actions] WHERE ([report] = @report)" 
+                    DeleteCommand="DELETE FROM [tbl_actions] WHERE [tbl_actions_id] = @tbl_actions_id" 
+                    InsertCommand="INSERT INTO [tbl_actions] ([report], [material], [issue], [action], [responsible], [open_close], [creation_date], [creation_user], [due_date], [impact], [imp_description]) VALUES (@report, @material, @issue, @action, @responsible, @open_close, @creation_date, @creation_user, @due_date, @impact, @imp_description)" 
+                    UpdateCommand="UPDATE [tbl_actions] SET [material] = @material, [issue] = @issue, [action] = @action, [responsible] = @responsible, [open_close] = @open_close, [creation_user] = @creation_user, [due_date] = @due_date, [impact] = @impact, [imp_description] = @imp_description WHERE [tbl_actions_id] = @tbl_actions_id">
+                    <DeleteParameters>
+                        <asp:Parameter Name="tbl_actions_id" Type="Int32" />
+                    </DeleteParameters>
+                    <InsertParameters>                        
+                        <asp:Parameter Name="issue" Type="String" />
+                        <asp:Parameter Name="action" Type="String" />
+                        <asp:Parameter Name="impact" Type="String" />
+                        <asp:Parameter Name="imp_description" Type="String" />
+                        <asp:Parameter Name="material" Type="String" />
+                        <asp:Parameter Name="responsible" Type="String" />                        
+                        <asp:Parameter Name="creation_date" Type="DateTime" />
+                        <asp:Parameter Name="creation_user" Type="String" />
+                        <asp:Parameter Name="due_date" Type="DateTime" />
+                        <asp:Parameter Name="open_close" Type="String" DefaultValue="OPEN" />
+                        <asp:Parameter Name="report" Type="String" DefaultValue="PASTDUE" />
+                    </InsertParameters>
+                    <SelectParameters>
+                        <asp:Parameter DefaultValue="pastdue" Name="report" Type="String" />
+                    </SelectParameters>
+                    <UpdateParameters>                        
+                        <asp:Parameter Name="issue" Type="String" />
+                        <asp:Parameter Name="action" Type="String" />
+                        <asp:Parameter Name="impact" Type="String" />
+                        <asp:Parameter Name="imp_description" Type="String" />
+                        <asp:Parameter Name="material" Type="String" />
+                        <asp:Parameter Name="responsible" Type="String" />                       
+                        <asp:Parameter Name="creation_user" Type="String" />
+                        <asp:Parameter Name="due_date" Type="DateTime" />
+                        <asp:Parameter Name="open_close" Type="String" />
+                        <asp:Parameter Name="tbl_actions_id" Type="Int32" />
+                    </UpdateParameters>
+                </asp:SqlDataSource>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxRoundPanel>
