@@ -73,9 +73,9 @@
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server">
                 <table style="table-layout: fixed">
-                    <tr>                       
+                    <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption5" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="svsm"
                                 TextField="svsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -85,6 +85,39 @@
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
                                             e.errorText = &quot;You should Select One VSM&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Aged" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxClasInContent" runat="server" ValueField="sClassif"
+                                TextField="sClassif" ValueType="System.String" DataSourceID="SqlDataSourceClas"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundClas" Theme="Office365">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Classification&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="sarea"
+                                TextField="sarea" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" 
+                                OnSelectedIndexChanged="ASPxComboBoxAreaInContent_SelectedIndexChanged" Theme="Office365">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Area&quot;;
                                             }}" />
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
@@ -119,22 +152,7 @@
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
-                        </th>                       
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Aged" Font-Names="Honeywell Sans Web" Font-Size="Medium">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxClasInContent" runat="server" ValueField="sClassif"
-                                TextField="sClassif" ValueType="System.String" DataSourceID="SqlDataSourceClas"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundClas" Theme="Office365">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One Classification&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>
+                        </th>                                              
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -231,19 +249,21 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="sVsm" VisibleIndex="5" Caption="VSM">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sCell" VisibleIndex="6" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="sArea" VisibleIndex="6" Caption="AREA">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sMrp" VisibleIndex="7" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="sCell" VisibleIndex="7" Caption="CELL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="dActualStart" VisibleIndex="8" Caption="Start Date">
+                        <dx:GridViewDataTextColumn FieldName="sMrp" VisibleIndex="8" Caption="MRP">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="dActualStart" VisibleIndex="9" Caption="Start Date">
                             <PropertiesTextEdit DisplayFormatString="d">
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="nCalDays" VisibleIndex="9" Caption="Cal Days">
+                        <dx:GridViewDataTextColumn FieldName="nCalDays" VisibleIndex="10" Caption="Cal Days">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="nNetDays" VisibleIndex="10" Caption="Net Days">
+                        <dx:GridViewDataTextColumn FieldName="nNetDays" VisibleIndex="11" Caption="Net Days">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sClassif" VisibleIndex="11" Caption="Classification">
+                        <dx:GridViewDataTextColumn FieldName="sClassif" VisibleIndex="12" Caption="Classification">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <TotalSummary>
@@ -263,12 +283,14 @@
         </PanelCollection>       
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_inventory" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT * FROM [sap_agedwip] where smrp like @pMrp and svsm like @pVsm and scell like @pCell and sclassif like @pClas">
+        SelectCommand="SELECT * FROM [sap_agedwip] where smrp like @pMrp and sarea like @pArea and svsm like @pVsm and scell like @pCell and sclassif like @pClas">
     <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
+        <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxAreaInContent"
+                Name="pArea" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxClasInContent"
@@ -277,6 +299,8 @@
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [smrp] FROM [sap_agedwip] order by smrp"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [sarea] FROM [sap_agedwip] order by sarea"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [svsm] FROM [sap_agedwip] order by svsm"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"

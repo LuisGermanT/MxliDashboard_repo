@@ -75,7 +75,7 @@
                 <table style="table-layout: fixed">
                     <tr>                       
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="area"
                                 TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceVsm"

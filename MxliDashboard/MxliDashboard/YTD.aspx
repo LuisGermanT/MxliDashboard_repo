@@ -30,21 +30,20 @@
                                         </dx:ASPxComboBox>
                                     </th>       
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select Tier view:" Visible="false">
+                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True" Visible="false">
+                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One View&quot;;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
                                                     }}" />
                                             <ValidationSettings ValidateOnLeave="False"></ValidationSettings>
                                             <Items>
                                                 <dx:ListEditItem Selected="true" Text="All" Value="1" />
-                                                <dx:ListEditItem Text="T1" Value="2" />
-                                                <dx:ListEditItem Text="T2" Value="3" />
-                                                <dx:ListEditItem Text="T3" Value="4" />
-                                                <dx:ListEditItem Text="WarRoom" Value="5" />
+                                                <dx:ListEditItem Text="Buy Parts" Value="2" />
+                                                <dx:ListEditItem Text="EP&A" Value="3" />
+                                                <dx:ListEditItem Text="Heat Transfer" Value="4" />
                                             </Items>
                                         </dx:ASPxComboBox>
                                     </th>                                    
@@ -70,6 +69,7 @@
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" ViewStateMode="Disabled" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
                     <SettingsPager Visible="False" PageSize="100">
                     </SettingsPager>
+                    <Settings VerticalScrollableHeight="640" VerticalScrollBarMode="Visible" />
                     <SettingsBehavior AllowCellMerge="True" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
@@ -137,12 +137,13 @@
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                       
                     </Columns>
-                    <Settings HorizontalScrollBarMode="Visible" VerticalScrollBarMode="Hidden"  VerticalScrollableHeight="760"/>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center"></Header>
                         <Row Font-Size="Medium"></Row>
                         <AlternatingRow BackColor="#F3F3F3"></AlternatingRow>
                         <%--<FixedColumn BackColor="LightYellow" />--%>
+                        <Cell Font-Size="Small">
+                        </Cell>
                     </Styles>                    
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"

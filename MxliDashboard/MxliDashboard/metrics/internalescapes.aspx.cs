@@ -22,6 +22,7 @@ namespace MxliDashboard.n3_Quality
             this.ASPxComboBoxV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxV_SelectedIndexChanged);
             this.ASPxComboBoxGV.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxGV_SelectedIndexChanged);
             this.ASPxComboBoxVsmInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxVsmInContent_SelectedIndexChanged);
+            this.ASPxComboBoxAreaInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxAreaInContent_SelectedIndexChanged);
             this.ASPxComboBoxCellInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCellInContent_SelectedIndexChanged);
             this.ASPxComboBoxMrpInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxMrpInContent_SelectedIndexChanged);
             this.ASPxComboBoxCauseInContent.SelectedIndexChanged += new System.EventHandler(ASPxComboBoxCauseInContent_SelectedIndexChanged);
@@ -44,6 +45,13 @@ namespace MxliDashboard.n3_Quality
             ListEditItem defaultItem = new ListEditItem("All", "%%");
             ASPxComboBoxVsmInContent.Items.Insert(0, defaultItem);
             ASPxComboBoxVsmInContent.SelectedIndex = 0;
+        }
+
+        protected void cmbox_DataBoundArea(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("All", "%%");
+            ASPxComboBoxAreaInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxAreaInContent.SelectedIndex = 0;
         }
 
         protected void cmbox_DataBoundCell(object sender, EventArgs e)
@@ -69,6 +77,7 @@ namespace MxliDashboard.n3_Quality
                 if (ASPxComboBoxV.SelectedIndex == 0)
                 {
                     ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                    ASPxComboBoxAreaInContent.SelectedIndex = 0;
                     ASPxComboBoxCellInContent.SelectedIndex = 0;
                     ASPxComboBoxMrpInContent.SelectedIndex = 0;
                     ASPxComboBoxCauseInContent.SelectedIndex = 0;
@@ -81,6 +90,11 @@ namespace MxliDashboard.n3_Quality
                     {
                         xFilter = "VSM";
                         xClass = ASPxComboBoxVsmInContent.SelectedItem.ToString();
+                    }
+                    if (ASPxComboBoxAreaInContent.SelectedIndex > 0)
+                    {
+                        xFilter = "AREA";
+                        xClass = ASPxComboBoxAreaInContent.SelectedItem.ToString();
                     }
                     if (ASPxComboBoxCellInContent.SelectedIndex > 0)
                     {
@@ -109,6 +123,7 @@ namespace MxliDashboard.n3_Quality
                 noActualizar = 1;
                 ASPxComboBoxV.SelectedIndex = 0;
                 ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxAreaInContent.SelectedIndex = 0;
                 ASPxComboBoxCellInContent.SelectedIndex = 0;
                 ASPxComboBoxMrpInContent.SelectedIndex = 0;
                 ASPxComboBoxCauseInContent.SelectedIndex = 0;
@@ -122,6 +137,7 @@ namespace MxliDashboard.n3_Quality
             if (noActualizar == 0)
             {
                 noActualizar = 1;
+                ASPxComboBoxAreaInContent.SelectedIndex = 0;
                 ASPxComboBoxCellInContent.SelectedIndex = 0;
                 ASPxComboBoxMrpInContent.SelectedIndex = 0;
                 ASPxComboBoxCauseInContent.SelectedIndex = 0;
@@ -140,12 +156,37 @@ namespace MxliDashboard.n3_Quality
             }
         }
 
+        protected void ASPxComboBoxAreaInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (noActualizar == 0)
+            {
+                noActualizar = 1;
+                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxCellInContent.SelectedIndex = 0;
+                ASPxComboBoxMrpInContent.SelectedIndex = 0;
+                ASPxComboBoxCauseInContent.SelectedIndex = 0;
+                ASPxComboBoxGV.SelectedIndex = 0;
+                noActualizar = 0;
+
+                xIndice = ASPxComboBoxV.SelectedIndex;
+                xFilter = "AREA";
+                xClass = ASPxComboBoxAreaInContent.SelectedItem.ToString();
+                if (ASPxComboBoxAreaInContent.SelectedIndex == 0)
+                {
+                    xFilter = "SITE";
+                    xClass = "All";
+                }
+                chartDefault(xIndice, xFilter, xClass, ASPxComboBoxGV.SelectedIndex);
+            }
+        }
+
         protected void ASPxComboBoxCellInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (noActualizar == 0)
             {
                 noActualizar = 1;
                 ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxAreaInContent.SelectedIndex = 0;
                 ASPxComboBoxMrpInContent.SelectedIndex = 0;
                 ASPxComboBoxCauseInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;
@@ -169,6 +210,7 @@ namespace MxliDashboard.n3_Quality
             {
                 noActualizar = 1;
                 ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxAreaInContent.SelectedIndex = 0;
                 ASPxComboBoxCellInContent.SelectedIndex = 0;
                 ASPxComboBoxCauseInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;
@@ -192,6 +234,7 @@ namespace MxliDashboard.n3_Quality
             {
                 noActualizar = 1;
                 ASPxComboBoxVsmInContent.SelectedIndex = 0;
+                ASPxComboBoxAreaInContent.SelectedIndex = 0;
                 ASPxComboBoxCellInContent.SelectedIndex = 0;
                 ASPxComboBoxMrpInContent.SelectedIndex = 0;
                 ASPxComboBoxGV.SelectedIndex = 0;

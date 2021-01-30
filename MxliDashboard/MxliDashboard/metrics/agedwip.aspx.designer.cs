@@ -94,13 +94,13 @@ namespace MxliDashboard.n3_Inventory {
         protected global::DevExpress.Web.PanelContent PanelContent2;
         
         /// <summary>
-        /// ASPxLabelCaption1 control.
+        /// ASPxLabelCaption5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption5;
         
         /// <summary>
         /// ASPxComboBoxVsmInContent control.
@@ -110,6 +110,42 @@ namespace MxliDashboard.n3_Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxVsmInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption4;
+        
+        /// <summary>
+        /// ASPxComboBoxClasInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxClasInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption1;
+        
+        /// <summary>
+        /// ASPxComboBoxAreaInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
         
         /// <summary>
         /// ASPxLabelCaption2 control.
@@ -146,24 +182,6 @@ namespace MxliDashboard.n3_Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMrpInContent;
-        
-        /// <summary>
-        /// ASPxLabelCaption4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption4;
-        
-        /// <summary>
-        /// ASPxComboBoxClasInContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxClasInContent;
         
         /// <summary>
         /// ASPxRoundPanel3 control.
@@ -236,6 +254,15 @@ namespace MxliDashboard.n3_Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp;
+        
+        /// <summary>
+        /// SqlDataSourceArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
         
         /// <summary>
         /// SqlDataSourceVsm control.

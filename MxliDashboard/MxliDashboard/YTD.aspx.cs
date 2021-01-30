@@ -46,30 +46,30 @@ namespace MxliDashboard
                 ASPxGridView1.AutoGenerateColumns = false;
                 ASPxGridView1.DataBind();
             }
-            if (ASPxComboBoxTV.SelectedIndex == 1)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource2";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 2)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource3";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 3)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource4";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 4)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource5";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
+            //if (ASPxComboBoxTV.SelectedIndex == 1)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource2";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
+            //if (ASPxComboBoxTV.SelectedIndex == 2)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource3";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
+            //if (ASPxComboBoxTV.SelectedIndex == 3)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource4";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
+            //if (ASPxComboBoxTV.SelectedIndex == 4)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource5";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
         }
 
         protected void cmbox_DataBoundVF(object sender, EventArgs e)
