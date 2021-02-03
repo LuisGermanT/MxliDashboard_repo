@@ -195,7 +195,7 @@ namespace MxliDashboard
 
             if (ASPxComboBoxMCInContent.SelectedIndex > 0)
             {
-                ASPxComboBoxMCInContent.SelectedIndex = 0;
+                mcFilter = ASPxComboBoxMCInContent.SelectedIndex;
             }
 
             int sIdx = ASPxComboBoxMWInContent.SelectedIndex;
@@ -256,7 +256,7 @@ namespace MxliDashboard
             string dtFrom = st.AddDays(-91).ToShortDateString();
             string dtTo = st.ToShortDateString();
             string dtFrom2 = st.AddDays(-300).ToShortDateString();
-            string mnth = st.ToString("MMM", CultureInfo.InvariantCulture);
+            string mnth = st.AddDays(-7).ToString("MMM", CultureInfo.InvariantCulture);
 
             if (semana == 53 || semana == 1)
             {
@@ -275,10 +275,14 @@ namespace MxliDashboard
             WebChartControl1.SeriesSorting = SortingMode.None;
             WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
 
-            string qry = "", qryBaseline = "";
+            WebChartControl2.Series[0].Points.Clear();
+            WebChartControl2.SeriesSorting = SortingMode.None;
+            WebChartControl2.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
+
+            string qry = "", qry2 = "", qryBaseline = "";
             string colName = "";
             string xClass = "", prefix = "";
-            string sTblName = "", cTblName = "", aTblName = "", mTblName = "", aaTblName = "", acTblName = "", amTblName = "";
+            string sTblName = "", cTblName = "", aTblName = "", mTblName = "", aaTblName = "", acTblName = "", amTblName = "", smTbl = "", cmTbl = "", amTbl = "", mmTbl = "", asmTbl = "", acmTbl = "", aamTbl = "", ammTbl = "";
             string qryOrder = "";
 
             //Selects filter according to user's selection, dafult filter is by week
@@ -297,6 +301,16 @@ namespace MxliDashboard
                 acTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                 amTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
 
+                smTbl = "[vw_ottr_misses_by_site_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+                cmTbl = "[vw_ottr_misses_by_cell_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+                amTbl = "[vw_ottr_misses_by_area_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+                mmTbl = "[vw_ottr_misses_by_mrp_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+
+                asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
+                acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
+                aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
+                ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
+
             }
 
             if (sFilter == "Month")
@@ -313,6 +327,16 @@ namespace MxliDashboard
                 aaTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                 acTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                 amTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+
+                smTbl = "[vw_ottr_misses_by_site_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+                cmTbl = "[vw_ottr_misses_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+                amTbl = "[vw_ottr_misses_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+                mmTbl = "[vw_ottr_misses_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+
+                asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
+                acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
+                aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
+                ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
             }
 
             if (sFilter == "Year")
@@ -329,6 +353,16 @@ namespace MxliDashboard
                 aaTblName = "[vw_ottr_by_area_yrly] WHERE [TO_Yr] = " + yr;
                 acTblName = "[vw_ottr_by_cell_yrly] WHERE [TO_Yr] = " + yr;
                 amTblName = "[vw_ottr_by_mrp_yrly] WHERE [TO_Yr] = " + yr;
+
+                smTbl = "[vw_ottr_misses_by_site_yrly] WHERE [TO_Yr] = " + yr;
+                cmTbl = "[vw_ottr_misses_by_cell_yrly] WHERE [TO_Yr] = " + yr;
+                amTbl = "[vw_ottr_misses_by_area_yrly] WHERE [TO_Yr] = " + yr;
+                mmTbl = "[vw_ottr_misses_by_mrp_yrly] WHERE [TO_Yr] = " + yr;
+
+                asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
+                acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
+                aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
+                ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
             }
 
             if (mcView == 0)
@@ -339,17 +373,21 @@ namespace MxliDashboard
                     case 1:
                         xClass = clase;
                         qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + aTblName + " [TO_rArea] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_rArea]";
+                        qry2 = "SELECT * FROM " + amTbl + " AND [TO_rArea] = '" + xClass + "' Order by [TO_Yr], [TO_rArea], [Qty] desc";
                         break;
                     case 2:
                         xClass = clase;
                         qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + cTblName + " [TO_Cell] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Cell]";
+                        qry2 = "SELECT * FROM " + cmTbl + " AND [TO_Cell] = '" + xClass + "' Order by [TO_Yr], [TO_Cell], [Qty] desc";
                         break;
                     case 3:
                         xClass = clase;
                         qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + mTblName + " [TO_MRP] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_MRP]";
+                        qry2 = "SELECT * FROM " + mmTbl + " AND [TO_MRP] = '" + xClass + "' Order by [TO_Yr], [TO_MRP], [Qty] desc";
                         break;
                     default:
                         qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + sTblName + " Order by [TO_Yr], " + qryOrder;
+                        qry2 = "SELECT * FROM " + smTbl + " Order by [TO_Yr], [Qty] desc";
                         break;
                 }
             }
@@ -359,18 +397,21 @@ namespace MxliDashboard
                 if (mcView == 1)
                 {
                     qry = "SELECT * FROM " + aaTblName + " Order by [TO_Yr], [TO_rArea]";
+                    qry2 = aamTbl + " Order by [TO_Yr], [Qty] desc";
                     colName = "TO_rArea";
                 }
 
                 if (mcView == 2)
                 {
                     qry = "SELECT * FROM " + acTblName + " Order by [TO_Yr], [TO_Cell]";
+                    qry2 = acmTbl + " Order by [TO_Yr], [Qty] desc";
                     colName = "TO_Cell";
                 }
                 
                 if (mcView == 3)
                 {
                     qry = "SELECT * FROM " + amTblName + " Order by [TO_Yr], [TO_MRP]";
+                    qry2 = ammTbl + " Order by [TO_Yr], [Qty] desc";
                     colName = "TO_MRP";
                 }
             }
@@ -378,6 +419,7 @@ namespace MxliDashboard
             //Connection object, retrieves sql data
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
             DataTable dtPareto = dBHelper.QryManager(qry);
+            DataTable dtPatero2 = dBHelper.QryManager(qry2);
 
             if (mcView == 0)
             {
@@ -397,6 +439,13 @@ namespace MxliDashboard
                     WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
                     WebChartControl1.Series[2].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
                     WebChartControl1.Series[3].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                }
+
+                foreach(DataRow dr1 in dtPatero2.Rows)
+                {
+                    double xHit = Convert.ToDouble(dr1["Qty"].ToString());
+                    WebChartControl2.Series[0].Points.Add(new SeriesPoint(dr1["TO_DlyCode"].ToString(), xHit));
+                    WebChartControl2.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
                 }
             }
             else
@@ -418,6 +467,14 @@ namespace MxliDashboard
                     WebChartControl1.Series[2].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
                     WebChartControl1.Series[3].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
                 }
+
+                foreach (DataRow dr1 in dtPatero2.Rows)
+                {
+                    double xHit = Convert.ToDouble(dr1["Qty"].ToString());
+                    WebChartControl2.Series[0].Points.Add(new SeriesPoint(dr1["TO_DlyCode"].ToString(), xHit));
+                    WebChartControl2.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                }
+
             }
          
         }

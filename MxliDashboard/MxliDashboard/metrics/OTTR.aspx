@@ -214,6 +214,53 @@
                 </PanelCollection>
             </dx:ASPxRoundPanel>
             
+            <p />
+            <hr />
+            <p />
+
+            <dx:ASPxRoundPanel ID="ASPxRoundPanel6" runat="server" Width="100%" HeaderText="Misses chart" ForeColor="Black" AllowCollapsingByHeaderClick="true">
+                <HeaderStyle ForeColor="White"/>
+                <HeaderContent BackColor="#666666"/>
+                <PanelCollection>
+                    <dx:PanelContent ID="PanelContent6" runat="server">
+                        <dx:WebChartControl ID="WebChartControl2" runat="server" DataSourceID="" CrosshairEnabled="True" Height="300px" Width="1100px"
+                            ClientInstanceName="chart" AutoLayout="True">
+                            <DiagramSerializable>
+                                <dx:XYDiagram>
+                                    <AxisX VisibleInPanesSerializable="-1" MinorCount="1" Visibility="True">
+                                        <QualitativeScaleOptions AutoGrid="False" />
+                                        <Tickmarks MinorVisible="False" />
+                                        <Label Angle="270" Alignment="Center">
+                                            <ResolveOverlappingOptions AllowHide="False" />
+                                        </Label>
+                                        <NumericScaleOptions AutoGrid="False" ScaleMode="Automatic" />
+                                    </AxisX>
+                                    <AxisY VisibleInPanesSerializable="-1">
+                                    </AxisY>
+                                </dx:XYDiagram>
+                            </DiagramSerializable>
+                            <Legend Name="Default Legend" Font="Honeywell Sans Web Medium, 8pt"></Legend>
+                            <SeriesSerializable>
+                                <dx:Series LabelsVisibility="True" Name="Misses" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
+                                    <ViewSerializable>
+                                        <dx:SideBySideBarSeriesView Color="IndianRed" BarWidth="0.8">
+                                            <Border Color="79, 129, 189" Visibility="False" />
+                                            <FillStyle FillMode="Solid">
+                                            </FillStyle>
+                                        </dx:SideBySideBarSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:SideBySideBarSeriesLabel TextPattern="{V:#,#}">
+                                        </dx:SideBySideBarSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                            </SeriesSerializable>
+                        </dx:WebChartControl>
+
+                    </dx:PanelContent>
+                </PanelCollection>
+            </dx:ASPxRoundPanel>
+
             <p/>
             <hr/>
             <p/>
@@ -256,11 +303,11 @@
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="6" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="7" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="7" ReadOnly="True" Visible="false">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="8" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="8" ReadOnly="True" Visible="false">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="9">
+                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="9" Visible="false">
                                 </dx:GridViewDataCheckColumn>
                                 <dx:GridViewDataTextColumn FieldName="HitMiss" VisibleIndex="10" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>

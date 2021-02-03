@@ -186,6 +186,33 @@ namespace MxliDashboard
         protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl1;
 
         /// <summary>
+        /// ASPxRoundPanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel6;
+
+        /// <summary>
+        /// PanelContent6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent6;
+
+        /// <summary>
+        /// WebChartControl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl2;
+
+        /// <summary>
         /// ASPxRoundPanel3 control.
         /// </summary>
         /// <remarks>
