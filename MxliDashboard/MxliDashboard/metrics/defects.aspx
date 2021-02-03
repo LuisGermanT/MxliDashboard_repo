@@ -227,23 +227,26 @@
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="itemtext" VisibleIndex="6" Caption="DESCRIPTION">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="7" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="filtro3" VisibleIndex="7" Caption="VSM">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="8" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="8" Caption="AREA">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="9" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="celda" VisibleIndex="9" Caption="CELL">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="10" Caption="MRP">
                         </dx:GridViewDataTextColumn>                        
-                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="10" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="week" VisibleIndex="11" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataDateColumn Caption="NOTIF.DATE" FieldName="qndate" ShowInCustomizationForm="True" VisibleIndex="1">
                         </dx:GridViewDataDateColumn>
                     </Columns>
                     <GroupSummary>
-                        <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="VSM" SummaryType="Count" />
-<dx:ASPxSummaryItem ShowInColumn="CELL" SummaryType="Count" FieldName="celda"></dx:ASPxSummaryItem>
-<dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Count" FieldName="mrp"></dx:ASPxSummaryItem>
-<dx:ASPxSummaryItem ShowInColumn="WEEK" SummaryType="Count" FieldName="week"></dx:ASPxSummaryItem>
-<dx:ASPxSummaryItem ShowInColumn="CAUSE" SummaryType="Count" FieldName="causecode"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem FieldName="filtro3" ShowInColumn="VSM" SummaryType="Count" />
+                        <dx:ASPxSummaryItem FieldName="vsm" ShowInColumn="AREA" SummaryType="Count" />
+                        <dx:ASPxSummaryItem ShowInColumn="CELL" SummaryType="Count" FieldName="celda"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="MRP" SummaryType="Count" FieldName="mrp"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="WEEK" SummaryType="Count" FieldName="week"></dx:ASPxSummaryItem>
+                        <dx:ASPxSummaryItem ShowInColumn="CAUSE" SummaryType="Count" FieldName="causecode"></dx:ASPxSummaryItem>
                     </GroupSummary>
                     <Styles>
                         <Header BackColor="IndianRed" ForeColor="White">
@@ -254,7 +257,7 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_defects" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [qn], [qndate], [material], [order], [workcenter], [causecode], [itemtext], [vsm], [celda], [mrp], [week] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and celda like @pCell and causecode like @pCause order by id">
+        SelectCommand="SELECT [qn], [qndate], [material], [order], [workcenter], [causecode], [itemtext], [vsm], [celda], [mrp], [week], [filtro3] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and celda like @pCell and causecode like @pCause order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />

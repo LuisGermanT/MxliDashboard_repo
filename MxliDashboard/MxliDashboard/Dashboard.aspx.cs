@@ -139,7 +139,8 @@ namespace MxliDashboard
             {
                 xDescripcion = dr1["descripcion"].ToString();
             }
-            return xDescripcion;
+
+            return xDescripcion.Replace("\n","<br />");
         }
 
         protected string[] loadMonthly(string xMetric)
