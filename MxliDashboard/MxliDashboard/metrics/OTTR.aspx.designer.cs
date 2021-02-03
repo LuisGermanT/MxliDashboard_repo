@@ -33,6 +33,60 @@ namespace MxliDashboard
         protected global::System.Web.UI.WebControls.Label lbLUpd;
 
         /// <summary>
+        /// ASPxRoundPanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel4;
+
+        /// <summary>
+        /// PanelContent4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent4;
+
+        /// <summary>
+        /// ASPxLabelCaption3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
+
+        /// <summary>
+        /// ASPxComboBoxMWInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMWInContent;
+
+        /// <summary>
+        /// ASPxLabelCaption5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption5;
+
+        /// <summary>
+        /// ASPxComboBoxMCInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMCInContent;
+
+        /// <summary>
         /// ASPxRoundPanel1 control.
         /// </summary>
         /// <remarks>
@@ -105,24 +159,6 @@ namespace MxliDashboard
         protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMrpInContent;
 
         /// <summary>
-        /// ASPxLabelCaption3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
-
-        /// <summary>
-        /// ASPxComboBoxMWInContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxMWInContent;
-
-        /// <summary>
         /// ASPxRoundPanel2 control.
         /// </summary>
         /// <remarks>
@@ -148,6 +184,33 @@ namespace MxliDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl1;
+
+        /// <summary>
+        /// ASPxRoundPanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxRoundPanel ASPxRoundPanel6;
+
+        /// <summary>
+        /// PanelContent6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent6;
+
+        /// <summary>
+        /// WebChartControl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.XtraCharts.Web.WebChartControl WebChartControl2;
 
         /// <summary>
         /// ASPxRoundPanel3 control.

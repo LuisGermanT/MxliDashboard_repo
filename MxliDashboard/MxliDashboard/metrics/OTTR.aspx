@@ -10,70 +10,46 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            
             <p />
             <hr />
             <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
             <p />
 
-            <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
+            <dx:ASPxRoundPanel ID="ASPxRoundPanel4" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="true">
                 <HeaderStyle ForeColor="White" />
                 <HeaderContent BackColor="#666666">
                 </HeaderContent>
                 <PanelCollection>
-                    <dx:PanelContent ID="PanelContent1" runat="server">
+                    <dx:PanelContent ID="PanelContent4" runat="server">
                         <table style="table-layout: fixed">
                             <tr>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="View By Period" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TO_rArea"
-                                        TextField="TO_rArea" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged" Theme="Office365">
+                                    <dx:ASPxComboBox ID="ASPxComboBoxMWInContent" runat="server" ValueField="TF_ID"
+                                        TextField="TF_Name" ValueType="System.String" DataSourceID="SqlDataSourceFilters"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundFilters" OnSelectedIndexChanged="ASPxComboBoxFiltersInContent_SelectedIndexChanged" Theme="Office365">
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    e.errorText = &quot;You should Select One Option&quot;;
                                                     }}" />
                                         <ValidationSettings ValidateOnLeave="False">
                                         </ValidationSettings>
                                     </dx:ASPxComboBox>
                                 </th>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:">
+                                    <dx:ASPxLabel ID="ASPxLabelCaption5" runat="server" Text="Select Chart View" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="TO_Cell"
-                                        TextField="TO_Cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged" Theme="Office365">
-                                        <ClientSideEvents Validation="function(s, e) {
-                                                if (s.GetSelectedIndex()==0) {
-                                                e.isValid = false;
-                                                e.errorText = &quot;You should Select One Cell&quot;;
-                                                }}" />
-                                        <ValidationSettings ValidateOnLeave="False">
-                                        </ValidationSettings>
-                                    </dx:ASPxComboBox>
-                                </th>
-                                <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Mrp:">
-                                    </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="TO_MRP"
-                                        TextField="TO_MRP" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundMrp" OnSelectedIndexChanged="ASPxComboBoxMrpInContent_SelectedIndexChanged" Theme="Office365">
-                                        <ClientSideEvents Validation="function(s, e) {
-                                                if (s.GetSelectedIndex()==0) {
-                                                e.isValid = false;
-                                                e.errorText = &quot;You should Select One Mrp&quot;;
-                                                }}" />
-                                        <ValidationSettings ValidateOnLeave="False">
-                                        </ValidationSettings>
-                                    </dx:ASPxComboBox>
-                                </th>
-                                <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="View By Month/Week">
-                                    </dx:ASPxLabel>
-                                    <dx:ASPxComboBox ID="ASPxComboBoxMWInContent" runat="server" ValueField="TF_ID"
-                                        TextField="TF_Name" ValueType="System.String" DataSourceID="SqlDataSourceFilters"
-                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundFilters" OnSelectedIndexChanged="ASPxComboBoxFiltersInContent_SelectedIndexChanged" Theme="Office365">
+                                    <dx:ASPxComboBox ID="ASPxComboBoxMCInContent" runat="server" ValueType="System.String" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ASPxComboBoxMCInContent_SelectedIndexChanged" Theme="Office365" >
+                                        <Items>
+                                            <dx:ListEditItem Selected="true" Text="Default" Value="0" />
+                                            <dx:ListEditItem Text="OTTR All Areas" Value="1" />
+                                            <dx:ListEditItem Text="OTTR All Cells" Value="2" />
+                                            <dx:ListEditItem Text="OTTR All MRPs" Value="3" />
+                                        </Items>
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -89,6 +65,69 @@
                 </PanelCollection>
             </dx:ASPxRoundPanel>
 
+            <p />
+            <hr />
+            <p />
+
+            <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Width="100%" HeaderText="Views and Filters" ForeColor="Black" AllowCollapsingByHeaderClick="true">
+                <HeaderStyle ForeColor="White" />
+                <HeaderContent BackColor="#666666">
+                </HeaderContent>
+                <PanelCollection>
+                    <dx:PanelContent ID="PanelContent1" runat="server">
+                        <table style="table-layout: fixed">
+                            <tr>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TO_rArea"
+                                        TextField="TO_rArea" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged" Theme="Office365">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="TO_Cell"
+                                        TextField="TO_Cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundCell" OnSelectedIndexChanged="ASPxComboBoxCellInContent_SelectedIndexChanged" Theme="Office365">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                if (s.GetSelectedIndex()==0) {
+                                                e.isValid = false;
+                                                e.errorText = &quot;You should Select One Cell&quot;;
+                                                }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Mrp:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                                    </dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="TO_MRP"
+                                        TextField="TO_MRP" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundMrp" OnSelectedIndexChanged="ASPxComboBoxMrpInContent_SelectedIndexChanged" Theme="Office365">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                if (s.GetSelectedIndex()==0) {
+                                                e.isValid = false;
+                                                e.errorText = &quot;You should Select One Mrp&quot;;
+                                                }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
+                            </tr>
+                        </table>
+                    </dx:PanelContent>
+                </PanelCollection>
+            </dx:ASPxRoundPanel>
+            
             <p />
             <hr />
             <p />
@@ -136,7 +175,7 @@
                                         </dx:SideBySideBarSeriesLabel>
                                     </LabelSerializable>
                                 </dx:Series>
-                                <dx:Series Name="Miss" LabelsVisibility="True" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
+                                <dx:Series Name="Total Ord" LabelsVisibility="True" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
                                     <ViewSerializable>
                                         <dx:SideBySideBarSeriesView Color="185, 205, 229">
                                         </dx:SideBySideBarSeriesView>
@@ -175,6 +214,52 @@
                 </PanelCollection>
             </dx:ASPxRoundPanel>
             
+            <p />
+            <hr />
+            <p />
+
+            <dx:ASPxRoundPanel ID="ASPxRoundPanel6" runat="server" Width="100%" HeaderText="Misses chart" ForeColor="Black" AllowCollapsingByHeaderClick="true">
+                <HeaderStyle ForeColor="White"/>
+                <HeaderContent BackColor="#666666"/>
+                <PanelCollection>
+                    <dx:PanelContent ID="PanelContent6" runat="server">
+                        <dx:WebChartControl ID="WebChartControl2" runat="server" DataSourceID="" CrosshairEnabled="True" Height="300px" Width="1100px"
+                            ClientInstanceName="chart" AutoLayout="True">
+                            <DiagramSerializable>
+                                <dx:XYDiagram>
+                                    <AxisX VisibleInPanesSerializable="-1" MinorCount="1" Visibility="True">
+                                        <QualitativeScaleOptions AutoGrid="False" />
+                                        <Tickmarks MinorVisible="False" />
+                                        <Label Angle="270" Alignment="Center">
+                                            <ResolveOverlappingOptions AllowHide="False" />
+                                        </Label>
+                                        <NumericScaleOptions AutoGrid="False" ScaleMode="Automatic" />
+                                    </AxisX>
+                                    <AxisY VisibleInPanesSerializable="-1">
+                                    </AxisY>
+                                </dx:XYDiagram>
+                            </DiagramSerializable>
+                            <Legend Name="Default Legend" Font="Honeywell Sans Web Medium, 8pt"></Legend>
+                            <SeriesSerializable>
+                                <dx:Series LabelsVisibility="True" Name="Misses" CrosshairLabelPattern="{V:#,#}" LegendTextPattern="{V:#,#}" >
+                                    <ViewSerializable>
+                                        <dx:SideBySideBarSeriesView Color="IndianRed" BarWidth="0.8">
+                                            <Border Color="79, 129, 189" Visibility="False" />
+                                            <FillStyle FillMode="Solid">
+                                            </FillStyle>
+                                        </dx:SideBySideBarSeriesView>
+                                    </ViewSerializable>
+                                    <LabelSerializable>
+                                        <dx:SideBySideBarSeriesLabel TextPattern="{V:#,#}">
+                                        </dx:SideBySideBarSeriesLabel>
+                                    </LabelSerializable>
+                                </dx:Series>
+                            </SeriesSerializable>
+                        </dx:WebChartControl>
+
+                    </dx:PanelContent>
+                </PanelCollection>
+            </dx:ASPxRoundPanel>
 
             <p/>
             <hr/>
@@ -218,11 +303,11 @@
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="6" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="7" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="7" ReadOnly="True" Visible="false">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="8" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="8" ReadOnly="True" Visible="false">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="9">
+                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="9" Visible="false">
                                 </dx:GridViewDataCheckColumn>
                                 <dx:GridViewDataTextColumn FieldName="HitMiss" VisibleIndex="10" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
@@ -278,7 +363,7 @@
             <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT distinct [TO_MRP] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_MRP]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceFilters" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT TOP 2 * FROM [tblFilters]"></asp:SqlDataSource>
+                SelectCommand="SELECT * FROM [tblFilters] WHERE [TF_Name] = 'Week' Or [TF_Name] = 'Month' Or [TF_Name] = 'Year'"></asp:SqlDataSource>
             <p/>
             <hr/>
             <p/>
