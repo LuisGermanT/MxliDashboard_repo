@@ -140,7 +140,7 @@ namespace MxliDashboard
             e.Row.Cells[12 - index].Text = String.Format("{0:N0}", v11);
             e.Row.Cells[13 - index].Text = String.Format("{0:N0}", v12);
             e.Row.Cells[14 - index].Text = String.Format("{0:N0}", v13);
-            if (xMetric == "INVENTORY" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI" || xMetric == "AGED WIP")
+            if (xMetric == "INVENTORY" || xMetric == "ENTITLEMENT" || xMetric == "PASTDUE" || xMetric == "VMI" || xMetric == "AGED WIP" || xMetric == "SCRAP")
             {
                 e.Row.Cells[2 - index].Text = String.Format("{0:C2}", v1 / 1000000) + "M";
                 e.Row.Cells[3 - index].Text = String.Format("{0:C2}", v2 / 1000000) + "M";
@@ -211,7 +211,7 @@ namespace MxliDashboard
             }
 
             //KAIZENS PRODUCTIVITY  OTTR OUTPUT
-            if (xMetric == "DEFECTS" || xMetric == "ENTITLEMENT" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INVENTORY" || xMetric == "MEPS" || xMetric == "MST" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "TPMS")
+            if (xMetric == "DEFECTS" || xMetric == "ENTITLEMENT" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INVENTORY" || xMetric == "AGED WIP" || xMetric == "DEFECTS" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "INTERNAL ESCAPES" || xMetric == "PROS" || xMetric == "RTV" || xMetric == "SCRAP" || xMetric == "VMI")
             {
                 if (xComp == 1)
                 {
@@ -273,7 +273,7 @@ namespace MxliDashboard
                 }
             }
             //KAIZENS PRODUCTIVITY  OTTR OUTPUT
-            if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT" || xMetric == "ACCURACY")
+            if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT" || xMetric == "ACCURACY" || xMetric == "BALANCED SCORECARD" || xMetric == "CARS" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "QSAT" || xMetric == "UTILIZATION")
             {
                 if (xComp == 1)
                 {

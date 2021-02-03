@@ -30,9 +30,9 @@
                                         </dx:ASPxComboBox>
                                     </th>       
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:">
+                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:" Visible="false">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True">
+                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True" Visible="false">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;

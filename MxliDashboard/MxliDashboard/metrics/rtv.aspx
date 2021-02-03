@@ -219,7 +219,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [smrp] FROM [tbl_inventario] order by smrp"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [smrp] FROM [sap_rtv] order by smrp"></asp:SqlDataSource>
     <p />
     <hr />
     <p />

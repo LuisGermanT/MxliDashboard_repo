@@ -102,6 +102,11 @@ namespace MxliDashboard.n3_Inventory
                     xFilter = "SITE";
                     xClass = "All";
                 }
+                //***************** 
+                //para que no filtre
+                //*****************
+                xFilter = "SITE";
+                xClass = "All";
                 chartDefault(xIndice, xFilter, xClass, ASPxComboBoxGV.SelectedIndex);
             }
         }

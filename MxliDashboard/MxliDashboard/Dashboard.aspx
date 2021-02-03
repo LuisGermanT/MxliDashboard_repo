@@ -72,49 +72,52 @@
                     <Settings VerticalScrollableHeight="640" VerticalScrollBarMode="Visible" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
-                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="12%">
-                            <CellStyle Font-Size="Medium">
+                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="11%">
+                            <CellStyle Font-Size="Medium" HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="10%">
-                            <CellStyle Font-Size="Medium">
+                            <CellStyle Font-Size="Medium" HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="10%">
-                            <CellStyle Font-Size="Medium">
+                            <CellStyle Font-Size="Medium" HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="8%">
-                            <CellStyle Font-Size="Medium">
+                            <CellStyle Font-Size="Medium" HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="8%">
-                            <CellStyle Font-Size="Medium">
+                            <CellStyle Font-Size="Medium" HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="9%">
+                        <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="7%">
                             <DataItemTemplate>
                                 <dx:ASPxImage runat="server" ID="imgControl" Width="24px" Height="24px" EnableViewState="true" />
                             </DataItemTemplate>
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="8%">
+                        <dx:GridViewDataMemoColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="25%">
+                        </dx:GridViewDataMemoColumn>
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="7%">
                             <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png" Target="_blank">
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="8%">
+                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="7%">
                             <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/chart.png" Target="_blank">
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
-                        </dx:GridViewDataHyperLinkColumn>                
-                        <dx:GridViewDataMemoColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="27%">
-                        </dx:GridViewDataMemoColumn>
+                        </dx:GridViewDataHyperLinkColumn>                                        
+                        <dx:GridViewDataDateColumn Caption="UPDATED" VisibleIndex="9" Width="7%">
+                            <CellStyle HorizontalAlign="Center"></CellStyle>
+                        </dx:GridViewDataDateColumn>
                     </Columns>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">

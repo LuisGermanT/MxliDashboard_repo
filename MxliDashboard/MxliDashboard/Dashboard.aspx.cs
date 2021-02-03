@@ -79,6 +79,7 @@ namespace MxliDashboard
             string xMetric = Convert.ToString(e.GetValue("smetric"));
 
             e.Row.Cells[6].Text = loadHighlights(xMetric);
+            e.Row.Cells[9].Text = loadUpdates(xMetric);
             string[] xValoresM = loadMonthly(xMetric);
             string[] xValoresY = loadYearly(xMetric);
             decimal v1 = Convert.ToDecimal(xValoresM[0]);
@@ -141,6 +142,21 @@ namespace MxliDashboard
             }
 
             return xDescripcion.Replace("\n","<br />");
+        }
+
+        protected string loadUpdates(string xMetric)
+        {
+            //int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            string xDescripcion = "";
+            string query = "SELECT TOP 1 * FROM tbl_metricsUpdates WHERE reportName = '" + xMetric + "'";
+            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+            DataTable dt1 = dBHelper.QryManager(query);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                xDescripcion = dr1["lastUpdateDate"].ToString();
+            }
+
+            return xDescripcion;
         }
 
         protected string[] loadMonthly(string xMetric)
