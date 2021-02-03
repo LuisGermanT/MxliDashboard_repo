@@ -44,30 +44,24 @@ namespace MxliDashboard
                 ASPxGridView1.AutoGenerateColumns = false;
                 ASPxGridView1.DataBind();
             }
-            if (ASPxComboBoxTV.SelectedIndex == 1)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource2";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 2)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource3";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 3)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource4";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
-            if (ASPxComboBoxTV.SelectedIndex == 4)
-            {
-                ASPxGridView1.DataSourceID = "SqlDataSource5";
-                ASPxGridView1.AutoGenerateColumns = false;
-                ASPxGridView1.DataBind();
-            }
+            //if (ASPxComboBoxTV.SelectedIndex == 1)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource2";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
+            //if (ASPxComboBoxTV.SelectedIndex == 2)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource3";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
+            //if (ASPxComboBoxTV.SelectedIndex == 3)
+            //{
+            //    ASPxGridView1.DataSourceID = "SqlDataSource4";
+            //    ASPxGridView1.AutoGenerateColumns = false;
+            //    ASPxGridView1.DataBind();
+            //}
         }
 
         protected void cmbox_DataBoundVF(object sender, EventArgs e)
@@ -145,13 +139,15 @@ namespace MxliDashboard
             {
                 xDescripcion = dr1["descripcion"].ToString();
             }
-            return xDescripcion;
+
+            return xDescripcion.Replace("\n","<br />");
         }
 
         protected string[] loadMonthly(string xMetric)
         {
-            //int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            string[] xValores = { "0", "0" };
+            int iVSM = ASPxComboBoxTV.SelectedIndex;
+            string sVSM = ASPxComboBoxTV.SelectedItem.ToString();
+            string[] xValores = { "0", "0" };            
             string query = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'site' and stype = 'monthly' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -160,7 +156,21 @@ namespace MxliDashboard
             {
                 xValores[0] = dr1["factual"].ToString();
                 xValores[1] = dr1["fgoal"].ToString();
+            }               
+
+            if (iVSM > 0 || xMetric == "AGED WIP" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INTERNAL ESCAPES" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "SCRAP" || xMetric == "UTILIZATION")
+            {
+                string query2 = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'VSM' and stype = 'monthly' and sclass = '"+sVSM+"' order by id desc";
+                string qry2 = "select * from (" + query2 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    xValores[0] = dr2["factual"].ToString();
+                    xValores[1] = dr2["fgoal"].ToString();
+                }
             }
+
             return xValores;
         }
 
@@ -168,6 +178,8 @@ namespace MxliDashboard
         {
             //int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             string[] xValores = { "0", "0" };
+            int iVSM = ASPxComboBoxTV.SelectedIndex;
+            string sVSM = ASPxComboBoxTV.SelectedItem.ToString();
             string query = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '"+xMetric+"' and sfilter = 'site' and stype = 'yearly' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -177,6 +189,20 @@ namespace MxliDashboard
                 xValores[0] = dr1["factual"].ToString();
                 xValores[1] = dr1["fgoal"].ToString();
             }
+
+            if (iVSM > 0)
+            {
+                string query2 = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'VSM' and stype = 'yearly' and sclass = '" + sVSM + "' order by id desc";
+                string qry2 = "select * from (" + query2 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    xValores[0] = dr2["factual"].ToString();
+                    xValores[1] = dr2["fgoal"].ToString();
+                }
+            }
+
             return xValores;
         }
 

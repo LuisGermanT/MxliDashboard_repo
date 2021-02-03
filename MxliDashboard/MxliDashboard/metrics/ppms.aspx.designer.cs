@@ -121,13 +121,13 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
         
         /// <summary>
-        /// ASPxComboBoxCellInContent control.
+        /// ASPxComboBoxAreaInContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
         
         /// <summary>
         /// ASPxLabelCaption3 control.
@@ -137,6 +137,24 @@ namespace MxliDashboard.n3_Quality {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption3;
+        
+        /// <summary>
+        /// ASPxComboBoxCellInContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxCellInContent;
+        
+        /// <summary>
+        /// ASPxLabelCaption4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption4;
         
         /// <summary>
         /// ASPxComboBoxMrpInContent control.
@@ -227,6 +245,15 @@ namespace MxliDashboard.n3_Quality {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        
+        /// <summary>
+        /// SqlDataSourceArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
         
         /// <summary>
         /// SqlDataSourceVsm control.

@@ -75,11 +75,27 @@
                 <table style="table-layout: fixed">
                     <tr>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select VSM:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="sarea"
-                                TextField="sarea" ValueType="System.String" DataSourceID="SqlDataSourceArea"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" Theme="Office365">
+                            <dx:ASPxComboBox ID="ASPxComboBoxVSMInContent" runat="server" ValueField="vsm"
+                                TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" Theme="Office365">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One VSM&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
+                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" 
+                                OnSelectedIndexChanged="ASPxComboBoxAreaInContent_SelectedIndexChanged" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -90,7 +106,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select MRP:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="smrp"
                                 TextField="smrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -208,11 +224,13 @@
                         </dx:GridViewDataDateColumn>
                         <dx:GridViewDataTextColumn FieldName="idayslate" VisibleIndex="9" Caption="DAYS_LATE">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sarea" VisibleIndex="10" Caption="AREA">
-                        </dx:GridViewDataTextColumn>                                            
-                        <dx:GridViewDataTextColumn FieldName="smrp" VisibleIndex="11" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="10" Caption="VSM">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="srecplant" VisibleIndex="12" Caption="REC_PLANT">
+                        <dx:GridViewDataTextColumn FieldName="area" VisibleIndex="11" Caption="AREA">
+                        </dx:GridViewDataTextColumn>   
+                        <dx:GridViewDataTextColumn FieldName="smrp" VisibleIndex="12" Caption="MRP">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="srecplant" VisibleIndex="13" Caption="REC_PLANT">
                         </dx:GridViewDataTextColumn>   
                     </Columns>
                     <TotalSummary>
@@ -230,16 +248,20 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_output" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [smaterial], [sdescription], [sdocument], [iquantity], [fstdcost], [iopenqty], [fopenvalue], [dreqdeliv], [idayslate], [sarea], [smrp], [srecplant] FROM [tbl_pastdue] where sarea like @pArea and smrp like @pMrp order by id">
+        SelectCommand="SELECT [id], [smaterial], [sdescription], [sdocument], [iquantity], [fstdcost], [iopenqty], [fopenvalue], [dreqdeliv], [idayslate], [vsm], [area], [smrp], [srecplant] FROM [tbl_pastdue] where area like @pArea and vsm like @pVsm and smrp like @pMrp order by id">
         <SelectParameters>
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVSMInContent"
+                Name="pVsm" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxAreaInContent"
                 Name="pArea" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [vsm] FROM [tbl_pastdue] order by vsm"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [sarea] FROM [tbl_pastdue] order by sarea"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [area] FROM [tbl_pastdue] order by area"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [smrp] FROM [tbl_pastdue] order by smrp"></asp:SqlDataSource>
     <p />

@@ -30,21 +30,20 @@
                                         </dx:ASPxComboBox>
                                     </th>       
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select Tier view:" Visible="false">
+                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True" Visible="false">
+                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One View&quot;;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
                                                     }}" />
                                             <ValidationSettings ValidateOnLeave="False"></ValidationSettings>
                                             <Items>
                                                 <dx:ListEditItem Selected="true" Text="All" Value="1" />
-                                                <dx:ListEditItem Text="T1" Value="2" />
-                                                <dx:ListEditItem Text="T2" Value="3" />
-                                                <dx:ListEditItem Text="T3" Value="4" />
-                                                <dx:ListEditItem Text="WarRoom" Value="5" />
+                                                <dx:ListEditItem Text="Buy Parts" Value="2" />
+                                                <dx:ListEditItem Text="EP&A" Value="3" />
+                                                <dx:ListEditItem Text="Heat Transfer" Value="4" />
                                             </Items>
                                         </dx:ASPxComboBox>
                                     </th>                                    
@@ -70,51 +69,52 @@
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" ViewStateMode="Disabled" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Width="1180px" OnHtmlRowPrepared="ASPxGridView1_HtmlRowPrepared" >
                     <SettingsPager Visible="False" PageSize="50">
                     </SettingsPager>
+                    <Settings VerticalScrollableHeight="640" VerticalScrollBarMode="Visible" />
                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                     <Columns>
-                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="150px">
+                        <dx:GridViewDataTextColumn Caption="METRIC" FieldName="smetric" VisibleIndex="0" Width="12%">
                             <CellStyle Font-Size="Medium">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MONTH Actual" VisibleIndex="1" Width="10%">
                             <CellStyle Font-Size="Medium">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="MONTH Plan" VisibleIndex="2" Width="10%">
                             <CellStyle Font-Size="Medium">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="YTD Actual"  VisibleIndex="3" Width="8%">
                             <CellStyle Font-Size="Medium">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="YTD Plan" VisibleIndex="4" Width="8%">
                             <CellStyle Font-Size="Medium">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="70px">
+                        <dx:GridViewDataTextColumn Caption="STATUS" VisibleIndex="5" Width="9%">
                             <DataItemTemplate>
                                 <dx:ASPxImage runat="server" ID="imgControl" Width="24px" Height="24px" EnableViewState="true" />
                             </DataItemTemplate>
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="530px">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="70px">
-                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png">
+                        <dx:GridViewDataHyperLinkColumn Caption="DETAILS" FieldName="sUrl" VisibleIndex="7" Width="8%">
+                            <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="View" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/table.png" Target="_blank">
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>
-                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="80px">
+                        <dx:GridViewDataHyperLinkColumn Caption="REPORT" FieldName="sReport" VisibleIndex="8" Width="8%">
                             <PropertiesHyperLinkEdit NavigateUrlFormatString = "{0}" Text="Open" Style-HorizontalAlign="Center" ImageHeight="50px" ImageUrl="~/img/chart.png" Target="_blank">
                                 <Style HorizontalAlign="Center">
                                 </Style>
                             </PropertiesHyperLinkEdit>
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewDataHyperLinkColumn>                
+                        <dx:GridViewDataMemoColumn Caption="HIGHLIGHTS" VisibleIndex="6" Width="27%">
+                        </dx:GridViewDataMemoColumn>
                     </Columns>
                     <Styles>
                         <Header BackColor="#666666" Border-BorderColor="White" Border-BorderStyle="Solid" Border-BorderWidth="3px" Font-Size="Medium" ForeColor="White" HorizontalAlign="Center">

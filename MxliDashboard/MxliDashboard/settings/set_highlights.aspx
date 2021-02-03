@@ -45,31 +45,33 @@
             <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceHigh" EnableTheming="True" KeyFieldName="highlight_id" Theme="Mulberry" Width="100%" OnCellEditorInitialize="ASPxGridView1_CellEditorInitialize">
                 <SettingsPager Visible="False" AlwaysShowPager="True" Mode="ShowAllRecords">
                 </SettingsPager>
-                <SettingsEditing EditFormColumnCount="5" Mode="Inline">
+                <SettingsEditing Mode="Inline">
                 </SettingsEditing>
                 <SettingsDataSecurity AllowDelete="False" />
-                <SettingsPopup>
-                    <EditForm Modal="True" Width="750px" SettingsAdaptivity-Mode="OnWindowInnerWidth">
-                        <SettingsAdaptivity Mode="OnWindowInnerWidth"></SettingsAdaptivity>
-                    </EditForm>
-                </SettingsPopup>
-                <EditFormLayoutProperties>
-                    <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit">
-                    </SettingsAdaptivity>
-
+                <EditFormLayoutProperties ColCount="2" ColumnCount="2">
+                    <Items>
+                        <dx:GridViewColumnLayoutItem ColSpan="1" ColumnName="smes" Width="25%">
+                        </dx:GridViewColumnLayoutItem>
+                        <dx:GridViewColumnLayoutItem ColSpan="1" ColumnName="descripcion" Width="75%">
+                        </dx:GridViewColumnLayoutItem>
+                        <dx:EditModeCommandLayoutItem ColSpan="2" ColumnSpan="2" HorizontalAlign="Right" Width="100%">
+                        </dx:EditModeCommandLayoutItem>
+                    </Items>
                 </EditFormLayoutProperties>
                 <Columns>
                     <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True">
                     </dx:GridViewCommandColumn>
-                    <dx:GridViewDataTextColumn FieldName="highlight_id" ReadOnly="True" VisibleIndex="1" Visible="False">
+                    <dx:GridViewDataTextColumn FieldName="highlight_id" ReadOnly="True" VisibleIndex="1" Visible="False" Width="10%">
                         <EditFormSettings Visible="False" />
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="smetrico" VisibleIndex="2" Caption="METRIC" ReadOnly="True">
+                    <dx:GridViewDataTextColumn FieldName="smetrico" VisibleIndex="2" Caption="METRIC" ReadOnly="True" Width="15%">
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataComboBoxColumn  Caption="MONTH" FieldName="smes" VisibleIndex="3">
+                    <dx:GridViewDataComboBoxColumn  Caption="MONTH" FieldName="smes" VisibleIndex="3" Width="15%">
                     </dx:GridViewDataComboBoxColumn>
-                    <dx:GridViewDataTextColumn Caption="DESCRIPTION" FieldName="descripcion" VisibleIndex="4">
-                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataMemoColumn Caption="DESCRIPTION" FieldName="descripcion" VisibleIndex="4" Width="60%">
+                        <PropertiesMemoEdit Height="150px" Width="100%">
+                        </PropertiesMemoEdit>
+                    </dx:GridViewDataMemoColumn>
                     
                 </Columns>
             </dx:ASPxGridView>

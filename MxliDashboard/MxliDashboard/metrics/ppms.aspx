@@ -91,7 +91,23 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
+                                TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" 
+                                OnSelectedIndexChanged="ASPxComboBoxAreaInContent_SelectedIndexChanged" Theme="Office365">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Area&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="cell"
                                 TextField="cell" ValueType="System.String" DataSourceID="SqlDataSourceCell"
@@ -106,7 +122,7 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select MRP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
                                 TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
@@ -119,7 +135,7 @@
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
-                        </th>                       
+                        </th>                      
                     </tr>
                 </table>
             </dx:PanelContent>
@@ -219,16 +235,21 @@
                         <dx:GridViewDataTextColumn FieldName="quantity" VisibleIndex="8" Caption="QTY">
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="vsm" VisibleIndex="9" Caption="VSM">
-                        </dx:GridViewDataTextColumn>                       
-                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="10" Caption="CELL">
+                        </dx:GridViewDataTextColumn>          
+                        <dx:GridViewDataTextColumn FieldName="area" VisibleIndex="10" Caption="AREA">
+                        </dx:GridViewDataTextColumn>  
+                        <dx:GridViewDataTextColumn FieldName="cell" VisibleIndex="11" Caption="CELL">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="11" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="mrp" VisibleIndex="12" Caption="MRP">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="nweek" VisibleIndex="12" Caption="WEEK">
+                        <dx:GridViewDataTextColumn FieldName="nweek" VisibleIndex="13" Caption="WEEK">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="VSM" SummaryType="Sum" />
+                    </GroupSummary>
+                    <GroupSummary>
+                        <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="AREA" SummaryType="Sum" />
                     </GroupSummary>
                     <GroupSummary>
                         <dx:ASPxSummaryItem FieldName="quantity" ShowInColumn="MRP" SummaryType="Sum" />
@@ -248,12 +269,14 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_escapes" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [vsm], [nweek], [nyear], [quantity] FROM [sap_escapes] where mrp like @pMrp and vsm like @pVsm and cell like @pCell  order by id">
+        SelectCommand="SELECT [id], [qn], [partNumber], [partName], [cause], [qndescription], [qncreatedBy], [mrp], [Responsability], [cell], [area], [vsm], [nweek], [nyear], [quantity] FROM [sap_escapes] where mrp like @pMrp and area like @pArea and vsm like @pVsm and cell like @pCell  order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxAreaInContent"
+                Name="pArea" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />
         </SelectParameters>
@@ -262,6 +285,8 @@
         SelectCommand="SELECT distinct [mrp] FROM [sap_escapes] order by mrp"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [cell] FROM [sap_escapes] order by cell"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [area] FROM [sap_escapes] order by area"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [vsm] FROM [sap_escapes] order by vsm"></asp:SqlDataSource>
     <p />
