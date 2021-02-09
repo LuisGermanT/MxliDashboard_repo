@@ -93,7 +93,7 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="area"
+                            <dx:ASPxComboBox ID="ASPxComboBoxArea2InContent" runat="server" ValueField="area"
                                 TextField="area" ValueType="System.String" DataSourceID="SqlDataSourceArea"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" 
                                 OnSelectedIndexChanged="ASPxComboBoxAreaInContent_SelectedIndexChanged" Theme="Office365">
@@ -275,7 +275,7 @@
                 Name="pMrp" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxVsmInContent"
                 Name="pVsm" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxAreaInContent"
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxArea2InContent"
                 Name="pArea" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />

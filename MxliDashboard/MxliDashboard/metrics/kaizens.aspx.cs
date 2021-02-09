@@ -215,7 +215,7 @@ namespace MxliDashboard.n3_Safety
             {
                 WebChartControl1.Height = 450;
                 double vSum = 0;
-                string qry2 = "SELECT top 10 estatus_kaizen, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[tbl_kaizens] group by estatus_kaizen order by cValue desc";
+                string qry2 = "SELECT top 10 estatus_kaizen, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[tbl_kaizens] where xyear = '2021' group by estatus_kaizen order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
                 foreach (DataRow dr2 in dt2.Rows)

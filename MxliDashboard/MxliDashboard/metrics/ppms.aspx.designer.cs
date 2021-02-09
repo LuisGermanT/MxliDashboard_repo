@@ -121,13 +121,13 @@ namespace MxliDashboard.n3_Quality {
         protected global::DevExpress.Web.ASPxLabel ASPxLabelCaption2;
         
         /// <summary>
-        /// ASPxComboBoxAreaInContent control.
+        /// ASPxComboBoxArea2InContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxAreaInContent;
+        protected global::DevExpress.Web.ASPxComboBox ASPxComboBoxArea2InContent;
         
         /// <summary>
         /// ASPxLabelCaption3 control.

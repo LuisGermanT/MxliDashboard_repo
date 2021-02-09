@@ -255,7 +255,7 @@ namespace MxliDashboard.n3_Quality
             {
                 WebChartControl1.Height = 400;
                 double vSum = 0;
-                string qry2 = "SELECT top 10 causecode, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_defects] group by causecode order by cValue desc";
+                string qry2 = "SELECT top 10 causecode, count(id) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_defects] where dyear = '2021' group by causecode order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
                 foreach (DataRow dr2 in dt2.Rows)

@@ -201,7 +201,7 @@ namespace MxliDashboard.n3_Quality
             if (gType < 2)
             {
                 WebChartControl1.Height = 200;
-                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'cars' and stype = '" + xTipo + "' order by id desc";
+                string query1 = "select top 39 * from [sta_nivel2] where smetric = 'cars' and stype = '" + xTipo + "' order by id desc";
                 string qry1 = "select * from (" + query1 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
                 DataTable dt1 = dBHelper.QryManager(qry1);
