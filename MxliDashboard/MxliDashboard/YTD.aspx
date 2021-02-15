@@ -19,7 +19,7 @@
                                     <th>
                                         <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Function view:">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" DataSourceID="SqlDataSourceVF" ValueField="sfunc" TextField="sfunc"
+                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" DataSourceID="SqlDataSourceVF" ValueField="sValue" TextField="sValue"
                                             OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged" OnDataBound="cmbox_DataBoundVF" AutoPostBack="True">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
@@ -52,7 +52,7 @@
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
                 <asp:SqlDataSource ID="SqlDataSourceVF" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" 
-                SelectCommand="SELECT distinct [sfunc] FROM [tbl_settings] where [stype] = 'DASHBOARD' order by sfunc"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [sValue], sIconType FROM [tbl_settings] where [stype] = 'FUNCTION' order by sIconType"></asp:SqlDataSource>
             </div>
             <p></p>
             <div>
@@ -147,10 +147,12 @@
                     </Styles>                    
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style], [showFunction], [sview] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[metric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
+                                    and b.[showFunction] = 0
+                                    and a.[sview] = 'All'
                                     and a.[metric] in (select mname from tbl_set_tierviews)
                                     order by a.metric">
                     <SelectParameters>
@@ -159,11 +161,8 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
-                                    where a.[metric] = b.sValue
-                                    and b.[sType] = 'DASHBOARD'
-                                    and b.[sFunc] like @param1
-                                    and a.[metric] in (select mname from tbl_set_tierviews where vt1 = 'true')
+                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style], [sview] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a  
+                                    where a.[sview] = 'EP&A'
                                     order by a.metric">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
@@ -171,11 +170,8 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
-                                    where a.[metric] = b.sValue
-                                    and b.[sType] = 'DASHBOARD'
-                                    and b.[sFunc] like @param1
-                                    and a.[metric] in (select mname from tbl_set_tierviews where vt2 = 'true')
+                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style], [sview] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a
+                                    where a.[sview] = 'Heat Transfer'
                                     order by a.metric">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
@@ -183,23 +179,8 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
-                                    where a.[metric] = b.sValue
-                                    and b.[sType] = 'DASHBOARD'
-                                    and b.[sFunc] like @param1
-                                    and a.[metric] in (select mname from tbl_set_tierviews where vt3 = 'true')
-                                    order by a.metric">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
-                            Name="param1" PropertyName="Value" Type="String" />
-                    </SelectParameters>
-                </asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
-                                    where a.[metric] = b.sValue
-                                    and b.[sType] = 'DASHBOARD'
-                                    and b.[sFunc] like @param1
-                                    and a.[metric] in (select mname from tbl_set_tierviews where vwr = 'true')
+                    SelectCommand="SELECT [metric], [metric2], [mjan], [mfeb], [mmar], [mapr], [mmay], [mjun], [mjul], [maug], [msep], [moct], [mnov], [mdec], [ytd], [url], [style], [sview] FROM [DB_1033_Dashboard].[dbo].[tbl_ytd] a
+                                    where a.[sview] = 'ENGINEERING'
                                     order by a.metric">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"

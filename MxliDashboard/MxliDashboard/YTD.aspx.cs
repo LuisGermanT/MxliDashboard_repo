@@ -26,15 +26,17 @@ namespace MxliDashboard
             ASPxGridView1.AutoGenerateColumns = false;
             ASPxGridView1.DataBind();
             ASPxComboBoxTV.SelectedIndex = 0;
-            if (ASPxComboBoxVF.SelectedIndex == 0)
+            if (ASPxComboBoxVF.SelectedIndex == 1)
             {
-                ASPxLabel2.Visible = false;
-                ASPxComboBoxTV.Visible = false;
+                ASPxGridView1.DataSourceID = "SqlDataSource4";
             }
-            else
+            if (ASPxComboBoxVF.SelectedIndex == 7)
             {
-                ASPxLabel2.Visible = true;
-                ASPxComboBoxTV.Visible = true;
+                ASPxGridView1.DataSourceID = "SqlDataSource2";
+            }
+            if (ASPxComboBoxVF.SelectedIndex == 8)
+            {
+                ASPxGridView1.DataSourceID = "SqlDataSource3";
             }
         }
 
@@ -217,8 +219,8 @@ namespace MxliDashboard
                 {
                     e.Row.Cells[2 - index].Style.Add("color", "green");
                     e.Row.Cells[2 - index].Font.Bold = true;
-                    //e.Row.Cells[3 - index].Style.Add("color", "green");
-                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    e.Row.Cells[3 - index].Style.Add("color", "green");
+                    e.Row.Cells[3 - index].Font.Bold = true;
                     //e.Row.Cells[4 - index].Style.Add("color", "green");
                     //e.Row.Cells[4 - index].Font.Bold = true;
                     //e.Row.Cells[5 - index].Style.Add("color", "green");
@@ -246,8 +248,8 @@ namespace MxliDashboard
                 {
                     e.Row.Cells[2 - index].Style.Add("color", "red");
                     e.Row.Cells[2 - index].Font.Bold = true;
-                    //e.Row.Cells[3 - index].Style.Add("color", "red");
-                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    e.Row.Cells[3 - index].Style.Add("color", "red");
+                    e.Row.Cells[3 - index].Font.Bold = true;
                     //e.Row.Cells[4 - index].Style.Add("color", "red");
                     //e.Row.Cells[4 - index].Font.Bold = true;
                     //e.Row.Cells[5 - index].Style.Add("color", "red");
@@ -279,8 +281,8 @@ namespace MxliDashboard
                 {
                     e.Row.Cells[2 - index].Style.Add("color", "red");
                     e.Row.Cells[2 - index].Font.Bold = true;
-                    //e.Row.Cells[3 - index].Style.Add("color", "red");
-                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    e.Row.Cells[3 - index].Style.Add("color", "red");
+                    e.Row.Cells[3 - index].Font.Bold = true;
                     //e.Row.Cells[4 - index].Style.Add("color", "red");
                     //e.Row.Cells[4 - index].Font.Bold = true;
                     //e.Row.Cells[5 - index].Style.Add("color", "red");
@@ -308,8 +310,8 @@ namespace MxliDashboard
                 {
                     e.Row.Cells[2 - index].Style.Add("color", "green");
                     e.Row.Cells[2 - index].Font.Bold = true;
-                    //e.Row.Cells[3 - index].Style.Add("color", "green");
-                    //e.Row.Cells[3 - index].Font.Bold = true;
+                    e.Row.Cells[3 - index].Style.Add("color", "green");
+                    e.Row.Cells[3 - index].Font.Bold = true;
                     //e.Row.Cells[4 - index].Style.Add("color", "green");
                     //e.Row.Cells[4 - index].Font.Bold = true;
                     //e.Row.Cells[5 - index].Style.Add("color", "green");

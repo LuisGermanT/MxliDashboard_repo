@@ -44,6 +44,8 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
     private XRChart xrChart3;
     private XRLabel xrLabel5;
     private XRLabel xrLabel6;
+    private DevExpress.XtraReports.Parameters.Parameter wc1_type;
+    private DevExpress.XtraReports.Parameters.Parameter wc1_vsm;
 
     /// <summary>
     /// Required designer variable.
@@ -88,26 +90,32 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel1 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView1 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView2 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView3 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel2 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView2 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView2 = new DevExpress.XtraCharts.LineSeriesView();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView4 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.XYDiagram xyDiagram3 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series5 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView5 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series6 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel3 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView3 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings2 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
@@ -143,6 +151,8 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.wc1_type = new DevExpress.XtraReports.Parameters.Parameter();
+            this.wc1_vsm = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -150,7 +160,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).BeginInit();
@@ -160,7 +170,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram3)).BeginInit();
@@ -168,7 +178,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -315,17 +325,18 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             sideBySideBarSeriesView1.Transparency = ((byte)(135));
             series1.View = sideBySideBarSeriesView1;
             series2.ArgumentDataMember = "Query_4.scause";
-            pointSeriesLabel1.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
+            pointSeriesLabel1.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            pointSeriesLabel1.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
             pointSeriesLabel1.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel1.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Empty;
             pointSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.False;
-            pointSeriesLabel1.TextColor = System.Drawing.Color.Black;
+            pointSeriesLabel1.TextColor = System.Drawing.Color.Red;
             series2.Label = pointSeriesLabel1;
+            series2.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             series2.Name = "Goal";
             series2.ShowInLegend = false;
             series2.ValueDataMembersSerializable = "Query_4.fsum";
-            splineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            series2.View = splineSeriesView1;
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series2.View = lineSeriesView1;
             this.xrChart3.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
         series2};
@@ -338,17 +349,30 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             this.sqlDataSource1.ConnectionName = "DB_1033_DashboardConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
             customSqlQuery1.Name = "Query_1";
+            queryParameter1.Name = "wc1_type";
+            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("?wc1_type", typeof(string));
+            queryParameter2.Name = "wc1_vsm";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("?wc1_vsm", typeof(string));
+            customSqlQuery1.Parameters.Add(queryParameter1);
+            customSqlQuery1.Parameters.Add(queryParameter2);
             customSqlQuery1.Sql = resources.GetString("customSqlQuery1.Sql");
             customSqlQuery2.Name = "Query_2";
-            customSqlQuery2.Sql = "select top 6 cause, count(cause) as cValue, sum(count(cause)) over (order by coun" +
-    "t(cause) desc) as Acum\r\nFROM[DB_1033_Dashboard].[dbo].[sap_escapes]\r\ngroup by ca" +
-    "use\r\norder by cValue desc";
+            queryParameter3.Name = "wc1_vsm";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("IIF(?wc1_vsm == \'EP&A\',\'EP&A\', IIF(?wc1_vsm == \'Heat Transfer\', \'Heat Transfer\', " +
+        "\'%%\'))\n\n", typeof(string));
+            customSqlQuery2.Parameters.Add(queryParameter3);
+            customSqlQuery2.Sql = resources.GetString("customSqlQuery2.Sql");
             customSqlQuery3.Name = "Query_3";
             customSqlQuery3.Sql = "select top 5 * from [tbl_actions]\r\nwhere report = \'escapes\'\r\n";
             customSqlQuery4.Name = "Query_4";
-            customSqlQuery4.Sql = "SELECT * FROM\r\n(SELECT top 3 [id],[factual],[fsum],[scause] \r\n FROM [DB_1033_Dash" +
-    "board].[dbo].[sta_nivel2f]\r\n where smetric = \'escapes\'\r\nand stype = \'monthly\' or" +
-    "der by id desc)\r\nq1 order by id ";
+            queryParameter4.Name = "wc1_vsm";
+            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter4.Value = new DevExpress.DataAccess.Expression("?wc1_vsm", typeof(string));
+            customSqlQuery4.Parameters.Add(queryParameter4);
+            customSqlQuery4.Sql = resources.GetString("customSqlQuery4.Sql");
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1,
             customSqlQuery2,
@@ -529,8 +553,8 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             series4.Name = "Goal";
             series4.ShowInLegend = false;
             series4.ValueDataMembersSerializable = "Query_2.Acum";
-            splineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            series4.View = splineSeriesView2;
+            lineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            series4.View = lineSeriesView2;
             this.xrChart2.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series3,
         series4};
@@ -580,8 +604,8 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             series6.Label = pointSeriesLabel3;
             series6.Name = "Goal";
             series6.ValueDataMembersSerializable = "Query_1.fgoal";
-            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series6.View = lineSeriesView1;
+            lineSeriesView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series6.View = lineSeriesView3;
             this.xrChart1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series5,
         series6};
@@ -692,6 +716,27 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.HeightF = 2.708689F;
             this.ReportFooter.Name = "ReportFooter";
             // 
+            // wc1_type
+            // 
+            this.wc1_type.Description = "Period:";
+            this.wc1_type.Name = "wc1_type";
+            this.wc1_type.ValueInfo = "WEEKLY";
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("WEEKLY", null));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("MONTHLY", null));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("QUARTERLY", null));
+            staticListLookUpSettings1.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("YEARLY", null));
+            this.wc1_type.ValueSourceSettings = staticListLookUpSettings1;
+            // 
+            // wc1_vsm
+            // 
+            this.wc1_vsm.Description = "VSM:";
+            this.wc1_vsm.Name = "wc1_vsm";
+            this.wc1_vsm.ValueInfo = "All";
+            staticListLookUpSettings2.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("All", null));
+            staticListLookUpSettings2.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("EP&A", null));
+            staticListLookUpSettings2.LookUpValues.Add(new DevExpress.XtraReports.Parameters.LookUpValue("Heat Transfer", null));
+            this.wc1_vsm.ValueSourceSettings = staticListLookUpSettings2;
+            // 
             // r_escapes
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -708,6 +753,9 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             this.PageColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.PageHeight = 850;
             this.PageWidth = 1100;
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.wc1_type,
+            this.wc1_vsm});
             this.RequestParameters = false;
             this.Version = "20.1";
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
@@ -715,7 +763,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart3)).EndInit();
@@ -725,7 +773,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).EndInit();
@@ -733,7 +781,7 @@ public class r_escapes : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
