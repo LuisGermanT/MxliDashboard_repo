@@ -19,7 +19,7 @@
                                     <th>
                                         <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Function view:">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" DataSourceID="SqlDataSourceVF" ValueField="sfunc" TextField="sfunc"
+                                        <dx:ASPxComboBox ID="ASPxComboBoxVF" runat="server" ValueType="System.String" DataSourceID="SqlDataSourceVF" ValueField="sValue" TextField="sValue"
                                             OnSelectedIndexChanged="ASPxComboBoxVF_SelectedIndexChanged" OnDataBound="cmbox_DataBoundVF" AutoPostBack="True">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
@@ -30,9 +30,9 @@
                                         </dx:ASPxComboBox>
                                     </th>       
                                     <th>
-                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:">
+                                        <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="Select VSM:" Visible="false">
                                         </dx:ASPxLabel>
-                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True">
+                                        <dx:ASPxComboBox ID="ASPxComboBoxTV" runat="server" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBoxTV_SelectedIndexChanged" AutoPostBack="True" Visible="false">
                                             <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
@@ -52,14 +52,14 @@
                     </PanelCollection>
                 </dx:ASPxRoundPanel>
                 <asp:SqlDataSource ID="SqlDataSourceVF" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>" 
-                SelectCommand="SELECT distinct [sfunc] FROM [tbl_settings] where [stype] = 'DASHBOARD' order by sfunc"></asp:SqlDataSource>
+                SelectCommand="SELECT distinct [sValue], sIconType FROM [tbl_settings] where [stype] = 'FUNCTION' order by sIconType"></asp:SqlDataSource>
             </div>
             <p></p>
             <div>
                 <table style="width: 100%">
                     <tr>
                         <th>
-                            <asp:Label ID="Label1" runat="server" Text="JANUARY" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="FEBRUARY" Font-Size="XX-Large" ForeColor="#C20406"></asp:Label>
                         </th>
                     </tr>
                 </table>
@@ -131,11 +131,12 @@
                     </Styles>
                 </dx:ASPxGridView>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_1033_DashboardConnectionString %>"
-                    SelectCommand="SELECT DISTINCT a.[smetric], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
+                    SelectCommand="SELECT DISTINCT a.[smetric], b.[showFunction], b.[sFunc], b.[sUrl], b.[sReport] FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] a, [DB_1033_Dashboard].[dbo].[tbl_settings] b  
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
                                     and a.[smetric] in (select mname from tbl_set_tierviews)
+                                    and b.[showFunction] = 0
                                     order by a.smetric">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"
@@ -147,7 +148,7 @@
                                     where a.[smetric] = b.sValue
                                     and b.[sType] = 'DASHBOARD'
                                     and b.[sFunc] like @param1
-                                    and a.[smetric] in (select mname from tbl_set_tierviews where vt1 = 'true')
+                                    and a.[smetric] in (select mname from tbl_set_tierviews)
                                     order by a.smetric">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVF"

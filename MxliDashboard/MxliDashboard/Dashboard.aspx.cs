@@ -31,8 +31,9 @@ namespace MxliDashboard
             }
             else
             {
-                ASPxLabel2.Visible = true;
-                ASPxComboBoxTV.Visible = true;
+                //ASPxLabel2.Visible = true;
+                //ASPxComboBoxTV.Visible = true;
+                ASPxGridView1.DataSourceID = "SqlDataSource2";
             }
         }
 
@@ -161,8 +162,8 @@ namespace MxliDashboard
 
         protected string[] loadMonthly(string xMetric)
         {
-            int iVSM = ASPxComboBoxTV.SelectedIndex;
-            string sVSM = ASPxComboBoxTV.SelectedItem.ToString();
+            int iVSM = ASPxComboBoxVF.SelectedIndex;
+            string sVSM = ASPxComboBoxVF.SelectedItem.ToString();
             string[] xValores = { "0", "0" };            
             string query = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'site' and stype = 'monthly' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
@@ -174,7 +175,7 @@ namespace MxliDashboard
                 xValores[1] = dr1["fgoal"].ToString();
             }               
 
-            if (iVSM > 0 || xMetric == "AGED WIP" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INTERNAL ESCAPES" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "SCRAP" || xMetric == "UTILIZATION")
+            if (iVSM > 6 || xMetric == "AGED WIP" || xMetric == "ESCAPES" || xMetric == "INCIDENTS" || xMetric == "INTERNAL ESCAPES" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "PASTDUE" || xMetric == "PPMS" || xMetric == "SCRAP" || xMetric == "UTILIZATION")
             {
                 string query2 = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'VSM' and stype = 'monthly' and sclass = '"+sVSM+"' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
@@ -194,8 +195,8 @@ namespace MxliDashboard
         {
             //int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             string[] xValores = { "0", "0" };
-            int iVSM = ASPxComboBoxTV.SelectedIndex;
-            string sVSM = ASPxComboBoxTV.SelectedItem.ToString();
+            int iVSM = ASPxComboBoxVF.SelectedIndex;
+            string sVSM = ASPxComboBoxVF.SelectedItem.ToString();
             string query = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '"+xMetric+"' and sfilter = 'site' and stype = 'yearly' order by id desc";
             string qry = "select * from (" + query + ") q1 order by id";
             SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
@@ -206,7 +207,7 @@ namespace MxliDashboard
                 xValores[1] = dr1["fgoal"].ToString();
             }
 
-            if (iVSM > 0)
+            if (iVSM > 6)
             {
                 string query2 = "SELECT top 1 * FROM [DB_1033_Dashboard].[dbo].[sta_nivel2] where smetric = '" + xMetric + "' and sfilter = 'VSM' and stype = 'yearly' and sclass = '" + sVSM + "' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";

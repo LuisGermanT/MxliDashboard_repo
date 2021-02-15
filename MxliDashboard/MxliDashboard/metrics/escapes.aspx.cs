@@ -257,7 +257,7 @@ namespace MxliDashboard.n3_Quality
             {
                 WebChartControl1.Height = 400;
                 double vSum = 0;
-                string qry2 = "SELECT top 10 cause, SUM(quantity) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_escapes] group by cause order by cValue desc";
+                string qry2 = "SELECT top 10 cause, SUM(quantity) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_escapes] where nyear = '2021' group by cause order by cValue desc";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);
                 foreach (DataRow dr2 in dt2.Rows)
@@ -275,7 +275,7 @@ namespace MxliDashboard.n3_Quality
             if (gType == 3)
             {
                 WebChartControl1.Height = 200;
-                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'escapes' order by id desc";
+                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'escapes' and sclass = 'All' order by id desc";
                 string qry2 = "select * from (" + query2 + ") q1 order by id";
                 SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
                 DataTable dt2 = dBHelper2.QryManager(qry2);

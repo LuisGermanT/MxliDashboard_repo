@@ -8,10 +8,9 @@
 <head runat="server">
     <title></title>
     <style type="text/css">  
-    .dxrd-preview .dxrd-right-panel-collapse, .dxrd-preview .dxrd-right-panel, .dxrd-preview .dxrd-right-tabs {  
+    /*.dxrd-preview .dxrd-right-panel-collapse, .dxrd-preview .dxrd-right-panel, .dxrd-preview .dxrd-right-tabs {  
         display: none;  
-    }  
-
+    }*/  
 </style>  
 </head>
 <body>
