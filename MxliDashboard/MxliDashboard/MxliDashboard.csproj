@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44337</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -277,6 +276,8 @@
     <Content Include="settings\set_actions.aspx" />
     <Content Include="settings\set_forecast.aspx" />
     <Content Include="settings\set_aop_goals.aspx" />
+    <Content Include="CustomErrors\Errors.aspx" />
+    <Content Include="CustomErrors\PageNotFound.aspx" />
     <Content Include="xSettings.aspx" />
     <Content Include="YTD.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -696,6 +697,20 @@
     </Compile>
     <Compile Include="settings\set_aop_goals.aspx.designer.cs">
       <DependentUpon>set_aop_goals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomErrors\Errors.aspx.cs">
+      <DependentUpon>Errors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomErrors\Errors.aspx.designer.cs">
+      <DependentUpon>Errors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomErrors\PageNotFound.aspx.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomErrors\PageNotFound.aspx.designer.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
     </Compile>
     <Compile Include="xSettings.aspx.cs">
       <DependentUpon>xSettings.aspx</DependentUpon>
