@@ -514,226 +514,374 @@ namespace MxliDashboard
 
         public void llenarDatos_I01(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'inventario' and sfilter = 'SITE' and sdesc = '"+(semana-1)+"' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-
-            //DateTime day = DateTime.Today;
-            //while (day.DayOfWeek != DayOfWeek.Friday)
-            //    day = day.AddDays(-1);
-            //ASPxLabelI.Text = "Last update: " + day.ToShortDateString();
-
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                //ASPxLabelI.Text = "Last update: " + DateTime.Today.ToShortDateString();
-                ASPxLabelI.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'inventario' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+
+                //DateTime day = DateTime.Today;
+                //while (day.DayOfWeek != DayOfWeek.Friday)
+                //    day = day.AddDays(-1);
+                //ASPxLabelI.Text = "Last update: " + day.ToShortDateString();
+
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    //ASPxLabelI.Text = "Last update: " + DateTime.Today.ToShortDateString();
+                    ASPxLabelI.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgI01.ImageUrl = "~/img/" + imagen + ".png";
+
+                I01Actual.Text = (actual / 1000).ToString("C2") + "K";
+                I01AOP.Text = (aop / 1000).ToString("C2") + "K";
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgI01.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            I01Actual.Text = (actual / 1000).ToString("C2") + "K";
-            I01AOP.Text = (aop / 1000).ToString("C2") + "K";
-
-
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
+
         public void llenarDatos_I02(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'entitlement' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelE.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'entitlement' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    ASPxLabelE.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgI02.ImageUrl = "~/img/" + imagen + ".png";
+
+                I02Actual.Text = (actual / 1000).ToString("C2") + "K";
+                I02AOP.Text = (aop / 1000).ToString("C2") + "K";
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgI02.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            I02Actual.Text = (actual / 1000).ToString("C2") + "K";
-            I02AOP.Text = (aop / 1000).ToString("C2") + "K";
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
 
         public void llenarDatos_I03(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'vmi' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelV.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select * from [sta_nivel2] where smetric = 'vmi' and sfilter = 'SITE' and sdesc = '" + (semana - 1) + "' order by id", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    ASPxLabelV.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgI03.ImageUrl = "~/img/" + imagen + ".png";
+
+                I03Actual.Text = (actual / 1000).ToString("C2") + "K";
+                I03AOP.Text = (aop / 1000).ToString("C2") + "K";
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgI03.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            I03Actual.Text = (actual / 1000).ToString("C2") + "K";
-            I03AOP.Text = (aop / 1000).ToString("C2") + "K";
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
+            
         }
 
         private void loadChartI01(int tipo, string clase, string filtro)
         {
-            chartTI01.Series["Series1"].Points.Clear();
-            chartTI01.Series["Series2"].Points.Clear();
-            chartTI01.Series["Series3"].Points.Clear();
-            string xTipo = "weekly";
-            if (tipo < 2)
+            try
             {
-                xTipo = "WEEKLY";
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-            }
 
-            string query1 = "";
-            if (xTipo == "WEEKLY")
-            {
-                query1 = "select top 13 * from [sta_nivel2] where smetric = 'inventario' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                chartTI01.Series["Series1"].Points.Clear();
+                chartTI01.Series["Series2"].Points.Clear();
+                chartTI01.Series["Series3"].Points.Clear();
+                string xTipo = "weekly";
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                }
+
+                string query1 = "";
+                if (xTipo == "WEEKLY")
+                {
+                    query1 = "select top 13 * from [sta_nivel2] where smetric = 'inventario' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                else
+                {
+                    query1 = "select top 6 * from [sta_nivel2] where smetric = 'inventario' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                string qry = "select * from (" + query1 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTI01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                    chartTI01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                    chartTI01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2) * .9);
+                    //xTemp = xTemp - .15;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                query1 = "select top 6 * from [sta_nivel2] where smetric = 'inventario' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            }
-            string qry = "select * from (" + query1 + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual/1000000),2));
-                chartTI01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal/1000000), 2));
-                chartTI01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2)*.9);
-                //xTemp = xTemp - .15;
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         private void loadChartI02(int tipo, string clase, string filtro)
         {
-            chartTI02.Series["Series1"].Points.Clear();
-            chartTI02.Series["Series2"].Points.Clear();
-            chartTI02.Series["Series3"].Points.Clear();
-            string xTipo = "weekly";
-            if (tipo < 2)
+            try
             {
-                xTipo = "WEEKLY";
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-            }
+                chartTI02.Series["Series1"].Points.Clear();
+                chartTI02.Series["Series2"].Points.Clear();
+                chartTI02.Series["Series3"].Points.Clear();
+                string xTipo = "weekly";
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                }
 
-            string query1 = "";
-            if (xTipo == "WEEKLY")
-            {
-                query1 = "select top 13 * from [sta_nivel2] where smetric = 'entitlement' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                string query1 = "";
+                if (xTipo == "WEEKLY")
+                {
+                    query1 = "select top 13 * from [sta_nivel2] where smetric = 'entitlement' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                else
+                {
+                    query1 = "select top 6 * from[sta_nivel2] where smetric = 'entitlement' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                string qry = "select * from (" + query1 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTI02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                    chartTI02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                    chartTI02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2) * .9);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                query1 = "select top 6 * from[sta_nivel2] where smetric = 'entitlement' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            }
-            string qry = "select * from (" + query1 + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
-                chartTI02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
-                chartTI02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2) * .9);
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         private void loadChartI03(int tipo, string clase, string filtro)
         {
-            chartTI03.Series["Series1"].Points.Clear();
-            chartTI03.Series["Series2"].Points.Clear();
-            chartTI03.Series["Series3"].Points.Clear();
-            string xTipo = "weekly";
-            if (tipo < 2)
+            try
             {
-                xTipo = "WEEKLY";
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-            }
 
-            string query1 = "";
-            if (xTipo == "WEEKLY")
-            {
-                query1 = "select top 13 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                chartTI03.Series["Series1"].Points.Clear();
+                chartTI03.Series["Series2"].Points.Clear();
+                chartTI03.Series["Series3"].Points.Clear();
+                string xTipo = "weekly";
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                }
+
+                string query1 = "";
+                if (xTipo == "WEEKLY")
+                {
+                    query1 = "select top 13 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                else
+                {
+                    query1 = "select top 6 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                }
+                string qry = "select * from (" + query1 + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTI03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
+                    chartTI03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                    chartTI03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                query1 = "select top 6 * from [sta_nivel2] where smetric = 'vmi' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            }
-            string qry = "select * from (" + query1 + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTI03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xActual / 1000000), 2));
-                chartTI03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
-                chartTI03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), Math.Round((xGoal / 1000000), 2));
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
@@ -753,9 +901,5 @@ namespace MxliDashboard
                 I03.Visible = true;
             }
         }
-
-        
-
-
     }
 }

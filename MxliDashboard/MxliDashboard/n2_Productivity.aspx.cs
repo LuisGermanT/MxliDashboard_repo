@@ -118,57 +118,107 @@ namespace MxliDashboard
         //Labor Productivity
         public void llenarDatos_P01(int indice, string _sClass)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "";
-
-            qry = "select TOP 1 * from [sta_nivel2] where smetric = 'labor productivity' and sClass = '" + _sClass + "' order by id desc";
-            DataTable dtPareto = dBHelper.QryManager(qry);
-
-            foreach (DataRow dr1 in dtPareto.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                double actual = 0;
+                double aop = 0;
+                string imagen = "good";
+
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                string qry = "";
+
+                qry = "select TOP 1 * from [sta_nivel2] where smetric = 'labor productivity' and sClass = '" + _sClass + "' order by id desc";
+                DataTable dtPareto = dBHelper.QryManager(qry);
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                }
+
+                if (actual < aop) { imagen = "bad"; }
+                imgP01.ImageUrl = "~/img/" + imagen + ".png";
+
+                P01Actual.Text = actual + "%";
+                P01AOP.Text = aop + "%";
+
+                //loadChartP01(indice, _sClass);
+            }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
 
-            if (actual < aop) { imagen = "bad"; }
-            imgP01.ImageUrl = "~/img/" + imagen + ".png";
-
-            P01Actual.Text = actual + "%";
-            P01AOP.Text = aop + "%";
-
-            //loadChartP01(indice, _sClass);
         }
 
         //Net Productivity Data
         public void llenarDatos_P02(int indice, string _sClass)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "";
-            qry = "select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc";
-
-            DataTable dtPareto = dBHelper.QryManager(qry);
-
-            foreach (DataRow dr1 in dtPareto.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+
+                double actual = 0;
+                double aop = 0;
+                string imagen = "good";
+
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                string qry = "";
+                qry = "select TOP 1 * from [sta_nivel2] where smetric = 'net productivity' and sClass = '" + _sClass + "' order by id desc";
+
+                DataTable dtPareto = dBHelper.QryManager(qry);
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                }
+
+                if (actual < aop) { imagen = "bad"; }
+                imgP02.ImageUrl = "~/img/" + imagen + ".png";
+
+                P02Actual.Text = actual + "%";
+                P02AOP.Text = aop + "%";
+
+                //loadChartP02(indice, "");
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual < aop) { imagen = "bad"; }
-            imgP02.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            P02Actual.Text = actual + "%";
-            P02AOP.Text = aop + "%";
-
-            //loadChartP02(indice, "");
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
         
         //MPS Load
@@ -205,75 +255,125 @@ namespace MxliDashboard
 
         //Utilization
         public void llenarDatos_P05(int indice, string _sClass) {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "good";
-
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "";
-
-            qry = "select TOP 1 * from [sta_nivel2] where smetric = 'Utilization' and sClass = '" + _sClass + "' order by id desc";
-            DataTable dtPareto = dBHelper.QryManager(qry);
-
-            foreach (DataRow dr1 in dtPareto.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
+
+                double actual = 0;
+                double aop = 0;
+                string imagen = "good";
+
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                string qry = "";
+
+                qry = "select TOP 1 * from [sta_nivel2] where smetric = 'Utilization' and sClass = '" + _sClass + "' order by id desc";
+                DataTable dtPareto = dBHelper.QryManager(qry);
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                }
+
+                if (actual < aop) { imagen = "bad"; }
+                imgP05.ImageUrl = "~/img/" + imagen + ".png";
+
+                P05Actual.Text = actual + "%";
+                P05AOP.Text = aop + "%";
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual < aop) { imagen = "bad"; }
-            imgP05.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            P05Actual.Text = actual + "%";
-            P05AOP.Text = aop + "%";
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
 
         //Labor Charts
         private void loadChartP01(int indice, string clase)
         {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
-            DateTime st = fh.GetSaturday(DateTime.Now);
-
-            chartTP01.Series["Series1"].Points.Clear();
-            chartTP01.Series["Series2"].Points.Clear();
-            //chartPP01.Series["Series1"].Points.Clear();
-            //chartPP01.Series["Series2"].Points.Clear();
-
-            string xTipo = "weekly";
-            //tipo=0
-            String xFilter = "SITE";
-            string xClass = "All";
-
-            if (indice == 1)
+            try
             {
-                xClass = clase;
-                xFilter = "VSM";
+
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+                semana = semana - 1;   //semana actual aun no cierra
+
+                FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+                DateTime st = fh.GetSaturday(DateTime.Now);
+
+                chartTP01.Series["Series1"].Points.Clear();
+                chartTP01.Series["Series2"].Points.Clear();
+                //chartPP01.Series["Series1"].Points.Clear();
+                //chartPP01.Series["Series2"].Points.Clear();
+
+                string xTipo = "weekly";
+                //tipo=0
+                String xFilter = "SITE";
+                string xClass = "All";
+
+                if (indice == 1)
+                {
+                    xClass = clase;
+                    xFilter = "VSM";
+                }
+                if (indice == 2)
+                {
+                    xClass = clase;
+                    xFilter = "CELL";
+                }
+
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                string qry = "";
+                //qry = "select top 13 * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
+                qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
+                        "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
+                        " Order by [sLstWkDay] desc";
+                string qry1 = "select * from (" + qry + ") q1 order by id";
+                DataTable dtPareto = dBHelper.QryManager(qry1);
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTP01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    chartTP01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                    //chartPP01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    //chartPP01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                }
             }
-            if (indice == 2)
+            catch (Exception ex)
             {
-                xClass = clase;
-                xFilter = "CELL";
-            }
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "";
-            //qry = "select top 13 * from [sta_nivel2] where smetric = 'labor productivity' and sclass = '" + xClass + "' and stype = '" + xTipo + "' and sfilter = '" + xFilter + "' and sdesc between " + (semana - 12) + " and " + semana + " order by id";
-            qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'labor productivity' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter + 
-                    "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
-                    " Order by [sLstWkDay] desc";
-            string qry1 = "select * from (" + qry + ") q1 order by id";
-            DataTable dtPareto = dBHelper.QryManager(qry1);
-            foreach (DataRow dr1 in dtPareto.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTP01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTP01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                //chartPP01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                //chartPP01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
@@ -477,44 +577,69 @@ namespace MxliDashboard
         
         private void loadChartP05(int indice, string clase)
         {
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;   //semana actual aun no cierra
-
-            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
-            DateTime st = fh.GetSaturday(DateTime.Now);
-
-            chartTP05.Series["Series1"].Points.Clear();
-            chartTP05.Series["Series2"].Points.Clear();
-
-            string xTipo = "weekly";
-            //tipo=0
-            String xFilter = "SITE";
-            string xClass = "All";
-
-            if (indice == 1)
+            try
             {
-                xClass = clase;
-                xFilter = "VSM";
+
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+                semana = semana - 1;   //semana actual aun no cierra
+
+                FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+                DateTime st = fh.GetSaturday(DateTime.Now);
+
+                chartTP05.Series["Series1"].Points.Clear();
+                chartTP05.Series["Series2"].Points.Clear();
+
+                string xTipo = "weekly";
+                //tipo=0
+                String xFilter = "SITE";
+                string xClass = "All";
+
+                if (indice == 1)
+                {
+                    xClass = clase;
+                    xFilter = "VSM";
+                }
+                if (indice == 2)
+                {
+                    xClass = clase;
+                    xFilter = "CELL";
+                }
+
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                string qry = "";
+                qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
+                        "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
+                        " Order by [sLstWkDay] desc";
+                string qry1 = "select * from (" + qry + ") q1 order by id";
+                DataTable dtPareto = dBHelper.QryManager(qry1);
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTP05.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    chartTP05.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                }
             }
-            if (indice == 2)
+            catch (Exception ex)
             {
-                xClass = clase;
-                xFilter = "CELL";
-            }
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            string qry = "";
-            qry = "SELECT TOP 8 * FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' AND [sClass] = '" + xClass + "' AND [sType] = '" + xTipo + "' AND [sFilter] = '" + xFilter +
-                    "' AND [sLstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'" +
-                    " Order by [sLstWkDay] desc";
-            string qry1 = "select * from (" + qry + ") q1 order by id";
-            DataTable dtPareto = dBHelper.QryManager(qry1);
-            foreach (DataRow dr1 in dtPareto.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTP05.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTP05.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 

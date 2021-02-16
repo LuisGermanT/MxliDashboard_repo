@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MxliDashboard.FunctionHelper;
+using System.Data.SqlClient;
 
 namespace MxliDashboard
 {
@@ -251,9 +252,6 @@ namespace MxliDashboard
         {
             try
             {
-                int x = 100, y = 0;
-                int xxxxxx = x / y;
-
                 //Week range, from current week - 13 to current week
                 int yr = DateTime.Now.Year;
                 int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
@@ -483,24 +481,51 @@ namespace MxliDashboard
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //throw new HttpException(500, "A SecurityException has been thrown");
+                int errNum = -99999999;
+                string errDesc = "";
                 HttpContext.Current.Items.Add("Exception", ex);
-                Server.Transfer("~\\CustomErrors\\Errors.aspx");
-                //throw ex;
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=OTTR.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
+
         }
 
         private void loadUpdate()
         {
-            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'ottr'";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt.Rows)
+            try
             {
-                lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'ottr'";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt.Rows)
+                {
+                    lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                }
             }
+            catch(SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=OTTR.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
+           
         }
     }
 }

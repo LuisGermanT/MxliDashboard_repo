@@ -114,114 +114,163 @@ namespace MxliDashboard.n3_Inventory
 
         protected void chartDefault(int tipo, string xType, string xFilter, int gType)
         {
-            WebChartControl1.Series["Total"].Points.Clear();
-            WebChartControl1.Series["Goal"].Points.Clear();
-            WebChartControl1.Series["Total"].LegendTextPattern = "";
-            WebChartControl1.Series["Goal"].LegendTextPattern = "";
+            try
+            {
+                WebChartControl1.Series["Total"].Points.Clear();
+                WebChartControl1.Series["Goal"].Points.Clear();
+                WebChartControl1.Series["Total"].LegendTextPattern = "";
+                WebChartControl1.Series["Goal"].LegendTextPattern = "";
 
-            string xTipo = "MONTHLY";
-            if (tipo < 1)
-            {
-                xTipo = "MONTHLY";
-            }
-            if (tipo == 2)
-            {
-                xTipo = "QUARTERLY";
-            }
-            if (tipo == 3)
-            {
-                xTipo = "YEARLY";
-            }
+                string xTipo = "MONTHLY";
+                if (tipo < 1)
+                {
+                    xTipo = "MONTHLY";
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "QUARTERLY";
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "YEARLY";
+                }
 
-            if (gType < 2)
-            {
-                WebChartControl1.Height = 200;
-                string query1 = "select top 13 * from [sta_nivel2] where smetric = 'rtv' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
-                string qry1 = "select * from (" + query1 + ") q1 order by id";
-                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-                DataTable dt1 = dBHelper.QryManager(qry1);
-                foreach (DataRow dr1 in dt1.Rows)
+                if (gType < 2)
                 {
-                    double xTotal = Convert.ToDouble(dr1["factual"].ToString());
-                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                    double xAcc = regresaAccountBalance(xType,xTipo, dr1["sdesc"].ToString());
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr1["sdesc"].ToString(), xTotal);
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sdesc"].ToString(), xGoal);
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Height = 200;
+                    string query1 = "select top 13 * from [sta_nivel2] where smetric = 'rtv' and sfilter = '" + xType + "' and sclass = '" + xFilter + "' and stype = '" + xTipo + "' order by id desc";
+                    string qry1 = "select * from (" + query1 + ") q1 order by id";
+                    SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                    DataTable dt1 = dBHelper.QryManager(qry1);
+                    foreach (DataRow dr1 in dt1.Rows)
+                    {
+                        double xTotal = Convert.ToDouble(dr1["factual"].ToString());
+                        double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                        double xAcc = regresaAccountBalance(xType, xTipo, dr1["sdesc"].ToString());
+                        WebChartControl1.Series["Total"].Points.AddPoint(dr1["sdesc"].ToString(), xTotal);
+                        WebChartControl1.Series["Goal"].Points.AddPoint(dr1["sdesc"].ToString(), xGoal);
+                        WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                        WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    }
+                }
+                if (gType == 2)
+                {
+                    WebChartControl1.Height = 400;
+                    double vSum = 0;
+                    string qry2 = "SELECT top 5 smaterial, SUM(total) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_rtv] group by smaterial order by cValue desc";
+                    SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                    DataTable dt2 = dBHelper2.QryManager(qry2);
+                    foreach (DataRow dr2 in dt2.Rows)
+                    {
+                        double xActual = Convert.ToDouble(dr2["cValue"].ToString());
+                        vSum = vSum + xActual;
+                        WebChartControl1.Series["Total"].Points.AddPoint(dr2["smaterial"].ToString(), xActual);
+                        WebChartControl1.Series["Goal"].Points.AddPoint(dr2["smaterial"].ToString(), vSum);
+                        WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                        WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                        WebChartControl1.Series["Total"].LegendTextPattern = "Total";
+                        WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
+                    }
+                }
+                if (gType == 3)
+                {
+                    WebChartControl1.Height = 200;
+                    string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'rtv' order by id desc";
+                    string qry2 = "select * from (" + query2 + ") q1 order by id";
+                    SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                    DataTable dt2 = dBHelper2.QryManager(qry2);
+                    foreach (DataRow dr2 in dt2.Rows)
+                    {
+                        double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                        double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                        WebChartControl1.Series["Total"].Points.AddPoint(dr2["scause"].ToString(), xActual);
+                        WebChartControl1.Series["Goal"].Points.AddPoint(dr2["scause"].ToString(), xGoal);
+                        WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
+                        WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                        WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    }
                 }
             }
-            if (gType == 2)
+            catch (Exception ex)
             {
-                WebChartControl1.Height = 400;
-                double vSum = 0;
-                string qry2 = "SELECT top 5 smaterial, SUM(total) as cValue FROM[DB_1033_Dashboard].[dbo].[sap_rtv] group by smaterial order by cValue desc";
-                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
-                DataTable dt2 = dBHelper2.QryManager(qry2);
-                foreach (DataRow dr2 in dt2.Rows)
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
                 {
-                    double xActual = Convert.ToDouble(dr2["cValue"].ToString());
-                    vSum = vSum + xActual;
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["smaterial"].ToString(), xActual);
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["smaterial"].ToString(), vSum);
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Series["Total"].LegendTextPattern = "Total";
-                    WebChartControl1.Series["Goal"].LegendTextPattern = "Accum";
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
                 }
-            }
-            if (gType == 3)
-            {
-                WebChartControl1.Height = 200;
-                string query2 = "select top 6 * from [sta_nivel2f] where smetric = 'rtv' order by id desc";
-                string qry2 = "select * from (" + query2 + ") q1 order by id";
-                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
-                DataTable dt2 = dBHelper2.QryManager(qry2);
-                foreach (DataRow dr2 in dt2.Rows)
+                else
                 {
-                    double xActual = Convert.ToDouble(dr2["factual"].ToString());
-                    double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
-                    WebChartControl1.Series["Total"].Points.AddPoint(dr2["scause"].ToString(), xActual);
-                    WebChartControl1.Series["Goal"].Points.AddPoint(dr2["scause"].ToString(), xGoal);
-                    WebChartControl1.Series["Total"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Goal"].Label.TextPattern = "{V: c2}";
-                    WebChartControl1.Series["Total"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                    WebChartControl1.Series["Goal"].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
                 }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=rtv.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         protected void loadUpdate()
         {
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'inventory'", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+
+            try
             {
-                Label1.Text =  dr1["lastUpdateText"].ToString();
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'inventory'", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    Label1.Text = dr1["lastUpdateText"].ToString();
+                }
             }
+            catch (SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
+
         }
 
         protected double regresaAccountBalance(string xFilter, string xType, string xDesc)
         {
             double valor = 0;
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_thirdPoint] WHERE [smetric] = 'rtv' and sfilter = '"+xFilter+"' and stype = '"+xType+"' and sdesc = '"+xDesc+"'", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                valor = Convert.ToDouble(dr1["fvalue"].ToString());
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("SELECT * FROM [tbl_thirdPoint] WHERE [smetric] = 'rtv' and sfilter = '" + xFilter + "' and stype = '" + xType + "' and sdesc = '" + xDesc + "'", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    valor = Convert.ToDouble(dr1["fvalue"].ToString());
+                }
             }
+            catch (SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=rtv.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
+
             return valor;
         }
 

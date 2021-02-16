@@ -471,254 +471,402 @@ namespace MxliDashboard
 
         public void llenarDatos_Q01(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'ppms' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelQ01.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'ppms' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    ASPxLabelQ01.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgQ01.ImageUrl = "~/img/" + imagen + ".png";
+
+                Q01Actual.Text = (actual).ToString();
+                Q01AOP.Text = (aop).ToString();
+
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgQ01.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            Q01Actual.Text = (actual).ToString();
-            Q01AOP.Text = (aop).ToString();
-
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
 
         }
         public void llenarDatos_Q02(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'escapes' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelQ02.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0,10);
+
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'escapes' and sfilter = 'SITE' and stype = 'weekly' order by id desc", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    ASPxLabelQ02.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgQ02.ImageUrl = "~/img/" + imagen + ".png";
+
+                Q02Actual.Text = (actual).ToString();
+                Q02AOP.Text = (aop).ToString();
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgQ02.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            Q02Actual.Text = (actual).ToString();
-            Q02AOP.Text = (aop).ToString();
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
 
         public void llenarDatos_Q03(int indice)
         {
-            double actual = 0;
-            double aop = 0;
-            string imagen = "goodB";
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
-            SqlConnection conn1 = new SqlConnection(myCnStr1);
-            SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'defectos' and sfilter = 'SITE' and sdesc = 'weekly' order by id desc", conn1);
-            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-            DataTable dt1 = new DataTable();
-            da1.Fill(dt1);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                actual = Convert.ToDouble(dr1["factual"].ToString());
-                aop = Convert.ToDouble(dr1["fgoal"].ToString());
-                ASPxLabelQ03.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                double actual = 0;
+                double aop = 0;
+                string imagen = "goodB";
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string myCnStr1 = Properties.Settings.Default.db_1033_dashboard;
+                SqlConnection conn1 = new SqlConnection(myCnStr1);
+                SqlCommand cmd1 = new SqlCommand("select top 1 * from [sta_nivel2] where smetric = 'defectos' and sfilter = 'SITE' and sdesc = 'weekly' order by id desc", conn1);
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                DataTable dt1 = new DataTable();
+                da1.Fill(dt1);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    actual = Convert.ToDouble(dr1["factual"].ToString());
+                    aop = Convert.ToDouble(dr1["fgoal"].ToString());
+                    ASPxLabelQ03.Text = "Last update: " + dr1["sLstWkDay"].ToString().Substring(0, 10);
+                }
+
+                if (actual > aop) { imagen = "badB"; }
+                imgQ03.ImageUrl = "~/img/" + imagen + ".png";
+
+                Q03Actual.Text = (actual).ToString();
+                Q03AOP.Text = (aop).ToString();
             }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            if (actual > aop) { imagen = "badB"; }
-            imgQ03.ImageUrl = "~/img/" + imagen + ".png";
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
 
-            Q03Actual.Text = (actual).ToString();
-            Q03AOP.Text = (aop).ToString();
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+            }
         }
 
         private void loadChartQ01(int tipo, string clase, string filtro)
         {
-            chartTQ01.Series["Series1"].Points.Clear();
-            chartTQ01.Series["Series2"].Points.Clear();
-            chartTQ01.Series["Series3"].Points.Clear();
-            chartPQ01.Series["Series1"].Points.Clear();
-            chartPQ01.Series["Series2"].Points.Clear();
+            try
+            {
 
-            string xTipo = "weekly";
-            int xTop = 13;
-            if (tipo < 2)
-            {
-                xTipo = "WEEKLY";
-                xTop = 13;
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-                xTop = 6;
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-                xTop = 4;
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-                xTop = 2;
-            }
+                chartTQ01.Series["Series1"].Points.Clear();
+                chartTQ01.Series["Series2"].Points.Clear();
+                chartTQ01.Series["Series3"].Points.Clear();
+                chartPQ01.Series["Series1"].Points.Clear();
+                chartPQ01.Series["Series2"].Points.Clear();
 
-            string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            string qry = "select * from (" + query + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTQ01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTQ01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                chartTQ01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
-            }
+                string xTipo = "weekly";
+                int xTop = 13;
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                    xTop = 13;
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                    xTop = 6;
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                    xTop = 4;
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                    xTop = 2;
+                }
 
-            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'ppms' and stype = 'top' order by id";
-            string qry2 = "select * from (" + query2 + ") q2 order by id";
-            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
-            DataTable dt2 = dBHelper2.QryManager(qry2);
-            foreach (DataRow dr2 in dt2.Rows)
+                string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'ppms' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                string qry = "select * from (" + query + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTQ01.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    chartTQ01.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                    chartTQ01.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                }
+
+                string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'ppms' and stype = 'top' order by id";
+                string qry2 = "select * from (" + query2 + ") q2 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper2.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                    chartPQ01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                    chartPQ01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                }
+            }
+            catch (Exception ex)
             {
-                double xActual = Convert.ToDouble(dr2["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
-                chartPQ01.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
-                chartPQ01.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         private void loadChartQ02(int tipo, string clase, string filtro)
         {
-            chartTQ02.Series["Series1"].Points.Clear();
-            chartTQ02.Series["Series2"].Points.Clear();
-            chartTQ02.Series["Series3"].Points.Clear();
-            chartPQ02.Series["Series1"].Points.Clear();
-            chartPQ02.Series["Series2"].Points.Clear();
+            try
+            {
 
-            string xTipo = "weekly";
-            int xTop = 13;
-            if (tipo < 2)
-            {
-                xTipo = "WEEKLY";
-                xTop = 13;
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-                xTop = 6;
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-                xTop = 4;
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-                xTop = 2;
-            }
+                chartTQ02.Series["Series1"].Points.Clear();
+                chartTQ02.Series["Series2"].Points.Clear();
+                chartTQ02.Series["Series3"].Points.Clear();
+                chartPQ02.Series["Series1"].Points.Clear();
+                chartPQ02.Series["Series2"].Points.Clear();
 
-            string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            string qry = "select * from (" + query + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTQ02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTQ02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                chartTQ02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
-            }
+                string xTipo = "weekly";
+                int xTop = 13;
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                    xTop = 13;
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                    xTop = 6;
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                    xTop = 4;
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                    xTop = 2;
+                }
 
-            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'escapes' and stype = 'causes' order by id";
-            string qry2 = "select * from (" + query2 + ") q2 order by id";
-            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
-            DataTable dt2 = dBHelper2.QryManager(qry2);
-            foreach (DataRow dr2 in dt2.Rows)
+                string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'escapes' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                string qry = "select * from (" + query + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTQ02.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    chartTQ02.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                    chartTQ02.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                }
+
+                string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'escapes' and stype = 'causes' order by id";
+                string qry2 = "select * from (" + query2 + ") q2 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper2.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                    chartPQ02.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                    chartPQ02.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                }
+            }
+            catch (Exception ex)
             {
-                double xActual = Convert.ToDouble(dr2["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
-                chartPQ02.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
-                chartPQ02.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         private void loadChartQ03(int tipo, string clase, string filtro)
         {
-            chartTQ03.Series["Series1"].Points.Clear();
-            chartTQ03.Series["Series2"].Points.Clear();
-            chartTQ03.Series["Series3"].Points.Clear();
-            chartPQ03.Series["Series1"].Points.Clear();
-            chartPQ03.Series["Series2"].Points.Clear();
+            try
+            {
 
-            string xTipo = "weekly";
-            int xTop = 13;
-            if (tipo < 2)
-            {
-                xTipo = "WEEKLY";
-                xTop = 13;
-            }
-            if (tipo == 2)
-            {
-                xTipo = "MONTHLY";
-                xTop = 6;
-            }
-            if (tipo == 3)
-            {
-                xTipo = "QUARTERLY";
-                xTop = 4;
-            }
-            if (tipo == 4)
-            {
-                xTipo = "YEARLY";
-                xTop = 2;
-            }
+                chartTQ03.Series["Series1"].Points.Clear();
+                chartTQ03.Series["Series2"].Points.Clear();
+                chartTQ03.Series["Series3"].Points.Clear();
+                chartPQ03.Series["Series1"].Points.Clear();
+                chartPQ03.Series["Series2"].Points.Clear();
 
-            string query = "select top "+ xTop + " * from [sta_nivel2] where smetric = 'defectos' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
-            string qry = "select * from (" + query + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                double xActual = Convert.ToDouble(dr1["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                chartTQ03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
-                chartTQ03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
-                chartTQ03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
-            }
+                string xTipo = "weekly";
+                int xTop = 13;
+                if (tipo < 2)
+                {
+                    xTipo = "WEEKLY";
+                    xTop = 13;
+                }
+                if (tipo == 2)
+                {
+                    xTipo = "MONTHLY";
+                    xTop = 6;
+                }
+                if (tipo == 3)
+                {
+                    xTipo = "QUARTERLY";
+                    xTop = 4;
+                }
+                if (tipo == 4)
+                {
+                    xTipo = "YEARLY";
+                    xTop = 2;
+                }
 
-            string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'defectos' and stype = 'causes' order by id";
-            string qry2 = "select * from (" + query2 + ") q2 order by id";
-            SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
-            DataTable dt2 = dBHelper2.QryManager(qry2);
-            foreach (DataRow dr2 in dt2.Rows)
+                string query = "select top " + xTop + " * from [sta_nivel2] where smetric = 'defectos' and sfilter = '" + filtro + "' and sclass = '" + clase + "' and stype = '" + xTipo + "' order by id desc";
+                string qry = "select * from (" + query + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr1["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    chartTQ03.Series["Series1"].Points.AddXY(dr1["sdesc"].ToString(), xActual);
+                    chartTQ03.Series["Series2"].Points.AddXY(dr1["sdesc"].ToString(), xGoal);
+                    chartTQ03.Series["Series3"].Points.AddXY(dr1["sdesc"].ToString(), "0");
+                }
+
+                string query2 = "select top 5 * from [sta_nivel2p] where smetric = 'defectos' and stype = 'causes' order by id";
+                string qry2 = "select * from (" + query2 + ") q2 order by id";
+                SQLHelper.DBHelper dBHelper2 = new SQLHelper.DBHelper();
+                DataTable dt2 = dBHelper2.QryManager(qry2);
+                foreach (DataRow dr2 in dt2.Rows)
+                {
+                    double xActual = Convert.ToDouble(dr2["factual"].ToString());
+                    double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
+                    chartPQ03.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
+                    chartPQ03.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                }
+            }
+            catch (Exception ex)
             {
-                double xActual = Convert.ToDouble(dr2["factual"].ToString());
-                double xGoal = Convert.ToDouble(dr2["fsum"].ToString());
-                chartPQ03.Series["Series1"].Points.AddXY(dr2["scause"].ToString(), xActual);
-                chartPQ03.Series["Series2"].Points.AddXY(dr2["scause"].ToString(), xGoal);
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=n2_Quality.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
@@ -738,7 +886,5 @@ namespace MxliDashboard
                 Q03.Visible = true;
             }
         }
-
-
     }
 }

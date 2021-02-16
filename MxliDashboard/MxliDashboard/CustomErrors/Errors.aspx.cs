@@ -37,14 +37,15 @@ namespace MxliDashboard
                 ex = new HttpException(404, httpErrorMsg, ex);
                 FriendlyErrorMsg.Text = ex.Message;
             }
-
+            
             // If the exception no longer exists, create a generic exception.
             var err = (Exception)HttpContext.Current.Items["Exception"];
             if (ex == null && err == null)
             {
                 ex = new Exception(unhandledErrorMsg);
             }
-            else
+            
+            if (err != null)
             {
                 ex = err;
             }

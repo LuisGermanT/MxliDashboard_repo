@@ -183,123 +183,157 @@ namespace MxliDashboard.n3_Productivity
         //Labor Productivity Charts
         private void loadChartP01(int indice, string clase, string sFilter)
         {
-            //Week range, from current week - 13 to current week
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;
-            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
-            DateTime st = fh.GetSaturday(DateTime.Now);
-            string dtFrom = st.AddDays(-91).ToShortDateString();
-            string dtTo = st.ToShortDateString();
-
-            WebChartControl1.Series[0].Points.Clear();
-            WebChartControl1.Series[1].Points.Clear();
-            WebChartControl1.Series[2].Points.Clear();
-            WebChartControl1.Series[3].Points.Clear();
-            WebChartControl1.SeriesSorting = SortingMode.None;
-            WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
-
-            string qry = "", query = "", qryBaseline = "";
-            string colName = "";
-            string xClass = "", prefix = "";
-            string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
-
-            //Selects filter according to user's selection, dafult filter is by week
-            if (sFilter == "Week")
+            try
             {
-                sTblName = " FROM [vw_labor_productivity_by_site_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
-                cTblName = " FROM [vw_labor_productivity_by_cell_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                aTblName = " FROM [vw_labor_productivity_by_area_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                vTblName = " FROM [vw_labor_productivity_by_vsm_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                colName = "NP_Week";
-                prefix = "Wk";
+                //Week range, from current week - 13 to current week
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+                semana = semana - 1;
+                FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+                DateTime st = fh.GetSaturday(DateTime.Now);
+                string dtFrom = st.AddDays(-91).ToShortDateString();
+                string dtTo = st.ToShortDateString();
+
+                WebChartControl1.Series[0].Points.Clear();
+                WebChartControl1.Series[1].Points.Clear();
+                WebChartControl1.Series[2].Points.Clear();
+                WebChartControl1.Series[3].Points.Clear();
+                WebChartControl1.SeriesSorting = SortingMode.None;
+                WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
+
+                string qry = "", query = "", qryBaseline = "";
+                string colName = "";
+                string xClass = "", prefix = "";
+                string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
+
+                //Selects filter according to user's selection, dafult filter is by week
+                if (sFilter == "Week")
+                {
+                    sTblName = " FROM [vw_labor_productivity_by_site_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
+                    cTblName = " FROM [vw_labor_productivity_by_cell_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                    aTblName = " FROM [vw_labor_productivity_by_area_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                    vTblName = " FROM [vw_labor_productivity_by_vsm_wkly] WHERE [NP_LstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                    colName = "NP_Week";
+                    prefix = "Wk";
+                }
+                else
+                {
+                    sTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_site_mntly].[NP_Month] AND " +
+                               "[NP_Year] = [vw_labor_productivity_by_site_mntly].[NP_Year] Order by [NP_LstWkDay] desc) " +
+                               "FROM [vw_labor_productivity_by_site_mntly]";
+                    cTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_cell_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_cell_mntly].[NP_Year] " +
+                                " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_cell_mntly] WHERE ";
+                    aTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_area_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_area_mntly].[NP_Year]" +
+                                " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_area_mntly] WHERE ";
+                    vTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_vsm_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_vsm_mntly].[NP_Year]" +
+                                " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_vsm_mntly] WHERE ";
+                    colName = "NP_Month";
+                    prefix = "";
+                }
+
+                //Validates filter level by site/area/cell, default filter is by site
+                switch (indice)
+                {
+                    case 1:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + vTblName + " [NP_Group] = '" + xClass +
+                              "' ORDER BY [NP_LstWkDay] desc, [NP_Group]";
+                        qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                        break;
+                    case 2:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + aTblName + " [NP_Area] = '" + xClass +
+                              "' ORDER BY [NP_LstWkDay] desc, [NP_Area]";
+                        qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                        break;
+                    case 3:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + cTblName + " [NP_Celda] = '" + xClass +
+                              "' ORDER BY [NP_LstWkDay] desc, [NP_Celda]";
+                        qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
+                        break;
+                    default:
+                        query = "SELECT TOP 12 * " + sTblName +
+                              "  ORDER BY [NP_LstWkDay] desc";
+                        qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE 'Site'";
+                        break;
+                }
+
+                //Connection object, retrieves sql data
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dtPareto = dBHelper.QryManager(qry);
+                DataTable dtBaseline = dBHelper.GetBaseLine(qryBaseline);
+
+                double xGoal = 0;
+
+                if (dtBaseline.Rows.Count > 0)
+                {
+                    Double.TryParse(dtBaseline.Rows[0]["TBP_Base"].ToString(), out xGoal);
+                }
+
+                xGoal = xGoal / 100;
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    double eHrs = Convert.ToDouble(dr1["NP_EarnedHrs"].ToString());
+                    double tHrs = Convert.ToDouble(dr1["NP_TotalHrs"].ToString());
+                    double prod = tHrs == 0 ? 0 : (eHrs / tHrs);
+
+                    WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), tHrs));
+                    WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), eHrs));
+                    WebChartControl1.Series[2].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), prod));
+                    WebChartControl1.Series[3].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+
+                    WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[2].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[3].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                sTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_site_mntly].[NP_Month] AND " +
-                           "[NP_Year] = [vw_labor_productivity_by_site_mntly].[NP_Year] Order by [NP_LstWkDay] desc) " +
-                           "FROM [vw_labor_productivity_by_site_mntly]";
-                cTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_cell_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_cell_mntly].[NP_Year] " +
-                            " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_cell_mntly] WHERE ";
-                aTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_area_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_area_mntly].[NP_Year]" +
-                            " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_area_mntly] WHERE ";
-                vTblName = ", [NP_LstWkDay] = (SELECT TOP 1 [NP_LstWkDay] FROM tblLaborProductivity WHERE [NP_Month] = [vw_labor_productivity_by_vsm_mntly].[NP_Month] AND[NP_Year] = [vw_labor_productivity_by_vsm_mntly].[NP_Year]" +
-                            " Order by[NP_LstWkDay] desc) FROM [vw_labor_productivity_by_vsm_mntly] WHERE ";
-                colName = "NP_Month";
-                prefix = "";
-            }
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
 
-            //Validates filter level by site/area/cell, default filter is by site
-            switch (indice)
-            {
-                case 1:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + vTblName + " [NP_Group] = '" + xClass +
-                          "' ORDER BY [NP_LstWkDay] desc, [NP_Group]";
-                    qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
-                    break;
-                case 2:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + aTblName + " [NP_Area] = '" + xClass +
-                          "' ORDER BY [NP_LstWkDay] desc, [NP_Area]";
-                    qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
-                    break;
-                case 3:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + cTblName + " [NP_Celda] = '" + xClass +
-                          "' ORDER BY [NP_LstWkDay] desc, [NP_Celda]";
-                    qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE '" + xClass + "'";
-                    break;
-                default:
-                    query = "SELECT TOP 12 * " + sTblName +
-                          "  ORDER BY [NP_LstWkDay] desc";
-                    qry = "select * from (" + query + ") q1 order by [NP_LstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [tblBaseProductivity] WHERE [TBP_Name] LIKE 'Site'";
-                    break;
-            }
-
-            //Connection object, retrieves sql data
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dtPareto = dBHelper.QryManager(qry);
-            DataTable dtBaseline = dBHelper.GetBaseLine(qryBaseline);
-
-            double xGoal = 0;
-
-            if (dtBaseline.Rows.Count > 0)
-            {
-                Double.TryParse(dtBaseline.Rows[0]["TBP_Base"].ToString(), out xGoal);
-            }
-
-            xGoal = xGoal / 100;
-
-            foreach (DataRow dr1 in dtPareto.Rows)
-            {
-                double eHrs = Convert.ToDouble(dr1["NP_EarnedHrs"].ToString());
-                double tHrs = Convert.ToDouble(dr1["NP_TotalHrs"].ToString());
-                double prod = tHrs == 0 ? 0 : (eHrs / tHrs);
-           
-                WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), tHrs));
-                WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), eHrs));
-                WebChartControl1.Series[2].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), prod));
-                WebChartControl1.Series[3].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
-
-                WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-                WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-                WebChartControl1.Series[2].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-                WebChartControl1.Series[3].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
         private void loadUpdate()
         {
-            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'lproductivity'";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt.Rows)
+            try
             {
-                lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'lproductivity'";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt.Rows)
+                {
+                    lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=productivity.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 

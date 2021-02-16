@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -179,113 +180,147 @@ namespace MxliDashboard.n3_Productivity
 
         private void loadChartP01(int indice, string clase, string sFilter)
         {
-            //Week range, from current week - 13 to current week
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;
-            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
-            DateTime st = fh.GetSaturday(DateTime.Now);
-
-            WebChartControl1.Series[0].Points.Clear();
-            WebChartControl1.Series[1].Points.Clear();
-            WebChartControl1.Series[2].Points.Clear();
-            WebChartControl1.Series[3].Points.Clear();
-            WebChartControl1.SeriesSorting = DevExpress.XtraCharts.SortingMode.None;
-            WebChartControl1.SeriesTemplate.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.None;
-            
-            string qry = "", qryBaseline = "";
-            string colName = "", prefix = "";
-            string xClass = "";
-            string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
-
-            //Selects filter according to user's selection, dafult filter is by week
-            if (sFilter == "Week")
+            try
             {
-                sTblName = "[vw_utilization_by_site_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
-                cTblName = "[vw_utilization_by_cell_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                vTblName = "[vw_utilization_by_vsm_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                colName = "TU_Week";
-                prefix = "Wk";
+                //Week range, from current week - 13 to current week
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+                semana = semana - 1;
+                FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+                DateTime st = fh.GetSaturday(DateTime.Now);
+
+                WebChartControl1.Series[0].Points.Clear();
+                WebChartControl1.Series[1].Points.Clear();
+                WebChartControl1.Series[2].Points.Clear();
+                WebChartControl1.Series[3].Points.Clear();
+                WebChartControl1.SeriesSorting = DevExpress.XtraCharts.SortingMode.None;
+                WebChartControl1.SeriesTemplate.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.None;
+
+                string qry = "", qryBaseline = "";
+                string colName = "", prefix = "";
+                string xClass = "";
+                string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
+
+                //Selects filter according to user's selection, dafult filter is by week
+                if (sFilter == "Week")
+                {
+                    sTblName = "[vw_utilization_by_site_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
+                    cTblName = "[vw_utilization_by_cell_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    aTblName = "[vw_utilization_by_area_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    vTblName = "[vw_utilization_by_vsm_wkly] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-91).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    colName = "TU_Week";
+                    prefix = "Wk";
+                }
+                else
+                {
+                    sTblName = "[vw_utilization_by_site_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
+                    cTblName = "[vw_utilization_by_cell_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    aTblName = "[vw_utilization_by_area_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    vTblName = "[vw_utilization_by_vsm_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
+                    colName = "TU_Month";
+                    prefix = "";
+                }
+
+                //Validates filter level by site/area/cell, default filter is by site
+                switch (indice)
+                {
+                    case 1:
+                        xClass = clase;
+                        qry = "SELECT * FROM " + vTblName + " [TU_Group] = '" + xClass +
+                              "' ORDER BY [TU_LstWkDay]";
+                        qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
+                        break;
+                    case 2:
+                        xClass = clase;
+                        qry = "SELECT * FROM " + aTblName + " [TU_Area] = '" + xClass +
+                              "' ORDER BY [TU_LstWkDay]";
+                        qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
+                        break;
+                    case 3:
+                        xClass = clase;
+                        qry = "SELECT * FROM " + cTblName + " [TU_Celda] = '" + xClass +
+                              "' ORDER BY [TU_LstWkDay]";
+                        qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
+                        break;
+                    default:
+                        qry = "SELECT * FROM " + sTblName +
+                              "  ORDER BY [TU_LstWkDay]";
+                        qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
+                        break;
+                }
+
+                //Connection object, retrieves sql data
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dtPareto = dBHelper.QryManager(qry);
+                DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
+
+                double xGoal = 0;
+
+                if (dtBaseline.Rows.Count > 0)
+                {
+                    Double.TryParse(dtBaseline.Rows[0]["fGoal"].ToString(), out xGoal);
+                }
+
+                xGoal = xGoal / 100;
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    double eHrs = Convert.ToDouble(dr1["TU_DirectHrs"].ToString());
+                    double tHrs = Convert.ToDouble(dr1["TU_TotHrs"].ToString());
+                    double prod = (eHrs / tHrs);
+
+                    WebChartControl1.Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), tHrs));
+                    WebChartControl1.Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), eHrs));
+                    WebChartControl1.Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), prod));
+                    WebChartControl1.Series[3].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+
+                    WebChartControl1.Series[0].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[1].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[2].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[3].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                sTblName = "[vw_utilization_by_site_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "'";
-                cTblName = "[vw_utilization_by_cell_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                aTblName = "[vw_utilization_by_area_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                vTblName = "[vw_utilization_by_vsm_mntly_wd] WHERE [TU_LstWkDay] BETWEEN '" + st.AddDays(-180).ToShortDateString() + "' AND '" + st.ToShortDateString() + "' AND";
-                colName = "TU_Month";
-                prefix = "";
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Utilization.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
-
-            //Validates filter level by site/area/cell, default filter is by site
-            switch (indice)
-            {
-                case 1:
-                    xClass = clase;
-                    qry = "SELECT * FROM " + vTblName + " [TU_Group] = '" + xClass +
-                          "' ORDER BY [TU_LstWkDay]";
-                    qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
-                    break;
-                case 2:
-                    xClass = clase;
-                    qry = "SELECT * FROM " + aTblName + " [TU_Area] = '" + xClass +
-                          "' ORDER BY [TU_LstWkDay]";
-                    qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
-                    break;
-                case 3:
-                    xClass = clase;
-                    qry = "SELECT * FROM " + cTblName + " [TU_Celda] = '" + xClass +
-                          "' ORDER BY [TU_LstWkDay]";
-                    qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE '" + xClass + "'";
-                    break;
-                default:
-                    qry = "SELECT * FROM " + sTblName +
-                          "  ORDER BY [TU_LstWkDay]";
-                    qryBaseline = "SELECT Top 1 [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'Utilization' and [sClass] LIKE 'All'";
-                    break;
-            }
-
-            //Connection object, retrieves sql data
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dtPareto = dBHelper.QryManager(qry);
-            DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
-
-            double xGoal = 0;
-
-            if (dtBaseline.Rows.Count > 0)
-            {
-                Double.TryParse(dtBaseline.Rows[0]["fGoal"].ToString(), out xGoal);
-            }
-
-            xGoal = xGoal / 100;
-
-            foreach (DataRow dr1 in dtPareto.Rows)
-            {
-                double eHrs = Convert.ToDouble(dr1["TU_DirectHrs"].ToString());
-                double tHrs = Convert.ToDouble(dr1["TU_TotHrs"].ToString());
-                double prod = (eHrs / tHrs);
-
-                WebChartControl1.Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), tHrs));
-                WebChartControl1.Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), eHrs));
-                WebChartControl1.Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), prod));
-                WebChartControl1.Series[3].Points.Add(new DevExpress.XtraCharts.SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
-
-                WebChartControl1.Series[0].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                WebChartControl1.Series[1].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                WebChartControl1.Series[2].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-                WebChartControl1.Series[3].Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-            }
-
         }
 
         private void loadUpdate()
         {
-            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'utilization'";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt = dBHelper.QryManager(qry);
-            foreach(DataRow dr1 in dt.Rows)
+            try
             {
-                lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'utilization'";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt.Rows)
+                {
+                    lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Utilization.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
     }

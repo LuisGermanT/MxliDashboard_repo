@@ -3,6 +3,7 @@ using DevExpress.XtraCharts;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -175,145 +176,180 @@ namespace MxliDashboard.n3_Inventory
 
         private void loadChartP01(int indice, string clase, string sFilter)
         {
-            //Week range, from current week - 13 to current week
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-            semana = semana - 1;
-            FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
-            DateTime st = fh.GetSaturday(DateTime.Now);
-            string dtFrom = st.AddDays(-91).ToShortDateString();
-            string dtTo = st.ToShortDateString();
-
-            WebChartControl1.Series[0].Points.Clear();
-            WebChartControl1.Series[1].Points.Clear();
-            WebChartControl1.SeriesSorting = SortingMode.None;
-            WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
-
-            string query = "", qry = "", qryBaseline = "";
-            string colName = "", prefix = "", qFilter = "";
-            string xClass = "";
-            string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
-
-            //Selects filter according to user's selection, dafult filter is by week
-            if (sFilter == "Week")
+            try
             {
-                sTblName = " FROM [vw_scrap_weekly_by_site]";
-                aTblName = " FROM [vw_scrap_weekly_by_area] WHERE ";
-                cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE ";
-                vTblName = " FROM [vw_scrap_weekly_by_vsm] WHERE ";
-                colName = "TCS_Week";
-                prefix = "Wk";
-                qFilter = "Weekly";
+
+                //Week range, from current week - 13 to current week
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+                semana = semana - 1;
+                FunctionHelper.FncHelper fh = new FunctionHelper.FncHelper();
+                DateTime st = fh.GetSaturday(DateTime.Now);
+                string dtFrom = st.AddDays(-91).ToShortDateString();
+                string dtTo = st.ToShortDateString();
+
+                WebChartControl1.Series[0].Points.Clear();
+                WebChartControl1.Series[1].Points.Clear();
+                WebChartControl1.SeriesSorting = SortingMode.None;
+                WebChartControl1.SeriesTemplate.SeriesPointsSorting = SortingMode.None;
+
+                string query = "", qry = "", qryBaseline = "";
+                string colName = "", prefix = "", qFilter = "";
+                string xClass = "";
+                string sTblName = "", cTblName = "", aTblName = "", vTblName = "";
+
+                //Selects filter according to user's selection, dafult filter is by week
+                if (sFilter == "Week")
+                {
+                    sTblName = " FROM [vw_scrap_weekly_by_site]";
+                    aTblName = " FROM [vw_scrap_weekly_by_area] WHERE ";
+                    cTblName = " FROM [vw_scrap_weekly_by_cell] WHERE ";
+                    vTblName = " FROM [vw_scrap_weekly_by_vsm] WHERE ";
+                    colName = "TCS_Week";
+                    prefix = "Wk";
+                    qFilter = "Weekly";
+                }
+                else
+                {
+                    sTblName = " FROM [vw_scrap_monthly_by_site]";
+                    aTblName = " FROM [vw_scrap_monthly_by_area] WHERE ";
+                    cTblName = " FROM [vw_scrap_monthly_by_cell] WHERE ";
+                    vTblName = " FROM [vw_scrap_monthly_by_vsm] WHERE ";
+                    colName = "sMontName";
+                    prefix = "";
+                    qFilter = "Monthly";
+                }
+
+                //Validates filter level by site/area/cell, default filter is by site
+                switch (indice)
+                {
+                    case 1:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + vTblName + " [TCS_Group] = '" + xClass +
+                              "' ORDER BY [sLstWkDay] desc, [TCS_Group]";
+                        qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
+                        break;
+                    case 2:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + aTblName + " [TCS_Area] = '" + xClass +
+                              "' ORDER BY [sLstWkDay] desc, [TCS_Area]";
+                        qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
+                        break;
+                    case 3:
+                        xClass = clase;
+                        query = "SELECT TOP 12 * " + cTblName + " [TCS_Cell] = '" + xClass +
+                              "' ORDER BY [sLstWkDay] desc, [TCS_Cell]";
+                        qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Cell' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
+                        break;
+                    default:
+                        query = "SELECT TOP 12 * " + sTblName +
+                              "  ORDER BY [sLstWkDay] desc";
+                        qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
+                        qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Site' and [sType] = '" + qFilter + "'";
+                        break;
+                }
+
+                //Connection object, retrieves sql data
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dtPareto = dBHelper.QryManager(qry);
+                DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
+
+                double xGoal = 0;
+
+                if (dtBaseline.Rows.Count > 0)
+                {
+                    Double.TryParse(dtBaseline.Rows[0]["fGoal"].ToString(), out xGoal);
+                }
+
+                var maxVal = 0;
+                if (dtPareto.Rows.Count > 0)
+                {
+                    maxVal = Convert.ToInt32(dtPareto.Compute("Max([TCS_Amount])", string.Empty));
+                }
+
+                AxisLabel lbaxisY = ((XYDiagram)WebChartControl1.Diagram).AxisY.Label;
+                string lbFmt = "";
+                int div = 0;
+
+                if (maxVal > 999999)
+                {
+                    lbFmt = "{V:c2}" + " M";
+                    WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
+                    WebChartControl1.Series[0].Label.TextPattern = lbFmt;
+                    WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
+                    WebChartControl1.Series[1].Label.TextPattern = lbFmt;
+                    lbaxisY.TextPattern = lbFmt;
+                    div = 1000000;
+                }
+                else if (maxVal <= 999999)
+                {
+                    lbFmt = "{V:c2}" + " K";
+                    WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
+                    WebChartControl1.Series[0].Label.TextPattern = lbFmt;
+                    WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
+                    WebChartControl1.Series[1].Label.TextPattern = lbFmt;
+                    lbaxisY.TextPattern = lbFmt;
+                    div = 1000;
+                }
+
+                xGoal = xGoal / div;
+
+                foreach (DataRow dr1 in dtPareto.Rows)
+                {
+                    double tScrap = Convert.ToDouble(dr1["TCS_Amount"].ToString());
+
+                    tScrap = tScrap / div;
+
+                    WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), tScrap));
+                    WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
+                    WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                    WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                sTblName = " FROM [vw_scrap_monthly_by_site]";
-                aTblName = " FROM [vw_scrap_monthly_by_area] WHERE ";
-                cTblName = " FROM [vw_scrap_monthly_by_cell] WHERE ";
-                vTblName = " FROM [vw_scrap_monthly_by_vsm] WHERE ";
-                colName = "sMontName";
-                prefix = "";
-                qFilter = "Monthly";
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Scrap.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
-
-            //Validates filter level by site/area/cell, default filter is by site
-            switch (indice)
-            {
-                case 1:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + vTblName + " [TCS_Group] = '" + xClass +
-                          "' ORDER BY [sLstWkDay] desc, [TCS_Group]";
-                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
-                    break;
-                case 2:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + aTblName + " [TCS_Area] = '" + xClass +
-                          "' ORDER BY [sLstWkDay] desc, [TCS_Area]";
-                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'VSM' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
-                    break;
-                case 3:
-                    xClass = clase;
-                    query = "SELECT TOP 12 * " + cTblName + " [TCS_Cell] = '" + xClass +
-                          "' ORDER BY [sLstWkDay] desc, [TCS_Cell]";
-                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Cell' and [sType] = '" + qFilter + "' and [sClass] = '" + xClass + "'";
-                    break;
-                default:
-                    query = "SELECT TOP 12 * " + sTblName +
-                          "  ORDER BY [sLstWkDay] desc";
-                    qry = "select * from (" + query + ") q1 order by [sLstWkDay] asc";
-                    qryBaseline = "SELECT * FROM [sta_nivel2] WHERE [sMetric] = 'Scrap' AND [sFilter] = 'Site' and [sType] = '" + qFilter + "'";
-                    break;
-            }
-
-            //Connection object, retrieves sql data
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dtPareto = dBHelper.QryManager(qry);
-            DataTable dtBaseline = dBHelper.QryManager(qryBaseline);
-
-            double xGoal = 0;
-
-            if (dtBaseline.Rows.Count > 0)
-            {
-                Double.TryParse(dtBaseline.Rows[0]["fGoal"].ToString(), out xGoal);
-            }
-
-            var maxVal = 0;
-            if (dtPareto.Rows.Count > 0)
-            {
-                maxVal = Convert.ToInt32(dtPareto.Compute("Max([TCS_Amount])", string.Empty));
-            }
-            
-            AxisLabel lbaxisY = ((XYDiagram)WebChartControl1.Diagram).AxisY.Label;
-            string lbFmt = "";
-            int div = 0;
-
-            if (maxVal > 999999) 
-            {
-                lbFmt = "{V:c2}" + " M";
-                WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
-                WebChartControl1.Series[0].Label.TextPattern = lbFmt;
-                WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
-                WebChartControl1.Series[1].Label.TextPattern = lbFmt;
-                lbaxisY.TextPattern = lbFmt;
-                div = 1000000;
-            }
-            else if(maxVal <= 999999)
-            {
-                lbFmt = "{V:c2}" + " K";
-                WebChartControl1.Series[0].CrosshairLabelPattern = lbFmt;
-                WebChartControl1.Series[0].Label.TextPattern = lbFmt;
-                WebChartControl1.Series[1].CrosshairLabelPattern = lbFmt;
-                WebChartControl1.Series[1].Label.TextPattern = lbFmt;
-                lbaxisY.TextPattern = lbFmt;
-                div = 1000;                   
-            }
-
-            xGoal = xGoal / div;
-
-            foreach (DataRow dr1 in dtPareto.Rows)
-            {
-                double tScrap = Convert.ToDouble(dr1["TCS_Amount"].ToString());
-
-                tScrap = tScrap / div;
-
-                WebChartControl1.Series[0].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), tScrap));
-                WebChartControl1.Series[1].Points.Add(new SeriesPoint(prefix + dr1[colName].ToString(), xGoal));
-                WebChartControl1.Series[0].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-                WebChartControl1.Series[1].Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-            }
-
         }
 
         private void loadUpdate()
         {
-            string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'scrap'";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt.Rows)
+            try
             {
-                lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                string qry = "SELECT * FROM [tbl_metricsUpdates] WHERE [reportName] = 'scrap'";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt.Rows)
+                {
+                    lbLUpd.Text = dr1["lastUpdateText"].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
+                int errNum = ex.Number;
+                HttpContext.Current.Items.Add("Exception", ex);
+                string errDesc = ex.Message;
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Scrap.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
     }

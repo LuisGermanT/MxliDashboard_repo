@@ -45,8 +45,7 @@ namespace MxliDashboard
                 if (exc.InnerException != null)
                 {
                     exc = new Exception(exc.InnerException.Message);
-                    Server.Transfer("Errors.aspx?handler=Application_Error%20-%20Global.asax",
-                        true);
+                    Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Application_Error%20-%20Global.asax", true);
                 }
             }
         }

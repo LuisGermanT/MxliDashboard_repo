@@ -65,24 +65,46 @@ namespace MxliDashboard.n3_Safety
 
         protected void chartDefault(string xType, string xFilter)
         {
-            WebChartControl1.Series["Total"].Points.Clear();
-            WebChartControl1.Series["Goal"].Points.Clear();
-            int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-
-            string query = "SELECT TOP 13 * FROM cht_seguridad WHERE smetric = 'mst' and sType = '" + xType + "' and sfilter = '" + xFilter + "' and sday < '" + (semana) + "'  order by id ";
-            string qry = "select * from (" + query + ") q1 order by id";
-            SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
-            DataTable dt1 = dBHelper.QryManager(qry);
-            foreach (DataRow dr1 in dt1.Rows)
+            try
             {
-                double xTotal = Convert.ToDouble(dr1["fTotal"].ToString());
-                double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
-                WebChartControl1.Series["Total"].Points.AddPoint("W-"+ dr1["sday"].ToString(), xTotal);
-                WebChartControl1.Series["Goal"].Points.AddPoint("W-" + dr1["sday"].ToString(), xGoal);
+
+                WebChartControl1.Series["Total"].Points.Clear();
+                WebChartControl1.Series["Goal"].Points.Clear();
+                int semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+                string query = "SELECT TOP 13 * FROM cht_seguridad WHERE smetric = 'mst' and sType = '" + xType + "' and sfilter = '" + xFilter + "' and sday < '" + (semana) + "'  order by id ";
+                string qry = "select * from (" + query + ") q1 order by id";
+                SQLHelper.DBHelper dBHelper = new SQLHelper.DBHelper();
+                DataTable dt1 = dBHelper.QryManager(qry);
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    double xTotal = Convert.ToDouble(dr1["fTotal"].ToString());
+                    double xGoal = Convert.ToDouble(dr1["fgoal"].ToString());
+                    WebChartControl1.Series["Total"].Points.AddPoint("W-" + dr1["sday"].ToString(), xTotal);
+                    WebChartControl1.Series["Goal"].Points.AddPoint("W-" + dr1["sday"].ToString(), xGoal);
+                }
+            }
+            catch (Exception ex)
+            {
+                int errNum = -99999999;
+                string errDesc = "";
+                HttpContext.Current.Items.Add("Exception", ex);
+
+                if (ex is SqlException)
+                {
+                    // Handle more specific SqlException exception here.  
+                    SqlException odbcExc = (SqlException)ex;
+                    errNum = odbcExc.Number;
+                    errDesc = odbcExc.Message;
+                }
+                else
+                {
+                    // Handle generic ones here.
+                    errDesc = ex.Message;
+
+                }
+                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=mstactions.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
-
-
-
     }
 }
