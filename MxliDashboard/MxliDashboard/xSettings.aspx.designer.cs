@@ -40,6 +40,15 @@ namespace MxliDashboard {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
+        /// LabelFunctions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelFunctions;
+        
+        /// <summary>
         /// ASPxButton1 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxButton ASPxButton3;
         
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
         /// ASPxButton4 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +101,15 @@ namespace MxliDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton ASPxButton5;
+        
+        /// <summary>
+        /// ASPxButton6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ASPxButton6;
         
         /// <summary>
         /// Image9 control.

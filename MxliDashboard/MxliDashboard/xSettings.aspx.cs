@@ -29,16 +29,20 @@ namespace MxliDashboard
 
         protected void ASPxButton3_Click(object sender, EventArgs e)
         {
-            Response.Redirect("settings/set_actions.aspx");
+            Response.Redirect("settings/set_highlights.aspx");
         }
 
         protected void ASPxButton4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("settings/set_tierviews.aspx");
+            Response.Redirect("settings/set_actions.aspx");
         }
         protected void ASPxButton5_Click(object sender, EventArgs e)
         {
-            Response.Redirect("settings/set_highlights.aspx");
+            Response.Redirect("#");
+        }
+        protected void ASPxButton6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("#");
         }
 
     }
