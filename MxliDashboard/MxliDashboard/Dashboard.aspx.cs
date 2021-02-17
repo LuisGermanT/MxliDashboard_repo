@@ -171,7 +171,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -186,7 +187,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
             return xDescripcion.Replace("\n", "<br />");
         }
@@ -209,7 +210,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -224,7 +226,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
 
             return xDescripcion;
@@ -264,7 +266,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -279,7 +282,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
 
             return xValores;
@@ -320,7 +323,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -335,7 +339,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
 
             return xValores;
@@ -358,7 +362,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -373,7 +378,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
             return xTipo;
         }
@@ -395,7 +400,8 @@ namespace MxliDashboard
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -410,7 +416,7 @@ namespace MxliDashboard
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=Dashboard.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
             return xTipo;
         }

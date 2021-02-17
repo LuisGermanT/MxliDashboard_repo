@@ -324,7 +324,8 @@ namespace MxliDashboard.n3_Inventory
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -339,7 +340,7 @@ namespace MxliDashboard.n3_Inventory
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
@@ -362,9 +363,10 @@ namespace MxliDashboard.n3_Inventory
             {
                 //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
                 int errNum = ex.Number;
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
                 string errDesc = ex.Message;
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=inventory.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
 
@@ -388,9 +390,11 @@ namespace MxliDashboard.n3_Inventory
             {
                 //https ://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/cc645603(v=sql.105)?redirectedfrom=MSDN
                 int errNum = ex.Number;
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
+
                 string errDesc = ex.Message;
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=OTTR.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=OTTR.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
 
             return valor;

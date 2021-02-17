@@ -88,7 +88,8 @@ namespace MxliDashboard.n3_Safety
             {
                 int errNum = -99999999;
                 string errDesc = "";
-                HttpContext.Current.Items.Add("Exception", ex);
+                //HttpContext.Current.Items.Add("Exception", ex);
+                HttpContext.Current.Session.Add("Exception", ex);
 
                 if (ex is SqlException)
                 {
@@ -103,7 +104,7 @@ namespace MxliDashboard.n3_Safety
                     errDesc = ex.Message;
 
                 }
-                Server.Transfer("~\\CustomErrors\\Errors.aspx?handler=mstactions.aspx&msg=" + errNum + "&errDesc=" + errDesc);
+                Response.Redirect("~\\CustomErrors\\Errors.aspx?handler=mstactions.aspx&msg=" + errNum + "&errDesc=" + errDesc);
             }
         }
     }

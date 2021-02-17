@@ -39,7 +39,8 @@ namespace MxliDashboard
             }
             
             // If the exception no longer exists, create a generic exception.
-            var err = (Exception)HttpContext.Current.Items["Exception"];
+            //var err = (Exception)HttpContext.Current.Items["Exception"];
+            var err = (Exception)HttpContext.Current.Session["Exception"];
             if (ex == null && err == null)
             {
                 ex = new Exception(unhandledErrorMsg);
@@ -83,6 +84,9 @@ namespace MxliDashboard
 
             // Clear the error from the server.
             Server.ClearError();
+
+            //Clear Session Exception variable
+            HttpContext.Current.Session["Exception"] = null;
         }
     }
 }
