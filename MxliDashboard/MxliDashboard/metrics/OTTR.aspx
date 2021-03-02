@@ -13,7 +13,14 @@
             
             <p />
             <hr />
-            <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
+            <table style="width: 100%" >
+                <tr>
+                    <th>
+                        <asp:Label ID="lbLUpd" runat="server" Text="labelUpdate"></asp:Label>
+                    </th>
+                    
+                </tr>
+            </table>
             <p />
 
             <dx:ASPxRoundPanel ID="ASPxRoundPanel4" runat="server" Width="100%" HeaderText="Views" ForeColor="Black" AllowCollapsingByHeaderClick="true">
@@ -43,7 +50,7 @@
                                     <dx:ASPxLabel ID="ASPxLabelCaption5" runat="server" Text="Select Chart View" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxMCInContent" runat="server" ValueType="System.String" AutoPostBack="True"
-                                            OnSelectedIndexChanged="ASPxComboBoxMCInContent_SelectedIndexChanged" Theme="Office365" >
+                                        OnSelectedIndexChanged="ASPxComboBoxMCInContent_SelectedIndexChanged" Theme="Office365">
                                         <Items>
                                             <dx:ListEditItem Selected="true" Text="Default" Value="0" />
                                             <dx:ListEditItem Text="OTTR All Areas" Value="1" />
@@ -58,6 +65,10 @@
                                         <ValidationSettings ValidateOnLeave="False">
                                         </ValidationSettings>
                                     </dx:ASPxComboBox>
+                                </th>
+                                <th style="text-align: right">
+                                    <dx:ASPxHyperLink ID="ASPxHyperLink1" runat="server" Text="OTTR Misses" NavigateUrl="http://aeromxl.honeywell.com/1033_OTTR/Default" Font-Size="Large" Font-Bold="True" ForeColor="#3333FF">
+                                    </dx:ASPxHyperLink>
                                 </th>
                             </tr>
                         </table>

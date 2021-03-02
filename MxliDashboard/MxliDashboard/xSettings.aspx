@@ -50,10 +50,10 @@
                             <dx:ASPxButton ID="ASPxButton4" runat="server" Text="Actions" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton4_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton5" runat="server" Text="VSM/AREA/CELL" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton5_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton5" runat="server" Text="VSM/Area/Cell" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton5_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton6" runat="server" Text="METRICS" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton6_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton6" runat="server" Text="Metrics" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton6_Click"></dx:ASPxButton>
                         </th>
                     </tr>
                 </table>

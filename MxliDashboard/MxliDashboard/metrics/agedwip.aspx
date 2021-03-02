@@ -247,15 +247,15 @@
                             <PropertiesTextEdit DisplayFormatString="C2">
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sVsm" VisibleIndex="5" Caption="VSM">
+                        <dx:GridViewDataTextColumn FieldName="sVsm" VisibleIndex="5" Caption="Vsm">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sArea" VisibleIndex="6" Caption="AREA">
+                        <dx:GridViewDataTextColumn FieldName="sArea" VisibleIndex="6" Caption="Area">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sCell" VisibleIndex="7" Caption="CELL">
+                        <dx:GridViewDataTextColumn FieldName="sCell" VisibleIndex="7" Caption="Cell">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="sMrp" VisibleIndex="8" Caption="MRP">
+                        <dx:GridViewDataTextColumn FieldName="sMrp" VisibleIndex="8" Caption="Mrp">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="dActualStart" VisibleIndex="9" Caption="Start Date">
+                        <dx:GridViewDataTextColumn FieldName="dActualStart" VisibleIndex="9" Caption="Created Date">
                             <PropertiesTextEdit DisplayFormatString="d">
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>

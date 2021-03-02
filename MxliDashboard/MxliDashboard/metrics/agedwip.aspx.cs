@@ -119,7 +119,7 @@ namespace MxliDashboard.n3_Inventory
                     }
                     if (ASPxComboBoxClasInContent.SelectedIndex > 0)
                     {
-                        xFilter = "PFEP";
+                        xFilter = "STAT";
                         xClass = ASPxComboBoxClasInContent.SelectedItem.ToString();
                     }
                     chartDefault(xIndice, xFilter, xClass, ASPxComboBoxGV.SelectedIndex);

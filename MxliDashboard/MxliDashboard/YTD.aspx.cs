@@ -193,7 +193,7 @@ namespace MxliDashboard
                     e.Row.Cells[13 - index].Text = String.Format("{0:C2}", v12 / 1000) + "K";
                     e.Row.Cells[14 - index].Text = String.Format("{0:C2}", v13 / 1000) + "K";
                 }
-                if (xMetric == "BALANCED SCORECARD")
+                if (xMetric == "BALANCED SCORECARD" || xMetric == "5S")
                 {
                     e.Row.Cells[2 - index].Text = String.Format("{0:N2}", v1) + "";
                     e.Row.Cells[3 - index].Text = String.Format("{0:N2}", v2) + "";
@@ -278,7 +278,7 @@ namespace MxliDashboard
                     }
                 }
                 //KAIZENS PRODUCTIVITY  OTTR OUTPUT
-                if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT" || xMetric == "ACCURACY" || xMetric == "BALANCED SCORECARD" || xMetric == "CARS" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "QSAT" || xMetric == "UTILIZATION")
+                if (xMetric == "KAIZENS" || xMetric == "PRODUCTIVITY" || xMetric == "OTTR" || xMetric == "OUTPUT" || xMetric == "ACCURACY" || xMetric == "BALANCED SCORECARD" || xMetric == "CARS" || xMetric == "LABOR PRODUCTIVITY" || xMetric == "QSAT" || xMetric == "UTILIZATION" || xMetric == "ETAD" || xMetric == "5S" || xMetric == "POKAYOKES")
                 {
                     if (xComp == 1)
                     {
