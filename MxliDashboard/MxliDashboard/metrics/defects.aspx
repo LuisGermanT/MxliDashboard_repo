@@ -77,8 +77,8 @@
                         <th>
                             <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="vsm"
-                                TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
+                            <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="filtro3"
+                                TextField="filtro3" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundVsm" 
                                 OnSelectedIndexChanged="ASPxComboBoxVsmInContent_SelectedIndexChanged" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
@@ -91,7 +91,22 @@
                             </dx:ASPxComboBox>
                         </th>
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption2" runat="server" Text="Select Area" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            </dx:ASPxLabel>
+                            <dx:ASPxComboBox ID="ASPxComboBoxAreaInContent" runat="server" ValueField="vsm"
+                                TextField="vsm" ValueType="System.String" DataSourceID="SqlDataSourceArea"
+                                AutoPostBack="True" OnDataBound="cmbox_DataBoundArea" Theme="Office365">
+                                <ClientSideEvents Validation="function(s, e) {
+                                            if (s.GetSelectedIndex()==0) {
+                                            e.isValid = false;
+                                            e.errorText = &quot;You should Select One Area&quot;;
+                                            }}" />
+                                <ValidationSettings ValidateOnLeave="False">
+                                </ValidationSettings>
+                            </dx:ASPxComboBox>
+                        </th>
+                        <th>
+                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select Cell" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxCellInContent" runat="server" ValueField="celda"
                                 TextField="celda" ValueType="System.String" DataSourceID="SqlDataSourceCell"
@@ -104,28 +119,13 @@
                                 <ValidationSettings ValidateOnLeave="False">
                                 </ValidationSettings>
                             </dx:ASPxComboBox>
-                        </th>
+                        </th>       
                         <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption3" runat="server" Text="Select MRP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select MRP" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                             </dx:ASPxLabel>
                             <dx:ASPxComboBox ID="ASPxComboBoxMrpInContent" runat="server" ValueField="mrp"
                                 TextField="mrp" ValueType="System.String" DataSourceID="SqlDataSourceMrp"
                                 AutoPostBack="True" OnDataBound="cmbox_DataBoundMrp" Theme="Office365">
-                                <ClientSideEvents Validation="function(s, e) {
-                                            if (s.GetSelectedIndex()==0) {
-                                            e.isValid = false;
-                                            e.errorText = &quot;You should Select One MRP&quot;;
-                                            }}" />
-                                <ValidationSettings ValidateOnLeave="False">
-                                </ValidationSettings>
-                            </dx:ASPxComboBox>
-                        </th>       
-                        <th>
-                            <dx:ASPxLabel ID="ASPxLabelCaption4" runat="server" Text="Select Cause" Font-Names="Honeywell Sans Web" Font-Size="Medium">
-                            </dx:ASPxLabel>
-                            <dx:ASPxComboBox ID="ASPxComboBoxCauseInContent" runat="server" ValueField="causecode"
-                                TextField="causecode" ValueType="System.String" DataSourceID="SqlDataSourceCause"
-                                AutoPostBack="True" OnDataBound="cmbox_DataBoundCause" Theme="Office365">
                                 <ClientSideEvents Validation="function(s, e) {
                                             if (s.GetSelectedIndex()==0) {
                                             e.isValid = false;
@@ -257,7 +257,7 @@
         </PanelCollection>
     </dx:ASPxRoundPanel>
     <asp:SqlDataSource ID="ds_defects" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT [qn], [qndate], [material], [order], [workcenter], [causecode], [itemtext], [vsm], [celda], [mrp], [week], [filtro3] FROM [sap_defects] where mrp like @pMrp and vsm like @pVsm and celda like @pCell and causecode like @pCause order by id">
+        SelectCommand="SELECT [qn], [qndate], [material], [order], [workcenter], [causecode], [itemtext], [vsm], [celda], [mrp], [week], [filtro3] FROM [sap_defects] where mrp like @pMrp and vsm like @pArea and celda like @pCell and filtro3 like @pVsm order by id">
         <SelectParameters>
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxMrpInContent"
                 Name="pMrp" PropertyName="Value" Type="String" />
@@ -265,18 +265,18 @@
                 Name="pVsm" PropertyName="Value" Type="String" />
             <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCellInContent"
                 Name="pCell" PropertyName="Value" Type="String" />
-            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxCauseInContent"
-                Name="pCause" PropertyName="Value" Type="String" />
+            <asp:ControlParameter ControlID="ASPxRoundPanel2$ASPxComboBoxAreaInContent"
+                Name="pArea" PropertyName="Value" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [mrp] FROM [sap_defects] order by mrp"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [vsm] FROM [sap_defects] order by vsm"></asp:SqlDataSource>
+        SelectCommand="SELECT distinct [filtro3] FROM [sap_defects] order by filtro3"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
         SelectCommand="SELECT distinct [celda] FROM [sap_defects] order by celda"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceCause" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-        SelectCommand="SELECT distinct [causecode] FROM [sap_defects] order by causecode"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSourceArea" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+        SelectCommand="SELECT distinct [vsm] FROM [sap_defects] order by vsm"></asp:SqlDataSource>
     <p />
     <hr />
     <p />

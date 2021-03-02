@@ -23,6 +23,9 @@
             </div>
             <p></p>
             <div class="jumbotron">
+                <asp:Label ID="LabelFunctions" runat="server" Text="Goals Parameters:" Font-Size="Large"></asp:Label>
+                <hr />
+                </p>
                 <table style="width: 100%" >
                     <tr>
                         <th style="text-align: center">
@@ -32,13 +35,25 @@
                             <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Forecast" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton2_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Actions" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton3_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Highlights" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton3_Click"></dx:ASPxButton>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="jumbotron">
+                <asp:Label ID="Label3" runat="server" Text="System catalogs:" Font-Size="Large"></asp:Label>
+                <hr />
+                </p>
+                <table style="width: 100%" >
+                    <tr>
+                        <th style="text-align: center">
+                            <dx:ASPxButton ID="ASPxButton4" runat="server" Text="Actions" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton4_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton4" runat="server" Text="Tier Views" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton4_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton5" runat="server" Text="VSM/Area/Cell" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton5_Click"></dx:ASPxButton>
                         </th>
                         <th style="text-align: center">
-                            <dx:ASPxButton ID="ASPxButton5" runat="server" Text="Highlights" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton5_Click"></dx:ASPxButton>
+                            <dx:ASPxButton ID="ASPxButton6" runat="server" Text="Metrics" Font-Size="Large" Height="35px" Theme="Office365" Width="150px" OnClick="ASPxButton6_Click"></dx:ASPxButton>
                         </th>
                     </tr>
                 </table>

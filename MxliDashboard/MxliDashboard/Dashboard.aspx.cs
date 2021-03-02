@@ -108,6 +108,13 @@ namespace MxliDashboard
                     e.Row.Cells[3].Text = String.Format("{0:N2}", v3) + "%";
                     e.Row.Cells[4].Text = String.Format("{0:N2}", v4) + "%";
                 }
+                if (regresValueType(xMetric) == 33)
+                {
+                    e.Row.Cells[1].Text = String.Format("{0:N2}", v1) + "";
+                    e.Row.Cells[2].Text = String.Format("{0:N2}", v2) + "";
+                    e.Row.Cells[3].Text = String.Format("{0:N2}", v3) + "";
+                    e.Row.Cells[4].Text = String.Format("{0:N2}", v4) + "";
+                }
                 if (regresValueType(xMetric) == 22)
                 {
                     e.Row.Cells[1].Text = String.Format("{0:C2}", v1 / 1000) + "K";
@@ -203,7 +210,9 @@ namespace MxliDashboard
                 DataTable dt1 = dBHelper.QryManager(query);
                 foreach (DataRow dr1 in dt1.Rows)
                 {
-                    xDescripcion = dr1["lastUpdateDate"].ToString();
+                    string[] dates = dr1["lastUpdateText"].ToString().Split(' ');
+                    xDescripcion = dates[2] + "/2021";
+                    //xDescripcion = dr1["lastUpdateDate"].ToString();
                 }
             }
             catch (Exception ex)

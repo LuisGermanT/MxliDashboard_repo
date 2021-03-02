@@ -166,13 +166,13 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxGridView ASPxGridView3;
         
         /// <summary>
-        /// SqlDataSourceCell control.
+        /// SqlDataSourceArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceArea;
         
         /// <summary>
         /// Label4 control.
@@ -202,12 +202,12 @@ namespace MxliDashboard {
         protected global::DevExpress.Web.ASPxGridView ASPxGridView4;
         
         /// <summary>
-        /// SqlDataSourceMrp control.
+        /// SqlDataSourceCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMrp;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCell;
     }
 }
