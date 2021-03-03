@@ -44,6 +44,8 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel6;
     private XRChart xrChart2;
     private XRLabel xrLabel2;
+    private DevExpress.XtraReports.Parameters.Parameter pVsm;
+    private DevExpress.XtraReports.Parameters.Parameter pCell;
 
     /// <summary>
     /// Required designer variable.
@@ -143,6 +145,8 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.pVsm = new DevExpress.XtraReports.Parameters.Parameter();
+            this.pCell = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -690,6 +694,16 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.HeightF = 2.708689F;
             this.ReportFooter.Name = "ReportFooter";
             // 
+            // pVsm
+            // 
+            this.pVsm.Description = "Parameter vsm";
+            this.pVsm.Name = "pVsm";
+            // 
+            // pCell
+            // 
+            this.pCell.Description = "Parameter Cell";
+            this.pCell.Name = "pCell";
+            // 
             // r_ottr
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -706,6 +720,9 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.PageColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.PageHeight = 850;
             this.PageWidth = 1100;
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.pVsm,
+            this.pCell});
             this.RequestParameters = false;
             this.Version = "20.1";
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
