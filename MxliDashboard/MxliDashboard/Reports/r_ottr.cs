@@ -46,6 +46,7 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel2;
     private DevExpress.XtraReports.Parameters.Parameter pVsm;
     private DevExpress.XtraReports.Parameters.Parameter pCell;
+    private DevExpress.XtraReports.Parameters.Parameter parameter1;
 
     /// <summary>
     /// Required designer variable.
@@ -147,6 +148,7 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.pVsm = new DevExpress.XtraReports.Parameters.Parameter();
             this.pCell = new DevExpress.XtraReports.Parameters.Parameter();
+            this.parameter1 = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrChart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -704,6 +706,13 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.pCell.Description = "Parameter Cell";
             this.pCell.Name = "pCell";
             // 
+            // parameter1
+            // 
+            this.parameter1.Description = "Parameter1";
+            this.parameter1.Name = "parameter1";
+            this.parameter1.Type = typeof(int);
+            this.parameter1.ValueInfo = "0";
+            // 
             // r_ottr
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -722,7 +731,8 @@ public class r_ottr : DevExpress.XtraReports.UI.XtraReport
             this.PageWidth = 1100;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.pVsm,
-            this.pCell});
+            this.pCell,
+            this.parameter1});
             this.RequestParameters = false;
             this.Version = "20.1";
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
