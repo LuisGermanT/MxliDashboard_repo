@@ -211,27 +211,29 @@
                             <Columns>
                                 <dx:GridViewDataTextColumn FieldName="TU_EID" VisibleIndex="0" Caption="EID">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_CentroCostos" VisibleIndex="1" Caption="Cost Center">
+                                <dx:GridViewDataTextColumn FieldName="TU_Name" VisibleIndex="1" Caption="Name">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Group" VisibleIndex="2" Caption="VSM">
+                                <dx:GridViewDataTextColumn FieldName="TU_CentroCostos" VisibleIndex="2" Caption="Cost Center">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Area" VisibleIndex="3" Caption="Area">
+                                <dx:GridViewDataTextColumn FieldName="TU_Group" VisibleIndex="3" Caption="VSM">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="4" Caption="Cell">
+                                <dx:GridViewDataTextColumn FieldName="TU_Area" VisibleIndex="4" Caption="Area">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="5" ReadOnly="True" Caption="Direct Hrs">
+                                <dx:GridViewDataTextColumn FieldName="TU_Celda" VisibleIndex="5" Caption="Cell">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="6" ReadOnly="True" Caption="Total Hrs">
+                                <dx:GridViewDataTextColumn FieldName="TU_DirectHrs" VisibleIndex="6" ReadOnly="True" Caption="Direct Hrs">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="7" ReadOnly="True" Caption="% Utilization">
+                                <dx:GridViewDataTextColumn FieldName="TU_TotHrs" VisibleIndex="7" ReadOnly="True" Caption="Total Hrs">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="TU_Util" VisibleIndex="8" ReadOnly="True" Caption="% Utilization">
                                     <PropertiesTextEdit DisplayFormatString="{0:n2}%">
                                     </PropertiesTextEdit>
                                 </dx:GridViewDataTextColumn>
-                                 <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="8" Caption="Wk">
+                                 <dx:GridViewDataTextColumn FieldName="TU_Week" VisibleIndex="9" Caption="Wk">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="9" Caption="Month">
+                                <dx:GridViewDataTextColumn FieldName="TU_Month" VisibleIndex="10" Caption="Month">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="TU_Year" ShowInCustomizationForm="True" VisibleIndex="10" Caption="Yr">
+                                <dx:GridViewDataTextColumn FieldName="TU_Year" ShowInCustomizationForm="True" VisibleIndex="11" Caption="Yr">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
                             <GroupSummary>
@@ -264,7 +266,7 @@
             </dx:ASPxRoundPanel>
 
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT TU_EID, TU_CentroCostos, TU_Group, TU_Area, TU_Celda, TU_DirectHrs, TU_TotHrs, TU_Util, TU_Week, TU_Month, TU_Year FROM vw_Util_Details 
+                SelectCommand="SELECT TU_EID, TU_Name, TU_CentroCostos, TU_Group, TU_Area, TU_Celda, TU_DirectHrs, TU_TotHrs, TU_Util, TU_Week, TU_Month, TU_Year FROM vw_Util_Details 
                                 WHERE (TU_Celda LIKE @pCell) AND (TU_Area LIKE @pVsm) AND (TU_Group LIKE @pGroup) 
                                     ORDER BY TU_Year DESC, TU_Month DESC, TU_Week DESC, TU_Group, TU_Area, TU_Celda" ProviderName="System.Data.SqlClient">
                 <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
