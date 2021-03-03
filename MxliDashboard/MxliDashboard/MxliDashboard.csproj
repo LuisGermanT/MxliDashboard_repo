@@ -473,9 +473,6 @@
     <Compile Include="Reports\r_incidents.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\r_ottr.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\r_inventory.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -987,9 +984,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_incidents.resx">
       <DependentUpon>r_incidents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\r_ottr.resx">
-      <DependentUpon>r_ottr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\r_inventory.resx">
       <DependentUpon>r_inventory.cs</DependentUpon>

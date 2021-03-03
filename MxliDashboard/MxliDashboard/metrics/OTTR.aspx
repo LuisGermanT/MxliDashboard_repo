@@ -89,7 +89,21 @@
                         <table style="table-layout: fixed">
                             <tr>
                                 <th>
-                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select VSM:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
+                                    <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select VSM:"></dx:ASPxLabel>
+                                    <dx:ASPxComboBox ID="ASPxComboBoxGroupInContent" runat="server" ValueField="TO_Group"
+                                        TextField="TO_Group" ValueType="System.String" DataSourceID="SqlDataSourceGroup"
+                                        AutoPostBack="True" OnDataBound="cmbox_DataBoundGroup" OnSelectedIndexChanged="ASPxComboBoxGroupInContent_SelectedIndexChanged" Theme="Office365">
+                                        <ClientSideEvents Validation="function(s, e) {
+                                                    if (s.GetSelectedIndex()==0) {
+                                                    e.isValid = false;
+                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    }}" />
+                                        <ValidationSettings ValidateOnLeave="False">
+                                        </ValidationSettings>
+                                    </dx:ASPxComboBox>
+                                </th>
+                                <th>
+                                    <dx:ASPxLabel ID="ASPxLabelCaption1" runat="server" Text="Select Area:" Font-Names="Honeywell Sans Web" Font-Size="Medium">
                                     </dx:ASPxLabel>
                                     <dx:ASPxComboBox ID="ASPxComboBoxVsmInContent" runat="server" ValueField="TO_rArea"
                                         TextField="TO_rArea" ValueType="System.String" DataSourceID="SqlDataSourceVsm"
@@ -97,7 +111,7 @@
                                         <ClientSideEvents Validation="function(s, e) {
                                                     if (s.GetSelectedIndex()==0) {
                                                     e.isValid = false;
-                                                    e.errorText = &quot;You should Select One VSM&quot;;
+                                                    e.errorText = &quot;You should Select One Area&quot;;
                                                     }}" />
                                         <ValidationSettings ValidateOnLeave="False">
                                         </ValidationSettings>
@@ -308,43 +322,51 @@
                                 </dx:GridViewDataTextColumn>
                                 <dx:GridViewDataTextColumn FieldName="PnDesc" VisibleIndex="3" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Area" VisibleIndex="4" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="VSM" VisibleIndex="4" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Cell" VisibleIndex="5" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="Area" VisibleIndex="5" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="6" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="Cell" VisibleIndex="6" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="7" ReadOnly="True" Visible="false">
+                                <dx:GridViewDataTextColumn FieldName="MRP" VisibleIndex="7" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="8" ReadOnly="True" Visible="false">
+                                <dx:GridViewDataTextColumn FieldName="ReqQty" VisibleIndex="8" ReadOnly="True" Visible="false">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="9" Visible="false">
+                                <dx:GridViewDataTextColumn FieldName="ShipedQty" VisibleIndex="9" ReadOnly="True" Visible="false">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataCheckColumn FieldName="IsExcluded" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="10" Visible="false">
                                 </dx:GridViewDataCheckColumn>
-                                <dx:GridViewDataTextColumn FieldName="HitMiss" VisibleIndex="10" ReadOnly="True">
+                                <dx:GridViewDataTextColumn FieldName="HitMiss" VisibleIndex="11" ReadOnly="True">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataDateColumn FieldName="RequestedDate" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="11">
+                                <dx:GridViewDataDateColumn FieldName="RequestedDate" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="12">
                                 </dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="Wk" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="12">
+                                <dx:GridViewDataTextColumn FieldName="Wk" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="13">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Month" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="13">
+                                <dx:GridViewDataTextColumn FieldName="Month" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="14">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Yr" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="14">
+                                <dx:GridViewDataTextColumn FieldName="Yr" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="15">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="DelayCode" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="15">
+                                <dx:GridViewDataTextColumn FieldName="DelayCode" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="16">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Category" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="16">
+                                <dx:GridViewDataTextColumn FieldName="Category" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="17">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="CauseComment" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="17">
+                                <dx:GridViewDataTextColumn FieldName="CauseComment" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="18">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="SupplierName" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="18">
+                                <dx:GridViewDataTextColumn FieldName="SupplierName" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="19">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Component" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="19">
+                                <dx:GridViewDataTextColumn FieldName="Component" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="20">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Countermeasure" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="20">
+                                <dx:GridViewDataTextColumn FieldName="Countermeasure" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="21">
                                 </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Owner" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="21">
+                                <dx:GridViewDataTextColumn FieldName="Owner" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="22">
                                 </dx:GridViewDataTextColumn>
                             </Columns>
+                            <GroupSummary>
+                                <dx:ASPxSummaryItem SummaryType="Count" DisplayFormat="Qty: #" FieldName="DelayCode" ShowInColumn="Yr"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Count" DisplayFormat="Qty: #" FieldName="DelayCode" ShowInColumn="Wk"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Count" DisplayFormat="Qty: #" FieldName="DelayCode" ShowInColumn="DelayCode"></dx:ASPxSummaryItem>
+                                <dx:ASPxSummaryItem SummaryType="Count" DisplayFormat="Qty: #" FieldName="DelayCode" ShowInColumn="Category"></dx:ASPxSummaryItem>
+                            </GroupSummary>
                             <Styles>
                                 <Header BackColor="IndianRed" ForeColor="White">
                                 </Header>
@@ -355,7 +377,7 @@
             </dx:ASPxRoundPanel>
     
             <asp:SqlDataSource ID="ds_prod" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
-                SelectCommand="SELECT * FROM [vw_OTTR_Details] WHERE [Area] <> 'R&O' AND [Area] LIKE @pVsm AND [Cell] Like @pCell AND [MRP] LIKE @pMrp
+                SelectCommand="SELECT * FROM [vw_OTTR_Details] WHERE [Area] <> 'R&O' AND [VSM] LIKE @pGroup AND [Area] LIKE @pVsm AND [Cell] Like @pCell AND [MRP] LIKE @pMrp
                                  Order By [Yr] desc, [Wk] desc, [Month], [Area], [Cell], [MRP]
                 ">
                 <SelectParameters>
@@ -363,12 +385,16 @@
                         Name="pCell" PropertyName="Value" Type="String" />
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxVsmInContent"
                         Name="pVsm" PropertyName="Value" Type="String" />
+                    <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxGroupInContent"
+                        Name="pGroup" PropertyName="Value" Type="String" />
                     <asp:ControlParameter ControlID="ASPxRoundPanel1$ASPxComboBoxMrpInContent"
                         Name="pMrp" PropertyName="Value" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceCell" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT distinct [TO_Cell] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_Cell]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceGroup" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
+                SelectCommand="SELECT distinct [TO_Group] FROM [tblOTTR] WHERE [TO_Group] <> 'R&O' AND [TO_Group] is not null order by [TO_Group]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceVsm" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"
                 SelectCommand="SELECT distinct [TO_rArea] FROM [tblOTTR] WHERE [TO_rArea] <> 'R&O' order by [TO_rArea]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSourceMrp" runat="server" ConnectionString="Data Source=MX29W1009;Initial Catalog=DB_1033_Dashboard;Persist Security Info=True;User ID=OPEX_Users;Password=Gqb%Pjo7XZ"

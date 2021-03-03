@@ -24,6 +24,13 @@ namespace MxliDashboard
             }
         }
 
+        protected void cmbox_DataBoundGroup(object sender, EventArgs e)
+        {
+            ListEditItem defaultItem = new ListEditItem("Default", "%%");
+            ASPxComboBoxGroupInContent.Items.Insert(0, defaultItem);
+            ASPxComboBoxGroupInContent.SelectedIndex = 0;
+        }
+
         protected void cmbox_DataBoundVsm(object sender, EventArgs e)
         {
             ListEditItem defaultItem = new ListEditItem("Default", "%%");
@@ -58,6 +65,38 @@ namespace MxliDashboard
             ASPxComboBoxMWInContent.SelectedIndex = 0;
         }
 
+        protected void ASPxComboBoxGroupInContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string wk = "Week";
+
+            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxVsmInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxCellInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxCellInContent.SelectedIndex = 0;
+            }
+
+            if (ASPxComboBoxMWInContent.SelectedIndex > 0)
+            {
+                wk = ASPxComboBoxMWInContent.SelectedItem.ToString();
+            }
+
+            int idx = ASPxComboBoxGroupInContent.SelectedIndex;
+            if (idx > 0)
+            {
+                idx = 1;
+                string vsm = ASPxComboBoxGroupInContent.SelectedItem.ToString();
+                loadChartP01(idx, vsm, wk, 0);
+            }
+            else
+            {
+                loadChartP01(0, "", wk, 0);
+            }
+        }
+
         protected void ASPxComboBoxVsmInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
@@ -82,11 +121,15 @@ namespace MxliDashboard
                 ASPxComboBoxMCInContent.SelectedIndex = 0;
             }
 
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
+
             int idx = ASPxComboBoxVsmInContent.SelectedIndex;
             if (idx > 0)
             {
-                idx = 1;
-
+                idx = 2;
                 string vsm = ASPxComboBoxVsmInContent.SelectedItem.ToString();
                 loadChartP01(idx, vsm, wk, 0);
             }
@@ -120,10 +163,15 @@ namespace MxliDashboard
                 ASPxComboBoxMCInContent.SelectedIndex = 0;
             }
 
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
+
             int idx = ASPxComboBoxCellInContent.SelectedIndex;
             if (idx > 0)
             {
-                idx = 2;
+                idx = 3;
 
                 string cell = ASPxComboBoxCellInContent.SelectedItem.ToString();
                 loadChartP01(idx, cell, wk, 0);
@@ -158,10 +206,15 @@ namespace MxliDashboard
                 ASPxComboBoxMCInContent.SelectedIndex = 0;
             }
 
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
+
             int idx = ASPxComboBoxMrpInContent.SelectedIndex;
             if (idx > 0)
             {
-                idx = 3;
+                idx = 4;
 
                 string mrp = ASPxComboBoxMrpInContent.SelectedItem.ToString();
                 loadChartP01(idx, mrp, wk, 0);
@@ -177,21 +230,27 @@ namespace MxliDashboard
             string filter = "", wk = "";
             int idx = 0, mcFilter = 0;
 
-            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
             {
                 idx = 1;
+                filter = ASPxComboBoxGroupInContent.SelectedItem.ToString();
+            }
+
+            if (ASPxComboBoxVsmInContent.SelectedIndex > 0)
+            {
+                idx = 2;
                 filter = ASPxComboBoxVsmInContent.SelectedItem.ToString();
             }
 
             if (ASPxComboBoxCellInContent.SelectedIndex > 0)
             {
-                idx = 2;
+                idx = 3;
                 filter = ASPxComboBoxCellInContent.SelectedItem.ToString();
             }
 
             if (ASPxComboBoxMrpInContent.SelectedIndex > 0)
             {
-                idx = 3;
+                idx = 4;
                 filter = ASPxComboBoxMrpInContent.SelectedItem.ToString();
             }
 
@@ -215,6 +274,11 @@ namespace MxliDashboard
         protected void ASPxComboBoxMCInContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             string wk = "Week";
+
+            if (ASPxComboBoxGroupInContent.SelectedIndex > 0)
+            {
+                ASPxComboBoxGroupInContent.SelectedIndex = 0;
+            }
 
             if (ASPxComboBoxCellInContent.SelectedIndex > 0)
             {
@@ -286,8 +350,28 @@ namespace MxliDashboard
                 string qry = "", qry2 = "", qryBaseline = "";
                 string colName = "";
                 string xClass = "", prefix = "";
-                string sTblName = "", cTblName = "", aTblName = "", mTblName = "", aaTblName = "", acTblName = "", amTblName = "", smTbl = "", cmTbl = "", amTbl = "", mmTbl = "", asmTbl = "", acmTbl = "", aamTbl = "", ammTbl = "";
-                string qryOrder = "";
+                string sTblName = "", cTblName = "", aTblName = "", mTblName = "", aaTblName = "", acTblName = "", amTblName = "", smTbl = "", cmTbl = "", amTbl = "", mmTbl = "", asmTbl = "", acmTbl = "", aamTbl = "", ammTbl = "", vTblName = "", avTblName = "", vmTbl = "", vmmTbl = "";
+                string qryOrder = "", fBy = "";
+
+                switch (indice)
+                {
+                    case 1:
+                        fBy = "VSM";
+                        break;
+                    case 2:
+                        fBy = "Area";
+                        break;
+                    case 3:
+                        fBy = "Cell";
+                        break;
+                    case 4:
+                        fBy = "MRP";
+                        break;
+                    default:
+                        clase = "All";
+                        fBy = "Site";
+                        break;
+                }
 
                 //Selects filter according to user's selection, dafult filter is by week
                 if (sFilter == "Week")
@@ -296,7 +380,9 @@ namespace MxliDashboard
                     cTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
                     aTblName = "[vw_ottr_by_area_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
                     mTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
-                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
+                    vTblName = "[vw_ottr_by_vsm_wkly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                    //qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
+                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = '" + clase + "' AND [sFilter] = '" + fBy + "' AND [sType] = 'Weekly' AND [sDesc] = [TO_Wk] AND [sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "'";
                     qryOrder = "[TO_Wk]";
                     colName = "TO_Wk";
                     prefix = "Wk";
@@ -304,16 +390,19 @@ namespace MxliDashboard
                     aaTblName = "[vw_ottr_by_area_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                     acTblName = "[vw_ottr_by_cell_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                     amTblName = "[vw_ottr_by_mrp_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+                    avTblName = "[vw_ottr_by_vsm_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
 
                     smTbl = "[vw_ottr_misses_by_site_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                     cmTbl = "[vw_ottr_misses_by_cell_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                     amTbl = "[vw_ottr_misses_by_area_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
                     mmTbl = "[vw_ottr_misses_by_mrp_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
+                    vmTbl = "[vw_ottr_misses_by_vsm_wkly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
 
                     asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
                     acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
                     aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
                     ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
+                    vmmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Wk FROM " + vmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr,TO_Wk";
 
                 }
 
@@ -323,7 +412,10 @@ namespace MxliDashboard
                     cTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
                     aTblName = "[vw_ottr_by_area_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
                     mTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "' AND";
-                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
+                    vTblName = "[vw_ottr_by_vsm_mntly] WHERE [TO_sLstWkDay] BETWEEN '" + dtFrom + "' AND '" + dtTo + "' AND";
+                    //qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Monthly' AND " +
+                    //                "[sDesc] = [TO_Month] AND [sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "'";
+                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = '" + clase + "' AND [sFilter] = '" + fBy + "' AND [sType] = 'Monthly' AND " +
                                     "[sDesc] = [TO_Month] AND [sLstWkDay] BETWEEN '" + dtFrom2 + "' AND '" + dtTo + "'";
                     qryOrder = "[TO_sLstWkDay]";
                     colName = "TO_Month";
@@ -331,16 +423,19 @@ namespace MxliDashboard
                     aaTblName = "[vw_ottr_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                     acTblName = "[vw_ottr_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                     amTblName = "[vw_ottr_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+                    avTblName = "[vw_ottr_by_vsm_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
 
                     smTbl = "[vw_ottr_misses_by_site_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                     cmTbl = "[vw_ottr_misses_by_cell_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                     amTbl = "[vw_ottr_misses_by_area_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
                     mmTbl = "[vw_ottr_misses_by_mrp_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Month] = '" + mnth + "'";
+                    vmTbl = "[vw_ottr_misses_by_vsm_mntly] WHERE [TO_Yr] = " + yr + " AND [TO_Wk] = " + semana;
 
                     asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
                     acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
                     aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
                     ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
+                    vmmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr, TO_Month FROM " + vmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr, TO_Month";
                 }
 
                 if (sFilter == "Year")
@@ -349,7 +444,10 @@ namespace MxliDashboard
                     cTblName = "[vw_ottr_by_cell_yrly] WHERE [TO_Yr] BETWEEN " + (yr - 1) + " AND " + yr + " AND ";
                     aTblName = "[vw_ottr_by_area_yrly] WHERE [TO_Yr] BETWEEN " + (yr - 1) + " AND " + yr + " AND ";
                     mTblName = "[vw_ottr_by_mrp_yrly] WHERE [TO_Yr] BETWEEN " + (yr - 1) + " AND " + yr + " AND ";
-                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Yearly' AND " +
+                    vTblName = "[vw_ottr_by_vsm_yrly] WHERE [TO_Yr] BETWEEN " + (yr - 1) + " AND " + yr + " AND ";
+                    //qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = 'All' AND [sType] = 'Yearly' AND " +
+                    //                "[sDesc] = [TO_Yr] AND [sDesc] BETWEEN '" + (yr - 1) + "' AND '" + yr + "'";
+                    qryBaseline = "SELECT [fGoal] FROM [sta_nivel2] WHERE [sMetric] = 'OTTR' AND [sClass] = '" + clase + "' AND [sFilter] = '" + fBy + "' AND [sType] = 'Yearly' AND " +
                                     "[sDesc] = [TO_Yr] AND [sDesc] BETWEEN '" + (yr - 1) + "' AND '" + yr + "'";
                     qryOrder = "[TO_sLstWkDay]";
                     colName = "TO_Yr";
@@ -357,16 +455,19 @@ namespace MxliDashboard
                     aaTblName = "[vw_ottr_by_area_yrly] WHERE [TO_Yr] = " + yr;
                     acTblName = "[vw_ottr_by_cell_yrly] WHERE [TO_Yr] = " + yr;
                     amTblName = "[vw_ottr_by_mrp_yrly] WHERE [TO_Yr] = " + yr;
+                    avTblName = "[vw_ottr_by_vsm_yrly] WHERE [TO_Yr] = " + yr;
 
                     smTbl = "[vw_ottr_misses_by_site_yrly] WHERE [TO_Yr] = " + yr;
                     cmTbl = "[vw_ottr_misses_by_cell_yrly] WHERE [TO_Yr] = " + yr;
                     amTbl = "[vw_ottr_misses_by_area_yrly] WHERE [TO_Yr] = " + yr;
                     mmTbl = "[vw_ottr_misses_by_mrp_yrly] WHERE [TO_Yr] = " + yr;
+                    vmTbl = "[vw_ottr_misses_by_vsm_yrly] WHERE [TO_Yr] = " + yr;
 
                     asmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + smTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
                     acmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + cmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
                     aamTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + amTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
                     ammTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + mmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
+                    vmmTbl = "SELECT TO_DlyCode, TO_CodeCat, SUM(Qty) as Qty, TO_Yr FROM " + vmTbl + " Group By TO_DlyCode,TO_CodeCat,TO_Yr";
                 }
 
                 if (mcView == 0)
@@ -376,21 +477,26 @@ namespace MxliDashboard
                     {
                         case 1:
                             xClass = clase;
-                            qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + aTblName + " [TO_rArea] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_rArea]";
+                            qry = "SELECT *, [AOP] = ISNULL((" + qryBaseline + "),0) FROM " + vTblName + " [TO_Group] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Group]";
                             qry2 = "SELECT * FROM " + amTbl + " AND [TO_rArea] = '" + xClass + "' Order by [TO_Yr], [TO_rArea], [Qty] desc";
                             break;
                         case 2:
                             xClass = clase;
-                            qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + cTblName + " [TO_Cell] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Cell]";
-                            qry2 = "SELECT * FROM " + cmTbl + " AND [TO_Cell] = '" + xClass + "' Order by [TO_Yr], [TO_Cell], [Qty] desc";
+                            qry = "SELECT *, [AOP] = ISNULL((" + qryBaseline + "),0) FROM " + aTblName + " [TO_rArea] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_rArea]";
+                            qry2 = "SELECT * FROM " + amTbl + " AND [TO_rArea] = '" + xClass + "' Order by [TO_Yr], [TO_rArea], [Qty] desc";
                             break;
                         case 3:
                             xClass = clase;
-                            qry = "SELECT *, [AOP] = (" + qryBaseline + ") FROM " + mTblName + " [TO_MRP] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_MRP]";
+                            qry = "SELECT *, [AOP] = ISNULL((" + qryBaseline + "),0) FROM " + cTblName + " [TO_Cell] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_Cell]";
+                            qry2 = "SELECT * FROM " + cmTbl + " AND [TO_Cell] = '" + xClass + "' Order by [TO_Yr], [TO_Cell], [Qty] desc";
+                            break;
+                        case 4:
+                            xClass = clase;
+                            qry = "SELECT *, [AOP] = ISNULL((" + qryBaseline + "),0) FROM " + mTblName + " [TO_MRP] = '" + xClass + "' Order by [TO_Yr], " + qryOrder + ", [TO_MRP]";
                             qry2 = "SELECT * FROM " + mmTbl + " AND [TO_MRP] = '" + xClass + "' Order by [TO_Yr], [TO_MRP], [Qty] desc";
                             break;
                         default:
-                            qry = "SELECT *, [AOP] = (" + qryBaseline + ")  FROM " + sTblName + " Order by [TO_Yr], " + qryOrder;
+                            qry = "SELECT *, [AOP] = ISNULL((" + qryBaseline + "),0) FROM " + sTblName + " Order by [TO_Yr], " + qryOrder;
                             qry2 = "SELECT * FROM " + smTbl + " Order by [TO_Yr], [Qty] desc";
                             break;
                     }
@@ -400,19 +506,27 @@ namespace MxliDashboard
                     prefix = "";
                     if (mcView == 1)
                     {
+                        qry = "SELECT * FROM " + avTblName + " Order by [TO_Yr], [TO_Group]";
+                        qry2 = aamTbl + " Order by [TO_Yr], [Qty] desc";
+                        colName = "TO_Group";
+                    }
+
+
+                    if (mcView == 2)
+                    {
                         qry = "SELECT * FROM " + aaTblName + " Order by [TO_Yr], [TO_rArea]";
                         qry2 = aamTbl + " Order by [TO_Yr], [Qty] desc";
                         colName = "TO_rArea";
                     }
 
-                    if (mcView == 2)
+                    if (mcView == 3)
                     {
                         qry = "SELECT * FROM " + acTblName + " Order by [TO_Yr], [TO_Cell]";
                         qry2 = acmTbl + " Order by [TO_Yr], [Qty] desc";
                         colName = "TO_Cell";
                     }
 
-                    if (mcView == 3)
+                    if (mcView == 4)
                     {
                         qry = "SELECT * FROM " + amTblName + " Order by [TO_Yr], [TO_MRP]";
                         qry2 = ammTbl + " Order by [TO_Yr], [Qty] desc";
